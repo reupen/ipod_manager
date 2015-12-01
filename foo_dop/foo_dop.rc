@@ -1,0 +1,532 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.K.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENG)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_UK
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_CONFIG DIALOGEX 0, 0, 314, 272
+STYLE DS_SETFONT | WS_CHILD | WS_CLIPSIBLINGS
+EXSTYLE WS_EX_CONTROLPARENT
+FONT 8, "Tahoma", 0, 0, 0x1
+BEGIN
+    LTEXT           "Metadata",IDC_STATIC,11,11,32,8
+    CONTROL         "",IDC_STATIC,"Static",SS_GRAYFRAME | SS_SUNKEN | WS_GROUP,45,15,258,1,WS_EX_STATICEDGE
+    LTEXT           "SoundCheck adjustment:",IDC_STATIC,11,142,81,8
+    EDITTEXT        IDC_SC,93,139,31,12,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "",IDC_SPIN_SC,"msctls_updown32",UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS | UDS_NOTHOUSANDS,108,144,11,10
+    LTEXT           "dB",IDC_STATIC,126,142,9,8
+    LTEXT           "SoundCheck preference:",IDC_STATIC,150,142,80,8
+    COMBOBOX        IDC_RGMODE,231,139,72,91,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Use the update metadata command to update existing tracks on the iPod",IDC_STATIC,11,159,234,8
+    LTEXT           "Date added source",IDC_STATIC,11,181,62,8
+    CONTROL         "",IDC_STATIC,"Static",SS_GRAYFRAME | SS_SUNKEN | WS_GROUP,75,185,228,1,WS_EX_STATICEDGE
+    COMBOBOX        IDC_ADDED,11,196,292,91,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Sorting",IDC_STATIC,11,221,24,8
+    CONTROL         "",IDC_STATIC,"Static",SS_GRAYFRAME | SS_SUNKEN | WS_GROUP,37,225,266,1,WS_EX_STATICEDGE
+    CONTROL         "Ignore leading ""The"" and ""A"" (not compatible with 5G iPods)",IDC_OMIT_THE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,11,236,206,10
+    CONTROL         "Place numbers and symbols last",IDC_NUMBERS_LAST,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,11,251,117,10
+    CONTROL         "Allow the use of sort order metadata fields from tags",IDC_ALLOW_SORTORDER,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,11,124,185,10
+    CONTROL         "Force playlists to be sorted alphabetically",IDC_SORT_PLAYLISTS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,151,251,148,10
+END
+
+IDD_SELECT_PLAYLIST DIALOGEX 0, 0, 371, 214
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | WS_CAPTION
+CAPTION "Send Playlists to iPod"
+FONT 8, "Tahoma", 400, 0, 0x0
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,261,193,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,314,193,50,14
+    CONTROL         "",IDC_LIST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,7,18,357,160
+    LTEXT           "Select the playlists to send to your iPod",IDC_STATIC,7,7,127,8
+END
+
+IDD_SYNC DIALOGEX 0, 0, 371, 219
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | WS_CAPTION
+CAPTION "Synchronise iPod"
+FONT 8, "Tahoma", 400, 0, 0x0
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,261,198,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,315,198,50,14
+    CONTROL         "",IDC_LIST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,7,45,357,123
+    CONTROL         "Media library",IDC_MEDIA_LIBRARY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,20,57,10
+    LTEXT           "Which items would you like on your iPod?",IDC_STATIC,7,7,131,8
+    LTEXT           "Playlists",IDC_STATIC,7,34,26,8
+    CONTROL         "Eject iPod when done",IDC_EJECT_WHEN_DONE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,175,85,10
+END
+
+IDD_BROWSE DIALOGEX 0, 0, 489, 238
+STYLE DS_SETFONT | WS_POPUP | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+CAPTION "iPod Contents"
+FONT 8, "Tahoma", 400, 0, 0x0
+BEGIN
+    PUSHBUTTON      "Cancel",IDCANCEL,419,221,67,14
+    CONTROL         "",IDC_SONGS,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,134,3,351,216
+    PUSHBUTTON      "Save and close",IDOK,350,221,67,14
+    CONTROL         "",IDC_IPOD_TREE,"SysTreeView32",TVS_HASBUTTONS | TVS_HASLINES | TVS_SHOWSELALWAYS | TVS_TRACKSELECT | TVS_NOHSCROLL | WS_BORDER | WS_TABSTOP,4,3,127,216
+END
+
+IDD_INFO DIALOGEX 0, 0, 223, 172
+STYLE DS_SETFONT | WS_POPUP | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | WS_CAPTION
+CAPTION "Item Info"
+FONT 8, "Tahoma", 400, 0, 0x0
+BEGIN
+    PUSHBUTTON      "Close",IDCANCEL,159,151,50,14
+    CONTROL         "Remember playback position",IDC_REMPOS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,7,139,8
+    EDITTEXT        IDC_PLAYED,103,42,95,14,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Last played",IDC_STATIC,14,45,38,8
+    LTEXT           "Play count",IDC_STATIC,14,65,38,8
+    EDITTEXT        IDC_PLAYCOUNT,103,62,95,14,ES_AUTOHSCROLL | ES_READONLY
+    CONTROL         "Skip when shuffling",IDC_SKIPSHUFFLE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,26,139,8
+    LTEXT           "SoundCheck adjustment",IDC_STATIC,14,125,77,8
+    EDITTEXT        IDC_SCHECK,103,122,95,14,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "dB",IDC_STATIC,200,125,9,8
+    EDITTEXT        IDC_SKIPPED,103,82,95,14,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Last skipped",IDC_STATIC,14,85,56,8
+    LTEXT           "Skip count",IDC_STATIC,14,105,38,8
+    EDITTEXT        IDC_SKIPCOUNT,103,102,95,14,ES_AUTOHSCROLL | ES_READONLY
+END
+
+IDD_RESULTS DIALOGEX 0, 0, 489, 258
+STYLE DS_SETFONT | WS_POPUP | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+CAPTION "Generic results template"
+FONT 8, "Tahoma", 400, 0, 0x0
+BEGIN
+    PUSHBUTTON      "Close",IDCANCEL,432,237,50,14
+    CONTROL         "",IDC_LIST,"SysListView32",LVS_REPORT | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,7,7,475,216
+END
+
+IDD_HOST DIALOGEX 0, 0, 332, 296
+STYLE DS_SETFONT | WS_CHILD | WS_CLIPSIBLINGS
+EXSTYLE WS_EX_CONTROLPARENT
+FONT 8, "Tahoma", 0, 0, 0x1
+BEGIN
+    CONTROL         "Tab1",IDC_TAB1,"SysTabControl32",WS_TABSTOP,6,0,322,287
+END
+
+IDD_TOOLS DIALOGEX 0, 0, 313, 283
+STYLE DS_SETFONT | WS_CHILD | WS_CLIPSIBLINGS
+EXSTYLE WS_EX_CONTROLPARENT
+FONT 8, "Tahoma", 0, 0, 0x1
+BEGIN
+    LTEXT           "Artwork",IDC_STATIC,11,11,26,8
+    CONTROL         "",IDC_STATIC,"Static",SS_GRAYFRAME | SS_SUNKEN | WS_GROUP,42,15,260,1,WS_EX_STATICEDGE
+    CONTROL         "Add artwork to files sent to iPod",IDC_ADDARTWORK,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,11,30,119,10
+    LTEXT           "Source script:",IDC_STATIC,22,47,45,8
+    EDITTEXT        IDC_ARTWORK_STRING,21,58,281,13,ES_AUTOHSCROLL
+    LTEXT           "Enter the relative or absolute path to the artwork without the file extension.",IDC_STATIC,22,73,246,8
+    CONTROL         "Additionally use foobar2000 built-in artwork reader",IDC_FB2KARTWORK,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,21,88,179,10
+    CONTROL         "Create thumbnails for video files",IDC_THUMBAILVIDEOS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,21,104,119,10
+    LTEXT           "Gapless playback",IDC_STATIC,11,143,56,8
+    CONTROL         "",IDC_STATIC,"Static",SS_GRAYFRAME | SS_SUNKEN | WS_GROUP,71,147,231,1,WS_EX_STATICEDGE
+    CONTROL         "Determine gapless data for files sent to iPod",IDC_SCANGAPLESS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,11,161,157,10
+    CONTROL         "Set dummy gapless data for files without gapless data",IDC_USEDUMMYGAPLESS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,21,177,189,10
+END
+
+IDD_SMART DIALOGEX 0, 0, 428, 273
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | WS_CAPTION | WS_SYSMENU
+CAPTION "Smart playlists template"
+FONT 8, "Tahoma", 400, 0, 0x0
+BEGIN
+    PUSHBUTTON      "Cancel",IDCANCEL,372,253,50,14
+    CONTROL         "",IDC_RULES,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,20,35,391,101
+    GROUPBOX        "Rules",IDC_STATIC,6,7,416,158,0,WS_EX_TRANSPARENT
+    PUSHBUTTON      "New...",IDC_NEW,287,143,39,15
+    PUSHBUTTON      "Edit...",IDC_EDIT,330,143,39,15
+    PUSHBUTTON      "Delete",IDC_DELETE,373,143,39,15
+    CONTROL         "Live updating",IDC_LIVE_UPDATING,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,191,59,10
+    CONTROL         "Limit to",IDC_LIMIT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,209,36,10
+    EDITTEXT        IDC_LIMIT_VALUE,54,209,41,13,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "",IDC_LIMIT_VALUE_SPIN,"msctls_updown32",UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS,97,209,6,10
+    COMBOBOX        IDC_LIMIT_TYPE,105,208,58,12,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "by",IDC_STATIC,166,210,9,8
+    COMBOBOX        IDC_LIMIT_SORT,241,208,83,12,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_LIMIT_ORDER,178,208,57,12,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "order.",IDC_STATIC,328,210,21,8
+    CONTROL         "Match",IDC_MATCH,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,21,18,35,10
+    COMBOBOX        IDC_MATCH_TYPE,57,16,34,12,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "of the following rules:",IDC_STATIC,97,18,70,8
+    PUSHBUTTON      "OK",IDOK,318,253,50,14
+    LTEXT           "Sort by",IDC_STATIC,16,231,24,8,NOT WS_VISIBLE
+    COMBOBOX        IDC_SORT_ORDER,109,230,83,12,CBS_DROPDOWNLIST | NOT WS_VISIBLE | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_SORT_DIRECTION,45,230,57,12,CBS_DROPDOWNLIST | NOT WS_VISIBLE | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "order.",IDC_STATIC,195,231,21,8,NOT WS_VISIBLE
+END
+
+IDD_SMART_RULE DIALOGEX 0, 0, 385, 45
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | WS_CAPTION | WS_SYSMENU
+CAPTION "Smart playlist rule template"
+FONT 8, "Tahoma", 400, 0, 0x0
+BEGIN
+    PUSHBUTTON      "Cancel",IDCANCEL,326,25,50,14
+    EDITTEXT        IDC_VALUE2,292,6,84,13,ES_AUTOHSCROLL | NOT WS_VISIBLE
+    COMBOBOX        IDC_FIELD,7,6,81,60,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_RULE,98,6,88,66,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_VALUE,192,6,84,13,ES_AUTOHSCROLL | NOT WS_VISIBLE
+    COMBOBOX        IDC_COMBO,280,6,95,73,CBS_DROPDOWNLIST | NOT WS_VISIBLE | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "to",IDC_TO,280,8,9,8,NOT WS_VISIBLE
+    PUSHBUTTON      "OK",IDOK,269,25,50,14
+    COMBOBOX        IDC_COMBOVALUE,192,6,184,73,CBS_DROPDOWNLIST | NOT WS_VISIBLE | WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_RENAME_PLAYLIST DIALOGEX 0, 0, 244, 36
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "Enter Playlist Name"
+FONT 8, "Tahoma", 0, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDIT,4,4,236,12,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,140,20,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,192,20,50,14
+END
+
+IDD_MOBILE DIALOGEX 0, 0, 313, 283
+STYLE DS_SETFONT | WS_CHILD | WS_CLIPSIBLINGS
+EXSTYLE WS_EX_CONTROLPARENT
+FONT 8, "Tahoma", 0, 0, 0x1
+BEGIN
+    LTEXT           "Mobile device support",IDC_STATIC,11,11,70,8
+    CONTROL         "",IDC_STATIC,"Static",SS_GRAYFRAME | SS_SUNKEN | WS_GROUP,87,15,215,1,WS_EX_STATICEDGE
+    LTEXT           "Mobile device support is required for iPod touch, iPhone and iPad support. Changing this setting requires a restart of foobar2000.\r\n\r\nIf enabled, you should close foobar2000 when updating iTunes.",IDC_STATIC,11,28,291,36
+    CONTROL         "Enable mobile device support",IDC_ENABLED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,11,71,109,10
+END
+
+IDD_BEHAVIOUR DIALOGEX 0, 0, 313, 283
+STYLE DS_SETFONT | WS_CHILD | WS_CLIPSIBLINGS
+EXSTYLE WS_EX_CONTROLPARENT
+FONT 8, "Tahoma", 0, 0, 0x1
+BEGIN
+    LTEXT           "Load library",IDC_STATIC,11,11,38,8
+    CONTROL         "",IDC_STATIC,"Static",SS_GRAYFRAME | SS_SUNKEN | WS_GROUP,53,15,249,1,WS_EX_STATICEDGE
+    CONTROL         "Sort iPod library playlist by:",IDC_SORTLIBRARY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,11,27,103,10
+    EDITTEXT        IDC_SORTLIBRARYSCRIPT,11,43,291,13,ES_AUTOHSCROLL
+    LTEXT           "Synchronisation",IDC_STATIC,11,80,52,8
+    CONTROL         "",IDC_STATIC,"Static",SS_GRAYFRAME | SS_SUNKEN | WS_GROUP,66,84,236,1,WS_EX_STATICEDGE
+    CONTROL         "Quiet mode",IDC_QUIETSYNC,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,11,96,53,10
+    LTEXT           "Devices view",IDC_STATIC,11,128,42,8
+    CONTROL         "",IDC_STATIC,"Static",SS_GRAYFRAME | SS_SUNKEN | WS_GROUP,57,132,245,1,WS_EX_STATICEDGE
+    CONTROL         "Autosend selection to playlist:",IDC_AUTOSEND,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,11,145,112,10
+    EDITTEXT        IDC_AUTOSENDPLAYLIST,11,161,291,13,ES_AUTOHSCROLL
+END
+
+IDD_SYNC_CONFIRM DIALOGEX 0, 0, 406, 272
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | WS_CAPTION
+CAPTION "Preview - Synchronise iPod"
+FONT 8, "Tahoma", 400, 0, 0x0
+BEGIN
+    DEFPUSHBUTTON   "Continue",IDOK,286,251,50,14
+    PUSHBUTTON      "Stop",IDCANCEL,342,251,50,14
+    CONTROL         "",IDC_LIST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,14,18,378,193
+    LTEXT           "Note: In addition, the playlists on your iPod will be modified.",IDC_STATIC,14,228,378,8
+    LTEXT           "",IDC_TOTALADD,14,216,193,8
+    LTEXT           "The following tracks will be added or removed:",IDC_STATIC,14,7,149,8
+END
+
+IDD_CONVERSION DIALOGEX 0, 0, 315, 283
+STYLE DS_SETFONT | WS_CHILD | WS_CLIPSIBLINGS
+EXSTYLE WS_EX_CONTROLPARENT
+FONT 8, "Tahoma", 0, 0, 0x1
+BEGIN
+    LTEXT           "Input",IDC_STATIC,11,11,18,8
+    CONTROL         "",IDC_STATIC,"Static",SS_GRAYFRAME | SS_SUNKEN | WS_GROUP,33,15,273,1,WS_EX_STATICEDGE
+    CONTROL         "Convert audio tracks in unsupported formats",IDC_CONVERT,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,11,28,159,10
+    CONTROL         "Convert audio tracks with a bitrate above:",IDC_CONVERT_BITRATE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,11,43,148,10
+    EDITTEXT        IDC_CONVERT_BITRATE_VALUE,162,41,40,14,ES_AUTOHSCROLL
+    CONTROL         "",IDC_CONVERT_BITRATE_VALUE_SPIN,"msctls_updown32",UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS,187,47,11,14
+    LTEXT           "kbps",IDC_STATIC,204,44,16,8
+    LTEXT           "Output",IDC_STATIC,11,67,24,8
+    CONTROL         "",IDC_STATIC,"Static",SS_GRAYFRAME | SS_SUNKEN | WS_GROUP,38,71,268,1,WS_EX_STATICEDGE
+    LTEXT           "Encoder:",IDC_STATIC,11,86,30,8
+    COMBOBOX        IDC_ENCODER_COMBO,91,84,214,61,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Maximum number of concurrent encodings:",IDC_STATIC,11,108,138,8
+    COMBOBOX        IDC_THREADMODE,154,105,48,61,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_THREADCOUNT,210,105,40,14,ES_AUTOHSCROLL
+    CONTROL         "",IDC_THREADCOUNTSPIN,"msctls_updown32",UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS,250,105,11,14
+    LTEXT           "ReplayGain processing:",IDC_STATIC,11,130,76,8
+    COMBOBOX        IDC_RGMODE,91,127,214,61,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Open Encoder Manager",IDC_ENCODER_MANAGER,163,149,142,14
+    PUSHBUTTON      "Verify encoder settings",IDC_VERIFY_ENCODER,11,149,142,14
+    LTEXT           "ReplayGain scanning support requires ReplayGain scanner 2.0.6 or newer",IDC_RGWARNING,11,174,275,8,NOT WS_VISIBLE
+END
+
+IDD_SYSLOG DIALOGEX 0, 0, 489, 258
+STYLE DS_SETFONT | WS_POPUP | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+CAPTION "System log - iPod manager"
+FONT 8, "Tahoma", 400, 0, 0x0
+BEGIN
+    PUSHBUTTON      "Close",IDCANCEL,432,237,50,14
+    EDITTEXT        IDC_EDIT,7,7,475,217,ES_AUTOHSCROLL | ES_READONLY
+END
+
+IDD_BROWSE_PHOTOS DIALOGEX 0, 0, 517, 338
+STYLE DS_SETFONT | WS_POPUP | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+CAPTION "iPod Photo Browser"
+FONT 8, "Tahoma", 400, 0, 0x0
+BEGIN
+    PUSHBUTTON      "Close",IDCANCEL,460,317,50,14
+    PUSHBUTTON      "Next",IDC_NEXT,355,317,50,14
+    PUSHBUTTON      "Previous",IDC_PREVIOUS,303,317,50,14
+    PUSHBUTTON      "Next Format",IDC_NEXT_FORMAT,245,317,57,14
+    PUSHBUTTON      "Previous Format",IDC_PREVIOUS_FORMAT,185,317,57,14
+    PUSHBUTTON      "Last",IDC_LAST,408,317,50,14
+END
+
+IDD_ENCODER_MANAGER DIALOGEX 0, 0, 314, 254
+STYLE DS_SETFONT | WS_POPUP | WS_CLIPSIBLINGS | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_CONTROLPARENT
+CAPTION "Encoder Manager"
+FONT 8, "Tahoma", 0, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Reset",IDC_RESET,7,98,50,14
+    PUSHBUTTON      "New",IDC_NEW,201,98,50,14
+    PUSHBUTTON      "Delete",IDC_DELETE,257,98,50,14
+    LTEXT           "Encoder settings",IDC_STATIC,7,117,54,8
+    CONTROL         "",IDC_STATIC,"Static",SS_GRAYFRAME | SS_SUNKEN | WS_GROUP,65,121,242,1,WS_EX_STATICEDGE
+    LTEXT           "Executable:",IDC_STATIC,7,137,39,8
+    EDITTEXT        IDC_COMMAND,65,134,185,13,ES_AUTOHSCROLL
+    PUSHBUTTON      "Browse...",IDC_BROWSE,257,133,50,14
+    LTEXT           "Parameters:",IDC_STATIC,7,155,40,8
+    EDITTEXT        IDC_PARAMETERS,65,153,242,13,ES_AUTOHSCROLL
+    LTEXT           "File extension:",IDC_STATIC,7,173,48,8
+    EDITTEXT        IDC_EXTENSION,65,171,43,13,ES_AUTOHSCROLL
+    LTEXT           "Maximum number of bits per sample supported:",IDC_STATIC,7,191,152,8
+    COMBOBOX        IDC_MAX_BPS,164,188,48,61,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Encoder requires an accurate input length",IDC_ENCODER_RAL,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,208,300,10
+    PUSHBUTTON      "Close",IDOK,257,233,50,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_CONFIG, DIALOG
+    BEGIN
+        LEFTMARGIN, 11
+        RIGHTMARGIN, 303
+        TOPMARGIN, 11
+        BOTTOMMARGIN, 261
+    END
+
+    IDD_SELECT_PLAYLIST, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 364
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 207
+    END
+
+    IDD_SYNC, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 364
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 212
+    END
+
+    IDD_BROWSE, DIALOG
+    BEGIN
+        LEFTMARGIN, 4
+    END
+
+    IDD_INFO, DIALOG
+    BEGIN
+        LEFTMARGIN, 14
+        RIGHTMARGIN, 209
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 165
+    END
+
+    IDD_RESULTS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 482
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 251
+    END
+
+    IDD_HOST, DIALOG
+    BEGIN
+        LEFTMARGIN, 2
+        RIGHTMARGIN, 329
+        BOTTOMMARGIN, 287
+    END
+
+    IDD_TOOLS, DIALOG
+    BEGIN
+        LEFTMARGIN, 11
+        RIGHTMARGIN, 302
+        TOPMARGIN, 11
+        BOTTOMMARGIN, 278
+    END
+
+    IDD_SMART, DIALOG
+    BEGIN
+        LEFTMARGIN, 6
+        RIGHTMARGIN, 422
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 267
+    END
+
+    IDD_SMART_RULE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 376
+        TOPMARGIN, 6
+        BOTTOMMARGIN, 39
+    END
+
+    IDD_RENAME_PLAYLIST, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 237
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 29
+    END
+
+    IDD_MOBILE, DIALOG
+    BEGIN
+        LEFTMARGIN, 11
+        RIGHTMARGIN, 302
+        TOPMARGIN, 11
+        BOTTOMMARGIN, 278
+    END
+
+    IDD_BEHAVIOUR, DIALOG
+    BEGIN
+        LEFTMARGIN, 11
+        RIGHTMARGIN, 302
+        TOPMARGIN, 11
+        BOTTOMMARGIN, 278
+    END
+
+    IDD_SYNC_CONFIRM, DIALOG
+    BEGIN
+        LEFTMARGIN, 14
+        RIGHTMARGIN, 392
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 265
+    END
+
+    IDD_CONVERSION, DIALOG
+    BEGIN
+        LEFTMARGIN, 11
+        RIGHTMARGIN, 305
+        TOPMARGIN, 11
+        BOTTOMMARGIN, 278
+    END
+
+    IDD_SYSLOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 482
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 251
+    END
+
+    IDD_BROWSE_PHOTOS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 510
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 331
+    END
+
+    IDD_ENCODER_MANAGER, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 307
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 247
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_PLAYLIST            ICON                    "playlist.ico"
+IDI_IPODFLAT            ICON                    "ipodflat.ico"
+IDI_FOLDER              ICON                    "folder.ico"
+#endif    // English (U.K.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

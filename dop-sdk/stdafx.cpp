@@ -1,0 +1,3 @@
+//FOR PRECOMPILED HEADER GENERATION ONLY
+
+#include "dop.h"
