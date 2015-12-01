@@ -18,7 +18,7 @@ Produced builds require `iTunesCrypt.dll` found in the `MobileDeviceSign` folder
 
 ## Acknowledgements
 
-Required to bild iPod manager, and contained in this repo are:
+Required to build iPod manager, and contained in this repo are:
 
 ### zlib
 Copyright (C) 1995-2010 Jean-loup Gailly and Mark Adler
