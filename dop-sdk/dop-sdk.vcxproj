@@ -144,20 +144,20 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\dop-sdk\device_identifiers.cpp" />
-    <ClCompile Include="..\dop-sdk\ipod_manager.cpp" />
-    <ClCompile Include="..\dop-sdk\playback_data.cpp" />
-    <ClCompile Include="..\dop-sdk\stdafx.cpp">
+    <ClCompile Include="device_identifiers.cpp" />
+    <ClCompile Include="ipod_manager.cpp" />
+    <ClCompile Include="playback_data.cpp" />
+    <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release (Dynamic Link)|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\dop-sdk\device_identifiers.h" />
-    <ClInclude Include="..\dop-sdk\dop.h" />
-    <ClInclude Include="..\dop-sdk\ipod_manager.h" />
-    <ClInclude Include="..\dop-sdk\playback_data.h" />
+    <ClInclude Include="device_identifiers.h" />
+    <ClInclude Include="dop.h" />
+    <ClInclude Include="ipod_manager.h" />
+    <ClInclude Include="playback_data.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

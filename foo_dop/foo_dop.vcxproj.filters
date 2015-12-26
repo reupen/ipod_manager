@@ -60,378 +60,378 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\foo_dop\chapter.h">
+    <ClInclude Include="chapter.h">
       <Filter>Database Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="..\foo_dop\itunesdb.h">
+    <ClInclude Include="itunesdb.h">
       <Filter>Database Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="..\foo_dop\photodb.h">
+    <ClInclude Include="photodb.h">
       <Filter>Database Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="..\foo_dop\smart_playlist_processor.h">
+    <ClInclude Include="smart_playlist_processor.h">
       <Filter>Database Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="..\foo_dop\actions_base.h">
+    <ClInclude Include="actions_base.h">
       <Filter>User Commands</Filter>
     </ClInclude>
-    <ClInclude Include="..\foo_dop\lock.h">
+    <ClInclude Include="lock.h">
       <Filter>User Commands</Filter>
     </ClInclude>
-    <ClInclude Include="..\foo_dop\maintenance.h">
+    <ClInclude Include="maintenance.h">
       <Filter>User Commands</Filter>
     </ClInclude>
-    <ClInclude Include="..\foo_dop\gapless.h">
+    <ClInclude Include="gapless.h">
       <Filter>User Commands\Scan Gapless</Filter>
     </ClInclude>
-    <ClInclude Include="..\foo_dop\load_to_playlist.h">
+    <ClInclude Include="load_to_playlist.h">
       <Filter>User Commands\Load to Playlist</Filter>
     </ClInclude>
-    <ClInclude Include="..\foo_dop\remove_files.h">
+    <ClInclude Include="remove_files.h">
       <Filter>User Commands\Remove Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\foo_dop\send_files.h">
+    <ClInclude Include="send_files.h">
       <Filter>User Commands\Send Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\foo_dop\sync.h">
+    <ClInclude Include="sync.h">
       <Filter>User Commands\Sync</Filter>
     </ClInclude>
-    <ClInclude Include="..\foo_dop\browse.h">
+    <ClInclude Include="browse.h">
       <Filter>User Commands\Browser</Filter>
     </ClInclude>
-    <ClInclude Include="..\foo_dop\item_properties.h">
+    <ClInclude Include="item_properties.h">
       <Filter>User Commands\Browser</Filter>
     </ClInclude>
-    <ClInclude Include="..\foo_dop\photo_browser.h">
+    <ClInclude Include="photo_browser.h">
       <Filter>User Commands\Browser</Filter>
     </ClInclude>
-    <ClInclude Include="..\foo_dop\smart_playlist_editor.h">
+    <ClInclude Include="smart_playlist_editor.h">
       <Filter>User Commands\Browser</Filter>
     </ClInclude>
-    <ClInclude Include="..\foo_dop\shell.h">
+    <ClInclude Include="shell.h">
       <Filter>User Commands\Shell</Filter>
     </ClInclude>
-    <ClInclude Include="..\foo_dop\config.h">
+    <ClInclude Include="config.h">
       <Filter>Component</Filter>
     </ClInclude>
-    <ClInclude Include="..\foo_dop\ipod_manager.h">
+    <ClInclude Include="ipod_manager.h">
       <Filter>Component</Filter>
     </ClInclude>
-    <ClInclude Include="..\foo_dop\main.h">
+    <ClInclude Include="main.h">
       <Filter>Component</Filter>
     </ClInclude>
-    <ClInclude Include="..\foo_dop\resource.h">
+    <ClInclude Include="resource.h">
       <Filter>Component</Filter>
     </ClInclude>
-    <ClInclude Include="..\foo_dop\results.h">
+    <ClInclude Include="results.h">
       <Filter>Component</Filter>
     </ClInclude>
-    <ClInclude Include="..\foo_dop\helpers.h">
+    <ClInclude Include="helpers.h">
       <Filter>Helpers</Filter>
     </ClInclude>
-    <ClInclude Include="..\foo_dop\iPhoneCalc.h">
+    <ClInclude Include="iPhoneCalc.h">
       <Filter>Helpers</Filter>
     </ClInclude>
-    <ClInclude Include="..\foo_dop\sqlite.h">
+    <ClInclude Include="sqlite.h">
       <Filter>Helpers\Library Interfaces\SQLite</Filter>
     </ClInclude>
-    <ClInclude Include="..\foo_dop\zlib.h">
+    <ClInclude Include="zlib.h">
       <Filter>Helpers\Library Interfaces\Zlib</Filter>
     </ClInclude>
-    <ClInclude Include="..\foo_dop\mp4.h">
+    <ClInclude Include="mp4.h">
       <Filter>Helpers\MP4</Filter>
     </ClInclude>
-    <ClInclude Include="..\foo_dop\speech.h">
+    <ClInclude Include="speech.h">
       <Filter>Helpers\Speech</Filter>
     </ClInclude>
-    <ClInclude Include="..\foo_dop\file_adder.h">
+    <ClInclude Include="file_adder.h">
       <Filter>Backend Operations</Filter>
     </ClInclude>
-    <ClInclude Include="..\foo_dop\file_remover.h">
+    <ClInclude Include="file_remover.h">
       <Filter>Backend Operations</Filter>
     </ClInclude>
-    <ClInclude Include="..\foo_dop\gapless_scanner.h">
+    <ClInclude Include="gapless_scanner.h">
       <Filter>Backend Operations</Filter>
     </ClInclude>
-    <ClInclude Include="..\foo_dop\ipod_scanner.h">
+    <ClInclude Include="ipod_scanner.h">
       <Filter>Backend Operations</Filter>
     </ClInclude>
-    <ClInclude Include="..\foo_dop\prepare.h">
+    <ClInclude Include="prepare.h">
       <Filter>Backend Operations</Filter>
     </ClInclude>
-    <ClInclude Include="..\foo_dop\reader.h">
+    <ClInclude Include="reader.h">
       <Filter>Backend Operations</Filter>
     </ClInclude>
-    <ClInclude Include="..\foo_dop\sync_logic.h">
+    <ClInclude Include="sync_logic.h">
       <Filter>Backend Operations</Filter>
     </ClInclude>
-    <ClInclude Include="..\foo_dop\writer.h">
+    <ClInclude Include="writer.h">
       <Filter>Backend Operations</Filter>
     </ClInclude>
-    <ClInclude Include="..\foo_dop\writer_sort_helpers.h">
+    <ClInclude Include="writer_sort_helpers.h">
       <Filter>Backend Operations</Filter>
     </ClInclude>
-    <ClInclude Include="..\foo_dop\mach_error.h">
+    <ClInclude Include="mach_error.h">
       <Filter>Mobile Device</Filter>
     </ClInclude>
-    <ClInclude Include="..\foo_dop\mobile_device.h">
+    <ClInclude Include="mobile_device.h">
       <Filter>Mobile Device</Filter>
     </ClInclude>
-    <ClInclude Include="..\foo_dop\mobile_device_definitions.h">
+    <ClInclude Include="mobile_device_definitions.h">
       <Filter>Mobile Device</Filter>
     </ClInclude>
-    <ClInclude Include="..\foo_dop\mobile_device_error.h">
+    <ClInclude Include="mobile_device_error.h">
       <Filter>Mobile Device</Filter>
     </ClInclude>
-    <ClInclude Include="..\foo_dop\mobile_device_v2.h">
+    <ClInclude Include="mobile_device_v2.h">
       <Filter>Mobile Device</Filter>
     </ClInclude>
-    <ClInclude Include="..\foo_dop\bplist.h" />
-    <ClInclude Include="..\foo_dop\cfobject.h" />
-    <ClInclude Include="..\foo_dop\plist.h" />
-    <ClInclude Include="..\foo_dop\file_adder_conversion.h">
+    <ClInclude Include="bplist.h" />
+    <ClInclude Include="cfobject.h" />
+    <ClInclude Include="plist.h" />
+    <ClInclude Include="file_adder_conversion.h">
       <Filter>Backend Operations</Filter>
     </ClInclude>
-    <ClInclude Include="..\foo_dop\config_database.h">
+    <ClInclude Include="config_database.h">
       <Filter>Component</Filter>
     </ClInclude>
-    <ClInclude Include="..\foo_dop\config_conversion.h">
+    <ClInclude Include="config_conversion.h">
       <Filter>Component</Filter>
     </ClInclude>
-    <ClInclude Include="..\foo_dop\config_features.h">
+    <ClInclude Include="config_features.h">
       <Filter>Component</Filter>
     </ClInclude>
-    <ClInclude Include="..\foo_dop\config_behaviour.h">
+    <ClInclude Include="config_behaviour.h">
       <Filter>Component</Filter>
     </ClInclude>
-    <ClInclude Include="..\foo_dop\config_ios.h">
+    <ClInclude Include="config_ios.h">
       <Filter>Component</Filter>
     </ClInclude>
-    <ClInclude Include="..\foo_dop\dopdb.h">
+    <ClInclude Include="dopdb.h">
       <Filter>Database Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="..\foo_dop\shadowdb.h">
+    <ClInclude Include="shadowdb.h">
       <Filter>Database Handlers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\foo_dop\itunesdb.cpp">
+    <ClCompile Include="itunesdb.cpp">
       <Filter>Database Handlers</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\photodb.cpp">
+    <ClCompile Include="photodb.cpp">
       <Filter>Database Handlers</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\smart_playlist_processor.cpp">
+    <ClCompile Include="smart_playlist_processor.cpp">
       <Filter>Database Handlers</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\lock.cpp">
+    <ClCompile Include="lock.cpp">
       <Filter>User Commands</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\gapless.cpp">
+    <ClCompile Include="gapless.cpp">
       <Filter>User Commands\Scan Gapless</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\load_to_playlist.cpp">
+    <ClCompile Include="load_to_playlist.cpp">
       <Filter>User Commands\Load to Playlist</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\remove_files.cpp">
+    <ClCompile Include="remove_files.cpp">
       <Filter>User Commands\Remove Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\send_files.cpp">
+    <ClCompile Include="send_files.cpp">
       <Filter>User Commands\Send Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\sync.cpp">
+    <ClCompile Include="sync.cpp">
       <Filter>User Commands\Sync</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\browse.cpp">
+    <ClCompile Include="browse.cpp">
       <Filter>User Commands\Browser</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\item_properties.cpp">
+    <ClCompile Include="item_properties.cpp">
       <Filter>User Commands\Browser</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\photo_browser.cpp">
+    <ClCompile Include="photo_browser.cpp">
       <Filter>User Commands\Browser</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\smart_playlist_editor.cpp">
+    <ClCompile Include="smart_playlist_editor.cpp">
       <Filter>User Commands\Browser</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\shell.cpp">
+    <ClCompile Include="shell.cpp">
       <Filter>User Commands\Shell</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\api.cpp">
+    <ClCompile Include="api.cpp">
       <Filter>Component</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\config.cpp">
+    <ClCompile Include="config.cpp">
       <Filter>Component</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\context_menu.cpp">
+    <ClCompile Include="context_menu.cpp">
       <Filter>Component</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\ipod_manager.cpp">
+    <ClCompile Include="ipod_manager.cpp">
       <Filter>Component</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\main.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>Component</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\main_menu.cpp">
+    <ClCompile Include="main_menu.cpp">
       <Filter>Component</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\panel.cpp">
+    <ClCompile Include="panel.cpp">
       <Filter>Component</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\results.cpp">
+    <ClCompile Include="results.cpp">
       <Filter>Component</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\stdafx.cpp">
+    <ClCompile Include="stdafx.cpp">
       <Filter>Component</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\video_tagger.cpp">
+    <ClCompile Include="video_tagger.cpp">
       <Filter>Component</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\helpers.cpp">
+    <ClCompile Include="helpers.cpp">
       <Filter>Helpers</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\video_thumbnailer.cpp">
+    <ClCompile Include="video_thumbnailer.cpp">
       <Filter>Helpers</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\sqlite.cpp">
+    <ClCompile Include="sqlite.cpp">
       <Filter>Helpers\Library Interfaces\SQLite</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\zlib.cpp">
+    <ClCompile Include="zlib.cpp">
       <Filter>Helpers\Library Interfaces\Zlib</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\mp3.cpp">
+    <ClCompile Include="mp3.cpp">
       <Filter>Helpers\MP4</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\mp4.cpp">
+    <ClCompile Include="mp4.cpp">
       <Filter>Helpers\MP4</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\speech.cpp">
+    <ClCompile Include="speech.cpp">
       <Filter>Helpers\Speech</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\file_adder.cpp">
+    <ClCompile Include="file_adder.cpp">
       <Filter>Backend Operations</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\file_remover.cpp">
+    <ClCompile Include="file_remover.cpp">
       <Filter>Backend Operations</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\gapless_scanner.cpp">
+    <ClCompile Include="gapless_scanner.cpp">
       <Filter>Backend Operations</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\ipod_scanner.cpp">
+    <ClCompile Include="ipod_scanner.cpp">
       <Filter>Backend Operations</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\prepare.cpp">
+    <ClCompile Include="prepare.cpp">
       <Filter>Backend Operations</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\reader.cpp">
+    <ClCompile Include="reader.cpp">
       <Filter>Backend Operations</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\writer.cpp">
+    <ClCompile Include="writer.cpp">
       <Filter>Backend Operations</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\writer_dopdb.cpp">
+    <ClCompile Include="writer_dopdb.cpp">
       <Filter>Backend Operations</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\writer_itunesdb.cpp">
+    <ClCompile Include="writer_itunesdb.cpp">
       <Filter>Backend Operations</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\writer_itunessd.cpp">
+    <ClCompile Include="writer_itunessd.cpp">
       <Filter>Backend Operations</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\writer_sqlite.cpp">
+    <ClCompile Include="writer_sqlite.cpp">
       <Filter>Backend Operations</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\mobile_device.cpp">
+    <ClCompile Include="mobile_device.cpp">
       <Filter>Mobile Device</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\mobile_device_cfobject.cpp">
+    <ClCompile Include="mobile_device_cfobject.cpp">
       <Filter>Mobile Device</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\mobile_device_filesystem.cpp">
+    <ClCompile Include="mobile_device_filesystem.cpp">
       <Filter>Mobile Device</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\mobile_device_syslog_relay.cpp">
+    <ClCompile Include="mobile_device_syslog_relay.cpp">
       <Filter>Mobile Device</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\mobile_device_v2.cpp">
+    <ClCompile Include="mobile_device_v2.cpp">
       <Filter>Mobile Device</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\cfobject.cpp" />
-    <ClCompile Include="..\foo_dop\plist.cpp" />
-    <ClCompile Include="..\foo_dop\reader_dopdb.cpp">
+    <ClCompile Include="cfobject.cpp" />
+    <ClCompile Include="plist.cpp" />
+    <ClCompile Include="reader_dopdb.cpp">
       <Filter>Backend Operations</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\reader_playcounts.cpp">
+    <ClCompile Include="reader_playcounts.cpp">
       <Filter>Backend Operations</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\reader_purchases.cpp">
+    <ClCompile Include="reader_purchases.cpp">
       <Filter>Backend Operations</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\reader_albumlist.cpp">
+    <ClCompile Include="reader_albumlist.cpp">
       <Filter>Backend Operations</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\reader_artistlist.cpp">
+    <ClCompile Include="reader_artistlist.cpp">
       <Filter>Backend Operations</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\reader_cache.cpp">
+    <ClCompile Include="reader_cache.cpp">
       <Filter>Backend Operations</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\file_adder_helpers.cpp">
+    <ClCompile Include="file_adder_helpers.cpp">
       <Filter>Backend Operations</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\file_adder_conversion.cpp">
+    <ClCompile Include="file_adder_conversion.cpp">
       <Filter>Backend Operations</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\file_adder_conversion_manager.cpp">
+    <ClCompile Include="file_adder_conversion_manager.cpp">
       <Filter>Backend Operations</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\itunesdb_mappings.cpp">
+    <ClCompile Include="itunesdb_mappings.cpp">
       <Filter>Database Handlers</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\itunesdb_helpers.cpp">
+    <ClCompile Include="itunesdb_helpers.cpp">
       <Filter>Database Handlers</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\itunesdb_track.cpp">
+    <ClCompile Include="itunesdb_track.cpp">
       <Filter>Database Handlers</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\itunesdb_playlist.cpp">
+    <ClCompile Include="itunesdb_playlist.cpp">
       <Filter>Database Handlers</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\config_database.cpp">
+    <ClCompile Include="config_database.cpp">
       <Filter>Component</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\config_conversion.cpp">
+    <ClCompile Include="config_conversion.cpp">
       <Filter>Component</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\config_features.cpp">
+    <ClCompile Include="config_features.cpp">
       <Filter>Component</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\config_behaviour.cpp">
+    <ClCompile Include="config_behaviour.cpp">
       <Filter>Component</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\config_ios.cpp">
+    <ClCompile Include="config_ios.cpp">
       <Filter>Component</Filter>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\device_info.cpp">
+    <ClCompile Include="device_info.cpp">
       <Filter>Component</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\foo_dop\folder.ico">
+    <Image Include="folder.ico">
       <Filter>Resources</Filter>
     </Image>
-    <Image Include="..\foo_dop\ipod.ico">
+    <Image Include="ipod.ico">
       <Filter>Resources</Filter>
     </Image>
-    <Image Include="..\foo_dop\ipodflat.ico">
+    <Image Include="ipodflat.ico">
       <Filter>Resources</Filter>
     </Image>
-    <Image Include="..\foo_dop\playlist.ico">
+    <Image Include="playlist.ico">
       <Filter>Resources</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="..\foo_dop\foo_dop.rc">
+    <ResourceCompile Include="foo_dop.rc">
       <Filter>Resources</Filter>
     </ResourceCompile>
   </ItemGroup>

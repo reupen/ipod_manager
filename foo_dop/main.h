@@ -12,8 +12,8 @@
 
 #include <winsock2.h>
 #include <ws2tcpip.h>
-#include "../common/foobar2000/SDK/foobar2000.h"
-#include "../common/foobar2000/helpers/helpers.h"
+#include "../foobar2000/SDK/foobar2000.h"
+#include "../foobar2000/helpers/helpers.h"
 #include <dshow.h>
 #include "..\qedit\qedit.h"
 #include <commctrl.h>
@@ -37,8 +37,8 @@
 
 #include <uxtheme.h>
 #include <Wincodec.h>
-#include "../common/mmh/stdafx.h"
-#include "../common/ui_helpers/stdafx.h"
+#include "../mmh/stdafx.h"
+#include "../ui_helpers/stdafx.h"
 #include "resource.h"
 
 #include "zlib.h"
@@ -129,7 +129,7 @@ public:
 	virtual void execute(service_ptr_t<service_base> p_callback) const = 0;
 };
 
-#include "../common/columns_ui-sdk/ui_extension.h"
+#include "../columns_ui-sdk/ui_extension.h"
 
 typedef pfc::refcounted_object_ptr_t<class ipod_device_t> ipod_device_ptr_t;
 typedef ipod_device_ptr_t & ipod_device_ptr_ref_t;

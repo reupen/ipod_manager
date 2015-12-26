@@ -107,7 +107,7 @@
       <Culture>0x0809</Culture>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>comctl32.lib;../MobileDeviceSign/iTunesCrypt.lib;../common/foobar2000/shared/shared.lib;Setupapi.lib;GdiPlus.lib;uxtheme.lib;Ws2_32.lib;shell32.lib;Shlwapi.lib;strmiids.lib;Quartz.lib;usp10.lib;mfuuid.lib;Windowscodecs.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>comctl32.lib;../MobileDeviceSign/iTunesCrypt.lib;../foobar2000/shared/shared.lib;Setupapi.lib;GdiPlus.lib;uxtheme.lib;Ws2_32.lib;shell32.lib;Shlwapi.lib;strmiids.lib;Quartz.lib;usp10.lib;mfuuid.lib;Windowscodecs.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <GenerateMapFile>true</GenerateMapFile>
@@ -146,7 +146,7 @@
       <Culture>0x0809</Culture>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>comctl32.lib;../MobileDeviceSign/iTunesCrypt.lib;../common/foobar2000/shared/shared.lib;Setupapi.lib;GdiPlus.lib;uxtheme.lib;Ws2_32.lib;shell32.lib;Shlwapi.lib;strmiids.lib;Quartz.lib;usp10.lib;mfuuid.lib;Windowscodecs.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>comctl32.lib;../MobileDeviceSign/iTunesCrypt.lib;../foobar2000/shared/shared.lib;Setupapi.lib;GdiPlus.lib;uxtheme.lib;Ws2_32.lib;shell32.lib;Shlwapi.lib;strmiids.lib;Quartz.lib;usp10.lib;mfuuid.lib;Windowscodecs.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <GenerateMapFile>true</GenerateMapFile>
@@ -187,7 +187,7 @@
       <Culture>0x0809</Culture>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>comctl32.lib;../MobileDeviceSign/iTunesCrypt.lib;../common/foobar2000/shared/shared.lib;Setupapi.lib;GdiPlus.lib;uxtheme.lib;Ws2_32.lib;shell32.lib;Shlwapi.lib;strmiids.lib;Quartz.lib;usp10.lib;zlib1.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>comctl32.lib;../MobileDeviceSign/iTunesCrypt.lib;../foobar2000/shared/shared.lib;Setupapi.lib;GdiPlus.lib;uxtheme.lib;Ws2_32.lib;shell32.lib;Shlwapi.lib;strmiids.lib;Quartz.lib;usp10.lib;zlib1.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <GenerateMapFile>true</GenerateMapFile>
       <OptimizeReferences>true</OptimizeReferences>
@@ -200,176 +200,176 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\foo_dop\actions_base.h" />
-    <ClInclude Include="..\foo_dop\bplist.h" />
-    <ClInclude Include="..\foo_dop\browse.h" />
-    <ClInclude Include="..\foo_dop\cfobject.h" />
-    <ClInclude Include="..\foo_dop\chapter.h" />
-    <ClInclude Include="..\foo_dop\config.h" />
-    <ClInclude Include="..\foo_dop\config_behaviour.h" />
-    <ClInclude Include="..\foo_dop\config_conversion.h" />
-    <ClInclude Include="..\foo_dop\config_database.h" />
-    <ClInclude Include="..\foo_dop\config_features.h" />
-    <ClInclude Include="..\foo_dop\config_ios.h" />
-    <ClInclude Include="..\foo_dop\dopdb.h" />
-    <ClInclude Include="..\foo_dop\file_adder.h" />
-    <ClInclude Include="..\foo_dop\file_adder_conversion.h" />
-    <ClInclude Include="..\foo_dop\file_remover.h" />
-    <ClInclude Include="..\foo_dop\gapless.h" />
-    <ClInclude Include="..\foo_dop\gapless_scanner.h" />
-    <ClInclude Include="..\foo_dop\helpers.h" />
-    <ClInclude Include="..\foo_dop\iPhoneCalc.h" />
-    <ClInclude Include="..\foo_dop\ipod_manager.h" />
-    <ClInclude Include="..\foo_dop\ipod_scanner.h" />
-    <ClInclude Include="..\foo_dop\item_properties.h" />
-    <ClInclude Include="..\foo_dop\itunesdb.h" />
-    <ClInclude Include="..\foo_dop\load_to_playlist.h" />
-    <ClInclude Include="..\foo_dop\lock.h" />
-    <ClInclude Include="..\foo_dop\mach_error.h" />
-    <ClInclude Include="..\foo_dop\main.h" />
-    <ClInclude Include="..\foo_dop\maintenance.h" />
-    <ClInclude Include="..\foo_dop\mobile_device.h" />
-    <ClInclude Include="..\foo_dop\mobile_device_definitions.h" />
-    <ClInclude Include="..\foo_dop\mobile_device_error.h" />
-    <ClInclude Include="..\foo_dop\mobile_device_v2.h" />
-    <ClInclude Include="..\foo_dop\mp4.h" />
-    <ClInclude Include="..\foo_dop\photodb.h" />
-    <ClInclude Include="..\foo_dop\photo_browser.h" />
-    <ClInclude Include="..\foo_dop\plist.h" />
-    <ClInclude Include="..\foo_dop\prepare.h" />
-    <ClInclude Include="..\foo_dop\reader.h" />
-    <ClInclude Include="..\foo_dop\remove_files.h" />
-    <ClInclude Include="..\foo_dop\resource.h" />
-    <ClInclude Include="..\foo_dop\results.h" />
-    <ClInclude Include="..\foo_dop\send_files.h" />
-    <ClInclude Include="..\foo_dop\shadowdb.h" />
-    <ClInclude Include="..\foo_dop\shell.h" />
-    <ClInclude Include="..\foo_dop\smart_playlist_editor.h" />
-    <ClInclude Include="..\foo_dop\smart_playlist_processor.h" />
-    <ClInclude Include="..\foo_dop\speech.h" />
-    <ClInclude Include="..\foo_dop\sqlite.h" />
-    <ClInclude Include="..\foo_dop\sync.h" />
-    <ClInclude Include="..\foo_dop\sync_logic.h" />
-    <ClInclude Include="..\foo_dop\writer.h" />
-    <ClInclude Include="..\foo_dop\writer_sort_helpers.h" />
-    <ClInclude Include="..\foo_dop\zlib.h" />
+    <ClInclude Include="actions_base.h" />
+    <ClInclude Include="bplist.h" />
+    <ClInclude Include="browse.h" />
+    <ClInclude Include="cfobject.h" />
+    <ClInclude Include="chapter.h" />
+    <ClInclude Include="config.h" />
+    <ClInclude Include="config_behaviour.h" />
+    <ClInclude Include="config_conversion.h" />
+    <ClInclude Include="config_database.h" />
+    <ClInclude Include="config_features.h" />
+    <ClInclude Include="config_ios.h" />
+    <ClInclude Include="dopdb.h" />
+    <ClInclude Include="file_adder.h" />
+    <ClInclude Include="file_adder_conversion.h" />
+    <ClInclude Include="file_remover.h" />
+    <ClInclude Include="gapless.h" />
+    <ClInclude Include="gapless_scanner.h" />
+    <ClInclude Include="helpers.h" />
+    <ClInclude Include="iPhoneCalc.h" />
+    <ClInclude Include="ipod_manager.h" />
+    <ClInclude Include="ipod_scanner.h" />
+    <ClInclude Include="item_properties.h" />
+    <ClInclude Include="itunesdb.h" />
+    <ClInclude Include="load_to_playlist.h" />
+    <ClInclude Include="lock.h" />
+    <ClInclude Include="mach_error.h" />
+    <ClInclude Include="main.h" />
+    <ClInclude Include="maintenance.h" />
+    <ClInclude Include="mobile_device.h" />
+    <ClInclude Include="mobile_device_definitions.h" />
+    <ClInclude Include="mobile_device_error.h" />
+    <ClInclude Include="mobile_device_v2.h" />
+    <ClInclude Include="mp4.h" />
+    <ClInclude Include="photodb.h" />
+    <ClInclude Include="photo_browser.h" />
+    <ClInclude Include="plist.h" />
+    <ClInclude Include="prepare.h" />
+    <ClInclude Include="reader.h" />
+    <ClInclude Include="remove_files.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="results.h" />
+    <ClInclude Include="send_files.h" />
+    <ClInclude Include="shadowdb.h" />
+    <ClInclude Include="shell.h" />
+    <ClInclude Include="smart_playlist_editor.h" />
+    <ClInclude Include="smart_playlist_processor.h" />
+    <ClInclude Include="speech.h" />
+    <ClInclude Include="sqlite.h" />
+    <ClInclude Include="sync.h" />
+    <ClInclude Include="sync_logic.h" />
+    <ClInclude Include="writer.h" />
+    <ClInclude Include="writer_sort_helpers.h" />
+    <ClInclude Include="zlib.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\foo_dop\api.cpp" />
-    <ClCompile Include="..\foo_dop\browse.cpp" />
-    <ClCompile Include="..\foo_dop\cfobject.cpp" />
-    <ClCompile Include="..\foo_dop\config.cpp" />
-    <ClCompile Include="..\foo_dop\config_behaviour.cpp" />
-    <ClCompile Include="..\foo_dop\config_conversion.cpp" />
-    <ClCompile Include="..\foo_dop\config_database.cpp" />
-    <ClCompile Include="..\foo_dop\config_features.cpp" />
-    <ClCompile Include="..\foo_dop\config_ios.cpp" />
-    <ClCompile Include="..\foo_dop\context_menu.cpp" />
-    <ClCompile Include="..\foo_dop\device_info.cpp" />
-    <ClCompile Include="..\foo_dop\file_adder.cpp" />
-    <ClCompile Include="..\foo_dop\file_adder_conversion.cpp" />
-    <ClCompile Include="..\foo_dop\file_adder_conversion_manager.cpp" />
-    <ClCompile Include="..\foo_dop\file_adder_helpers.cpp" />
-    <ClCompile Include="..\foo_dop\file_remover.cpp" />
-    <ClCompile Include="..\foo_dop\gapless.cpp" />
-    <ClCompile Include="..\foo_dop\gapless_scanner.cpp" />
-    <ClCompile Include="..\foo_dop\helpers.cpp" />
-    <ClCompile Include="..\foo_dop\ipod_manager.cpp" />
-    <ClCompile Include="..\foo_dop\ipod_scanner.cpp" />
-    <ClCompile Include="..\foo_dop\item_properties.cpp" />
-    <ClCompile Include="..\foo_dop\itunesdb.cpp" />
-    <ClCompile Include="..\foo_dop\itunesdb_helpers.cpp" />
-    <ClCompile Include="..\foo_dop\itunesdb_mappings.cpp" />
-    <ClCompile Include="..\foo_dop\itunesdb_playlist.cpp" />
-    <ClCompile Include="..\foo_dop\itunesdb_track.cpp" />
-    <ClCompile Include="..\foo_dop\load_to_playlist.cpp" />
-    <ClCompile Include="..\foo_dop\lock.cpp" />
-    <ClCompile Include="..\foo_dop\main.cpp">
+    <ClCompile Include="api.cpp" />
+    <ClCompile Include="browse.cpp" />
+    <ClCompile Include="cfobject.cpp" />
+    <ClCompile Include="config.cpp" />
+    <ClCompile Include="config_behaviour.cpp" />
+    <ClCompile Include="config_conversion.cpp" />
+    <ClCompile Include="config_database.cpp" />
+    <ClCompile Include="config_features.cpp" />
+    <ClCompile Include="config_ios.cpp" />
+    <ClCompile Include="context_menu.cpp" />
+    <ClCompile Include="device_info.cpp" />
+    <ClCompile Include="file_adder.cpp" />
+    <ClCompile Include="file_adder_conversion.cpp" />
+    <ClCompile Include="file_adder_conversion_manager.cpp" />
+    <ClCompile Include="file_adder_helpers.cpp" />
+    <ClCompile Include="file_remover.cpp" />
+    <ClCompile Include="gapless.cpp" />
+    <ClCompile Include="gapless_scanner.cpp" />
+    <ClCompile Include="helpers.cpp" />
+    <ClCompile Include="ipod_manager.cpp" />
+    <ClCompile Include="ipod_scanner.cpp" />
+    <ClCompile Include="item_properties.cpp" />
+    <ClCompile Include="itunesdb.cpp" />
+    <ClCompile Include="itunesdb_helpers.cpp" />
+    <ClCompile Include="itunesdb_mappings.cpp" />
+    <ClCompile Include="itunesdb_playlist.cpp" />
+    <ClCompile Include="itunesdb_track.cpp" />
+    <ClCompile Include="load_to_playlist.cpp" />
+    <ClCompile Include="lock.cpp" />
+    <ClCompile Include="main.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release (Dynamic Link)|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\main_menu.cpp" />
-    <ClCompile Include="..\foo_dop\mobile_device.cpp" />
-    <ClCompile Include="..\foo_dop\mobile_device_cfobject.cpp" />
-    <ClCompile Include="..\foo_dop\mobile_device_filesystem.cpp" />
-    <ClCompile Include="..\foo_dop\mobile_device_syslog_relay.cpp" />
-    <ClCompile Include="..\foo_dop\mobile_device_v2.cpp" />
-    <ClCompile Include="..\foo_dop\mp3.cpp" />
-    <ClCompile Include="..\foo_dop\mp4.cpp" />
-    <ClCompile Include="..\foo_dop\panel.cpp" />
-    <ClCompile Include="..\foo_dop\photodb.cpp" />
-    <ClCompile Include="..\foo_dop\photo_browser.cpp" />
-    <ClCompile Include="..\foo_dop\plist.cpp" />
-    <ClCompile Include="..\foo_dop\prepare.cpp" />
-    <ClCompile Include="..\foo_dop\reader.cpp" />
-    <ClCompile Include="..\foo_dop\reader_albumlist.cpp" />
-    <ClCompile Include="..\foo_dop\reader_artistlist.cpp" />
-    <ClCompile Include="..\foo_dop\reader_cache.cpp" />
-    <ClCompile Include="..\foo_dop\reader_dopdb.cpp" />
-    <ClCompile Include="..\foo_dop\reader_playcounts.cpp" />
-    <ClCompile Include="..\foo_dop\reader_purchases.cpp" />
-    <ClCompile Include="..\foo_dop\remove_files.cpp" />
-    <ClCompile Include="..\foo_dop\results.cpp" />
-    <ClCompile Include="..\foo_dop\send_files.cpp" />
-    <ClCompile Include="..\foo_dop\shell.cpp" />
-    <ClCompile Include="..\foo_dop\smart_playlist_editor.cpp" />
-    <ClCompile Include="..\foo_dop\smart_playlist_processor.cpp" />
-    <ClCompile Include="..\foo_dop\speech.cpp" />
-    <ClCompile Include="..\foo_dop\sqlite.cpp" />
-    <ClCompile Include="..\foo_dop\stdafx.cpp">
+    <ClCompile Include="main_menu.cpp" />
+    <ClCompile Include="mobile_device.cpp" />
+    <ClCompile Include="mobile_device_cfobject.cpp" />
+    <ClCompile Include="mobile_device_filesystem.cpp" />
+    <ClCompile Include="mobile_device_syslog_relay.cpp" />
+    <ClCompile Include="mobile_device_v2.cpp" />
+    <ClCompile Include="mp3.cpp" />
+    <ClCompile Include="mp4.cpp" />
+    <ClCompile Include="panel.cpp" />
+    <ClCompile Include="photodb.cpp" />
+    <ClCompile Include="photo_browser.cpp" />
+    <ClCompile Include="plist.cpp" />
+    <ClCompile Include="prepare.cpp" />
+    <ClCompile Include="reader.cpp" />
+    <ClCompile Include="reader_albumlist.cpp" />
+    <ClCompile Include="reader_artistlist.cpp" />
+    <ClCompile Include="reader_cache.cpp" />
+    <ClCompile Include="reader_dopdb.cpp" />
+    <ClCompile Include="reader_playcounts.cpp" />
+    <ClCompile Include="reader_purchases.cpp" />
+    <ClCompile Include="remove_files.cpp" />
+    <ClCompile Include="results.cpp" />
+    <ClCompile Include="send_files.cpp" />
+    <ClCompile Include="shell.cpp" />
+    <ClCompile Include="smart_playlist_editor.cpp" />
+    <ClCompile Include="smart_playlist_processor.cpp" />
+    <ClCompile Include="speech.cpp" />
+    <ClCompile Include="sqlite.cpp" />
+    <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release (Dynamic Link)|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\foo_dop\sync.cpp" />
-    <ClCompile Include="..\foo_dop\video_tagger.cpp" />
-    <ClCompile Include="..\foo_dop\video_thumbnailer.cpp" />
-    <ClCompile Include="..\foo_dop\writer.cpp" />
-    <ClCompile Include="..\foo_dop\writer_dopdb.cpp" />
-    <ClCompile Include="..\foo_dop\writer_itunesdb.cpp" />
-    <ClCompile Include="..\foo_dop\writer_itunessd.cpp" />
-    <ClCompile Include="..\foo_dop\writer_sqlite.cpp" />
-    <ClCompile Include="..\foo_dop\zlib.cpp" />
+    <ClCompile Include="sync.cpp" />
+    <ClCompile Include="video_tagger.cpp" />
+    <ClCompile Include="video_thumbnailer.cpp" />
+    <ClCompile Include="writer.cpp" />
+    <ClCompile Include="writer_dopdb.cpp" />
+    <ClCompile Include="writer_itunesdb.cpp" />
+    <ClCompile Include="writer_itunessd.cpp" />
+    <ClCompile Include="writer_sqlite.cpp" />
+    <ClCompile Include="zlib.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\foo_dop\folder.ico" />
-    <Image Include="..\foo_dop\ipod.ico" />
-    <Image Include="..\foo_dop\ipodflat.ico" />
-    <Image Include="..\foo_dop\playlist.ico" />
+    <Image Include="folder.ico" />
+    <Image Include="ipod.ico" />
+    <Image Include="ipodflat.ico" />
+    <Image Include="playlist.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="..\foo_dop\foo_dop.rc" />
+    <ResourceCompile Include="foo_dop.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\common\vc14\columns_ui-sdk.vcxproj">
+    <ProjectReference Include="..\columns_ui-sdk\columns_ui-sdk.vcxproj">
       <Project>{93ec0ede-01cd-4fb0-b8e8-4f2a027e026e}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\common\vc14\foobar2000_component_client.vcxproj">
+    <ProjectReference Include="..\dop-sdk\dop-sdk.vcxproj">
+      <Project>{4e751798-e95b-4837-878f-e4732d2a2807}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\foobar2000\foobar2000_component_client\foobar2000_component_client.vcxproj">
       <Project>{71ad2674-065b-48f5-b8b0-e1f9d3892081}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\common\vc14\foobar2000_SDK.vcxproj">
-      <Project>{e8091321-d79d-4575-86ef-064ea1a4a20d}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\common\vc14\foobar2000_sdk_helpers.vcxproj">
+    <ProjectReference Include="..\foobar2000\helpers\foobar2000_sdk_helpers.vcxproj">
       <Project>{ee47764e-a202-4f85-a767-abdab4aff35f}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\common\vc14\mmh.vcxproj">
+    <ProjectReference Include="..\foobar2000\SDK\foobar2000_SDK.vcxproj">
+      <Project>{e8091321-d79d-4575-86ef-064ea1a4a20d}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\mmh\mmh.vcxproj">
       <Project>{c90a19c3-554d-4037-b4d3-bd12c1f1ad86}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\common\vc14\pfc.vcxproj">
+    <ProjectReference Include="..\pfc\pfc.vcxproj">
       <Project>{ebfffb4e-261d-44d3-b89c-957b31a0bf9c}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\common\vc14\ui_helpers.vcxproj">
+    <ProjectReference Include="..\sqlite\sqlite.vcxproj">
+      <Project>{91736591-1ffa-42e8-95ff-0b1891fe3952}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\ui_helpers\ui_helpers.vcxproj">
       <Project>{a8c4298d-00f5-46f7-91ba-f503fd581590}</Project>
     </ProjectReference>
     <ProjectReference Include="..\zlib-1.2.5\contrib\vstudio\vc14\zlibstat.vcxproj">
       <Project>{745dec58-ebb3-47a9-a9b8-4c6627c01bf8}</Project>
-    </ProjectReference>
-    <ProjectReference Include="dop-sdk.vcxproj">
-      <Project>{4e751798-e95b-4837-878f-e4732d2a2807}</Project>
-    </ProjectReference>
-    <ProjectReference Include="sqlite.vcxproj">
-      <Project>{91736591-1ffa-42e8-95ff-0b1891fe3952}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -3,7 +3,7 @@
 
 #define DOP_SDK_VERSION "0.2"
 
-#include "../common/foobar2000/SDK/foobar2000.h"
+#include "../foobar2000/SDK/foobar2000.h"
 #include "device_identifiers.h"
 #include "playback_data.h"
 #include "ipod_manager.h"

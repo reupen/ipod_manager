@@ -9,21 +9,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "foobar2000 SDK", "foobar200
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Component SDKs", "Component SDKs", "{3A85ACE2-E7C5-4F1F-A253-9C60B8076BE8}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "foobar2000_component_client", "..\common\vc14\foobar2000_component_client.vcxproj", "{71AD2674-065B-48F5-B8B0-E1F9D3892081}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "foobar2000_component_client", "..\foobar2000\foobar2000_component_client\foobar2000_component_client.vcxproj", "{71AD2674-065B-48F5-B8B0-E1F9D3892081}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "foobar2000_sdk_helpers", "..\common\vc14\foobar2000_sdk_helpers.vcxproj", "{EE47764E-A202-4F85-A767-ABDAB4AFF35F}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "foobar2000_sdk_helpers", "..\foobar2000\helpers\foobar2000_sdk_helpers.vcxproj", "{EE47764E-A202-4F85-A767-ABDAB4AFF35F}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "foobar2000_SDK", "..\common\vc14\foobar2000_SDK.vcxproj", "{E8091321-D79D-4575-86EF-064EA1A4A20D}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "foobar2000_SDK", "..\foobar2000\SDK\foobar2000_SDK.vcxproj", "{E8091321-D79D-4575-86EF-064EA1A4A20D}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "pfc", "..\common\vc14\pfc.vcxproj", "{EBFFFB4E-261D-44D3-B89C-957B31A0BF9C}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "pfc", "..\pfc\pfc.vcxproj", "{EBFFFB4E-261D-44D3-B89C-957B31A0BF9C}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ui_helpers", "..\common\vc14\ui_helpers.vcxproj", "{A8C4298D-00F5-46F7-91BA-F503FD581590}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ui_helpers", "..\ui_helpers\ui_helpers.vcxproj", "{A8C4298D-00F5-46F7-91BA-F503FD581590}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "columns_ui_sdk", "..\common\vc14\columns_ui-sdk.vcxproj", "{93EC0EDE-01CD-4FB0-B8E8-4F2A027E026E}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "columns_ui_sdk", "..\columns_ui-sdk\columns_ui-sdk.vcxproj", "{93EC0EDE-01CD-4FB0-B8E8-4F2A027E026E}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mmh", "..\common\vc14\mmh.vcxproj", "{C90A19C3-554D-4037-B4D3-BD12C1F1AD86}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mmh", "..\mmh\mmh.vcxproj", "{C90A19C3-554D-4037-B4D3-BD12C1F1AD86}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "foo_dop", "foo_dop.vcxproj", "{4AC26C54-BE51-4FDB-A115-6E2F2B3650E1}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "foo_dop", "..\foo_dop\foo_dop.vcxproj", "{4AC26C54-BE51-4FDB-A115-6E2F2B3650E1}"
 	ProjectSection(ProjectDependencies) = postProject
 		{E8091321-D79D-4575-86EF-064EA1A4A20D} = {E8091321-D79D-4575-86EF-064EA1A4A20D}
 		{EE47764E-A202-4F85-A767-ABDAB4AFF35F} = {EE47764E-A202-4F85-A767-ABDAB4AFF35F}
@@ -35,9 +35,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "foo_dop", "foo_dop.vcxproj"
 		{93EC0EDE-01CD-4FB0-B8E8-4F2A027E026E} = {93EC0EDE-01CD-4FB0-B8E8-4F2A027E026E}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dop-sdk", "dop-sdk.vcxproj", "{4E751798-E95B-4837-878F-E4732D2A2807}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dop-sdk", "..\dop-sdk\dop-sdk.vcxproj", "{4E751798-E95B-4837-878F-E4732D2A2807}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sqlite", "sqlite.vcxproj", "{91736591-1FFA-42E8-95FF-0B1891FE3952}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sqlite", "..\sqlite\sqlite.vcxproj", "{91736591-1FFA-42E8-95FF-0B1891FE3952}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "zlibstat", "..\zlib-1.2.5\contrib\vstudio\vc14\zlibstat.vcxproj", "{745DEC58-EBB3-47A9-A9B8-4C6627C01BF8}"
 EndProject
