@@ -4,7 +4,7 @@ http://yuo.be/ipod.php
 
 The iPod manager source code (contained in the `foo_dop` folder) is released under the Lesser GNU Public Licence (see COPYING and COPYING.LESSER).
 
-VS2015 projects can be found in the `vc14` folder.
+A VS2015 solution can be found in the `vc14` folder.
 
 ## Building
 
