@@ -1,1 +1,0 @@
-The VS solution expects include/CoreFoundation/CoreFoundation.h to exist

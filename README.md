@@ -10,9 +10,7 @@ A VS2015 solution can be found in the `vc14` folder.
 
 First, clone the repo (use `git clone --recursive` to clone the submodule at the same time).
 
-You need a copy of the Windows version of the CoreFoundation headers to compile iPod manager. One source of these is the [WebKit Support Library](https://developer.apple.com/opensource/internet/webkit_sptlib_agree.html); extract the contents of the `win` folder to the `Apple` folder.
-
-Then, fire up Visual Studio 2015, and open the solution in the `vc14` folder. Amend the include directory for the CoreFoundation headers in foo_dop project properties if required. It is possible you may also need to fiddle with the CoreFoundation headers to make them compile. Then, you should be set!
+Then, fire up Visual Studio 2015, and open the solution in the `vc14` folder, and build the solution from the Build menu. 
 
 Produced builds require `iTunesCrypt.dll` found in the `MobileDeviceSign` folder.
 

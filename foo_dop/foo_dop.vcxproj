@@ -61,20 +61,20 @@
     <IntDir>$(SolutionDir)$(Configuration)\$(ProjectName)\</IntDir>
     <IgnoreImportLibrary>true</IgnoreImportLibrary>
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(IncludePath);$(SolutionDir)..\Apple\include</IncludePath>
+    <IncludePath>$(IncludePath);$(SolutionDir)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)$(Configuration)\$(ProjectName)\</IntDir>
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(IncludePath);$(SolutionDir)..\Apple\include</IncludePath>
+    <IncludePath>$(IncludePath);$(SolutionDir)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release (Dynamic Link)|Win32'">
     <OutDir>$(Configuration)\</OutDir>
     <IntDir>./$(Configuration)/$(ProjectName)\</IntDir>
     <IgnoreImportLibrary>true</IgnoreImportLibrary>
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(IncludePath);$(SolutionDir)..\Apple\include</IncludePath>
+    <IncludePath>$(IncludePath);$(SolutionDir)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Midl>
@@ -211,6 +211,7 @@
     <ClInclude Include="config_database.h" />
     <ClInclude Include="config_features.h" />
     <ClInclude Include="config_ios.h" />
+    <ClInclude Include="corefoundation.h" />
     <ClInclude Include="dopdb.h" />
     <ClInclude Include="file_adder.h" />
     <ClInclude Include="file_adder_conversion.h" />

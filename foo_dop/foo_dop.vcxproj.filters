@@ -213,6 +213,7 @@
     <ClInclude Include="shadowdb.h">
       <Filter>Database Handlers</Filter>
     </ClInclude>
+    <ClInclude Include="corefoundation.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="itunesdb.cpp">
