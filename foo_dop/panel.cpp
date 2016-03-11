@@ -79,12 +79,12 @@ public:
 			HTREEITEM ti = NULL;
 			if (p_playlist->folder_flag)
 			{
-				ti = uTreeView_InsertItemSimple(wnd_tree, p_playlist->name.is_empty() ? "<Unnamed>" : p_playlist->name, (LPARAM)node.get_ptr(), TVIS_EXPANDED, ti_parent, TVI_LAST, true, 2);
+				ti = uih::TreeView_InsertItemSimple(wnd_tree, p_playlist->name.is_empty() ? "<Unnamed>" : p_playlist->name, (LPARAM)node.get_ptr(), TVIS_EXPANDED, ti_parent, TVI_LAST, true, 2);
 				//node->m_type = ipod_tree_entry_t::type_folder;
 			}
 			else
 			{
-				ti = uTreeView_InsertItemSimple(wnd_tree, p_playlist->name.is_empty() ? "<Unnamed>" : p_playlist->name, (LPARAM)node.get_ptr(), TVIS_EXPANDED, ti_parent, TVI_LAST, true, ti_parent == TVI_ROOT ? 0 : 1);
+				ti = uih::TreeView_InsertItemSimple(wnd_tree, p_playlist->name.is_empty() ? "<Unnamed>" : p_playlist->name, (LPARAM)node.get_ptr(), TVIS_EXPANDED, ti_parent, TVI_LAST, true, ti_parent == TVI_ROOT ? 0 : 1);
 				//node->m_type = ti_parent == TVI_ROOT ? ipod_tree_entry_t::type_library : ipod_tree_entry_t::type_playlist;
 				pfc::list_t<pfc::rcptr_t<itunesdb::t_track>, pfc::alloc_fast_aggressive > tracks;
 				g_playlist_get_tracks(p_playlist, m_library, tracks, node->m_handles);
@@ -346,7 +346,7 @@ protected:
 				SetWindowLongPtr(m_wnd_tree,GWL_USERDATA,(LPARAM)(this));
 				m_proc_tree = (WNDPROC)SetWindowLongPtr(m_wnd_tree,GWL_WNDPROC,(LPARAM)(g_on_hook));
 
-				g_set_treeview_window_explorer_theme(m_wnd_tree);
+				uih::SetTreeViewWindowExplorerTheme(m_wnd_tree);
 				m_font = uCreateIconFont();
 				SendMessage(m_wnd_tree, WM_SETFONT, (WPARAM)m_font.get(), MAKELPARAM(TRUE,0));
 

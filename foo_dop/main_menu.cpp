@@ -1004,7 +1004,7 @@ public:
 			{
 				//rename_param * ptr = (rename_param *)lp;
 				HWND wnd_list = GetDlgItem(wnd, IDC_LIST);
-				g_set_listview_window_explorer_theme(wnd_list);
+				uih::SetListViewWindowExplorerTheme(wnd_list);
 				ListView_SetExtendedListViewStyleEx(wnd_list, LVS_EX_FULLROWSELECT|LVS_EX_CHECKBOXES, LVS_EX_FULLROWSELECT|LVS_EX_CHECKBOXES);
 
 				LVCOLUMN lvc;
@@ -1071,7 +1071,7 @@ public:
 			SetWindowLongPtr(wnd, DWL_MSGRESULT, TRUE);
 			return TRUE;
 		case WM_PAINT:
-			ui_helpers::innerWMPaintModernBackground(wnd, GetDlgItem(wnd, IDOK));
+			uih::HandleModernBackgroundPaint(wnd, GetDlgItem(wnd, IDOK));
 			return TRUE;
 		case WM_CTLCOLORSTATIC:
 			SetBkColor((HDC)wp, GetSysColor(COLOR_WINDOW));

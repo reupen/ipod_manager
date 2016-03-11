@@ -125,12 +125,12 @@ private:
 			HTREEITEM ti = NULL;
 			if (node->m_playlist->folder_flag)
 			{
-				ti = uTreeView_InsertItemSimple(wnd_tree, p_playlist->name.is_empty() ? "<Unnanmed>" : p_playlist->name, (LPARAM)node.get_ptr(), TVIS_EXPANDED, ti_parent, TVI_LAST, true, 2);
+				ti = uih::TreeView_InsertItemSimple(wnd_tree, p_playlist->name.is_empty() ? "<Unnanmed>" : p_playlist->name, (LPARAM)node.get_ptr(), TVIS_EXPANDED, ti_parent, TVI_LAST, true, 2);
 				node->m_type = ipod_tree_entry_t::type_folder;
 			}
 			else
 			{
-				ti = uTreeView_InsertItemSimple(wnd_tree, p_playlist->name.is_empty() ? "<Unnanmed>" : p_playlist->name, (LPARAM)node.get_ptr(), TVIS_EXPANDED, ti_parent, TVI_LAST, true, ti_parent == TVI_ROOT ? 0 : 1);
+				ti = uih::TreeView_InsertItemSimple(wnd_tree, p_playlist->name.is_empty() ? "<Unnanmed>" : p_playlist->name, (LPARAM)node.get_ptr(), TVIS_EXPANDED, ti_parent, TVI_LAST, true, ti_parent == TVI_ROOT ? 0 : 1);
 				node->m_type = ti_parent == TVI_ROOT ? ipod_tree_entry_t::type_library : ipod_tree_entry_t::type_playlist;
 				g_playlist_get_tracks(node->m_playlist, m_library, node->m_tracks, node->m_handles);
 			}
@@ -385,23 +385,23 @@ void ipod_browse_dialog::refresh_song_list(const ipod_tree_entry_t * p_selection
 			{
 				itunesdb::t_track & track = *p_selection->m_tracks[i];
 				t_size ci = 0;
-				if (m_debug) ListView_InsertItemText(wnd_lv, i, ci++, pfc::format_int(track.pid), false, i);
-				ListView_InsertItemText(wnd_lv, i, ci++, track.artist, m_debug, i);
-				ListView_InsertItemText(wnd_lv, i, ci++, track.title, true, i);
-				ListView_InsertItemText(wnd_lv, i, ci++, track.album, true, i);
-				ListView_InsertItemText(wnd_lv, i, ci++, track.genre, true, i);
-				ListView_InsertItemText(wnd_lv, i, ci++, track.composer, true, i);
-				ListView_InsertItemText(wnd_lv, i, ci++, pfc::string8() << track.year, true, i);
-				if (m_debug) ListView_InsertItemText(wnd_lv, i, ci++, pfc::format_int(track.mhii_id), true, i);
-				if (m_debug) ListView_InsertItemText(wnd_lv, i, ci++, pfc::format_hexdump_lowercase(track.artwork_source_sha1, track.artwork_source_sha1_valid ? 20 : 0, ""), true, i);
-				if (m_debug) ListView_InsertItemText(wnd_lv, i, ci++, pfc::format_int(track.album_id), true, i);
-				ListView_InsertItemText(wnd_lv, i, ci++, track.sort_artist, true, i);
-				ListView_InsertItemText(wnd_lv, i, ci++, track.sort_title, true, i);
-				ListView_InsertItemText(wnd_lv, i, ci++, track.sort_album, true, i);
-				ListView_InsertItemText(wnd_lv, i, ci++, track.sort_album_artist, true, i);
+				if (m_debug) uih::ListView_InsertItemText(wnd_lv, i, ci++, pfc::format_int(track.pid), false, i);
+				uih::ListView_InsertItemText(wnd_lv, i, ci++, track.artist, m_debug, i);
+				uih::ListView_InsertItemText(wnd_lv, i, ci++, track.title, true, i);
+				uih::ListView_InsertItemText(wnd_lv, i, ci++, track.album, true, i);
+				uih::ListView_InsertItemText(wnd_lv, i, ci++, track.genre, true, i);
+				uih::ListView_InsertItemText(wnd_lv, i, ci++, track.composer, true, i);
+				uih::ListView_InsertItemText(wnd_lv, i, ci++, pfc::string8() << track.year, true, i);
+				if (m_debug) uih::ListView_InsertItemText(wnd_lv, i, ci++, pfc::format_int(track.mhii_id), true, i);
+				if (m_debug) uih::ListView_InsertItemText(wnd_lv, i, ci++, pfc::format_hexdump_lowercase(track.artwork_source_sha1, track.artwork_source_sha1_valid ? 20 : 0, ""), true, i);
+				if (m_debug) uih::ListView_InsertItemText(wnd_lv, i, ci++, pfc::format_int(track.album_id), true, i);
+				uih::ListView_InsertItemText(wnd_lv, i, ci++, track.sort_artist, true, i);
+				uih::ListView_InsertItemText(wnd_lv, i, ci++, track.sort_title, true, i);
+				uih::ListView_InsertItemText(wnd_lv, i, ci++, track.sort_album, true, i);
+				uih::ListView_InsertItemText(wnd_lv, i, ci++, track.sort_album_artist, true, i);
 				std::wstring formatted_date_released;
 				if (track.datereleased) g_format_date(filetime_time_from_appletime(track.datereleased, false), formatted_date_released);
-				ListView_InsertItemText(wnd_lv, i, ci++, formatted_date_released.data(), true, i);
+				uih::ListView_InsertItemText(wnd_lv, i, ci++, formatted_date_released.data(), true, i);
 				t_uint32 gapless = track.gapless_heuristic_info;
 				pfc::string8 temp;
 				if (gapless == 0x1)
@@ -410,15 +410,15 @@ void ipod_browse_dialog::refresh_song_list(const ipod_tree_entry_t * p_selection
 					temp = "estimated";
 				else if (gapless)
 					temp << "unknown";
-				ListView_InsertItemText(wnd_lv, i, ci++, temp, true, i);
+				uih::ListView_InsertItemText(wnd_lv, i, ci++, temp, true, i);
 				if (track.encoder_delay)
-					ListView_InsertItemText(wnd_lv, i, ci, pfc::string8() << track.encoder_delay, true, i);
+					uih::ListView_InsertItemText(wnd_lv, i, ci, pfc::string8() << track.encoder_delay, true, i);
 				ci++;
 				if (track.encoder_padding)
-					ListView_InsertItemText(wnd_lv, i, ci, pfc::string8() << track.encoder_padding, true, i);
+					uih::ListView_InsertItemText(wnd_lv, i, ci, pfc::string8() << track.encoder_padding, true, i);
 				ci++;
-				ListView_InsertItemText(wnd_lv, i, ci++, track.artwork_flag == 0x1 && track.artwork_count ? "yes" : "", true, i);
-				ListView_InsertItemText(wnd_lv, i, ci++, track.original_path_valid ? "yes" : "", true, i);
+				uih::ListView_InsertItemText(wnd_lv, i, ci++, track.artwork_flag == 0x1 && track.artwork_count ? "yes" : "", true, i);
+				uih::ListView_InsertItemText(wnd_lv, i, ci++, track.original_path_valid ? "yes" : "", true, i);
 			}
 		}
 		SendMessage(wnd_lv, WM_SETREDRAW, TRUE, 0);
@@ -455,13 +455,13 @@ BOOL ipod_browse_dialog::DialogProc(HWND wnd,UINT msg,WPARAM wp,LPARAM lp)
 			HWND wnd_list = GetDlgItem(wnd, IDC_LIST);
 			HWND wnd_tree = GetDlgItem(wnd, IDC_IPOD_TREE);
 			TreeView_SetItemHeight(wnd_tree, TreeView_GetItemHeight(wnd_tree)+4);
-			g_set_treeview_window_explorer_theme(wnd_tree);
+			uih::SetTreeViewWindowExplorerTheme(wnd_tree);
 
 			SendMessage(wnd_list, LB_SETITEMHEIGHT, 0, SendMessage(wnd_list, LB_GETITEMHEIGHT, 0, 0)+3);
 
 			HWND wnd_lv = GetDlgItem(wnd, IDC_SONGS);
 			ListView_SetExtendedListViewStyleEx(wnd_lv, LVS_EX_FULLROWSELECT, LVS_EX_FULLROWSELECT);
-			g_set_listview_window_explorer_theme(wnd_lv);
+			uih::SetListViewWindowExplorerTheme(wnd_lv);
 			
 
 			LVCOLUMN lvc;
@@ -469,27 +469,27 @@ BOOL ipod_browse_dialog::DialogProc(HWND wnd,UINT msg,WPARAM wp,LPARAM lp)
 			lvc.mask = LVCF_TEXT|LVCF_WIDTH;
 
 			t_size ci = 0;
-			if (m_debug) ListView_InsertColumnText(wnd_lv, ci++, _T("PID"), 150);
-			ListView_InsertColumnText(wnd_lv, ci++, _T("Artist"), 100);
-			ListView_InsertColumnText(wnd_lv, ci++, _T("Title"), 200);
-			ListView_InsertColumnText(wnd_lv, ci++, _T("Album"), 150);
-			ListView_InsertColumnText(wnd_lv, ci++, _T("Genre"), 90);
-			ListView_InsertColumnText(wnd_lv, ci++, _T("Composer"), 100);
-			ListView_InsertColumnText(wnd_lv, ci++, _T("Year"), 100);
-			if (m_debug) ListView_InsertColumnText(wnd_lv, ci++, _T("Artwork cache ID"), 95);
-			if (m_debug) ListView_InsertColumnText(wnd_lv, ci++, _T("Artwork hash"), 253);
-			if (m_debug) ListView_InsertColumnText(wnd_lv, ci++, _T("Album ID"), 55);
-			ListView_InsertColumnText(wnd_lv, ci++, _T("Sort artist"), 100);
-			ListView_InsertColumnText(wnd_lv, ci++, _T("Sort title"), 200);
-			ListView_InsertColumnText(wnd_lv, ci++, _T("Sort album"), 100);
-			ListView_InsertColumnText(wnd_lv, ci++, _T("Sort album artist"), 100);
-			ListView_InsertColumnText(wnd_lv, ci++, _T("Release date"), 100);
-			ListView_InsertColumnText(wnd_lv, ci++, _T("Gapless data"), 75);
-			ListView_InsertColumnText(wnd_lv, ci++, _T("Encoder delay"), 80);
-			ListView_InsertColumnText(wnd_lv, ci++, _T("Encoder padding"), 95);
-			ListView_InsertColumnText(wnd_lv, ci++, _T("Artwork"), 70);
-			ListView_InsertColumnText(wnd_lv, ci++, _T("In DopDB"), 70);
-			//ListView_InsertColumnText(wnd_lv, 8, _T("Debug"), 200);
+			if (m_debug) uih::ListView_InsertColumnText(wnd_lv, ci++, _T("PID"), 150);
+			uih::ListView_InsertColumnText(wnd_lv, ci++, _T("Artist"), 100);
+			uih::ListView_InsertColumnText(wnd_lv, ci++, _T("Title"), 200);
+			uih::ListView_InsertColumnText(wnd_lv, ci++, _T("Album"), 150);
+			uih::ListView_InsertColumnText(wnd_lv, ci++, _T("Genre"), 90);
+			uih::ListView_InsertColumnText(wnd_lv, ci++, _T("Composer"), 100);
+			uih::ListView_InsertColumnText(wnd_lv, ci++, _T("Year"), 100);
+			if (m_debug) uih::ListView_InsertColumnText(wnd_lv, ci++, _T("Artwork cache ID"), 95);
+			if (m_debug) uih::ListView_InsertColumnText(wnd_lv, ci++, _T("Artwork hash"), 253);
+			if (m_debug) uih::ListView_InsertColumnText(wnd_lv, ci++, _T("Album ID"), 55);
+			uih::ListView_InsertColumnText(wnd_lv, ci++, _T("Sort artist"), 100);
+			uih::ListView_InsertColumnText(wnd_lv, ci++, _T("Sort title"), 200);
+			uih::ListView_InsertColumnText(wnd_lv, ci++, _T("Sort album"), 100);
+			uih::ListView_InsertColumnText(wnd_lv, ci++, _T("Sort album artist"), 100);
+			uih::ListView_InsertColumnText(wnd_lv, ci++, _T("Release date"), 100);
+			uih::ListView_InsertColumnText(wnd_lv, ci++, _T("Gapless data"), 75);
+			uih::ListView_InsertColumnText(wnd_lv, ci++, _T("Encoder delay"), 80);
+			uih::ListView_InsertColumnText(wnd_lv, ci++, _T("Encoder padding"), 95);
+			uih::ListView_InsertColumnText(wnd_lv, ci++, _T("Artwork"), 70);
+			uih::ListView_InsertColumnText(wnd_lv, ci++, _T("In DopDB"), 70);
+			//uih::ListView_InsertColumnText(wnd_lv, 8, _T("Debug"), 200);
 
 			{
 				HICON ico_ipod=NULL, ico_playlist=NULL, ico_folder=NULL;

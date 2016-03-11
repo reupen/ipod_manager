@@ -509,7 +509,7 @@ public:
 			{
 				t_main_thread_select_playlists * ptr = (t_main_thread_select_playlists *)lp;
 				HWND wnd_list = GetDlgItem(wnd, IDC_LIST);
-				g_set_listview_window_explorer_theme(wnd_list);
+				uih::SetListViewWindowExplorerTheme(wnd_list);
 				ListView_SetExtendedListViewStyleEx(wnd_list, LVS_EX_FULLROWSELECT|LVS_EX_CHECKBOXES, LVS_EX_FULLROWSELECT|LVS_EX_CHECKBOXES);
 
 				LVCOLUMN lvc;

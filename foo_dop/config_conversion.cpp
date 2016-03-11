@@ -75,9 +75,9 @@ BOOL encoder_manager_t::DialogProc(HWND wnd, UINT msg, WPARAM wp, LPARAM lp)
 
 			SHAutoComplete(m_wnd_conversion_command, SHACF_FILESYS_ONLY);
 
-			win32_helpers::ComboBox_AddStringData(m_wnd_max_bps_dropdown, L"16", settings::conversion_preset_t::bps_16);
-			win32_helpers::ComboBox_AddStringData(m_wnd_max_bps_dropdown, L"24", settings::conversion_preset_t::bps_24);
-			win32_helpers::ComboBox_AddStringData(m_wnd_max_bps_dropdown, L"32", settings::conversion_preset_t::bps_32);
+			uih::ComboBox_AddStringData(m_wnd_max_bps_dropdown, L"16", settings::conversion_preset_t::bps_16);
+			uih::ComboBox_AddStringData(m_wnd_max_bps_dropdown, L"24", settings::conversion_preset_t::bps_24);
+			uih::ComboBox_AddStringData(m_wnd_max_bps_dropdown, L"32", settings::conversion_preset_t::bps_32);
 
 			HWND wnd_lv = m_encoder_list_view.create_in_dialog_units(wnd, ui_helpers::window_position_t(7, 7, 300, 86));
 			m_encoder_list_view.populate();
@@ -91,7 +91,7 @@ BOOL encoder_manager_t::DialogProc(HWND wnd, UINT msg, WPARAM wp, LPARAM lp)
 		};
 		break;
 		case WM_PAINT:
-			ui_helpers::innerWMPaintModernBackground(wnd, GetDlgItem(wnd, IDOK));
+			uih::HandleModernBackgroundPaint(wnd, GetDlgItem(wnd, IDOK));
 			return TRUE;
 		case WM_CTLCOLORSTATIC:
 			SetBkColor((HDC)wp, GetSysColor(COLOR_WINDOW));
@@ -297,10 +297,10 @@ BOOL t_config_tab_conversion::DialogProc(HWND wnd, UINT msg, WPARAM wp, LPARAM l
 				//EnableWindow(m_wnd_replaygain_processing_mode, m_have_rgscan);
 				//Button_SetCheck(m_wnd_replaygain_processing_mode, m_have_rgscan && settings::replaygain_processing_mode ? BST_CHECKED : BST_UNCHECKED);
 			}
-			win32_helpers::ComboBox_AddStringData(m_wnd_replaygain_processing_mode, L"None", 0);
-			win32_helpers::ComboBox_AddStringData(m_wnd_replaygain_processing_mode, L"Apply gain before encoding", 2);
+			uih::ComboBox_AddStringData(m_wnd_replaygain_processing_mode, L"None", 0);
+			uih::ComboBox_AddStringData(m_wnd_replaygain_processing_mode, L"Apply gain before encoding", 2);
 			if (m_have_rgscan)
-				win32_helpers::ComboBox_AddStringData(m_wnd_replaygain_processing_mode, L"Calculate gain after encoding", 1);
+				uih::ComboBox_AddStringData(m_wnd_replaygain_processing_mode, L"Calculate gain after encoding", 1);
 			ComboBox_SetCurSel(m_wnd_replaygain_processing_mode, settings::replaygain_processing_mode ? 3 - settings::replaygain_processing_mode : 0);
 
 			on_convert_files_change();

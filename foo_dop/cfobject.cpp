@@ -113,7 +113,7 @@ namespace cfobject
 			case kTagDate:
 				{
 					std::basic_string<TCHAR> str;
-					win32_helpers::format_date(ptr->m_date, str);
+					uih::FormatDate(ptr->m_date, str);
 					p_out << pfc::stringcvt::string_utf8_from_os(str.data());
 				}
 				break;

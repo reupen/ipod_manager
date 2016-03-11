@@ -487,14 +487,14 @@ BOOL t_smart_playlist_editor::DialogProc(HWND wnd,UINT msg,WPARAM wp,LPARAM lp)
 			//	uxtheme->EnableThemeDialogTexture(wnd, ETDT_ENABLETAB);
 			SetWindowText(wnd, m_new ? L"New smart playlist" : L"Edit smart playlist");
 			HWND wnd_rules = GetDlgItem(wnd, IDC_RULES);
-			g_set_listview_window_explorer_theme(wnd_rules);
+			uih::SetListViewWindowExplorerTheme(wnd_rules);
 			ListView_SetExtendedListViewStyleEx(wnd_rules, LVS_EX_FULLROWSELECT, LVS_EX_FULLROWSELECT);
 
 			LVCOLUMN lvc;
 			memset(&lvc, 0, sizeof(LVCOLUMN));
 			lvc.mask = LVCF_TEXT|LVCF_WIDTH;
 
-			ListView_InsertColumnText(wnd_rules, 0, _T("Rule"), 550);
+			uih::ListView_InsertColumnText(wnd_rules, 0, _T("Rule"), 550);
 
 			HWND wnd_match_type = GetDlgItem(wnd, IDC_MATCH_TYPE);
 			ComboBox_AddString(wnd_match_type, L"all");
@@ -554,7 +554,7 @@ BOOL t_smart_playlist_editor::DialogProc(HWND wnd,UINT msg,WPARAM wp,LPARAM lp)
 			{
 				pfc::string8 temp;
 				g_get_smart_rule_desc(m_rules.rules[i],m_playlist_map,temp);
-				ListView_InsertItemText(wnd_rules, i, 0, temp );
+				uih::ListView_InsertItemText(wnd_rules, i, 0, temp );
 			}
 
 			HWND wnd_limit_value = GetDlgItem(wnd, IDC_LIMIT_VALUE);
@@ -608,7 +608,7 @@ BOOL t_smart_playlist_editor::DialogProc(HWND wnd,UINT msg,WPARAM wp,LPARAM lp)
 					t_size index = m_rules.rules.add_item(editor.m_rule);
 					pfc::string8 temp;
 					g_get_smart_rule_desc(m_rules.rules[index],m_playlist_map,temp);
-					ListView_InsertItemText(GetDlgItem(wnd, IDC_RULES), index, 0, temp );
+					uih::ListView_InsertItemText(GetDlgItem(wnd, IDC_RULES), index, 0, temp );
 
 					if (m_rules.rules.get_count()==2)
 						EnableWindow(GetDlgItem(wnd, IDC_DELETE), TRUE);
@@ -638,7 +638,7 @@ BOOL t_smart_playlist_editor::DialogProc(HWND wnd,UINT msg,WPARAM wp,LPARAM lp)
 						m_rules.rules[lbi]=editor.m_rule;
 						pfc::string8 temp;
 						g_get_smart_rule_desc(m_rules.rules[lbi],m_playlist_map,temp);
-						ListView_InsertItemText(GetDlgItem(wnd, IDC_RULES), lbi, 0, temp , true);
+						uih::ListView_InsertItemText(GetDlgItem(wnd, IDC_RULES), lbi, 0, temp , true);
 					}
 				}
 			}

@@ -55,7 +55,7 @@ namespace ipod
 						if (!stricmp_utf8_max(path, "file://", 7))
 						{
 							path += 7;
-							win32_helpers::handle_ptr_t p_file =
+							win32::handle_ptr_t p_file =
 								CreateFile(pfc::stringcvt::string_os_from_utf8(path), FILE_READ_ATTRIBUTES, FILE_SHARE_READ, NULL, OPEN_EXISTING, NULL, NULL);
 							if (p_file.is_valid())
 							{

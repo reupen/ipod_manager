@@ -55,7 +55,7 @@ bool get_ipod_igsc_checkpoint(ipod_device_ptr_ref_t p_ipod, pfc::array_t<t_uint8
 		if (!p_ipod->driver_symbolic_path.length())
 			throw pfc::exception("Could not locate iPod driver");
 
-		win32_helpers::handle_ptr_t p_volume;
+		win32::handle_ptr_t p_volume;
 
 		unsigned long returned;
 
@@ -103,7 +103,7 @@ t_uint16 get_ipod_lowlevel_value(ipod_device_ptr_ref_t p_ipod, short value)
 	if (!p_ipod->driver_symbolic_path.length())
 		throw pfc::exception("Could not locate iPod driver");
 
-	win32_helpers::handle_ptr_t p_volume;
+	win32::handle_ptr_t p_volume;
 
 	unsigned long returned;
 
@@ -144,7 +144,7 @@ void _g_get_device_xml(const char drive, pfc::string8 & p_out)
 	str.append_single(drive);
 	str.append_fromptr(_T(":"), 2);
 
-	win32_helpers::handle_ptr_t p_volume;
+	win32::handle_ptr_t p_volume;
 	HANDLE volume = INVALID_HANDLE_VALUE;
 	SCSI_PASS_THROUGH_WITH_BUFFERS sptwb;
 	unsigned long returned, length;

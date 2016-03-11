@@ -122,7 +122,7 @@ static BOOL CALLBACK g_sync_proc(HWND wnd,UINT msg,WPARAM wp,LPARAM lp)
 			Button_SetCheck(GetDlgItem(wnd, IDC_EJECT_WHEN_DONE), settings::sync_eject_when_done ? BST_CHECKED : NULL);
 
 			HWND wnd_list = GetDlgItem(wnd, IDC_LIST);
-			g_set_listview_window_explorer_theme(wnd_list);
+			uih::SetListViewWindowExplorerTheme(wnd_list);
 			ListView_SetExtendedListViewStyleEx(wnd_list, LVS_EX_FULLROWSELECT|LVS_EX_CHECKBOXES, LVS_EX_FULLROWSELECT|LVS_EX_CHECKBOXES);
 
 			LVCOLUMN lvc;
@@ -236,7 +236,7 @@ static BOOL CALLBACK g_sync_proc(HWND wnd,UINT msg,WPARAM wp,LPARAM lp)
 		SetWindowLongPtr(wnd, DWL_MSGRESULT, TRUE);
 		return TRUE;
 	case WM_PAINT:
-		ui_helpers::innerWMPaintModernBackground(wnd, GetDlgItem(wnd, IDOK));
+		uih::HandleModernBackgroundPaint(wnd, GetDlgItem(wnd, IDOK));
 		return TRUE;
 	case WM_CTLCOLORSTATIC:
 		SetBkColor((HDC)wp, GetSysColor(COLOR_WINDOW));
@@ -299,12 +299,12 @@ void g_run_sync()
 			{
 				t_main_thread_sync_confirm * ptr = (t_main_thread_sync_confirm *)lp;
 				HWND wnd_list = GetDlgItem(wnd, IDC_LIST);
-				g_set_listview_window_explorer_theme(wnd_list);
+				uih::SetListViewWindowExplorerTheme(wnd_list);
 				ListView_SetExtendedListViewStyleEx(wnd_list, LVS_EX_FULLROWSELECT, LVS_EX_FULLROWSELECT);
 
-				ListView_InsertColumnText(wnd_list, 0, L"Artist", 150);
-				ListView_InsertColumnText(wnd_list, 1, L"Title", 250);
-				ListView_InsertColumnText(wnd_list, 2, L"Action", 100);
+				uih::ListView_InsertColumnText(wnd_list, 0, L"Artist", 150);
+				uih::ListView_InsertColumnText(wnd_list, 1, L"Title", 250);
+				uih::ListView_InsertColumnText(wnd_list, 2, L"Action", 100);
 				static_api_ptr_t<playlist_manager> api;
 
 				t_size i, count=ptr->m_item_actions.m_new_tracks.get_count(), count_nodups = count;
@@ -330,13 +330,13 @@ void g_run_sync()
 							{
 								pfc::string8 temp;
 								g_print_meta(p_info->info(), "ARTIST", temp);
-								ListView_InsertItemText(wnd_list, j, 0, temp);
+								uih::ListView_InsertItemText(wnd_list, j, 0, temp);
 								g_print_meta(p_info->info(), "TITLE", temp);
-								ListView_InsertItemText(wnd_list, j, 1, temp, true);
+								uih::ListView_InsertItemText(wnd_list, j, 1, temp, true);
 							}
 							else
-								ListView_InsertItemText(wnd_list, j, 0, pfc::string_filename(ptr->m_item_actions.m_new_tracks[i]->get_path()));
-							ListView_InsertItemText(wnd_list, j, 2, "Add", true);
+								uih::ListView_InsertItemText(wnd_list, j, 0, pfc::string_filename(ptr->m_item_actions.m_new_tracks[i]->get_path()));
+							uih::ListView_InsertItemText(wnd_list, j, 2, "Add", true);
 							++j;
 						}
 					}
@@ -350,9 +350,9 @@ void g_run_sync()
 						if (ptr->m_item_actions.m_tracks_to_remove[i])
 						{
 							t_size index = ListView_GetItemCount(wnd_list);
-							ListView_InsertItemText(wnd_list, index, 0, ptr->m_library.m_tracks[i]->artist);
-							ListView_InsertItemText(wnd_list, index, 1, ptr->m_library.m_tracks[i]->title, true);
-							ListView_InsertItemText(wnd_list, index, 2, "Remove", true);
+							uih::ListView_InsertItemText(wnd_list, index, 0, ptr->m_library.m_tracks[i]->artist);
+							uih::ListView_InsertItemText(wnd_list, index, 1, ptr->m_library.m_tracks[i]->title, true);
+							uih::ListView_InsertItemText(wnd_list, index, 2, "Remove", true);
 							count_remove++;
 						}
 					}
@@ -376,7 +376,7 @@ void g_run_sync()
 			SetWindowLongPtr(wnd, DWL_MSGRESULT, TRUE);
 			return TRUE;
 		case WM_PAINT:
-			ui_helpers::innerWMPaintModernBackground(wnd, GetDlgItem(wnd, IDOK));
+			uih::HandleModernBackgroundPaint(wnd, GetDlgItem(wnd, IDOK));
 			return TRUE;
 		case WM_CTLCOLORSTATIC:
 			SetBkColor((HDC)wp, GetSysColor(COLOR_WINDOW));

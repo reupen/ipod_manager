@@ -1,10 +1,6 @@
 #ifndef _DOP_BROWSE_H_
 #define _DOP_BROWSE_H_
 
-//int ListView_InsertColumnText(HWND wnd_lv, UINT index, TCHAR * text, int cx);
-//LRESULT ListView_InsertItemText(HWND wnd_lv, UINT item, UINT subitem, TCHAR * text, bool b_set= false, LPARAM lp = 0);
-//LRESULT ListView_InsertItemText(HWND wnd_lv, UINT item, UINT subitem, const char * text, bool b_set= false, LPARAM lp = 0);
-
 class t_browser : public ipod_action_v2_t
 {
 	virtual void on_run();

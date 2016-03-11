@@ -219,7 +219,7 @@ void shell_window::populate ()
 		int image = I_IMAGENONE;
 		if (SUCCEEDED(SHGetFileInfo(L"_", FILE_ATTRIBUTE_DIRECTORY, &shi, sizeof (shi), SHGFI_USEFILEATTRIBUTES|SHGFI_SYSICONINDEX)))
 			image = shi.iIcon;
-		ListView_InsertItemText(m_wnd_items_view, ++j, 0, "..", false, NULL, image);
+		uih::ListView_InsertItemText(m_wnd_items_view, ++j, 0, "..", false, NULL, image);
 		m_items.add_item(item(parent, true, true));
 	}
 
@@ -234,15 +234,15 @@ void shell_window::populate ()
 		int image = I_IMAGENONE;
 		if (SUCCEEDED(SHGetFileInfo(filename, dirContents.get_item(i).m_is_dir ? FILE_ATTRIBUTE_DIRECTORY : FILE_ATTRIBUTE_NORMAL, &shi, sizeof (shi), SHGFI_USEFILEATTRIBUTES|SHGFI_SYSICONINDEX)))
 			image = shi.iIcon;
-		ListView_InsertItemText(m_wnd_items_view, ++j, 0, filename, false, NULL, image);
+		uih::ListView_InsertItemText(m_wnd_items_view, ++j, 0, filename, false, NULL, image);
 		if (dirContents.get_item(i).m_stats.m_timestamp != filetimestamp_invalid)
 		{
 			std::basic_string<TCHAR> str;
-			win32_helpers::format_date(dirContents.get_item(i).m_stats.m_timestamp, str, true);
-			ListView_InsertItemText(m_wnd_items_view, j, 1, str.data(), true);
+			uih::FormatDate(dirContents.get_item(i).m_stats.m_timestamp, str, true);
+			uih::ListView_InsertItemText(m_wnd_items_view, j, 1, str.data(), true);
 		}
 		if (!dirContents.get_item(i).m_is_dir)
-			ListView_InsertItemText(m_wnd_items_view, j, 2, mmh::format_file_size(dirContents.get_item(i).m_stats.m_size), true);
+			uih::ListView_InsertItemText(m_wnd_items_view, j, 2, mmh::format_file_size(dirContents.get_item(i).m_stats.m_size), true);
 		m_items.add_item(item(dirContents[i], dirContents.get_item(i).m_is_dir));
 	}
 }
@@ -300,11 +300,11 @@ LRESULT shell_window::on_message(HWND wnd,UINT msg,WPARAM wp,LPARAM lp)
 
 				ListView_SetImageList(m_wnd_items_view, il, LVSIL_SMALL);
 				ListView_SetExtendedListViewStyleEx(m_wnd_items_view, LVS_EX_FULLROWSELECT, LVS_EX_FULLROWSELECT);
-				g_set_listview_window_explorer_theme(m_wnd_items_view);
+				uih::SetListViewWindowExplorerTheme(m_wnd_items_view);
 
-				ListView_InsertColumnText(m_wnd_items_view, 0, L"Name", 300);
-				ListView_InsertColumnText(m_wnd_items_view, 1, L"Date modified", 150);
-				ListView_InsertColumnText(m_wnd_items_view, 2, L"Size", 100);
+				uih::ListView_InsertColumnText(m_wnd_items_view, 0, L"Name", 300);
+				uih::ListView_InsertColumnText(m_wnd_items_view, 1, L"Date modified", 150);
+				uih::ListView_InsertColumnText(m_wnd_items_view, 2, L"Size", 100);
 
 				pfc::list_t<ipod_device_ptr_t> ipods;
 				g_drive_manager.m_event_initialised.wait_for(5);
