@@ -1069,17 +1069,17 @@ void mobile_device_api::on_mobile_device_connected (am_device * dev)
 			{
 
 #if 1
-				amret = lockedAPI->AMDeviceStartService(dev, lockedAPI->__CFStringMakeConstantString("com.apple.mobile.notification_proxy"), &device->m_send_notification_proxy, NULL);
+				amret = lockedAPI->AMDeviceSecureStartService(dev, lockedAPI->__CFStringMakeConstantString("com.apple.mobile.notification_proxy"), NULL, &device->m_send_notification_proxy);
 				if (amret != MDERR_OK)
-					console::formatter() << "iPod manager: Apple Mobile Device: error: AMDeviceStartService (Send Proxy) returned " << pfc::format_hex(amret, 8);
+					console::formatter() << "iPod manager: Apple Mobile Device: error: AMDeviceSecureStartService (Send Proxy) returned " << pfc::format_hex(amret, 8);
 				if (device->m_send_notification_proxy == INVALID_SOCKET)
 					console::formatter() << "iPod manager: Apple Mobile Device: error: Send Proxy Create: Invalid socket";
 #endif
 
 				SOCKET syslog_relay;
-				amret = lockedAPI->AMDeviceStartService(dev, lockedAPI->__CFStringMakeConstantString("com.apple.syslog_relay"), &syslog_relay, NULL);
+				amret = lockedAPI->AMDeviceSecureStartService(dev, lockedAPI->__CFStringMakeConstantString("com.apple.syslog_relay"), NULL, &syslog_relay);
 				if (amret != MDERR_OK)
-					console::formatter() << "iPod manager: Apple Mobile Device: error: AMDeviceStartService (syslog relay) returned " << pfc::format_hex(amret, 8);
+					console::formatter() << "iPod manager: Apple Mobile Device: error: AMDeviceSecureStartService (syslog relay) returned " << pfc::format_hex(amret, 8);
 				if (syslog_relay == INVALID_SOCKET)
 					console::formatter() << "iPod manager: Apple Mobile Device: error: syslog relay: Invalid socket";
 
