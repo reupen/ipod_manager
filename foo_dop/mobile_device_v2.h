@@ -30,6 +30,7 @@ struct mobile_device_functionlist
 	MDMP(AMDeviceStartSession);
 	MDMP(AMDeviceStartService);
 	MDMP(AMDeviceSecureStartService);
+	MDMP(AMDServiceConnectionInvalidate);
 	MDMP(AMDeviceStopSession);
 	MDMP(AMDevicePair);
 	MDMP(AMDeviceRetain);
@@ -170,8 +171,8 @@ public:
 	am_device * m_device;
 	afc_connection * m_pafc;
 	SOCKET m_afc_service;
-	SOCKET m_notification_proxy;
-	SOCKET m_send_notification_proxy;
+	service_connection_ref m_notification_proxy;
+	service_connection_ref m_send_notification_proxy;
 	pfc::string8 mobile_serial;
 	icu_context m_icu_context;
 

@@ -117,8 +117,8 @@ mobile_device_handle::~mobile_device_handle()
 }
 
 mobile_device_handle::mobile_device_handle()
-: m_pafc(NULL), m_device(NULL), m_afc_service(INVALID_SOCKET), m_notification_proxy(INVALID_SOCKET),
-m_send_notification_proxy(INVALID_SOCKET), m_sync_lock(NULL), m_sync_lock_locked(false)
+: m_pafc(NULL), m_device(NULL), m_afc_service(INVALID_SOCKET), m_notification_proxy(nullptr),
+m_send_notification_proxy(nullptr), m_sync_lock(NULL), m_sync_lock_locked(false)
 {};
 
 int memcmp_sized(const void * p1, t_size p1_size, const void * p2, t_size p2_size)
@@ -368,8 +368,8 @@ void mobile_device_handle::post_notification(CFStringRef notification, CFStringR
 	in_mobile_device_api_handle_sync lockedAPI(m_api);
 	lockedAPI.ensure_valid();
 	{
-		if (m_send_notification_proxy == INVALID_SOCKET)
-			throw pfc::exception("Invalid socket");
+		if (m_send_notification_proxy == nullptr)
+			throw pfc::exception("Invalid service connection");
 		mach_error_t err = lockedAPI->AMDSecurePostNotification(m_send_notification_proxy, notification, userinfo);
 		if (err != MDERR_OK)
 			throw pfc::exception(pfc::string8() << "error: AMDSecurePostNotification returned " << pfc::format_hex(err,8));
@@ -506,22 +506,22 @@ void mobile_device_handle::deinitialise()
 			m_pafc = NULL;
 			m_afc_service = INVALID_SOCKET;
 		}
-		if (m_notification_proxy != INVALID_SOCKET)
+		if (m_notification_proxy != nullptr)
 		{
 			mach_error_t amret = lockedAPI->AMDSecureShutdownNotificationProxy(m_notification_proxy);
 			if (amret != MDERR_OK)
 				console::formatter() << "iPod manager: Error: AMDSecureShutdownNotificationProxy returned " << pfc::format_hex(amret,8);
-			closesocket(m_notification_proxy);
 			Sleep(50); //Stoopid Apple library, try and let its thread terminate (!!)
-			m_notification_proxy = INVALID_SOCKET;
+			lockedAPI->CFRelease(m_notification_proxy);
+			m_notification_proxy = nullptr;
 		}
-		if (m_send_notification_proxy != INVALID_SOCKET)
+		if (m_send_notification_proxy != nullptr)
 		{
 			mach_error_t amret = lockedAPI->AMDSecureShutdownNotificationProxy(m_send_notification_proxy);
 			if (amret != MDERR_OK)
 				console::formatter() << "iPod manager: Error: AMDSecureShutdownNotificationProxy returned " << pfc::format_hex(amret,8);
-			closesocket(m_send_notification_proxy);
-			m_send_notification_proxy = INVALID_SOCKET;
+			lockedAPI->CFRelease(m_send_notification_proxy);
+			m_send_notification_proxy = nullptr;
 		}
 		m_syslog_relay.deinitialise();
 		if (m_device)
@@ -701,6 +701,7 @@ void mobile_device_api::__initialise()
 	SafeMDGPA2(AMDeviceStartSession, m_library_mobiledevice);
 	SafeMDGPA2(AMDeviceStartService, m_library_mobiledevice);
 	SafeMDGPA2(AMDeviceSecureStartService, m_library_mobiledevice);
+	SafeMDGPA2(AMDServiceConnectionInvalidate, m_library_mobiledevice);
 	SafeMDGPA2(AMDeviceStopSession, m_library_mobiledevice);
 	SafeMDGPA2(AMDeviceDisconnect, m_library_mobiledevice);
 	SafeMDGPA2(AMDeviceRetain, m_library_mobiledevice);
@@ -1040,7 +1041,7 @@ void mobile_device_api::on_mobile_device_connected (am_device * dev)
 			afc_error_t afcret = 0;
 
 			// Start AFC service
-			amret = lockedAPI->AMDeviceStartService(dev, lockedAPI->__CFStringMakeConstantString(AMSVC_AFC), &device->m_afc_service, NULL);
+			amret = lockedAPI->AMDeviceStartService(dev, lockedAPI->__CFStringMakeConstantString(AMSVC_AFC), &device->m_afc_service);
 			if (amret != MDERR_OK)
 				console::formatter() << "iPod manager: Apple Mobile Device: error: AMDeviceStartService (AFC) returned " << pfc::format_hex(amret, 8);
 			else
@@ -1072,12 +1073,12 @@ void mobile_device_api::on_mobile_device_connected (am_device * dev)
 				amret = lockedAPI->AMDeviceSecureStartService(dev, lockedAPI->__CFStringMakeConstantString("com.apple.mobile.notification_proxy"), NULL, &device->m_send_notification_proxy);
 				if (amret != MDERR_OK)
 					console::formatter() << "iPod manager: Apple Mobile Device: error: AMDeviceSecureStartService (Send Proxy) returned " << pfc::format_hex(amret, 8);
-				if (device->m_send_notification_proxy == INVALID_SOCKET)
-					console::formatter() << "iPod manager: Apple Mobile Device: error: Send Proxy Create: Invalid socket";
+				if (device->m_send_notification_proxy == nullptr)
+					console::formatter() << "iPod manager: Apple Mobile Device: error: Send Proxy Create: Invalid connection";
 #endif
 
 				SOCKET syslog_relay;
-				amret = lockedAPI->AMDeviceSecureStartService(dev, lockedAPI->__CFStringMakeConstantString("com.apple.syslog_relay"), NULL, &syslog_relay);
+				amret = lockedAPI->AMDeviceStartService(dev, lockedAPI->__CFStringMakeConstantString("com.apple.syslog_relay"), &syslog_relay);
 				if (amret != MDERR_OK)
 					console::formatter() << "iPod manager: Apple Mobile Device: error: AMDeviceSecureStartService (syslog relay) returned " << pfc::format_hex(amret, 8);
 				if (syslog_relay == INVALID_SOCKET)
@@ -1089,8 +1090,8 @@ void mobile_device_api::on_mobile_device_connected (am_device * dev)
 				amret = lockedAPI->AMDeviceSecureStartService(dev, lockedAPI->__CFStringMakeConstantString("com.apple.mobile.notification_proxy"), NULL, &device->m_notification_proxy);
 				if (amret != MDERR_OK)
 					console::formatter() << "iPod manager: Apple Mobile Device: error: AMDeviceStartService (Recv Proxy) returned " << pfc::format_hex(amret, 8);
-				if (device->m_notification_proxy == INVALID_SOCKET)
-					console::formatter() << "iPod manager: Apple Mobile Device: error: Recv Proxy Create: Invalid socket";
+				if (device->m_notification_proxy == nullptr)
+					console::formatter() << "iPod manager: Apple Mobile Device: error: Recv Proxy Create: Invalid connection";
 
 				if (device->m_notification_proxy)
 				{

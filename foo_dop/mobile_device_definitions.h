@@ -142,6 +142,8 @@ struct afc_dictionary {
 
 typedef unsigned long long afc_file_ref;
 
+typedef CFTypeRef service_connection_ref;
+
 struct usbmux_listener_1 {                  /* offset   value in iTunes */
    unsigned int unknown0;                  /* 0        1 */
    unsigned char *unknown1;                /* 4        ptr, maybe device? */
@@ -204,8 +206,9 @@ typedef int (__cdecl * p_AMDeviceIsPaired_t)(struct am_device *device);
 typedef mach_error_t (__cdecl * p_AMDeviceValidatePairing_t)(struct am_device *device);
 typedef mach_error_t (__cdecl * p_AMDevicePair_t)(struct am_device *device);
 typedef mach_error_t (__cdecl * p_AMDeviceStartSession_t)(struct am_device *device);
-typedef mach_error_t (__cdecl * p_AMDeviceStartService_t)(struct am_device *device, CFStringRef service_name, SOCKET *handle, unsigned int * unknown);
- typedef mach_error_t (__cdecl * p_AMDeviceSecureStartService_t)(struct am_device *device, CFStringRef service_name, CFDictionaryRef options, SOCKET *handle);
+typedef mach_error_t (__cdecl * p_AMDeviceStartService_t)(struct am_device *device, CFStringRef service_name, SOCKET *handle);
+typedef mach_error_t (__cdecl * p_AMDeviceSecureStartService_t)(struct am_device *device, CFStringRef service_name, CFDictionaryRef options, service_connection_ref * service_connection);
+typedef mach_error_t (__cdecl * p_AMDServiceConnectionInvalidate_t)(service_connection_ref service_connection);
 typedef mach_error_t (__cdecl * p_AMDeviceStopSession_t)(struct am_device *device);
 typedef mach_error_t (__cdecl * p_AMDeviceDisconnect_t)(struct am_device *device);
 typedef struct am_device * (__cdecl * p_AMDeviceRetain_t)(struct am_device *device);
@@ -241,10 +244,10 @@ typedef mach_error_t (__cdecl * p_AMSCleanup_t)();
 typedef mach_error_t (__cdecl * p_AMDObserveNotification_t)(SOCKET handle, CFStringRef name);
 typedef void(*ListenForNotificationsCallback_t)(CFStringRef, unsigned int user_data);
 typedef mach_error_t (__cdecl * p_AMDListenForNotifications_t)(SOCKET handle, ListenForNotificationsCallback_t func, unsigned int user_data);
-typedef mach_error_t (__cdecl * p_AMDSecurePostNotification_t)(SOCKET handle, CFStringRef name, CFStringRef userinfo);
-typedef mach_error_t (__cdecl * p_AMDSecureShutdownNotificationProxy_t)(SOCKET handle);
-typedef mach_error_t (__cdecl * p_AMDSecureListenForNotifications_t)(SOCKET handle, ListenForNotificationsCallback_t func, unsigned int user_data);
-typedef mach_error_t (__cdecl * p_AMDSecureObserveNotification_t)(SOCKET handle, CFStringRef name);
+typedef mach_error_t (__cdecl * p_AMDSecurePostNotification_t)(service_connection_ref service_connection, CFStringRef name, CFStringRef userinfo);
+typedef mach_error_t (__cdecl * p_AMDSecureShutdownNotificationProxy_t)(service_connection_ref service_connection);
+typedef mach_error_t (__cdecl * p_AMDSecureListenForNotifications_t)(service_connection_ref service_connection, ListenForNotificationsCallback_t func, unsigned int user_data);
+typedef mach_error_t (__cdecl * p_AMDSecureObserveNotification_t)(service_connection_ref service_connection, CFStringRef name);
 typedef void (__cdecl * p_AMDSetLogLevel_t)(int level);
 
 
