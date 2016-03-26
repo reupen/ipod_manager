@@ -29,6 +29,6 @@ For the licence, please see `zlib-1.2.5/zlib.h`
 
 
 ### SQLite
-Publc domain
+Public domain
 
 https://www.sqlite.org
