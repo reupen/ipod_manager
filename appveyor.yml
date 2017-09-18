@@ -1,4 +1,5 @@
 version: 1.0.{build}
+image: Visual Studio 2017
 configuration:
 - Release
 - Debug
@@ -6,6 +7,6 @@ platform: Win32
 install:
 - cmd: git submodule update --init --recursive
 build:
-  project: vc14/ipod_manager.sln
+  project: vc15/ipod_manager.sln
   parallel: true
   verbosity: normal
