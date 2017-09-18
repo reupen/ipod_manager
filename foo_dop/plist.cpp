@@ -11,12 +11,12 @@ t_filetimestamp g_iso_timestamp_to_filetime (const char * str, t_size len = pfc_
 
 	if (len == 4 + 1 + 2 + 1 + 2 + 1 + 8 + 1)
 	{
-		st.wYear = strtoul_n(str+0, 4);
-		st.wMonth = strtoul_n(str+5, 2);
-		st.wDay = strtoul_n(str+8, 2);
-		st.wHour = strtoul_n(str+11, 2);
-		st.wMinute = strtoul_n(str+14, 2);
-		st.wSecond = strtoul_n(str+17, 2);
+		st.wYear = mmh::strtoul_n(str+0, 4);
+		st.wMonth = mmh::strtoul_n(str+5, 2);
+		st.wDay = mmh::strtoul_n(str+8, 2);
+		st.wHour = mmh::strtoul_n(str+11, 2);
+		st.wMinute = mmh::strtoul_n(str+14, 2);
+		st.wSecond = mmh::strtoul_n(str+17, 2);
 		FILETIME ft = {0};
 		SystemTimeToFileTime(&st, &ft);
 		return g_filetime_to_timestamp(&ft);
@@ -143,16 +143,16 @@ void XMLPlistParser::get_keys(ipod_info & p_out)
 			else if (!stricmp_utf8_max(key_start, "FamilyID", key_len))
 			{
 				p_out.family_valid = true;
-				p_out.family_id = strtoul_n(val_start, val_len);
+				p_out.family_id = mmh::strtoul_n(val_start, val_len);
 			}
 			else if (!stricmp_utf8_max(key_start, "UpdaterFamilyID", key_len))
 			{
-				p_out.updater_family_id = strtoul_n(val_start, val_len);
+				p_out.updater_family_id = mmh::strtoul_n(val_start, val_len);
 			}
 			else if (!stricmp_utf8_max(key_start, "VisibleBuildID", key_len))
 				p_out.firmware . set_string(val_start, val_len);
 			else if (!stricmp_utf8_max(key_start, "BatteryPollInterval", key_len))
-				p_out.battery_poll_interval = strtoul_n(val_start, val_len);;
+				p_out.battery_poll_interval = mmh::strtoul_n(val_start, val_len);;
 			skip_eol_and_whitespace();
 		}
 	}
@@ -330,7 +330,7 @@ void XMLPlistParser::get_cfobject_for_key(const key_t & key, cfobject::object_t:
 				break;
 			case cfobject::kTagInt:
 				{
-					p_out->m_integer = strtol64_n(key.m_value, key.m_value_length);
+					p_out->m_integer = mmh::strtol64_n(key.m_value, key.m_value_length);
 				}
 				break;
 			case cfobject::kTagBoolean:
@@ -364,7 +364,7 @@ void g_get_checkpoint_artwork_format_single(cfobject::object_t::ptr_t const & Al
 
 #define getArtElemUintStr(elem, member) \
 	if (AlbumArt->m_array[i]->m_dictionary.get_child(L#elem, elem)) \
-	fmt.##member = strtoul_t(elem->m_string.get_ptr(), pfc_infinite, 0x10)
+	fmt.##member = mmh::strtoul_n(elem->m_string.get_ptr(), pfc_infinite, 0x10)
 
 			cfobject::object_t::ptr_t FormatId, ExcludedFormats, RenderHeight, RenderWidth, BackColor, 
 				AssociatedFormat, PixelFormat, OffsetAlignment, PixelOrder,
@@ -372,7 +372,7 @@ void g_get_checkpoint_artwork_format_single(cfobject::object_t::ptr_t const & Al
 				OriginalHeight, OriginalWidth, MinimumSize;
 
 			if (!AlbumArt->m_array[i]->m_key.is_empty())
-				fmt.m_format_id = strtoul_t(AlbumArt->m_array[i]->m_key.get_ptr(), AlbumArt->m_array[i]->m_key.length());
+				fmt.m_format_id = mmh::strtoul_n(AlbumArt->m_array[i]->m_key.get_ptr(), AlbumArt->m_array[i]->m_key.length());
 
 			getArtElemUint(FormatId, m_format_id);
 			getArtElemUint(ExcludedFormats, m_excluded_formats);

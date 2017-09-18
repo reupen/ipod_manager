@@ -92,7 +92,7 @@ namespace bplist
 	private:
 		void read ()
 		{
-			mmh::stream_reader_memblock_ref_seekable reader(m_data);
+			fbh::StreamReaderMemblock reader(m_data);
 
 			t_uint8 header[8];
 			if (reader.get_remaining() < 8)
@@ -124,14 +124,14 @@ namespace bplist
 		pfc::array_t<object_t::ptr_t> m_objects;
 		t_uint64 read_offset(t_uint64 index)
 		{
-			mmh::stream_reader_memblock_ref_seekable reader(m_data);
+			fbh::StreamReaderMemblock reader(m_data);
 			reader.seek_ex(file::seek_from_beginning, pfc::downcast_guarded<t_ssize>(m_footer.offsetTableOffset + m_footer.offsetIntSize * index), m_abort);
 			return reader.read_sized_int_bendian(m_footer.offsetIntSize, m_abort);
 		}
 		void read_object(t_uint64 index, object_t::ptr_t & p_object)
 		{
 			object_t::ptr_t object = new object_t;
-			mmh::stream_reader_memblock_ref_seekable reader(m_data);
+			fbh::StreamReaderMemblock reader(m_data);
 			reader.seek_ex(file::seek_from_beginning, pfc::downcast_guarded<t_ssize>(read_offset(index)), m_abort);
 
 			t_uint8 object_type;

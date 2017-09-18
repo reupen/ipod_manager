@@ -344,8 +344,8 @@ void ipod_write_shadowdb_v2(ipod_device_ptr_ref_t p_ipod, const char * m_path, c
 					shpl.write_lendian_t(t_uint32(j), p_abort);
 			}
 
-			mmh::permutation_t permuation_track_id(count_tracks);
-			mmh::g_sort_get_permutation_qsort_v2(p_library.m_tracks.get_ptr(), permuation_track_id, ipod::tasks::load_database_t::g_compare_track_id, false, false);
+			mmh::Permutation permuation_track_id(count_tracks);
+			mmh::sort_get_permutation(p_library.m_tracks.get_ptr(), permuation_track_id, ipod::tasks::load_database_t::g_compare_track_id, false, false);
 
 			for (i=0; i<count_playlists; i++)
 			{

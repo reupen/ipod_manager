@@ -399,9 +399,9 @@ namespace ipod
 	}
 }
 
-void ipod_read_dopdb_tracklist(mmh::stream_reader_memblock_ref_seekable * p_file, t_uint32 root_id, t_uint32 root_size,
-	const mmh::permutation_t & permutationtid,
-	const mmh::permutation_t & permutationdbid,
+void ipod_read_dopdb_tracklist(fbh::StreamReaderMemblock* p_file, t_uint32 root_id, t_uint32 root_size,
+	const mmh::Permutation & permutationtid,
+	const mmh::Permutation & permutationdbid,
 	//pfc::list_const_permutation_t<pfc::rcptr_t <t_track>, pfc::array_t<t_size> > & sorted_array_tid,
 	//pfc::list_const_permutation_t<pfc::rcptr_t <t_track>, pfc::array_t<t_size> > & sorted_array_dbid,
 	const ipod::tasks::load_database_t & p_library,

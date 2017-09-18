@@ -38,15 +38,15 @@ void ipod_load_library_v2_t::on_run(/*abort_callback & p_abort*/)
 		{
 			service_ptr_t<titleformat_object> to;
 			static_api_ptr_t<titleformat_compiler>()->compile_safe(to, m_mappings.ipod_library_sort_script);
-			mmh::fb2k::g_sort_metadb_handle_list_by_format_v2(m_handles, to, NULL);
+			fbh::sort_metadb_handle_list_by_format(m_handles, to, NULL);
 		}
 		m_process.advance_progresstep();
 	}
 	catch (const exception_aborted &) {}
 	catch (const pfc::exception & e) 
 	{
-		message_window_t::g_run_threadsafe(NULL, "Error", e.what());
-		//message_window_t::g_run_threadsafe("Error", e.what());
+		fbh::show_info_box_threadsafe(NULL, "Error", e.what());
+		//fbh::show_info_box_threadsafe("Error", e.what());
 		m_failed = true;
 	}
 }

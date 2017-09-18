@@ -268,7 +268,7 @@ void g_get_device_info_from_sysinfo(const t_uint8 * sysinfo, t_size size, ipod_i
 			{
 				val_start++; val_len--;
 			}
-			t_uint32 hwid = strtoul_n(val_start, val_len, 0x10);
+			t_uint32 hwid = mmh::strtoul_n(val_start, val_len, 0x10);
 			info.board_id = hwid;
 			info.board_valid = true;
 			/*t_uint32 mhwid = (hwid & 0xffff0000) >> 16;

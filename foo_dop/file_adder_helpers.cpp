@@ -126,32 +126,32 @@ t_filetimestamp g_string_to_timestamp(const char * str)
 	const char * ptr = str, *start = ptr;
 
 	while (*ptr && is_latin_number(*ptr) && (ptr - start) < 4) ptr++;
-	st.wYear = strtoul_n(start, ptr - start);
+	st.wYear = mmh::strtoul_n(start, ptr - start);
 	while (*ptr && !is_latin_number(*ptr)) ptr++;
 	start = ptr;
 
 	while (*ptr && is_latin_number(*ptr) && (ptr - start) < 2) ptr++;
-	st.wMonth = strtoul_n(start, ptr - start);
+	st.wMonth = mmh::strtoul_n(start, ptr - start);
 	while (*ptr && !is_latin_number(*ptr)) ptr++;
 	start = ptr;
 
 	while (*ptr && is_latin_number(*ptr) && (ptr - start) < 2) ptr++;
-	st.wDay = strtoul_n(start, ptr - start);
+	st.wDay = mmh::strtoul_n(start, ptr - start);
 	while (*ptr && !is_latin_number(*ptr)) ptr++;
 	start = ptr;
 
 	while (*ptr && is_latin_number(*ptr) && (ptr - start) < 2) ptr++;
-	st.wHour = strtoul_n(start, ptr - start);
+	st.wHour = mmh::strtoul_n(start, ptr - start);
 	while (*ptr && !is_latin_number(*ptr)) ptr++;
 	start = ptr;
 
 	while (*ptr && is_latin_number(*ptr) && (ptr - start) < 2) ptr++;
-	st.wMinute = strtoul_n(start, ptr - start);
+	st.wMinute = mmh::strtoul_n(start, ptr - start);
 	while (*ptr && !is_latin_number(*ptr)) ptr++;
 	start = ptr;
 
 	while (*ptr && is_latin_number(*ptr) && (ptr - start) < 2) ptr++;
-	st.wSecond = strtoul_n(start, ptr - start);
+	st.wSecond = mmh::strtoul_n(start, ptr - start);
 
 	FILETIME ft;
 	SystemTimeToFileTime(&st, &ft);
@@ -167,21 +167,21 @@ t_filetimestamp g_iso_timestamp_string_to_filetimestamp(const char * p_str, bool
 	t_size len = strlen(ptr);
 
 	if (ptr + 4 - p_str <= len)
-		st.wYear = strtoul_n(ptr, 4);
+		st.wYear = mmh::strtoul_n(ptr, 4);
 	ptr += 4;
 
 	if (ptr + 1 - p_str <= len && !is_latin_number(*ptr))
 		ptr++;
 
 	if (ptr + 2 - p_str <= len)
-		st.wMonth = strtoul_n(ptr, 2);
+		st.wMonth = mmh::strtoul_n(ptr, 2);
 	ptr += 2;
 
 	if (ptr + 1 - p_str <= len && !is_latin_number(*ptr))
 		ptr++;
 
 	if (ptr + 2 - p_str <= len)
-		st.wDay = strtoul_n(ptr, 2);
+		st.wDay = mmh::strtoul_n(ptr, 2);
 	ptr += 2;
 
 	bool b_time = false;
@@ -196,21 +196,21 @@ t_filetimestamp g_iso_timestamp_string_to_filetimestamp(const char * p_str, bool
 	{
 
 		if (ptr + 2 - p_str <= len)
-			st.wHour = strtoul_n(ptr, 2);
+			st.wHour = mmh::strtoul_n(ptr, 2);
 		ptr += 2;
 
 		if (ptr + 1 - p_str <= len && !is_latin_number(*ptr))
 			ptr++;
 
 		if (ptr + 2 - p_str <= len)
-			st.wMinute = strtoul_n(ptr, 2);
+			st.wMinute = mmh::strtoul_n(ptr, 2);
 		ptr += 2;
 
 		if (ptr + 1 - p_str <= len && !is_latin_number(*ptr))
 			ptr++;
 
 		if (ptr + 2 - p_str <= len)
-			st.wSecond = strtoul_n(ptr, 2);
+			st.wSecond = mmh::strtoul_n(ptr, 2);
 		ptr += 2;
 
 		bool b_utc = (ptr + 1 - p_str <= len && *ptr == 'Z');

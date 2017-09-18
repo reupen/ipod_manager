@@ -395,10 +395,10 @@ public:
 	void generate_order(t_size count_elements, Tlist & sort_entries, pfc::array_t<t_size> & p_out, TsortFunc sortFunc)
 	{
 		t_size i, j = 1;
-		mmh::permutation_t perm_temp(count_elements);
-		mmh::g_sort_get_permutation_qsort(sort_entries, perm_temp, sortFunc, false); 
+		mmh::Permutation perm_temp(count_elements);
+		mmh::sort_get_permutation(sort_entries, perm_temp, sortFunc, false); 
 		p_out.set_count(count_elements);
-		//mmh::permutation_inverse_t perminv(perm_temp);
+		//mmh::InversePermutation perminv(perm_temp);
 		for (i=0; i<count_elements; i++)
 		{
 			p_out[perm_temp[i]] = j*100;
@@ -615,8 +615,8 @@ void ipod::tasks::database_writer_t::write_sqlitedb(ipod_device_ptr_ref_t p_ipod
 
 				dynamicdb->exec(query);
 
-				mmh::permutation_t permutation_tid(m_library.m_tracks.get_count());
-				mmh::g_sort_get_permutation_qsort_v2(m_library.m_tracks.get_ptr(), permutation_tid, m_library.g_compare_track_id, false);
+				mmh::Permutation permutation_tid(m_library.m_tracks.get_count());
+				mmh::sort_get_permutation(m_library.m_tracks.get_ptr(), permutation_tid, m_library.g_compare_track_id, false);
 
 				for (j=0; j< count_entries; j++)
 				{
@@ -733,11 +733,11 @@ void ipod::tasks::database_writer_t::write_sqlitedb(ipod_device_ptr_ref_t p_ipod
 			t_size count_artists = m_library.m_artist_list.get_count();
 			t_size count_albums = m_library.m_album_list.m_master_list.get_count();
 
-			mmh::permutation_t perm_artists(count_artists);
-			mmh::permutation_t perm_albums(count_albums);
+			mmh::Permutation perm_artists(count_artists);
+			mmh::Permutation perm_albums(count_albums);
 
-			mmh::g_sort_get_permutation_qsort_v2(m_library.m_artist_list.get_ptr(), perm_artists, t_artist::g_compare_id, false);
-			mmh::g_sort_get_permutation_qsort_v2(m_library.m_album_list.m_master_list.get_ptr(), perm_albums, t_album::g_compare_id, false);			
+			mmh::sort_get_permutation(m_library.m_artist_list.get_ptr(), perm_artists, t_artist::g_compare_id, false);
+			mmh::sort_get_permutation(m_library.m_album_list.m_master_list.get_ptr(), perm_albums, t_album::g_compare_id, false);			
 
 			for (i=0; i<count_albums; i++)
 			{
@@ -798,10 +798,10 @@ void ipod::tasks::database_writer_t::write_sqlitedb(ipod_device_ptr_ref_t p_ipod
 
 			{
 				t_size counter = 0;
-				mmh::permutation_t pgenre(count_library_entries), pcomposer(count_library_entries);
+				mmh::Permutation pgenre(count_library_entries), pcomposer(count_library_entries);
 
-				mmh::g_sort_get_permutation_qsort_v2(m_library.m_tracks.get_ptr(), pgenre, t_track::g_compare_genre, false);
-				mmh::g_sort_get_permutation_qsort_v2(m_library.m_tracks.get_ptr(), pcomposer, t_track::g_compare_composer, false);
+				mmh::sort_get_permutation(m_library.m_tracks.get_ptr(), pgenre, t_track::g_compare_genre, false);
+				mmh::sort_get_permutation(m_library.m_tracks.get_ptr(), pcomposer, t_track::g_compare_composer, false);
 
 				for (i=0; i<count_library_entries; i++)
 				{
@@ -924,7 +924,7 @@ void ipod::tasks::database_writer_t::write_sqlitedb(ipod_device_ptr_ref_t p_ipod
 
 					pfc::string_list_impl ExtCR;
 					pfc::splitStringSimple_toList(ExtCR, '|', track->extended_content_rating);
-					t_uint32 CRLevel = ExtCR.get_count() >=3 ? strtoul_n(ExtCR[2], pfc_infinite) : 0;
+					t_uint32 CRLevel = ExtCR.get_count() >=3 ? mmh::strtoul_n(ExtCR[2], pfc_infinite) : 0;
 					query.reset();
 
 					query << "INSERT INTO item (pid,media_kind,is_song,is_audio_book,is_music_video,is_movie,is_tv_show,is_ringtone,is_voice_memo,is_book,is_podcast,is_rental,is_itunes_u,is_digital_booklet,"
@@ -1413,7 +1413,7 @@ void ipod::tasks::database_writer_t::write_sqlitedb(ipod_device_ptr_ref_t p_ipod
 			for (i=0; i<udid_length; i++)
 			{
 				//if (!struid[i*2] || !struid[i*2 + 1]) break;
-				uid[i] = (unsigned char)strtoul64_n(&struid[i*2], 2, 0x10);
+				uid[i] = (unsigned char)mmh::strtoul64_n(&struid[i*2], 2, 0x10);
 			}
 
 			if (cbk_version == 3)

@@ -7,7 +7,7 @@ void verify_encoder_settings_t::on_run()
 	try
 	{
 		t_uint32 rand32 = 1;
-		mmh::genrand_t().run(&rand32, 4);
+		mmh::GenRand().run(&rand32, 4);
 
 
 		pfc::string8 tempFolder = m_temp_folder, tempFile;
@@ -36,9 +36,9 @@ void verify_encoder_settings_t::on_run()
 void encoder_manager_t::sort_encoder_list()
 {
 	t_size count = settings::encoder_list.get_count();
-	mmh::permutation_t permuation(count);
-	mmh::g_sort_get_permutation_qsort_v2(settings::encoder_list.get_ptr(), permuation, settings::conversion_preset_t::g_compare, true);
-	mmh::permutation_inverse_t permuation_inverse(permuation);
+	mmh::Permutation permuation(count);
+	mmh::sort_get_permutation(settings::encoder_list.get_ptr(), permuation, settings::conversion_preset_t::g_compare, true);
+	mmh::InversePermutation permuation_inverse(permuation);
 	if (settings::active_encoder < count)
 		settings::active_encoder = permuation_inverse[settings::active_encoder];
 	settings::encoder_list.reorder(permuation.get_ptr());
@@ -75,11 +75,11 @@ BOOL encoder_manager_t::DialogProc(HWND wnd, UINT msg, WPARAM wp, LPARAM lp)
 
 			SHAutoComplete(m_wnd_conversion_command, SHACF_FILESYS_ONLY);
 
-			uih::ComboBox_AddStringData(m_wnd_max_bps_dropdown, L"16", settings::conversion_preset_t::bps_16);
-			uih::ComboBox_AddStringData(m_wnd_max_bps_dropdown, L"24", settings::conversion_preset_t::bps_24);
-			uih::ComboBox_AddStringData(m_wnd_max_bps_dropdown, L"32", settings::conversion_preset_t::bps_32);
+			uih::combo_box_add_string_data(m_wnd_max_bps_dropdown, L"16", settings::conversion_preset_t::bps_16);
+			uih::combo_box_add_string_data(m_wnd_max_bps_dropdown, L"24", settings::conversion_preset_t::bps_24);
+			uih::combo_box_add_string_data(m_wnd_max_bps_dropdown, L"32", settings::conversion_preset_t::bps_32);
 
-			HWND wnd_lv = m_encoder_list_view.create_in_dialog_units(wnd, ui_helpers::window_position_t(7, 7, 300, 86));
+			HWND wnd_lv = m_encoder_list_view.create(wnd, uih::WindowPosition(7, 7, 300, 86), true);
 			m_encoder_list_view.populate();
 			t_size count = m_encoder_list_view.get_item_count();
 			if (count)
@@ -91,7 +91,7 @@ BOOL encoder_manager_t::DialogProc(HWND wnd, UINT msg, WPARAM wp, LPARAM lp)
 		};
 		break;
 		case WM_PAINT:
-			uih::HandleModernBackgroundPaint(wnd, GetDlgItem(wnd, IDOK));
+			uih::handle_modern_background_paint(wnd, GetDlgItem(wnd, IDOK));
 			return TRUE;
 		case WM_CTLCOLORSTATIC:
 			SetBkColor((HDC)wp, GetSysColor(COLOR_WINDOW));
@@ -126,8 +126,8 @@ BOOL encoder_manager_t::DialogProc(HWND wnd, UINT msg, WPARAM wp, LPARAM lp)
 				{
 					const char * p_name = "<enter name>";
 					t_size index = settings::encoder_list.add_item(settings::conversion_preset_t(p_name, "", "", "", settings::conversion_preset_t::bps_32));
-					t_list_view::t_item_insert item;
-					item.m_subitems.add_item(p_name);
+					uih::ListView::InsertItem item;
+					item.m_subitems.append_single(p_name);
 
 					m_encoder_list_view.insert_items(index, 1, &item);
 					m_encoder_list_view.set_item_selected_single(index);
@@ -297,10 +297,10 @@ BOOL t_config_tab_conversion::DialogProc(HWND wnd, UINT msg, WPARAM wp, LPARAM l
 				//EnableWindow(m_wnd_replaygain_processing_mode, m_have_rgscan);
 				//Button_SetCheck(m_wnd_replaygain_processing_mode, m_have_rgscan && settings::replaygain_processing_mode ? BST_CHECKED : BST_UNCHECKED);
 			}
-			uih::ComboBox_AddStringData(m_wnd_replaygain_processing_mode, L"None", 0);
-			uih::ComboBox_AddStringData(m_wnd_replaygain_processing_mode, L"Apply gain before encoding", 2);
+			uih::combo_box_add_string_data(m_wnd_replaygain_processing_mode, L"None", 0);
+			uih::combo_box_add_string_data(m_wnd_replaygain_processing_mode, L"Apply gain before encoding", 2);
 			if (m_have_rgscan)
-				uih::ComboBox_AddStringData(m_wnd_replaygain_processing_mode, L"Calculate gain after encoding", 1);
+				uih::combo_box_add_string_data(m_wnd_replaygain_processing_mode, L"Calculate gain after encoding", 1);
 			ComboBox_SetCurSel(m_wnd_replaygain_processing_mode, settings::replaygain_processing_mode ? 3 - settings::replaygain_processing_mode : 0);
 
 			on_convert_files_change();
@@ -321,7 +321,7 @@ BOOL t_config_tab_conversion::DialogProc(HWND wnd, UINT msg, WPARAM wp, LPARAM l
 						verify_encoder_settings_t * p_verify_encoder_settings = new verify_encoder_settings_t(settings::encoder_list[settings::active_encoder], p_temp_folder);
 						p_verify_encoder_settings->run(core_api::get_main_window());
 					}
-					else message_window_t::g_run(wnd, "Verify Encoder Settings", "Error: No encoder selected");
+					else fbh::show_info_box(wnd, "Verify Encoder Settings", "Error: No encoder selected");
 				}
 				break;
 				case IDC_ENCODER_MANAGER:
@@ -337,11 +337,11 @@ BOOL t_config_tab_conversion::DialogProc(HWND wnd, UINT msg, WPARAM wp, LPARAM l
 					break;
 				case IDC_THREADCOUNT | (EN_CHANGE << 16) :
 					if (!m_initialising)
-						settings::conversion_custom_thread_count = strtoul_n(string_utf8_from_window((HWND)lp), pfc_infinite);
+						settings::conversion_custom_thread_count = mmh::strtoul_n(string_utf8_from_window((HWND)lp).get_ptr(), pfc_infinite);
 					break;
 				case IDC_CONVERT_BITRATE_VALUE | (EN_CHANGE << 16) :
 					if (!m_initialising)
-						settings::conversion_bitrate_limit = strtoul_n(string_utf8_from_window((HWND)lp), pfc_infinite);
+						settings::conversion_bitrate_limit = mmh::strtoul_n(string_utf8_from_window((HWND)lp).get_ptr(), pfc_infinite);
 					break;
 				case IDC_THREADMODE | (CBN_SELCHANGE << 16) :
 					if (!m_initialising)
@@ -426,7 +426,7 @@ BOOL t_config_tab_conversion::g_DialogProc(HWND wnd, UINT msg, WPARAM wp, LPARAM
 	return FALSE;
 }
 
-bool encoder_manager_t::encoder_list_view_t::notify_create_inline_edit(const pfc::list_base_const_t<t_size>& indices, unsigned column, pfc::string_base & p_text, t_size & p_flags, mmh::comptr_t<IUnknown>& pAutocompleteEntries)
+bool encoder_manager_t::encoder_list_view_t::notify_create_inline_edit(const pfc::list_base_const_t<t_size>& indices, unsigned column, pfc::string_base & p_text, t_size & p_flags, mmh::ComPtr<IUnknown>& pAutocompleteEntries)
 {
 	t_size indices_count = indices.get_count();
 	if (indices_count == 1)
@@ -449,10 +449,10 @@ void encoder_manager_t::encoder_list_view_t::notify_save_inline_edit(const char 
 		settings::encoder_list[m_edit_index].m_name = value;
 
 		{
-			pfc::list_t<t_list_view::t_item_insert> items;
+			pfc::list_t<uih::ListView::InsertItem> items;
 			items.set_count(1);
 			{
-				items[0].m_subitems.add_item(settings::encoder_list[m_edit_index].m_name);
+				items[0].m_subitems.append_single(settings::encoder_list[m_edit_index].m_name);
 			}
 			replace_items(m_edit_index, items);
 			g_sort_converstion_encoders();

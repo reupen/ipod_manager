@@ -9,8 +9,8 @@ namespace ipod
 
 			t_size track_count = m_tracks.get_count();
 			{
-				mmh::permutation_t pTrackAIDInit(track_count);
-				mmh::g_sort_get_permutation_qsort_v2(m_tracks.get_ptr(), pTrackAIDInit, t_track::g_compare_album_id, false);
+				mmh::Permutation pTrackAIDInit(track_count);
+				mmh::sort_get_permutation(m_tracks.get_ptr(), pTrackAIDInit, t_track::g_compare_album_id, false);
 
 				for (t_size i = 0; i<m_album_list.m_master_list.get_count(); i++)
 				{
@@ -22,12 +22,12 @@ namespace ipod
 					}
 				}
 			}
-			mmh::permutation_t
+			mmh::Permutation
 				pMaster(m_album_list.m_master_list.get_count());
 
 			//pfc::list_t<t_album::ptr> newSongs, newPodcasts, newTvShows;
 
-			mmh::g_sort_get_permutation_qsort_v2(m_album_list.m_master_list.get_ptr(), pMaster, t_album::g_compare_album_mixed, false);
+			mmh::sort_get_permutation(m_album_list.m_master_list.get_ptr(), pMaster, t_album::g_compare_album_mixed, false);
 			m_album_list.m_master_list.reorder(pMaster.get_ptr());
 			//pfc::list_permutation_t<t_album> masterListOrdered(
 
@@ -37,8 +37,8 @@ namespace ipod
 			t_size current_album_count = m_album_list.m_master_list.get_count();
 			if (current_album_count)
 			{
-				mmh::permutation_t perm(current_album_count);
-				mmh::g_sort_get_permutation_qsort_v2(m_album_list.m_master_list.get_ptr(), perm, t_album::g_compare_id, false);
+				mmh::Permutation perm(current_album_count);
+				mmh::sort_get_permutation(m_album_list.m_master_list.get_ptr(), perm, t_album::g_compare_id, false);
 				next_id = m_album_list.m_master_list[perm[current_album_count - 1]]->id + 1;
 			}
 			//console::formatter() << (m_album_list.m_normal.get_count() + m_album_list.m_podcasts.get_count() + m_album_list.m_tv_shows.get_count()) << " " << m_album_list.m_master_list.get_count();
@@ -142,9 +142,9 @@ namespace ipod
 			//purge dead entries
 			current_album_count = m_album_list.m_master_list.get_count();
 			pfc::array_staticsize_t<bool> mask(current_album_count);
-			mmh::permutation_t perm_aid(m_tracks.get_count());
+			mmh::Permutation perm_aid(m_tracks.get_count());
 
-			mmh::g_sort_get_permutation_qsort_v2(m_tracks.get_ptr(), perm_aid, t_track::g_compare_album_id, false);
+			mmh::sort_get_permutation(m_tracks.get_ptr(), perm_aid, t_track::g_compare_album_id, false);
 
 			t_size dummy;
 
@@ -156,8 +156,8 @@ namespace ipod
 			//generate pids
 			current_album_count = m_album_list.m_master_list.get_count();
 
-			mmh::permutation_t perm_pid(current_album_count);
-			mmh::g_sort_get_permutation_qsort_v2(m_album_list.m_master_list.get_ptr(), perm_pid, t_album::g_compare_pid, false);
+			mmh::Permutation perm_pid(current_album_count);
+			mmh::sort_get_permutation(m_album_list.m_master_list.get_ptr(), perm_pid, t_album::g_compare_pid, false);
 
 			genrand_service::ptr p_genrand = genrand_service::g_create();
 			p_genrand->seed(GetTickCount());
@@ -188,9 +188,9 @@ namespace ipod
 					if (m_tracks[i]->artwork_flag == 0x1)
 						p_artwork_tracks.add_item(m_tracks[i]);
 				t_size count_artwork_tracks = p_artwork_tracks.get_count();
-				mmh::permutation_t perm_track_pid(count_artwork_tracks), perm_track_album_id(count_artwork_tracks);
-				mmh::g_sort_get_permutation_qsort_v2(p_artwork_tracks.get_ptr(), perm_track_pid, ipod::tasks::load_database_t::g_compare_track_dbid, false);
-				mmh::g_sort_get_permutation_qsort_v2(p_artwork_tracks.get_ptr(), perm_track_album_id, ipod::tasks::load_database_t::g_compare_track_album_id, false);
+				mmh::Permutation perm_track_pid(count_artwork_tracks), perm_track_album_id(count_artwork_tracks);
+				mmh::sort_get_permutation(p_artwork_tracks.get_ptr(), perm_track_pid, ipod::tasks::load_database_t::g_compare_track_dbid, false);
+				mmh::sort_get_permutation(p_artwork_tracks.get_ptr(), perm_track_album_id, ipod::tasks::load_database_t::g_compare_track_album_id, false);
 
 				for (i = 0; i<current_album_count; i++)
 				{

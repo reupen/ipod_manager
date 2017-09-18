@@ -204,10 +204,10 @@ void shell_window::populate ()
 {
 	if (!m_directory_reader.m_error.is_empty())
 	{
-		message_window_t::g_run(get_wnd(), "Error - File System Explorer", m_directory_reader.m_error);
+		fbh::show_info_box(get_wnd(), "Error - File System Explorer", m_directory_reader.m_error);
 		return;
 	}
-	ui_helpers::DisableRedrawScope drd(m_wnd_items_view);
+	uih::DisableRedrawScope drd(m_wnd_items_view);
 
 	t_size j = -1;
 
@@ -219,13 +219,13 @@ void shell_window::populate ()
 		int image = I_IMAGENONE;
 		if (SUCCEEDED(SHGetFileInfo(L"_", FILE_ATTRIBUTE_DIRECTORY, &shi, sizeof (shi), SHGFI_USEFILEATTRIBUTES|SHGFI_SYSICONINDEX)))
 			image = shi.iIcon;
-		uih::ListView_InsertItemText(m_wnd_items_view, ++j, 0, "..", false, NULL, image);
+		uih::list_view_insert_item_text(m_wnd_items_view, ++j, 0, "..", false, NULL, image);
 		m_items.add_item(item(parent, true, true));
 	}
 
 	directory_callback_simple & dirContents = m_directory_reader.m_data;
 
-	pfc::list_t<t_list_view::t_item_insert> items;
+	pfc::list_t<uih::ListView::InsertItem> items;
 	for (t_size i = 0, count = dirContents.get_count(); i<count; i++)
 	{
 		pfc::stringcvt::string_wide_from_utf8 filename(pfc::string_filename_ext(dirContents[i]).get_ptr());
@@ -234,15 +234,15 @@ void shell_window::populate ()
 		int image = I_IMAGENONE;
 		if (SUCCEEDED(SHGetFileInfo(filename, dirContents.get_item(i).m_is_dir ? FILE_ATTRIBUTE_DIRECTORY : FILE_ATTRIBUTE_NORMAL, &shi, sizeof (shi), SHGFI_USEFILEATTRIBUTES|SHGFI_SYSICONINDEX)))
 			image = shi.iIcon;
-		uih::ListView_InsertItemText(m_wnd_items_view, ++j, 0, filename, false, NULL, image);
+		uih::list_view_insert_item_text(m_wnd_items_view, ++j, 0, filename, false, NULL, image);
 		if (dirContents.get_item(i).m_stats.m_timestamp != filetimestamp_invalid)
 		{
 			std::basic_string<TCHAR> str;
-			uih::FormatDate(dirContents.get_item(i).m_stats.m_timestamp, str, true);
-			uih::ListView_InsertItemText(m_wnd_items_view, j, 1, str.data(), true);
+			uih::format_date(dirContents.get_item(i).m_stats.m_timestamp, str, true);
+			uih::list_view_insert_item_text(m_wnd_items_view, j, 1, str.data(), true);
 		}
 		if (!dirContents.get_item(i).m_is_dir)
-			uih::ListView_InsertItemText(m_wnd_items_view, j, 2, mmh::format_file_size(dirContents.get_item(i).m_stats.m_size), true);
+			uih::list_view_insert_item_text(m_wnd_items_view, j, 2, mmh::FileSizeFormatter(dirContents.get_item(i).m_stats.m_size), true);
 		m_items.add_item(item(dirContents[i], dirContents.get_item(i).m_is_dir));
 	}
 }
@@ -261,7 +261,7 @@ LRESULT shell_window::on_message(HWND wnd,UINT msg,WPARAM wp,LPARAM lp)
 			break;
 		case WM_CREATE:
 			{
-				mmh::comptr_t<IImageList> pIL;
+				mmh::ComPtr<IImageList> pIL;
 				HIMAGELIST il = NULL;
 				if (SUCCEEDED(SHGetImageList(SHIL_SMALL, IID_IImageList, pIL)))
 				{
@@ -300,11 +300,11 @@ LRESULT shell_window::on_message(HWND wnd,UINT msg,WPARAM wp,LPARAM lp)
 
 				ListView_SetImageList(m_wnd_items_view, il, LVSIL_SMALL);
 				ListView_SetExtendedListViewStyleEx(m_wnd_items_view, LVS_EX_FULLROWSELECT, LVS_EX_FULLROWSELECT);
-				uih::SetListViewWindowExplorerTheme(m_wnd_items_view);
+				uih::list_view_set_explorer_theme(m_wnd_items_view);
 
-				uih::ListView_InsertColumnText(m_wnd_items_view, 0, L"Name", 300);
-				uih::ListView_InsertColumnText(m_wnd_items_view, 1, L"Date modified", 150);
-				uih::ListView_InsertColumnText(m_wnd_items_view, 2, L"Size", 100);
+				uih::list_view_insert_column_text(m_wnd_items_view, 0, L"Name", 300);
+				uih::list_view_insert_column_text(m_wnd_items_view, 1, L"Date modified", 150);
+				uih::list_view_insert_column_text(m_wnd_items_view, 2, L"Size", 100);
 
 				pfc::list_t<ipod_device_ptr_t> ipods;
 				g_drive_manager.m_event_initialised.wait_for(5);
@@ -321,7 +321,7 @@ LRESULT shell_window::on_message(HWND wnd,UINT msg,WPARAM wp,LPARAM lp)
 				}
 				else
 				{
-					message_window_t::g_run(core_api::get_main_window(), "Error - File System Explorer", "No device found!");
+					fbh::show_info_box(core_api::get_main_window(), "Error - File System Explorer", "No device found!");
 					return -1;
 				}
 			}
@@ -340,7 +340,7 @@ LRESULT shell_window::on_message(HWND wnd,UINT msg,WPARAM wp,LPARAM lp)
 			break;
 		case WM_PAINT:
 			{
-				ui_helpers::PaintScope ps(wnd);
+				uih::PaintScope ps(wnd);
 				FillRect(ps->hdc, &ps->rcPaint, GetSysColorBrush(COLOR_WINDOW));
 			}
 			return 0;
@@ -446,7 +446,7 @@ LRESULT shell_window::on_message(HWND wnd,UINT msg,WPARAM wp,LPARAM lp)
 					}
 					if (selection_non_virtual_count && index != -1)
 					{
-						mmh::ui::menu menu;
+						uih::Menu menu;
 						menu.append_command(L"Copy to..", id_copy_to);
 						if (GetKeyState(VK_SHIFT) & KF_UP)
 							menu.append_command(L"Delete", id_delete);

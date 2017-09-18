@@ -63,7 +63,7 @@ void ipod_send_files::on_run()
 			}
 			catch (const pfc::exception & e)
 			{
-				message_window_t::g_run_threadsafe("Error", e.what());
+				fbh::show_info_box_threadsafe("Error", e.what());
 			}
 		}
 #if 0
@@ -91,7 +91,7 @@ void ipod_send_files::on_run()
 			}
 		}
 		catch (const pfc::exception &) {}
-		message_window_t::g_run_threadsafe("Error", e.what());
+		fbh::show_info_box_threadsafe("Error", e.what());
 		m_failed = true;
 	}
 	if (m_drive_scanner.m_ipods.get_count() && b_started)

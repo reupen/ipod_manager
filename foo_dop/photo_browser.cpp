@@ -160,7 +160,7 @@ void t_photo_browser::on_run()
 	catch (exception_aborted) {}
 	catch (const pfc::exception & e) 
 	{
-		message_window_t::g_run_threadsafe("Error", e.what());
+		fbh::show_info_box_threadsafe("Error", e.what());
 		m_failed = true;
 	}
 }

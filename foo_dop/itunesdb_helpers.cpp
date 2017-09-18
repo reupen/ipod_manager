@@ -75,7 +75,7 @@ t_uint32 g_print_meta_int_n(const file_info & info, const char * field, t_size n
 	t_uint32 ret = 0;
 	if (info.meta_exists(field))
 	{
-		ret = strtoul_n(info.meta_get(field, 0), n, 10);
+		ret = mmh::strtoul_n(info.meta_get(field, 0), n, 10);
 	}
 	return ret;
 }

@@ -125,7 +125,7 @@ private:
 
 
 
-class conversion_thread_t : public mmh::thread_v2_t
+class conversion_thread_t : public mmh::Thread
 {
 public:
 	conversion_thread_t() : m_replaygain_processing_mode(0), m_replaygain_gain_mode(0), m_checkpoint(NULL) {};
@@ -184,7 +184,7 @@ public:
 	t_size m_code;
 };
 
-class conversion_filemover_thread_t : public mmh::thread_v2_t
+class conversion_filemover_thread_t : public mmh::Thread
 {
 public:
 	conversion_filemover_thread_t() : m_checkpoint(NULL) {};
@@ -260,7 +260,7 @@ class conversion_manager_t
 		entry_t() : m_succeeded(false), m_early_fail(false), m_succeeded_to_temp_file(false) {};
 	};
 	bit_array_bittable m_mask_flush_items;//, m_mask_move_processed;
-	mmh::permutation_t m_permutation, m_inverse_permutation;
+	mmh::Permutation m_permutation, m_inverse_permutation;
 	t_size m_move_pointer;
 public:
 	conversion_manager_t() : m_move_pointer(0), m_mask_flush_items(0) {};

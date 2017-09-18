@@ -60,7 +60,7 @@ namespace itunesdb {
 			else if (type == do_types::library_index)
 			{
 #ifndef LOAD_LIBRARY_INDICES
-				m_file->skip(dohm.section_size - dohm.header_size, p_abort);
+				m_file->skip_object(dohm.section_size - dohm.header_size, p_abort);
 #else
 				pfc::array_t<t_uint8> dohm_data;
 				pfc::array_t<t_uint8> do_data;
@@ -108,7 +108,7 @@ namespace itunesdb {
 				p_out->itunes_data_102_valid = true;
 			}
 			else
-				m_file->skip(dohm.section_size - dohm.header_size, p_abort);
+				m_file->skip_object(dohm.section_size - dohm.header_size, p_abort);
 		}
 		p_out->items.set_count(count_pi);
 
@@ -175,7 +175,7 @@ namespace itunesdb {
 					p_out->items[i].podcast_sort_title_valid = true;
 				}
 				else
-					m_file->skip(dohm.section_size - dohm.header_size, p_abort);
+					m_file->skip_object(dohm.section_size - dohm.header_size, p_abort);
 			}
 
 		}
@@ -221,7 +221,7 @@ namespace itunesdb {
 		p_do.read_bendian_auto_t(p_out.unk1, p_abort);
 		p_do.read_bendian_auto_t(count, p_abort);
 		p_do.read_bendian_auto_t(p_out.rule_operator, p_abort);
-		p_do.skip(120, p_abort);
+		p_do.skip_object(120, p_abort);
 		for (; count; count--)
 		{
 			t_smart_playlist_rule rule;

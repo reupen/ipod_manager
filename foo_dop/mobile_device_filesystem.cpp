@@ -17,7 +17,7 @@ void _check_afc_ret (unsigned code, const char * function, const char * path)
 	case 0x12:
 		throw exception_io_device_full();
 	case 0xc:
-		message_window_t::g_run_threadsafe("Error - iPod manager", "Connection to device filesystem service lost.\r\nPlease visit http://yuo.be/r/afcto", OIC_ERROR);
+		fbh::show_info_box_threadsafe("Error - iPod manager", "Connection to device filesystem service lost.\r\nPlease visit http://yuo.be/r/afcto", OIC_ERROR);
 	default:
 		throw exception_io(pfc::string8() << "I/O Error: " << function << " returned: " << code << (path ? " Path was: " :  "") << ( path ? path : "" ) );
 	};
@@ -127,7 +127,7 @@ public:
 		{
 			if (!strcmp(key, "st_size"))
 			{
-				ret = strtoul64_n(val, pfc_infinite);
+				ret = mmh::strtoul64_n(val, pfc_infinite);
 				b_found = true;
 			}
 		}
@@ -155,7 +155,7 @@ public:
 		{
 			if (!strcmp(key, "st_mtime"))
 			{
-				ret = strtoul64_n(val, pfc_infinite)/100 + 116444736000000000;
+				ret = mmh::strtoul64_n(val, pfc_infinite)/100 + 116444736000000000;
 				b_found = true;
 			}
 		}
@@ -501,11 +501,11 @@ public:
 		{
 			if (!strcmp(key, "st_size"))
 			{
-				p_stats.m_size = strtoul64_n(val, pfc_infinite);
+				p_stats.m_size = mmh::strtoul64_n(val, pfc_infinite);
 			}
 			else if (!strcmp(key, "st_mtime"))
 			{
-				p_stats.m_timestamp = strtoul64_n(val, pfc_infinite)/100 + 116444736000000000;
+				p_stats.m_timestamp = mmh::strtoul64_n(val, pfc_infinite)/100 + 116444736000000000;
 			}
 			else if (!strcmp(key, "st_ifmt"))
 			{

@@ -2,7 +2,7 @@
 
 extern bool g_Gdiplus_initialised;
 
-	void g_create_IStream_from_datablock(const void * p_data, t_size p_size, mmh::comptr_t<IStream> & p_out)
+	void g_create_IStream_from_datablock(const void * p_data, t_size p_size, mmh::ComPtr<IStream> & p_out)
 	{
 		HGLOBAL gd = GlobalAlloc(GMEM_FIXED|GMEM_MOVEABLE, p_size);
 		if (gd == NULL)
@@ -20,7 +20,7 @@ extern bool g_Gdiplus_initialised;
 	}
 
 	template <typename TArray>
-	void g_create_IStream_from_datablock(const TArray & p_data, mmh::comptr_t<IStream> & p_out)
+	void g_create_IStream_from_datablock(const TArray & p_data, mmh::ComPtr<IStream> & p_out)
 	{
 		g_create_IStream_from_datablock(p_data.get_ptr(), p_data.get_size(), p_out);
 	}
@@ -82,11 +82,11 @@ namespace photodb
 	}
 	t_uint32 t_datafile::get_next_ii_id()
 	{
-		mmh::permutation_t permutation;
+		mmh::Permutation permutation;
 		t_size count = image_list.get_count();
 		permutation.set_size(count);
 
-		mmh::g_sort_get_permutation_qsort(image_list, permutation, t_image_item::g_compare_id, false);
+		mmh::sort_get_permutation(image_list, permutation, t_image_item::g_compare_id, false);
 
 		return count ? image_list[permutation[count-1]].image_id +1 : 0x64;
 	}
@@ -529,7 +529,7 @@ namespace photodb
 			Gdiplus::EncoderParameters encoderParameters;
 			ULONG quality;
 
-			mmh::comptr_t<IStream> pStream;
+			mmh::ComPtr<IStream> pStream;
 			_check_hresult(CreateStreamOnHGlobal (NULL, TRUE, pStream));
 
 			if (GetEncoderClsid(L"image/jpeg", &encoderClsid) < 0)
@@ -770,7 +770,7 @@ namespace photodb
 
 			item.source_image_size = (t_uint32)data->get_size();
 
-			mmh::comptr_t<IStream> pStream;
+			mmh::ComPtr<IStream> pStream;
 			g_create_IStream_from_datablock(*data, pStream);
 
 			Gdiplus::Bitmap image(pStream);
@@ -784,7 +784,7 @@ namespace photodb
 				{
 					if ((*p_chapter_list)[c].m_image_data.get_size())
 					{
-						mmh::comptr_t<IStream> pStreamChap;
+						mmh::ComPtr<IStream> pStreamChap;
 						g_create_IStream_from_datablock((*p_chapter_list)[c].m_image_data, pStreamChap);
 
 						Gdiplus::Bitmap imagec(pStreamChap);
@@ -946,7 +946,7 @@ namespace photodb
 		itunesdb::stream_reader_memblock_ref_dop data(p_header.data.get_ptr(), p_header.data.get_size());
 		data.read_lendian_t(p_out.unk1, p_abort);
 		data.read_lendian_t(p_out.image_id, p_abort);
-		m_file->skip(p_header.section_size-p_header.header_size, p_abort);
+		m_file->skip_object(p_header.section_size-p_header.header_size, p_abort);
 	}
 
 	void reader::read_flhm(t_header_marker< identifiers::flhm > & p_header, t_file_list & p_out, abort_callback & p_abort)
@@ -967,7 +967,7 @@ namespace photodb
 		data.read_lendian_t(p_out.unk1, p_abort);
 		data.read_lendian_t(p_out.correlation_id, p_abort);
 		data.read_lendian_t(p_out.file_size, p_abort);
-		m_file->skip(p_header.section_size-p_header.header_size, p_abort);
+		m_file->skip_object(p_header.section_size-p_header.header_size, p_abort);
 	}
 
 	void reader::read_photodb(t_datafile & p_out, abort_callback & p_abort)
@@ -1020,7 +1020,7 @@ namespace photodb
 				}
 				break;
 			default:
-				m_file->skip(dshm.section_size-dshm.header_size, p_abort);
+				m_file->skip_object(dshm.section_size-dshm.header_size, p_abort);
 				break;
 			};
 		}
@@ -1485,7 +1485,7 @@ namespace bitmap_utils
 	}
 	HBITMAP create_bitmap_from_jpeg(const t_uint8 * data, t_size size, t_uint32 width, t_uint32 height)
 	{
-		mmh::comptr_t<IStream> pStream;
+		mmh::ComPtr<IStream> pStream;
 		g_create_IStream_from_datablock(data, size, pStream);
 
 		Gdiplus::Bitmap image(pStream);

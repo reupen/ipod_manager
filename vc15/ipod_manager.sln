@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25029.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Components", "Components", "{5CE500DE-1CE0-4222-9433-DCE0A3364124}"
 EndProject
@@ -39,7 +39,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dop-sdk", "..\dop-sdk\dop-s
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sqlite", "..\sqlite\sqlite.vcxproj", "{91736591-1FFA-42E8-95FF-0B1891FE3952}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "zlibstat", "..\zlib-1.2.5\contrib\vstudio\vc14\zlibstat.vcxproj", "{745DEC58-EBB3-47A9-A9B8-4C6627C01BF8}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "zlibstat", "..\zlib-1.2.5\contrib\vstudio\vc15\zlibstat.vcxproj", "{745DEC58-EBB3-47A9-A9B8-4C6627C01BF8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0933BC5E-4653-48B6-9041-7F17817BB6FA}"
 	ProjectSection(SolutionItems) = preProject
@@ -50,6 +50,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\COPYRIGHT = ..\COPYRIGHT
 		..\README.md = ..\README.md
 	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fbh", "..\fbh\fbh.vcxproj", "{84D30275-D3D7-4867-82D2-8031A53DCE20}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -161,6 +163,16 @@ Global
 		{745DEC58-EBB3-47A9-A9B8-4C6627C01BF8}.Release|Win32.Build.0 = ReleaseWithoutAsm|Win32
 		{745DEC58-EBB3-47A9-A9B8-4C6627C01BF8}.Release|x64.ActiveCfg = Release|x64
 		{745DEC58-EBB3-47A9-A9B8-4C6627C01BF8}.Release|x64.Build.0 = Release|x64
+		{84D30275-D3D7-4867-82D2-8031A53DCE20}.Debug|Itanium.ActiveCfg = Debug|Win32
+		{84D30275-D3D7-4867-82D2-8031A53DCE20}.Debug|Win32.ActiveCfg = Debug|Win32
+		{84D30275-D3D7-4867-82D2-8031A53DCE20}.Debug|Win32.Build.0 = Debug|Win32
+		{84D30275-D3D7-4867-82D2-8031A53DCE20}.Debug|x64.ActiveCfg = Debug|x64
+		{84D30275-D3D7-4867-82D2-8031A53DCE20}.Debug|x64.Build.0 = Debug|x64
+		{84D30275-D3D7-4867-82D2-8031A53DCE20}.Release|Itanium.ActiveCfg = Release|Win32
+		{84D30275-D3D7-4867-82D2-8031A53DCE20}.Release|Win32.ActiveCfg = Release|Win32
+		{84D30275-D3D7-4867-82D2-8031A53DCE20}.Release|Win32.Build.0 = Release|Win32
+		{84D30275-D3D7-4867-82D2-8031A53DCE20}.Release|x64.ActiveCfg = Release|x64
+		{84D30275-D3D7-4867-82D2-8031A53DCE20}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -173,5 +185,8 @@ Global
 		{93EC0EDE-01CD-4FB0-B8E8-4F2A027E026E} = {3A85ACE2-E7C5-4F1F-A253-9C60B8076BE8}
 		{4AC26C54-BE51-4FDB-A115-6E2F2B3650E1} = {5CE500DE-1CE0-4222-9433-DCE0A3364124}
 		{4E751798-E95B-4837-878F-E4732D2A2807} = {3A85ACE2-E7C5-4F1F-A253-9C60B8076BE8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {503A0D77-8B29-4B03-8C5A-A20C9BE2D46E}
 	EndGlobalSection
 EndGlobal

@@ -226,7 +226,7 @@ namespace smart_playlist
 
 		void generator_t::sort(t_uint32 order, bool b_desc)
 		{
-			mmh::permutation_t permutation(m_tracks.get_count());
+			mmh::Permutation permutation(m_tracks.get_count());
 
 			switch (order)
 			{
@@ -235,13 +235,13 @@ namespace smart_playlist
 			case itunesdb::playlist_sort_orders::random:
 				break;
 			case itunesdb::playlist_sort_orders::title:
-				mmh::g_sort_get_permutation_qsort_v2(m_tracks.get_ptr(), permutation, t_track::g_compare_title, b_desc);
+				mmh::sort_get_permutation(m_tracks.get_ptr(), permutation, t_track::g_compare_title, b_desc);
 				break;
 			case itunesdb::playlist_sort_orders::album:
-				mmh::g_sort_get_permutation_qsort_v2(m_tracks.get_ptr(), permutation, t_track::g_compare_album, b_desc);
+				mmh::sort_get_permutation(m_tracks.get_ptr(), permutation, t_track::g_compare_album, b_desc);
 				break;
 			case itunesdb::playlist_sort_orders::artist:
-				mmh::g_sort_get_permutation_qsort_v2(m_tracks.get_ptr(), permutation, t_track::g_compare_artist, b_desc);
+				mmh::sort_get_permutation(m_tracks.get_ptr(), permutation, t_track::g_compare_artist, b_desc);
 				break;
 			case itunesdb::playlist_sort_orders::bitrate:
 				break;
@@ -302,7 +302,7 @@ namespace smart_playlist
 
 		void generator_t::process_limits (const itunesdb::t_smart_playlist_data & p_data)
 		{
-			mmh::permutation_t permutation(m_tracks.get_count());
+			mmh::Permutation permutation(m_tracks.get_count());
 
 			switch (p_data.limit_sort)
 			{
@@ -317,32 +317,32 @@ namespace smart_playlist
 					for (i=0; i<count; i++)
 						random[i] = api->genrand(pfc_infinite);
 
-					mmh::g_sort_get_permutation_qsort_v2(random.get_ptr(), permutation, pfc::compare_t<t_size, t_size>, false);
+					mmh::sort_get_permutation(random.get_ptr(), permutation, pfc::compare_t<t_size, t_size>, false);
 				}
 				break;
 			case album:
-				mmh::g_sort_get_permutation_qsort_v2(m_tracks.get_ptr(), permutation, t_track::g_compare_album, p_data.reverse_limit_sort != 0);
+				mmh::sort_get_permutation(m_tracks.get_ptr(), permutation, t_track::g_compare_album, p_data.reverse_limit_sort != 0);
 				break;
 			case artist:
-				mmh::g_sort_get_permutation_qsort_v2(m_tracks.get_ptr(), permutation, t_track::g_compare_artist, p_data.reverse_limit_sort != 0);
+				mmh::sort_get_permutation(m_tracks.get_ptr(), permutation, t_track::g_compare_artist, p_data.reverse_limit_sort != 0);
 				break;
 			case genre:
-				mmh::g_sort_get_permutation_qsort_v2(m_tracks.get_ptr(), permutation, t_track::g_compare_genre, p_data.reverse_limit_sort != 0);
+				mmh::sort_get_permutation(m_tracks.get_ptr(), permutation, t_track::g_compare_genre, p_data.reverse_limit_sort != 0);
 				break;
 			case title:
-				mmh::g_sort_get_permutation_qsort_v2(m_tracks.get_ptr(), permutation, t_track::g_compare_title, p_data.reverse_limit_sort != 0);
+				mmh::sort_get_permutation(m_tracks.get_ptr(), permutation, t_track::g_compare_title, p_data.reverse_limit_sort != 0);
 				break;
 			case date_added_descending:
-				mmh::g_sort_get_permutation_qsort_v2(m_tracks.get_ptr(), permutation, t_track::g_compare_date_added_descending, p_data.reverse_limit_sort != 0);
+				mmh::sort_get_permutation(m_tracks.get_ptr(), permutation, t_track::g_compare_date_added_descending, p_data.reverse_limit_sort != 0);
 				break;
 			case play_count_descending:
-				mmh::g_sort_get_permutation_qsort_v2(m_tracks.get_ptr(), permutation, t_track::g_compare_play_count_descending, p_data.reverse_limit_sort != 0);
+				mmh::sort_get_permutation(m_tracks.get_ptr(), permutation, t_track::g_compare_play_count_descending, p_data.reverse_limit_sort != 0);
 				break;
 			case last_played_descending:
-				mmh::g_sort_get_permutation_qsort_v2(m_tracks.get_ptr(), permutation, t_track::g_compare_last_played_descending, p_data.reverse_limit_sort != 0);
+				mmh::sort_get_permutation(m_tracks.get_ptr(), permutation, t_track::g_compare_last_played_descending, p_data.reverse_limit_sort != 0);
 				break;
 			case rating:
-				mmh::g_sort_get_permutation_qsort_v2(m_tracks.get_ptr(), permutation, t_track::g_compare_rating_descending, p_data.reverse_limit_sort != 0);
+				mmh::sort_get_permutation(m_tracks.get_ptr(), permutation, t_track::g_compare_rating_descending, p_data.reverse_limit_sort != 0);
 				break;
 			}
 
@@ -450,7 +450,7 @@ namespace smart_playlist
 					process_tracks (tracks, p_rules.rules[i]);
 				}
 				{
-					mmh::g_list_remove_duplicates(m_tracks, g_compare_track_ptr);
+					mmh::remove_duplicates(m_tracks, g_compare_track_ptr);
 				}
 			}
 		}

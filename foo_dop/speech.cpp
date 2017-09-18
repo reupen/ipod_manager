@@ -257,11 +257,11 @@ void sapi::run (const char * text, unsigned samplerate, const char * path)
 	HRESULT hr = E_FAIL;
 
 	ISpStreamFormat_memblock * pSpStreamFormat_memblock = new ISpStreamFormat_memblock;
-	mmh::comptr_t<ISpStreamFormat> pSpStreamFormat = pSpStreamFormat_memblock, pCurSpStreamFormat;
+	mmh::ComPtr<ISpStreamFormat> pSpStreamFormat = pSpStreamFormat_memblock, pCurSpStreamFormat;
 
 #if 0
 	CSpStreamFormat	cAudioFmt;
-	mmh::comptr_t<ISpStream> cpStream;
+	mmh::ComPtr<ISpStream> cpStream;
 
 	hr = cAudioFmt.AssignFormat(SPSF_16kHz16BitMono);
 	_check_hresult(hr);

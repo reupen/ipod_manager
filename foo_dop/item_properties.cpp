@@ -131,7 +131,7 @@ BOOL item_info_dialog_v2_t::DialogProc(HWND wnd,UINT msg,WPARAM wp,LPARAM lp)
 		SetWindowLongPtr(wnd, DWL_MSGRESULT, TRUE);
 		return TRUE;
 	case WM_PAINT:
-		uih::HandleModernBackgroundPaint(wnd, GetDlgItem(wnd, IDCANCEL));
+		uih::handle_modern_background_paint(wnd, GetDlgItem(wnd, IDCANCEL));
 		return TRUE;
 	case WM_CTLCOLORSTATIC:
 		SetBkColor((HDC)wp, GetSysColor(COLOR_WINDOW));

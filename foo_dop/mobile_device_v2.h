@@ -87,7 +87,7 @@ struct mobile_device_functionlist
 	MDMP(utrans_transUChars_4_0);
 };
 
-class syslog_relay : mmh::thread_v2_t
+class syslog_relay : mmh::Thread
 {
 public:
 	DWORD on_thread();

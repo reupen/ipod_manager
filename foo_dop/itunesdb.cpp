@@ -38,7 +38,7 @@ namespace itunesdb
 				p_out->artist_valid = true;
 				break;
 			default:
-				m_file->skip(dohm.section_size - dohm.header_size, p_abort);
+				m_file->skip_object(dohm.section_size - dohm.header_size, p_abort);
 				break;
 			}
 		}
@@ -94,7 +94,7 @@ namespace itunesdb
 				p_out->show_valid = true;
 				break;
 			default:
-				m_file->skip(dohm.section_size - dohm.header_size, p_abort);
+				m_file->skip_object(dohm.section_size - dohm.header_size, p_abort);
 				break;
 			}
 		}
@@ -468,11 +468,11 @@ namespace itunesdb
 					read_lendian_auto_t(vc.unk1, p_abort);
 					m_file->read(&vc.unk2[0], sizeof(vc.unk2), p_abort);
 					if (dohm.section_size - dohm.header_size > 84)
-						m_file->skip(dohm.section_size - dohm.header_size - 84, p_abort);
+						m_file->skip_object(dohm.section_size - dohm.header_size - 84, p_abort);
 					track->video_characteristics_entries.add_item(vc);
 				}
 				else
-					m_file->skip(dohm.section_size - dohm.header_size, p_abort);
+					m_file->skip_object(dohm.section_size - dohm.header_size, p_abort);
 			}
 		}
 		p_out = track;
@@ -498,9 +498,9 @@ namespace itunesdb
 		m_file->read(data.get_ptr(), dohm.section_size - dohm.header_size, p_abort);
 
 		stream_reader_memblock_ref_dop p_dohm_data(data.get_ptr(), data.get_size(), m_swap_endianess);
-		p_dohm_data.skip(4, p_abort);
+		p_dohm_data.skip_object(4, p_abort);
 		p_dohm_data.read_lendian_auto_t(length, p_abort);
-		p_dohm_data.skip(8, p_abort);
+		p_dohm_data.skip_object(8, p_abort);
 
 		p_out.set_size(length/2);
 		p_dohm_data.read(p_out.get_ptr(), p_out.get_size()*sizeof(WCHAR), p_abort);
@@ -513,9 +513,9 @@ namespace itunesdb
 		m_file->read_nobuffer(data, datalen, p_abort);
 
 		stream_reader_memblock_ref_dop p_dohm_data(data, datalen, m_swap_endianess);
-		p_dohm_data.skip(4, p_abort);
+		p_dohm_data.skip_object(4, p_abort);
 		p_dohm_data.read_lendian_auto_t(length, p_abort);
-		p_dohm_data.skip(8, p_abort);
+		p_dohm_data.skip_object(8, p_abort);
 
 		len = length/2;
 		p_dohm_data.read_nobuffer((t_uint8*&)p_out, len*sizeof(WCHAR), p_abort);

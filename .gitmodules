@@ -13,3 +13,6 @@
 [submodule "mmh"]
 	path = mmh
 	url = https://github.com/reupen/mmh.git
+[submodule "fbh"]
+	path = fbh
+	url = https://github.com/reupen/fbh.git

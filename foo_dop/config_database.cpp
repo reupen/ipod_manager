@@ -17,14 +17,14 @@ const mapping_t g_mappings[] = {
 	mapping_t("VoiceOver title", settings::voiceover_title_mapping),
 };
 
-void t_config_tab1::get_insert_items(t_size base, t_size count, pfc::list_t<t_list_view::t_item_insert>& items)
+void t_config_tab1::get_insert_items(t_size base, t_size count, pfc::list_t<uih::ListView::InsertItem>& items)
 {
 	t_size i;
 	items.set_count(count);
 	for (i = 0; i<count; i++)
 	{
-		items[i].m_subitems.add_item(g_mappings[base + i].m_field);
-		items[i].m_subitems.add_item(g_mappings[base + i].m_value);
+		items[i].m_subitems.append_single(g_mappings[base + i].m_field);
+		items[i].m_subitems.append_single(g_mappings[base + i].m_value.get_ptr());
 	}
 }
 
@@ -59,9 +59,9 @@ BOOL t_config_tab1::DialogProc(HWND wnd, UINT msg, WPARAM wp, LPARAM lp)
 
 			ComboBox_SetCurSel(m_wnd_date_added, settings::date_added_mode);
 
-			HWND wnd_fields = m_field_list.create_in_dialog_units(wnd, ui_helpers::window_position_t(11, 28, 314 - 11 - 11, 88));
+			HWND wnd_fields = m_field_list.create(wnd, uih::WindowPosition(11, 28, 314 - 11 - 11, 88), true);
 
-			pfc::list_t<t_list_view::t_item_insert> items;
+			pfc::list_t<uih::ListView::InsertItem> items;
 			t_size count = tabsize(g_mappings);
 			get_insert_items(0, count, items);
 			m_field_list.insert_items(0, items.get_count(), items.get_ptr());
@@ -132,7 +132,7 @@ BOOL t_config_tab1::g_DialogProc(HWND wnd, UINT msg, WPARAM wp, LPARAM lp)
 	return FALSE;
 }
 
-bool t_config_tab1::t_list_view_filter::notify_create_inline_edit(const pfc::list_base_const_t<t_size>& indices, unsigned column, pfc::string_base & p_text, t_size & p_flags, mmh::comptr_t<IUnknown>& pAutocompleteEntries)
+bool t_config_tab1::t_list_view_filter::notify_create_inline_edit(const pfc::list_base_const_t<t_size>& indices, unsigned column, pfc::string_base & p_text, t_size & p_flags, mmh::ComPtr<IUnknown>& pAutocompleteEntries)
 {
 	t_size indices_count = indices.get_count();
 	if (indices_count == 1 && indices[0] < tabsize(g_mappings))
@@ -154,11 +154,11 @@ void t_config_tab1::t_list_view_filter::notify_save_inline_edit(const char * val
 		g_mappings[m_edit_index].m_value = value;
 
 		{
-			pfc::list_t<t_list_view::t_item_insert> items;
+			pfc::list_t<uih::ListView::InsertItem> items;
 			items.set_count(1);
 			{
-				items[0].m_subitems.add_item(g_mappings[m_edit_index].m_field);
-				items[0].m_subitems.add_item(value);
+				items[0].m_subitems.append_single(g_mappings[m_edit_index].m_field);
+				items[0].m_subitems.append_single(value);
 			}
 			replace_items(m_edit_index, items);
 		}

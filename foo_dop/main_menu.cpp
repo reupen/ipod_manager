@@ -484,15 +484,15 @@ public:
 					{
 						try {
 							drives.m_ipods[0]->get_capacity_information(drive_space_info);
-							msg << "\r\n""\r\n" "Drive Total Capacity: " << mmh::format_file_size(drive_space_info.m_capacity);
-							msg << "\r\n" "Drive Free Space: " << mmh::format_file_size(drive_space_info.m_freespace);
+							msg << "\r\n""\r\n" "Drive Total Capacity: " << mmh::FileSizeFormatter(drive_space_info.m_capacity);
+							msg << "\r\n" "Drive Free Space: " << mmh::FileSizeFormatter(drive_space_info.m_freespace);
 						}
 						catch (const pfc::exception & ex2) 
 						{
 							msg << "Failed to read query disk drive capacity information: " << ex2.what();
 						};
 					}
-				message_window_t::g_run_threadsafe("iPod Device Information", msg);
+				fbh::show_info_box_threadsafe("iPod Device Information", msg);
 				}
 
 			}
@@ -503,7 +503,7 @@ public:
 		}
 		catch (const pfc::exception & e) 
 		{
-			message_window_t::g_run_threadsafe("Error", e.what());
+			fbh::show_info_box_threadsafe("Error", e.what());
 		}
 	}
 
@@ -625,7 +625,7 @@ public:
 							pfc::array_t<t_uint8> sysinfo;
 							g_get_sysinfo(drives.m_ipods[0], sysinfo, p_abort);
 							sysinfo.append_single(0);
-							message_window_t::g_run_threadsafe("SysInfo data", sysinfo.get_ptr());
+							fbh::show_info_box_threadsafe("SysInfo data", sysinfo.get_ptr());
 						}
 						else throw;
 					};
@@ -639,7 +639,7 @@ public:
 		}
 		catch (const pfc::exception & ex) 
 		{
-			message_window_t::g_run_threadsafe("Error - Load Raw Properties", ex.what(), OIC_WARNING);
+			fbh::show_info_box_threadsafe("Error - Load Raw Properties", ex.what(), OIC_WARNING);
 		}
 	}
 
@@ -934,7 +934,7 @@ public:
 				}
 				else
 				{
-					message_window_t::g_run_threadsafe("Error - System Log", "Only supported on iPod touch/iPhone.");
+					fbh::show_info_box_threadsafe("Error - System Log", "Only supported on iPod touch/iPhone.");
 				}
 
 			}
@@ -942,7 +942,7 @@ public:
 		}
 		catch (const pfc::exception & ex) 
 		{
-			message_window_t::g_run_threadsafe("Error - System Log Viewer", ex.what());
+			fbh::show_info_box_threadsafe("Error - System Log Viewer", ex.what());
 		};
 	}
 	virtual bool get_display(pfc::string_base & p_text,t_uint32 & p_flags) const 
@@ -1004,7 +1004,7 @@ public:
 			{
 				//rename_param * ptr = (rename_param *)lp;
 				HWND wnd_list = GetDlgItem(wnd, IDC_LIST);
-				uih::SetListViewWindowExplorerTheme(wnd_list);
+				uih::list_view_set_explorer_theme(wnd_list);
 				ListView_SetExtendedListViewStyleEx(wnd_list, LVS_EX_FULLROWSELECT|LVS_EX_CHECKBOXES, LVS_EX_FULLROWSELECT|LVS_EX_CHECKBOXES);
 
 				LVCOLUMN lvc;
@@ -1071,7 +1071,7 @@ public:
 			SetWindowLongPtr(wnd, DWL_MSGRESULT, TRUE);
 			return TRUE;
 		case WM_PAINT:
-			uih::HandleModernBackgroundPaint(wnd, GetDlgItem(wnd, IDOK));
+			uih::handle_modern_background_paint(wnd, GetDlgItem(wnd, IDOK));
 			return TRUE;
 		case WM_CTLCOLORSTATIC:
 			SetBkColor((HDC)wp, GetSysColor(COLOR_WINDOW));

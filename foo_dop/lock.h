@@ -14,7 +14,7 @@ public:
 	bool check_eating() const
 	{
 		if (!m_eating)
-			message_window_t::g_run_threadsafe("Error", "iPod is busy", OIC_ERROR);
+			fbh::show_info_box_threadsafe("Error", "iPod is busy", OIC_ERROR);
 		return m_eating;
 	}
 	bool is_eating() const

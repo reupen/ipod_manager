@@ -47,7 +47,7 @@ public:
 					buffer << m_remover.m_error_list[i];
 					if (i+1 <count) buffer << "\n";
 				}
-				message_window_t::g_run_threadsafe("Errors occurred removing files from your iPod", buffer, OIC_WARNING);
+				fbh::show_info_box_threadsafe("Errors occurred removing files from your iPod", buffer, OIC_WARNING);
 			}*/
 		}
 		catch (exception_aborted &) 
@@ -60,13 +60,13 @@ public:
 				}
 				catch (const pfc::exception & e) 
 				{
-					message_window_t::g_run_threadsafe("Error", e.what());
+					fbh::show_info_box_threadsafe("Error", e.what());
 				}
 			}
 		}
 		catch (const pfc::exception & e) 
 		{
-			message_window_t::g_run_threadsafe("Error", e.what());
+			fbh::show_info_box_threadsafe("Error", e.what());
 			m_failed = true;
 		}
 		if (m_drive_scanner.m_ipods.get_count() && b_started)

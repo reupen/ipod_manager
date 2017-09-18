@@ -1259,7 +1259,7 @@ namespace itunesdb
 	class reader
 	{
 	protected:
-		mmh::stream_reader_memblock_ref_seekable * m_file;
+		fbh::StreamReaderMemblock* m_file;
 		bool m_swap_endianess;
 	public:
 		template<typename T> void read_bendian_auto_t(T& p_object,abort_callback & p_abort)
@@ -1306,12 +1306,12 @@ namespace itunesdb
 		* Apparently, these people are not sure if it is UTF-8 or ASCII or ISO-8859-1 ...
 		*/
 		void read_do_string_utf8(t_header_marker< identifiers::dohm > & p_header, pfc::string8 & p_out, abort_callback & p_abort);
-		itunesdb::reader(mmh::stream_reader_memblock_ref_seekable * p_file, bool p_swap_endianess = false) 
+		itunesdb::reader(fbh::StreamReaderMemblock* p_file, bool p_swap_endianess = false)
 			: m_file(p_file), m_swap_endianess(p_swap_endianess)
 		{};
 	};
 
-	class stream_reader_memblock_ref_dop : public mmh::stream_reader_memblock_ref_seekable
+	class stream_reader_memblock_ref_dop : public fbh::StreamReaderMemblock
 	{
 		bool m_swap_endianess;
 	public:
@@ -1348,7 +1348,7 @@ namespace itunesdb
 			read_string_utf16_raw_bendian_auto_t(length, p_out, p_abort);
 		}
 		stream_reader_memblock_ref_dop(const void * p_data,t_size p_data_size, bool p_swap_endianess = false)
-			: m_swap_endianess(p_swap_endianess), mmh::stream_reader_memblock_ref_seekable(p_data, p_data_size) {};
+			: m_swap_endianess(p_swap_endianess), fbh::StreamReaderMemblock(p_data, p_data_size) {};
 	};
 
 	class stream_writer_memblock_dop : public stream_writer_memblock

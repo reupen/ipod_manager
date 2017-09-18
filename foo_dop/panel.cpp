@@ -79,12 +79,12 @@ public:
 			HTREEITEM ti = NULL;
 			if (p_playlist->folder_flag)
 			{
-				ti = uih::TreeView_InsertItemSimple(wnd_tree, p_playlist->name.is_empty() ? "<Unnamed>" : p_playlist->name, (LPARAM)node.get_ptr(), TVIS_EXPANDED, ti_parent, TVI_LAST, true, 2);
+				ti = uih::tree_view_insert_item_simple(wnd_tree, p_playlist->name.is_empty() ? "<Unnamed>" : p_playlist->name, (LPARAM)node.get_ptr(), TVIS_EXPANDED, ti_parent, TVI_LAST, true, 2);
 				//node->m_type = ipod_tree_entry_t::type_folder;
 			}
 			else
 			{
-				ti = uih::TreeView_InsertItemSimple(wnd_tree, p_playlist->name.is_empty() ? "<Unnamed>" : p_playlist->name, (LPARAM)node.get_ptr(), TVIS_EXPANDED, ti_parent, TVI_LAST, true, ti_parent == TVI_ROOT ? 0 : 1);
+				ti = uih::tree_view_insert_item_simple(wnd_tree, p_playlist->name.is_empty() ? "<Unnamed>" : p_playlist->name, (LPARAM)node.get_ptr(), TVIS_EXPANDED, ti_parent, TVI_LAST, true, ti_parent == TVI_ROOT ? 0 : 1);
 				//node->m_type = ti_parent == TVI_ROOT ? ipod_tree_entry_t::type_library : ipod_tree_entry_t::type_playlist;
 				pfc::list_t<pfc::rcptr_t<itunesdb::t_track>, pfc::alloc_fast_aggressive > tracks;
 				g_playlist_get_tracks(p_playlist, m_library, tracks, node->m_handles);
@@ -180,7 +180,7 @@ public:
 			metadb_handle_list handles(p_selection->m_handles);
 			titleformat_object::ptr to;
 			static_api_ptr_t<titleformat_compiler>()->compile_safe_ex(to, settings::ipod_library_sort_script);
-			mmh::fb2k::g_sort_metadb_handle_list_by_format_v2(handles, to, NULL);
+			fbh::sort_metadb_handle_list_by_format(handles, to, NULL);
 			api->playlist_insert_items(index, 0, handles, bit_array_false());
 		}
 		else
@@ -346,7 +346,7 @@ protected:
 				SetWindowLongPtr(m_wnd_tree,GWL_USERDATA,(LPARAM)(this));
 				m_proc_tree = (WNDPROC)SetWindowLongPtr(m_wnd_tree,GWL_WNDPROC,(LPARAM)(g_on_hook));
 
-				uih::SetTreeViewWindowExplorerTheme(m_wnd_tree);
+				uih::tree_view_set_explorer_theme(m_wnd_tree);
 				m_font = uCreateIconFont();
 				SendMessage(m_wnd_tree, WM_SETFONT, (WPARAM)m_font.get(), MAKELPARAM(TRUE,0));
 

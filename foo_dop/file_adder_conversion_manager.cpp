@@ -28,8 +28,8 @@ void conversion_manager_t::initialise(const pfc::array_t<conversion_entry_t>& en
 			sort_entries[i] << " - " << temp;
 			mask_album_valid.set(i, b_artist_valid && b_album_valid);
 		}
-		mmh::g_sort_get_permutation_qsort_v2(sort_entries.get_ptr(), m_permutation, stricmp_utf8, false);
-		mmh::permutation_inverse_t invperm(m_permutation);
+		mmh::sort_get_permutation(sort_entries.get_ptr(), m_permutation, stricmp_utf8, false);
+		mmh::InversePermutation invperm(m_permutation);
 		m_inverse_permutation = invperm;
 		pfc::list_permutation_t<pfc::string8> permentries(sort_entries, m_permutation.get_ptr(), m_permutation.get_count());
 		for (i = 0; i<count; i++)
@@ -197,7 +197,7 @@ void conversion_manager_t::run(ipod_device_ptr_cref_t p_ipod, const t_field_mapp
 	if (threadcount)
 	{
 		{
-			mmh::format_uint_natural text_remaining(count), text_count(progress_range / 3);
+			mmh::UIntegerNaturalFormatter text_remaining(count), text_count(progress_range / 3);
 
 			pfc::array_t<threaded_process_v2_t::detail_entry> progress_details;
 			for (t_size pfindex = 0, pfcount = progress_filenames.get_size(); pfindex<pfcount; pfindex++)
@@ -251,7 +251,7 @@ void conversion_manager_t::run(ipod_device_ptr_cref_t p_ipod, const t_field_mapp
 
 			{
 				progress_index++;
-				mmh::format_uint_natural text_remaining(count - progress_index), text_count(progress_range / 3);
+				mmh::UIntegerNaturalFormatter text_remaining(count - progress_index), text_count(progress_range / 3);
 				pfc::array_t<threaded_process_v2_t::detail_entry> progress_details;
 				for (t_size pfindex = 0, pfcount = progress_filenames.get_size(); pfindex<pfcount; pfindex++)
 				{
@@ -283,7 +283,7 @@ void conversion_manager_t::run(ipod_device_ptr_cref_t p_ipod, const t_field_mapp
 						}
 						progress_details.append_single(threaded_process_v2_t::detail_entry("Remaining:", pfc::string8() << count - progress_index - min(threadcount, count - progress_index)));
 
-						mmh::format_uint_natural text_remaining(count - progress_index), text_count(progress_range / 3);
+						mmh::UIntegerNaturalFormatter text_remaining(count - progress_index), text_count(progress_range / 3);
 						p_status.update_text_and_details(pfc::string8() << "Copying " << text_count << " file" << (text_count.is_plural() ? "s" : "") << " - encoding", progress_details);
 					}
 				}

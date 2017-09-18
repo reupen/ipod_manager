@@ -253,7 +253,7 @@ LRESULT threaded_process_v2_t::on_message(HWND wnd, UINT msg, WPARAM wp, LPARAM 
 					RECT rc2 = { 11 * 2, 11, RECT_CX(rc) - 11 * 2, m_titlefont_height + 11 };
 					//FillRect(dc, &rc2, GetSysColorBrush(COLOR_BTNFACE));
 					HFONT fnt_old = SelectFont(dc, m_titlefont);
-					ui_helpers::text_out_colours_ellipsis(dc, p_text, p_text.get_length(), 0, 11, &rc2, false, false, m_titlecolour, ui_helpers::ALIGN_LEFT);
+					uih::text_out_colours_ellipsis(dc, p_text, p_text.get_length(), 0, 11, &rc2, false, false, m_titlecolour, uih::ALIGN_LEFT);
 					//uExtTextOut(dc, 11*2, 11, ETO_CLIPPED, &rc2, m_text, m_text.get_length(), NULL);
 					t_size detail_entry_count = 0;
 					if (detail_entry_count = p_detail_entries.get_count())
@@ -263,12 +263,12 @@ LRESULT threaded_process_v2_t::on_message(HWND wnd, UINT msg, WPARAM wp, LPARAM 
 						rc3.bottom = rc3.top + m_textfont_height;
 						//SetTextColor(dc, GetSysColor(COLOR_BTNTEXT));
 						SelectFont(dc, m_textfont);
-						unsigned max_x = 0;
+						int max_x = 0;
 						for (t_size i = 0; i<detail_entry_count; i++)
 						{
-							unsigned last_x = 0;
-							ui_helpers::text_out_colours_ellipsis(dc, p_detail_entries[i].m_label, p_detail_entries[i].m_label.get_length(), 0, rc3.top,
-								&rc3, false, false, GetSysColor(COLOR_WINDOWTEXT), ui_helpers::ALIGN_LEFT, NULL, true, &last_x);
+							int last_x = 0;
+							uih::text_out_colours_ellipsis(dc, p_detail_entries[i].m_label, p_detail_entries[i].m_label.get_length(), 0, rc3.top,
+								&rc3, false, false, GetSysColor(COLOR_WINDOWTEXT), uih::ALIGN_LEFT, NULL, true, &last_x);
 							max_x = max(last_x, max_x);
 							rc3.top = rc3.bottom;
 							rc3.bottom = rc3.top + m_textfont_height;
@@ -279,8 +279,8 @@ LRESULT threaded_process_v2_t::on_message(HWND wnd, UINT msg, WPARAM wp, LPARAM 
 						rc3.left = max_x + 5;
 						for (t_size i = 0; i<detail_entry_count; i++)
 						{
-							ui_helpers::text_out_colours_ellipsis(dc, p_detail_entries[i].m_value, p_detail_entries[i].m_value.get_length(), 0, rc3.top,
-								&rc3, false, true, GetSysColor(COLOR_WINDOWTEXT), ui_helpers::ALIGN_LEFT);
+							uih::text_out_colours_ellipsis(dc, p_detail_entries[i].m_value, p_detail_entries[i].m_value.get_length(), 0, rc3.top,
+								&rc3, false, true, GetSysColor(COLOR_WINDOWTEXT), uih::ALIGN_LEFT);
 							rc3.top = rc3.bottom;
 							rc3.bottom = rc3.top + m_textfont_height;
 						}

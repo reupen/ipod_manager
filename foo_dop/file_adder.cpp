@@ -180,7 +180,7 @@ void ipod_add_files::run (ipod_device_ptr_ref_t p_ipod, const pfc::list_base_con
 	const t_size max_directory_number = 49;
 
 	pfc::array_t<t_uint32> dir_counts;
-	mmh::permutation_t permutation_dir_counts;
+	mmh::Permutation permutation_dir_counts;
 	dir_counts.set_size(max_directory_number+1);
 	permutation_dir_counts.set_size(max_directory_number+1);
 	for (i=0; i<max_directory_number+1; i++)
@@ -195,7 +195,7 @@ void ipod_add_files::run (ipod_device_ptr_ref_t p_ipod, const pfc::list_base_con
 
 	}
 
-	mmh::g_sort_get_permutation_qsort(dir_counts, permutation_dir_counts, pfc::compare_t<t_uint32,t_uint32>, false);
+	mmh::sort_get_permutation(dir_counts, permutation_dir_counts, pfc::compare_t<t_uint32,t_uint32>, false);
 
 	t_size dir_position = 0;
 
@@ -221,13 +221,13 @@ void ipod_add_files::run (ipod_device_ptr_ref_t p_ipod, const pfc::list_base_con
 
 
 	bit_array_bittable mask(count);
-	mmh::permutation_t order(count);
-	mmh::permutation_t identities(count);
+	mmh::Permutation order(count);
+	mmh::Permutation identities(count);
 	t_size count_nodups=0;
 	if (count>0)
 	{
 
-		mmh::g_sort_get_permutation_qsort(items, order, pfc::compare_t<metadb_handle_ptr,metadb_handle_ptr>, false);
+		mmh::sort_get_permutation(items, order, pfc::compare_t<metadb_handle_ptr,metadb_handle_ptr>, false);
 		//items.sort_get_permutation_t(pfc::compare_t<metadb_handle_ptr,metadb_handle_ptr>,order.get_ptr());
 
 		t_size n;
@@ -263,7 +263,7 @@ void ipod_add_files::run (ipod_device_ptr_ref_t p_ipod, const pfc::list_base_con
 	t_uint32 last_tid;
 	t_uint64 last_dbid;
 	p_library.get_next_ids(last_tid, last_dbid);
-	mmh::format_uint_natural text_count(count_nodups);
+	mmh::UIntegerNaturalFormatter text_count(count_nodups);
 
 	class processing_entry_t
 	{
@@ -386,7 +386,7 @@ void ipod_add_files::run (ipod_device_ptr_ref_t p_ipod, const pfc::list_base_con
 
 					if (!b_to_convert)
 					{
-						//mmh::format_uint_natural text_remaining(count_nodups-progress_index);
+						//mmh::UIntegerNaturalFormatter text_remaining(count_nodups-progress_index);
 						progress_details[0].m_value = track_formatter.run(items[j]);
 						progress_details[1].m_value = pfc::string8() << count_nodups-progress_index-1;
 						p_status.update_text_and_details(pfc::string8() << "Copying " << text_count << " file"  << (text_count.is_plural() ? "s" : ""), progress_details);
@@ -807,9 +807,9 @@ void ipod_add_files::run (ipod_device_ptr_ref_t p_ipod, const pfc::list_base_con
 			p_mappings.get_album(metadb_handle_ptr(), empty_info, empty_album);
 		}
 		t_size count_tracks = p_library.m_tracks.get_count();
-		mmh::permutation_t permutation_album_grouping;
+		mmh::Permutation permutation_album_grouping;
 		permutation_album_grouping.set_count(count_tracks);
-		mmh::g_sort_get_permutation_qsort(p_library.m_tracks, permutation_album_grouping, ipod::tasks::load_database_t::g_compare_track_album_id, false);
+		mmh::sort_get_permutation(p_library.m_tracks, permutation_album_grouping, ipod::tasks::load_database_t::g_compare_track_album_id, false);
 		counter=0;
 		pfc::rcptr_t<video_thumbailer_t> p_video_thumbailer;
 		for (j=0; j<count; j++)
@@ -819,7 +819,7 @@ void ipod_add_files::run (ipod_device_ptr_ref_t p_ipod, const pfc::list_base_con
 			{
 				counter++;
 				{
-					//mmh::format_uint_natural text_remaining(count_added-counter);
+					//mmh::UIntegerNaturalFormatter text_remaining(count_added-counter);
 					progress_details[0].m_value = track_formatter.run(items[j]);
 					progress_details[1].m_value = pfc::string8() << count_added-counter;
 					p_status.update_text_and_details(pfc::string8() << "Copying artwork for " << text_count << " file" << (text_count.is_plural() ? "s" : ""), progress_details);
@@ -943,7 +943,7 @@ void ipod_add_files::run (ipod_device_ptr_ref_t p_ipod, const pfc::list_base_con
 			{
 				counter++;
 				{
-					//mmh::format_uint_natural text_remaining(count_added-counter);
+					//mmh::UIntegerNaturalFormatter text_remaining(count_added-counter);
 					progress_details[0].m_value = track_formatter.run(items[j]);
 					progress_details[1].m_value = pfc::string8() << count_added-counter;
 					p_status.update_text_and_details(pfc::string8() << "Updating gapless information for " << text_count << " file" << (text_count.is_plural() ? "s" : ""), progress_details);

@@ -56,15 +56,15 @@ namespace results_viewer
 				//modeless_dialog_manager::g_add(wnd);
 				SetWindowText(wnd, p_data->m_title);
 				HWND wnd_lv = GetDlgItem(wnd, IDC_LIST);
-				uih::SetListViewWindowExplorerTheme(wnd_lv);
+				uih::list_view_set_explorer_theme(wnd_lv);
 
 				LVCOLUMN lvc;
 				memset(&lvc, 0, sizeof(LVCOLUMN));
 				lvc.mask = LVCF_TEXT|LVCF_WIDTH;
 
-				uih::ListView_InsertColumnText(wnd_lv, 0, _T("Source file"), 225);
-				uih::ListView_InsertColumnText(wnd_lv, 1, _T("File on iPod"), 225);
-				uih::ListView_InsertColumnText(wnd_lv, 2, _T("Result"), 225);
+				uih::list_view_insert_column_text(wnd_lv, 0, _T("Source file"), 225);
+				uih::list_view_insert_column_text(wnd_lv, 1, _T("File on iPod"), 225);
+				uih::list_view_insert_column_text(wnd_lv, 2, _T("Result"), 225);
 
 				SendMessage(wnd_lv, WM_SETREDRAW, FALSE, 0);
 
@@ -77,11 +77,11 @@ namespace results_viewer
 					pfc::string8 temp, temp2;
 					if (p_data->m_results[i].m_source_handle.is_valid())
 						filesystem::g_get_display_path(p_data->m_results[i].m_source_handle->get_path(), temp);
-					uih::ListView_InsertItemText(wnd_lv, i, 0, temp, false);
+					uih::list_view_insert_item_text(wnd_lv, i, 0, temp, false);
 					if (p_data->m_results[i].m_handle.is_valid())
 						filesystem::g_get_display_path(p_data->m_results[i].m_handle->get_path(), temp2);
-					uih::ListView_InsertItemText(wnd_lv, i, 1, temp2, true);
-					uih::ListView_InsertItemText(wnd_lv, i, 2, p_data->m_results[i].m_message.get_ptr(), true);
+					uih::list_view_insert_item_text(wnd_lv, i, 1, temp2, true);
+					uih::list_view_insert_item_text(wnd_lv, i, 2, p_data->m_results[i].m_message.get_ptr(), true);
 				}
 				SendMessage(wnd_lv, WM_SETREDRAW, TRUE, 0);
 				RedrawWindow(wnd_lv,NULL,NULL,RDW_INVALIDATE|RDW_UPDATENOW);
@@ -106,7 +106,7 @@ namespace results_viewer
 			SetWindowLongPtr(wnd, DWL_MSGRESULT, TRUE);
 			return TRUE;
 		case WM_PAINT:
-			uih::HandleModernBackgroundPaint(wnd, GetDlgItem(wnd, IDCANCEL));
+			uih::handle_modern_background_paint(wnd, GetDlgItem(wnd, IDCANCEL));
 			return TRUE;
 		case WM_CONTEXTMENU:
 			{

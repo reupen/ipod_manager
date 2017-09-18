@@ -1,8 +1,8 @@
 #include "main.h"
 
-void ipod_read_dopdb_tracklist(mmh::stream_reader_memblock_ref_seekable * p_file, t_uint32 root_id, t_uint32 root_size,
-	const mmh::permutation_t & permutationtid,
-	const mmh::permutation_t & permutationdbid,
+void ipod_read_dopdb_tracklist(fbh::StreamReaderMemblock * p_file, t_uint32 root_id, t_uint32 root_size,
+	const mmh::Permutation & permutationtid,
+	const mmh::Permutation & permutationdbid,
 	//pfc::list_const_permutation_t<pfc::rcptr_t <t_track>, pfc::array_t<t_size> > & sorted_array_tid,
 	//pfc::list_const_permutation_t<pfc::rcptr_t <t_track>, pfc::array_t<t_size> > & sorted_array_dbid,
 	const ipod::tasks::load_database_t & p_library,
@@ -84,7 +84,7 @@ void ipod_read_dopdb_tracklist(mmh::stream_reader_memblock_ref_seekable * p_file
 				artwork_source_sha1_valid = true;
 				break;
 			default:
-				p_file->skip(size, p_abort);
+				p_file->skip_object(size, p_abort);
 				break;
 		};
 
@@ -121,15 +121,15 @@ void ipod_read_dopdb(const char * m_path, const ipod::tasks::load_database_t & p
 	service_ptr_t<file> _file;
 
 	//string_print_drive m_path(p_ipod->drive);
-	mmh::permutation_t permutation(p_library.m_tracks.get_count()), permutationdbid(p_library.m_tracks.get_count());
+	mmh::Permutation permutation(p_library.m_tracks.get_count()), permutationdbid(p_library.m_tracks.get_count());
 
 	//const pfc::list_base_const_t< pfc::rcptr_t <t_track> > & const_list = p_library.m_tracks;
 
-	mmh::g_sort_get_permutation_qsort_v2(p_library.m_tracks.get_ptr(), permutation, ipod::tasks::load_database_t::g_compare_track_id, false);
-	mmh::g_sort_get_permutation_qsort_v2(p_library.m_tracks.get_ptr(), permutationdbid, ipod::tasks::load_database_t::g_compare_track_dbid, false);
+	mmh::sort_get_permutation(p_library.m_tracks.get_ptr(), permutation, ipod::tasks::load_database_t::g_compare_track_id, false);
+	mmh::sort_get_permutation(p_library.m_tracks.get_ptr(), permutationdbid, ipod::tasks::load_database_t::g_compare_track_dbid, false);
 
-	//pfc::list_const_permutation_t<pfc::rcptr_t <t_track>, mmh::permutation_t > sorted_array(p_library.m_tracks, permutation);
-	//pfc::list_const_permutation_t<pfc::rcptr_t <t_track>, mmh::permutation_t > sorted_arraydbid(p_library.m_tracks, permutationdbid);
+	//pfc::list_const_permutation_t<pfc::rcptr_t <t_track>, mmh::Permutation > sorted_array(p_library.m_tracks, permutation);
+	//pfc::list_const_permutation_t<pfc::rcptr_t <t_track>, mmh::Permutation > sorted_arraydbid(p_library.m_tracks, permutationdbid);
 
 	try
 	{
@@ -143,9 +143,9 @@ void ipod_read_dopdb(const char * m_path, const ipod::tasks::load_database_t & p
 			pfc::array_t<t_uint8> data;
 			data.set_size(pfc::downcast_guarded<t_size>(filesize));
 			_file->read(data.get_ptr(), data.get_size(), p_abort);
-			mmh::stream_reader_memblock_ref_seekable stream(data.get_ptr(), data.get_size());
+			fbh::StreamReaderMemblock stream(data.get_ptr(), data.get_size());
 
-			mmh::stream_reader_memblock_ref_seekable * p_file = &stream;
+			fbh::StreamReaderMemblock * p_file = &stream;
 
 			GUID guid;
 			p_file->read_lendian_t(guid, p_abort);
@@ -165,7 +165,7 @@ void ipod_read_dopdb(const char * m_path, const ipod::tasks::load_database_t & p
 							ipod_read_dopdb_tracklist(p_file, root_id, size, permutation, permutationdbid, /*sorted_array, sorted_arraydbid, */p_library, p_status, p_abort);
 							break;
 						default:
-							p_file->skip(size, p_abort);
+							p_file->skip_object(size, p_abort);
 							break;
 					};
 				}

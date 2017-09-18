@@ -5,8 +5,8 @@ class filter_pin_enum //new interfaces
 public:
 	filter_pin_enum(IBaseFilter * pFilter)
 	{
-		mmh::comptr_t<IEnumPins> pPinEnum;
-		mmh::comptr_t<IPin> pTemp;
+		mmh::ComPtr<IEnumPins> pPinEnum;
+		mmh::ComPtr<IPin> pTemp;
 		pFilter->EnumPins(pPinEnum.get_pp());
 		while (S_OK == pPinEnum->Next(1, pTemp.get_pp(), NULL))
 		{
@@ -18,8 +18,8 @@ public:
 				m_outputs.add_item(pTemp);
 		}
 	}
-	pfc::list_t< mmh::comptr_t <IPin> > m_inputs;
-	pfc::list_t< mmh::comptr_t <IPin> > m_outputs;
+	pfc::list_t< mmh::ComPtr <IPin> > m_inputs;
+	pfc::list_t< mmh::ComPtr <IPin> > m_outputs;
 };
 
 void FreeMediaType(AM_MEDIA_TYPE& mt)
@@ -172,7 +172,7 @@ void video_thumbailer_mediafoundation::ensure_initialised()
 void video_thumbailer_mediafoundation::UpdateFormat()
 {
 	HRESULT hr = E_FAIL;
-	mmh::comptr_t<IMFMediaType> pType;
+	mmh::ComPtr<IMFMediaType> pType;
 	UINT32  width = 0, height = 0;
 	LONG lStride = 0;
 	MFRatio par = { 0 , 0 };
@@ -221,7 +221,7 @@ void video_thumbailer_mediafoundation::run(const char * path, album_art_data_ptr
 	HRESULT hr = S_OK;
 	pfc::stringcvt::string_os_from_utf8 wpath(path);
 
-	mmh::comptr_t<IMFAttributes> pAttributes;
+	mmh::ComPtr<IMFAttributes> pAttributes;
 
 	hr = m_MFCreateAttributes(pAttributes, 1);
 	_check_hresult_mediafoundation(hr);
@@ -235,7 +235,7 @@ void video_thumbailer_mediafoundation::run(const char * path, album_art_data_ptr
 
 	// Attempt to find a video stream.
 
-	mmh::comptr_t<IMFMediaType> pType;
+	mmh::ComPtr<IMFMediaType> pType;
 
 	// Configure the source reader to give us progressive RGB32 frames.
 	// The source reader will load the decoder if needed.
@@ -265,8 +265,8 @@ void video_thumbailer_mediafoundation::run(const char * path, album_art_data_ptr
     BYTE        *pBitmapData = NULL;    // Bitmap data
     DWORD       cbBitmapData = 0;       // Size of data, in bytes
 
-    mmh::comptr_t<IMFMediaBuffer> pBuffer;
-    mmh::comptr_t<IMFSample> pSample;
+    mmh::ComPtr<IMFMediaBuffer> pBuffer;
+    mmh::ComPtr<IMFSample> pSample;
 
     {
         PROPVARIANT var;
@@ -280,7 +280,7 @@ void video_thumbailer_mediafoundation::run(const char * path, album_art_data_ptr
 
     while (1)
     {
-        mmh::comptr_t<IMFSample> pSampleTmp;
+        mmh::ComPtr<IMFSample> pSampleTmp;
 
         hr = m_pReader->ReadSample((DWORD)MF_SOURCE_READER_FIRST_VIDEO_STREAM, 0, NULL, &dwFlags, NULL, pSampleTmp);
 		_check_hresult_mediafoundation(hr);
@@ -356,7 +356,7 @@ void video_thumbailer_mediafoundation::run(const char * path, album_art_data_ptr
 
 bool video_thumbailer_t::create_video_thumbnail(const char * path, album_art_data_ptr & p_out)
 {
-	if (mmh::osversion::is_windows_vista_or_newer())
+	if (mmh::is_windows_vista_or_newer())
 	{
 		try 
 		{
@@ -366,7 +366,7 @@ bool video_thumbailer_t::create_video_thumbnail(const char * path, album_art_dat
 		}
 		catch (pfc::exception const &)
 		{
-			if (mmh::osversion::is_windows_7_or_newer()) throw;
+			if (mmh::is_windows_7_or_newer()) throw;
 		}
 	}
 	return create_video_thumbnail_directshow(path, p_out);
@@ -387,23 +387,23 @@ bool video_thumbailer_t::create_video_thumbnail_directshow(const char * path, al
 	{
 		{
 
-			mmh::comptr_t<IGraphBuilder> pGraph;
+			mmh::ComPtr<IGraphBuilder> pGraph;
 			hr = pGraph.instantiate(CLSID_FilterGraph, NULL, CLSCTX_INPROC_SERVER);
 			_check_hresult(hr);
-			mmh::comptr_t<IBaseFilter> pSourceFilter;
+			mmh::ComPtr<IBaseFilter> pSourceFilter;
 			hr = pGraph->AddSourceFilter(wpath.get_ptr(), L"Source", pSourceFilter);
 			_check_hresult(hr);
 
-			mmh::comptr_t<IBaseFilter> pNullFilter;
+			mmh::ComPtr<IBaseFilter> pNullFilter;
 			hr = pNullFilter.instantiate(CLSID_NullRenderer);
 			_check_hresult(hr);
 			hr = pGraph->AddFilter(pNullFilter, L"NullFilter");
 			_check_hresult(hr);
 
-			mmh::comptr_t<ISampleGrabber> pSampleGrabber;
+			mmh::ComPtr<ISampleGrabber> pSampleGrabber;
 			hr = pSampleGrabber.instantiate(CLSID_SampleGrabber);
 			_check_hresult(hr);
-			mmh::comptr_t<IBaseFilter> pSampleGrabberFilter = pSampleGrabber;
+			mmh::ComPtr<IBaseFilter> pSampleGrabberFilter = pSampleGrabber;
 			hr = pGraph->AddFilter(pSampleGrabberFilter, L"SampleGrabber");
 			_check_hresult(hr);
 
@@ -423,7 +423,7 @@ bool video_thumbailer_t::create_video_thumbnail_directshow(const char * path, al
 				t_size i, count = pinenum.m_outputs.get_count();
 				for (i=0; i<count; i++)
 				{
-					mmh::comptr_t<IEnumMediaTypes> pEnumMediaTypes;
+					mmh::ComPtr<IEnumMediaTypes> pEnumMediaTypes;
 					pinenum.m_outputs[i]->EnumMediaTypes(pEnumMediaTypes);
 					AM_MEDIA_TYPE * pamt;
 					bool b_video = false;
@@ -454,12 +454,12 @@ bool video_thumbailer_t::create_video_thumbnail_directshow(const char * path, al
 				}
 			}
 
-			//mmh::comptr_t<IBasicAudio> pBasicAudio = pGraph;
-			//mmh::comptr_t<IVideoWindow> pVideoWindow = pGraph;
-			mmh::comptr_t<IMediaEventEx> pMediaEventEx = pGraph;
-			mmh::comptr_t<IMediaSeeking> pMediaSeeking = pGraph;
-			mmh::comptr_t<IMediaControl> pMediaControl = pGraph;
-			mmh::comptr_t<IMediaFilter> pMediaFilter  = pGraph;
+			//mmh::ComPtr<IBasicAudio> pBasicAudio = pGraph;
+			//mmh::ComPtr<IVideoWindow> pVideoWindow = pGraph;
+			mmh::ComPtr<IMediaEventEx> pMediaEventEx = pGraph;
+			mmh::ComPtr<IMediaSeeking> pMediaSeeking = pGraph;
+			mmh::ComPtr<IMediaControl> pMediaControl = pGraph;
+			mmh::ComPtr<IMediaFilter> pMediaFilter  = pGraph;
 
 			if (!pMediaEventEx.is_valid() || !pMediaSeeking.is_valid() || !pMediaControl.is_valid() || !pMediaFilter.is_valid())
 				throw pfc::exception("Failed to query IGraphBuilder interface");

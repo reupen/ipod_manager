@@ -40,7 +40,7 @@ public:
 	}
 	void sort_encoder_list();
 private:
-	class encoder_list_view_t : public t_list_view {
+	class encoder_list_view_t : public uih::ListView {
 	public:
 		encoder_list_view_t() : m_edit_column(pfc_infinite), m_edit_index(pfc_infinite) {};
 		template<class TArray>
@@ -48,13 +48,13 @@ private:
 		{
 			for (t_size n = 0, count = p_items.get_count(); n<count; n++)
 			{
-				p_items[n].m_subitems.add_item(settings::encoder_list[n].m_name);
+				p_items[n].m_subitems.append_single(settings::encoder_list[n].m_name);
 			}
 		}
 		void populate()
 		{
 			t_size count = settings::encoder_list.get_count();
-			pfc::list_t<t_list_view::t_item_insert> items;
+			pfc::list_t<uih::ListView::InsertItem> items;
 			items.set_count(count);
 			get_insert_items(items);
 			insert_items(0, count, items.get_ptr());
@@ -62,7 +62,7 @@ private:
 		void on_sort()
 		{
 			t_size count = settings::encoder_list.get_count();
-			pfc::list_t<t_list_view::t_item_insert> items;
+			pfc::list_t<uih::ListView::InsertItem> items;
 			items.set_count(count);
 			get_insert_items(items);
 			replace_items(0, items, false);
@@ -73,8 +73,8 @@ private:
 			set_single_selection(true);
 			set_autosize(true);
 
-			pfc::list_t<t_list_view::t_column> columns;
-			columns.add_item(t_list_view::t_column("Name", 100));
+			pfc::list_t<uih::ListView::Column> columns;
+			columns.add_item(uih::ListView::Column("Name", 100));
 
 			set_columns(columns);
 		}
@@ -92,7 +92,7 @@ private:
 				return true;
 			return false;
 		};
-		virtual bool notify_create_inline_edit(const pfc::list_base_const_t<t_size> & indices, unsigned column, pfc::string_base & p_text, t_size & p_flags, mmh::comptr_t<IUnknown> & pAutocompleteEntries);;
+		virtual bool notify_create_inline_edit(const pfc::list_base_const_t<t_size> & indices, unsigned column, pfc::string_base & p_text, t_size & p_flags, mmh::ComPtr<IUnknown> & pAutocompleteEntries);;
 		virtual void notify_save_inline_edit(const char * value);
 		t_size m_edit_column, m_edit_index;
 	};

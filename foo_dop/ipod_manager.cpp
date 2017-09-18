@@ -139,17 +139,17 @@ void ipod_device_t::get_capacity_information (drive_space_info_t & p_info)
 				{
 					if (!strcmp(key, "FSTotalBytes"))
 					{
-						p_info.m_capacity = strtoul64_n(val, pfc_infinite);
+						p_info.m_capacity = mmh::strtoul64_n(val, pfc_infinite);
 						b_totalfound = true;
 					}
 					else if (!strcmp(key, "FSFreeBytes"))
 					{
-						p_info.m_freespace = strtoul64_n(val, pfc_infinite);
+						p_info.m_freespace = mmh::strtoul64_n(val, pfc_infinite);
 						b_freefound = true;
 					}
 					else if (!strcmp(key, "FSBlockSize"))
 					{
-						p_info.m_blocksize = strtoul_n(val, pfc_infinite);
+						p_info.m_blocksize = mmh::strtoul_n(val, pfc_infinite);
 						b_clusterfound = true;
 					}
 				}

@@ -206,7 +206,7 @@ void check_files_in_library_t::run (ipod_device_ptr_ref_t p_ipod, const pfc::lis
 	//m_result.fill(t_result(false, );
 	m_stats.set_count(count_tracks);
 
-	mmh::permutation_t permutation;
+	mmh::Permutation permutation;
 	permutation.set_size(count_tracks);
 
 	for (i=0; i<count_tracks; i++)
@@ -241,9 +241,9 @@ void check_files_in_library_t::run (ipod_device_ptr_ref_t p_ipod, const pfc::lis
 
 	p_status.checkpoint();
 
-	mmh::g_sort_get_permutation_qsort(m_stats, permutation, g_compare_filesize, false);
+	mmh::sort_get_permutation(m_stats, permutation, g_compare_filesize, false);
 
-	pfc::list_const_permutation_t<t_filestats, const mmh::permutation_t &> sorted_stats(m_stats, permutation);
+	pfc::list_const_permutation_t<t_filestats, const mmh::Permutation &> sorted_stats(m_stats, permutation);
 
 	for (i=0; i<count_items; i++)
 	{

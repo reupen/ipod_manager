@@ -11,7 +11,7 @@ struct mapping_t {
 class t_config_tab1 : public preferences_tab {
 private:
 
-	class t_list_view_filter : public t_list_view {
+	class t_list_view_filter : public uih::ListView {
 	public:
 		t_size m_edit_index, m_edit_column;
 		t_list_view_filter() : m_edit_index(pfc_infinite), m_edit_column(pfc_infinite) {};
@@ -19,13 +19,13 @@ private:
 		virtual void notify_on_create()
 		{
 			set_single_selection(true);
-			pfc::list_t<t_column> columns;
+			pfc::list_t<Column> columns;
 			columns.set_count(2);
 			columns[0].m_title = "Field";
 			columns[0].m_size = 95;
 			columns[1].m_title = "Mapping";
 			columns[1].m_size = 310;
-			t_list_view::set_columns(columns);
+			uih::ListView::set_columns(columns);
 		};
 		virtual void execute_default_action(t_size index, t_size column, bool b_keyboard, bool b_ctrl)
 		{
@@ -37,7 +37,7 @@ private:
 				return true;
 			return false;
 		};
-		virtual bool notify_create_inline_edit(const pfc::list_base_const_t<t_size> & indices, unsigned column, pfc::string_base & p_text, t_size & p_flags, mmh::comptr_t<IUnknown> & pAutocompleteEntries);;
+		virtual bool notify_create_inline_edit(const pfc::list_base_const_t<t_size> & indices, unsigned column, pfc::string_base & p_text, t_size & p_flags, mmh::ComPtr<IUnknown> & pAutocompleteEntries);;
 		virtual void notify_save_inline_edit(const char * value);
 	private:
 	} m_field_list;
@@ -51,7 +51,7 @@ private:
 
 	bool m_initialising;
 
-	void get_insert_items(t_size base, t_size count, pfc::list_t<t_list_view::t_item_insert> & items);
+	void get_insert_items(t_size base, t_size count, pfc::list_t<uih::ListView::InsertItem> & items);
 
 	BOOL DialogProc(HWND wnd, UINT msg, WPARAM wp, LPARAM lp);
 

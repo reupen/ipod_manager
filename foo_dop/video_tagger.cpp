@@ -289,7 +289,7 @@ public:
 				}
 				catch (pfc::exception const & ex) 
 				{
-					message_window_t::g_run(core_api::get_main_window(), "Error - iPod Tag Editor", ex.what(), OIC_ERROR);
+					fbh::show_info_box(core_api::get_main_window(), "Error - iPod Tag Editor", ex.what(), OIC_ERROR);
 					return -1;
 				}
 
@@ -465,7 +465,7 @@ private:
 		video_tagger_initialise_edit(episodenumber), video_tagger_initialise_edit(title), m_wnd_apply(NULL),
 		m_tagging_in_progress(false), m_closing(false), m_min_height(0), m_min_width(0), m_initialising(false)
 	{
-		mmh::fb2k::g_metadb_handle_list_remove_duplicates(m_handles);
+		fbh::metadb_handle_list_remove_duplicates(m_handles);
 	};
 	HWND m_wnd_mediatype_label,
 		m_wnd_mediatype_combo,

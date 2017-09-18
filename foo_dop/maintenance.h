@@ -66,13 +66,13 @@ public:
 				}
 				catch (const pfc::exception & e) 
 				{
-					message_window_t::g_run_threadsafe("Error", e.what());
+					fbh::show_info_box_threadsafe("Error", e.what());
 				}
 			}
 		}
 		catch (const pfc::exception & e) 
 		{
-			message_window_t::g_run_threadsafe("Error", e.what());
+			fbh::show_info_box_threadsafe("Error", e.what());
 		}
 		if (m_drive_scanner.m_ipods.get_count() && b_started)
 			m_drive_scanner.m_ipods[0]->do_after_sync();
@@ -130,19 +130,19 @@ public:
 						m_field_mappings.get_album(metadb_handle_ptr(), empty_info, empty_album);
 					}
 					pfc::rcptr_t<video_thumbailer_t> p_video_thumbailer;
-					mmh::permutation_t permutation_album_grouping;
+					mmh::Permutation permutation_album_grouping;
 					permutation_album_grouping.set_count(count_tracks);
-					mmh::g_sort_get_permutation_qsort(m_library.m_tracks, permutation_album_grouping, ipod::tasks::load_database_t::g_compare_track_album_id, false);
+					mmh::sort_get_permutation(m_library.m_tracks, permutation_album_grouping, ipod::tasks::load_database_t::g_compare_track_album_id, false);
 
 					pfc::array_staticsize_t<bool> mask(count_tracks);
 					for (i=0; i<count_tracks; i++)
 						mask[i] = (!b_filter || m_items.bsearch_by_pointer(m_library.m_handles[i]) != pfc_infinite);
 
-					mmh::format_uint_natural text_count(count_real);
+					mmh::UIntegerNaturalFormatter text_count(count_real);
 					string_format_metadb_handle_for_progress track_formatter;
 					for (i=0; i<count_tracks; i++)
 					{
-						mmh::format_uint_natural text_remaining(count_real-k);
+						mmh::UIntegerNaturalFormatter text_remaining(count_real-k);
 						pfc::array_staticsize_t<threaded_process_v2_t::detail_entry> progress_details(2);
 						progress_details[0].m_label = "Item:";
 						progress_details[1].m_label = "Remaining:";
@@ -366,13 +366,13 @@ public:
 				}
 				catch (const pfc::exception & e) 
 				{
-					message_window_t::g_run_threadsafe("Error", e.what());
+					fbh::show_info_box_threadsafe("Error", e.what());
 				}
 			}
 		}
 		catch (const pfc::exception & e) 
 		{
-			message_window_t::g_run_threadsafe("Error", e.what());
+			fbh::show_info_box_threadsafe("Error", e.what());
 		}
 		if (m_drive_scanner.m_ipods.get_count() && b_started)
 			m_drive_scanner.m_ipods[0]->do_after_sync();
@@ -421,7 +421,7 @@ public:
 		catch (exception_aborted &) {}
 		catch (const pfc::exception & e) 
 		{
-			message_window_t::g_run_threadsafe("Error", e.what());
+			fbh::show_info_box_threadsafe("Error", e.what());
 		}
 		if (m_drive_scanner.m_ipods.get_count() && b_started)
 			m_drive_scanner.m_ipods[0]->do_after_sync();
@@ -528,9 +528,9 @@ public:
 			if (p_info_loader->m_callback->m_aborted) 
 				throw exception_aborted("File read was aborted");
 
-			mmh::permutation_t permutation;
+			mmh::Permutation permutation;
 			permutation.set_count(m_library.m_handles.get_count());
-			mmh::g_sort_get_permutation_qsort_v2(m_library.m_handles.get_ptr(), permutation, g_compare_metadbhandle_noncasesensitive, false);
+			mmh::sort_get_permutation(m_library.m_handles.get_ptr(), permutation, g_compare_metadbhandle_noncasesensitive, false);
 
 			t_size i, count = p_info_loader->m_callback->m_handles.get_count(), dummy;
 			for (i=0; i<count; i++)
@@ -567,7 +567,7 @@ public:
 				}
 				catch (const pfc::exception & e) 
 				{
-					message_window_t::g_run_threadsafe("Error", e.what());
+					fbh::show_info_box_threadsafe("Error", e.what());
 				}
 			}
 #if 0
@@ -595,7 +595,7 @@ public:
 				}
 			}
 			catch (const pfc::exception &) {}
-			message_window_t::g_run_threadsafe("Error", e.what());
+			fbh::show_info_box_threadsafe("Error", e.what());
 			m_failed = true;
 		}
 		if (m_drive_scanner.m_ipods.get_count() && b_started)

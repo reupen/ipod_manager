@@ -12,13 +12,13 @@ namespace ipod
 			t_size track_count = m_tracks.get_count();
 			t_size current_artist_count = m_artist_list.get_count();
 			t_size album_count = m_album_list.m_master_list.get_count();
-			mmh::permutation_t permAlbumListbyID(album_count);
-			mmh::g_sort_get_permutation_qsort_v2(m_album_list.m_master_list.get_ptr(), permAlbumListbyID, t_album::g_compare_id, false);
+			mmh::Permutation permAlbumListbyID(album_count);
+			mmh::sort_get_permutation(m_album_list.m_master_list.get_ptr(), permAlbumListbyID, t_album::g_compare_id, false);
 
 
 			{
-				mmh::permutation_t pTrackAIDInit(track_count);
-				mmh::g_sort_get_permutation_qsort_v2(m_tracks.get_ptr(), pTrackAIDInit, t_track::g_compare_artist_id, false);
+				mmh::Permutation pTrackAIDInit(track_count);
+				mmh::sort_get_permutation(m_tracks.get_ptr(), pTrackAIDInit, t_track::g_compare_artist_id, false);
 
 				for (t_size i = 0; i<current_artist_count; i++)
 				{
@@ -33,16 +33,16 @@ namespace ipod
 			}
 
 			{
-				mmh::permutation_t pNormal(current_artist_count);
-				mmh::g_sort_get_permutation_qsort_v2(m_artist_list.get_ptr(), pNormal, t_artist::g_compare_standard, false);
+				mmh::Permutation pNormal(current_artist_count);
+				mmh::sort_get_permutation(m_artist_list.get_ptr(), pNormal, t_artist::g_compare_standard, false);
 				m_artist_list.reorder(pNormal.get_ptr());
 			}
 
 			t_uint32 next_id = 0x81;
 			if (current_artist_count)
 			{
-				mmh::permutation_t perm(current_artist_count);
-				mmh::g_sort_get_permutation_qsort_v2(m_artist_list.get_ptr(), perm, t_artist::g_compare_id, false);
+				mmh::Permutation perm(current_artist_count);
+				mmh::sort_get_permutation(m_artist_list.get_ptr(), perm, t_artist::g_compare_id, false);
 				next_id = m_artist_list[perm[current_artist_count - 1]]->id + 1;
 			}
 
@@ -109,9 +109,9 @@ namespace ipod
 			//purge dead entries
 			current_artist_count = m_artist_list.get_count();
 			pfc::array_staticsize_t<bool> mask(current_artist_count);
-			mmh::permutation_t perm_aid(m_tracks.get_count());
+			mmh::Permutation perm_aid(m_tracks.get_count());
 
-			mmh::g_sort_get_permutation_qsort_v2(m_tracks.get_ptr(), perm_aid, t_track::g_compare_artist_id, false);
+			mmh::sort_get_permutation(m_tracks.get_ptr(), perm_aid, t_track::g_compare_artist_id, false);
 
 			t_size dummy;
 
@@ -124,8 +124,8 @@ namespace ipod
 			//generate pids
 			current_artist_count = m_artist_list.get_count();
 
-			mmh::permutation_t perm_pid(current_artist_count);
-			mmh::g_sort_get_permutation_qsort_v2(m_artist_list.get_ptr(), perm_pid, t_artist::g_compare_pid, false);
+			mmh::Permutation perm_pid(current_artist_count);
+			mmh::sort_get_permutation(m_artist_list.get_ptr(), perm_pid, t_artist::g_compare_pid, false);
 
 			genrand_service::ptr p_genrand = genrand_service::g_create();
 			p_genrand->seed(GetTickCount());
@@ -150,8 +150,8 @@ namespace ipod
 
 			//fill album artist_pids
 			{
-				mmh::permutation_t permArtistListbyID(current_artist_count);
-				mmh::g_sort_get_permutation_qsort_v2(m_artist_list.get_ptr(), permArtistListbyID, t_artist::g_compare_id, false);
+				mmh::Permutation permArtistListbyID(current_artist_count);
+				mmh::sort_get_permutation(m_artist_list.get_ptr(), permArtistListbyID, t_artist::g_compare_id, false);
 
 				for (t_size i = 0; i<track_count; i++)
 				{
@@ -172,9 +172,9 @@ namespace ipod
 
 				current_artist_count = m_artist_list.get_count();
 				t_size count_artwork_albums = p_artwork_albums.get_count();
-				mmh::permutation_t perm_album_pid(count_artwork_albums), perm_album_artist_pid(count_artwork_albums);
-				mmh::g_sort_get_permutation_qsort_v2(p_artwork_albums.get_ptr(), perm_album_pid, t_album::g_compare_pid, false);
-				mmh::g_sort_get_permutation_qsort_v2(p_artwork_albums.get_ptr(), perm_album_artist_pid, t_album::g_compare_artist_pid, false);
+				mmh::Permutation perm_album_pid(count_artwork_albums), perm_album_artist_pid(count_artwork_albums);
+				mmh::sort_get_permutation(p_artwork_albums.get_ptr(), perm_album_pid, t_album::g_compare_pid, false);
+				mmh::sort_get_permutation(p_artwork_albums.get_ptr(), perm_album_artist_pid, t_album::g_compare_artist_pid, false);
 
 				for (i = 0; i<current_artist_count; i++)
 				{

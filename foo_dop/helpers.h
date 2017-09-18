@@ -71,7 +71,7 @@ public:
 };
 
 class threaded_process_v2_t 
-	: public thread_t, public ui_helpers::container_window_v2, public app_close_blocking_task, public mmh::fb2k::initquit_dynamic, public checkpoint_base
+	: public thread_t, public ui_helpers::container_window_v2, public app_close_blocking_task, public fbh::InitQuitDynamic, public checkpoint_base
 {
 public:
 	enum {MSG_UPDATE_PROGRESS=WM_USER+2, MSG_REDRAW, MSG_END};
@@ -167,7 +167,7 @@ public:
 		{
 			try { static_api_ptr_t<app_close_blocking_task_manager>()->register_task(this); } catch(const exception_service_not_found &) {/*user runs pre-0.9.5.1*/}
 		}
-		mmh::fb2k::initquit_multiplexer::g_register_instance(this);
+		fbh::InitQuitManager::s_register_instance(this);
 	};
 
 	~threaded_process_v2_t()
@@ -176,7 +176,7 @@ public:
 		{
 			try { static_api_ptr_t<app_close_blocking_task_manager>()->unregister_task(this); } catch(const exception_service_not_found &) {/*user runs pre-0.9.5.1*/}
 		}
-		mmh::fb2k::initquit_multiplexer::g_deregister_instance(this);
+		fbh::InitQuitManager::s_deregister_instance(this);
 	}
 	
 	abort_callback & get_abort() {return m_abort;}
@@ -308,7 +308,7 @@ public:
 	LONGLONG GetDuration();
 	void UpdateFormat();
 private:
-	mmh::comptr_t<IMFSourceReader> m_pReader;
+	mmh::ComPtr<IMFSourceReader> m_pReader;
 	FormatInfo      m_format;
 	HINSTANCE m_library_MFPLAT, m_library_MFREADWRITE;
 	MFCreateAttributesPROC m_MFCreateAttributes;

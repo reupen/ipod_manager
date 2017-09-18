@@ -54,7 +54,7 @@ namespace itunesdb {
 		void read_chapter(const atom & parent, chapter_entry & p_out, abort_callback & p_abort)
 		{
 			p_out.m_start_position = parent.data0;
-			mmh::stream_reader_memblock_ref_seekable parent_data(parent.data.get_ptr(), parent.data.get_size());
+			fbh::StreamReaderMemblock parent_data(parent.data.get_ptr(), parent.data.get_size());
 			chapter_reader parent_reader(&parent_data);
 			for (t_size j=0; j< parent.children_count; j++)
 			{
@@ -85,12 +85,12 @@ namespace itunesdb {
 		}
 		void read(chapter_list & p_out, abort_callback & p_abort)
 		{
-			m_file->skip(12, p_abort);
+			m_file->skip_object(12, p_abort);
 			atom sean;
 			read_atom(sean, p_abort);
 			sean.verify_identifier('sean');
 
-			mmh::stream_reader_memblock_ref_seekable sean_data(sean.data.get_ptr(), sean.data.get_size());
+			fbh::StreamReaderMemblock sean_data(sean.data.get_ptr(), sean.data.get_size());
 			chapter_reader sean_reader(&sean_data);
 
 			for (t_size i=0; i< sean.children_count; i++)
@@ -108,7 +108,7 @@ namespace itunesdb {
 					break;
 				case 'hedr':
 					{
-						mmh::stream_reader_memblock_ref_seekable child_data(child.data.get_ptr(), child.data.get_size());
+						fbh::StreamReaderMemblock child_data(child.data.get_ptr(), child.data.get_size());
 						chapter_reader child_reader(&child_data);
 						child_reader.read_bendian_auto_t(p_out.m_hedr_1, p_abort);
 						child_reader.read_bendian_auto_t(p_out.m_hedr_2, p_abort);
@@ -118,7 +118,7 @@ namespace itunesdb {
 			}
 
 		}
-		chapter_reader(mmh::stream_reader_memblock_ref_seekable * p_file) : itunesdb::reader(p_file) {};
+		chapter_reader(fbh::StreamReaderMemblock * p_file) : itunesdb::reader(p_file) {};
 	};
 
 

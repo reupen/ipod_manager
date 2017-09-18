@@ -162,8 +162,8 @@ namespace ipod
 
 								if (count)
 								{
-									mmh::permutation_t perm_dbid(m_tracks.get_count());
-									mmh::g_sort_get_permutation_qsort_v2(m_tracks.get_ptr(), perm_dbid, g_compare_track_dbid, false);
+									mmh::Permutation perm_dbid(m_tracks.get_count());
+									mmh::sort_get_permutation(m_tracks.get_ptr(), perm_dbid, g_compare_track_dbid, false);
 
 									for (i = 0; i<count; i++)
 									{

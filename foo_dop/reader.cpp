@@ -360,7 +360,7 @@ namespace ipod
 							}
 						}
 						else
-							stream.skip(dshm.section_size - dshm.header_size,p_abort);
+							stream.skip_object(dshm.section_size - dshm.header_size,p_abort);
 						p_status.update_progress_subpart_helper(i, dshm_count);
 					}
 
@@ -639,7 +639,7 @@ namespace ipod
 			for (t_size i = 0, count = m_tracks.get_count(); i<count; i++)
 				if (m_tracks[i]->podcast_flag) podcast_tracks.add_item(m_tracks[i]);
 
-			mmh::g_sort_qsort_v2(podcast_tracks.get_ptr(), podcast_tracks.get_count(), t_track::g_compare_podcast, false);
+			mmh::in_place_sort(podcast_tracks, t_track::g_compare_podcast, false);
 
 			pfc::list_t<podcast_group_t> podcast_groups;
 
@@ -659,7 +659,7 @@ namespace ipod
 				podcast_groups[j].m_tracks.add_item(podcast_tracks[i]);
 			}
 			
-			mmh::g_sort_qsort_v2(podcast_groups.get_ptr(), podcast_groups.get_size(),  podcast_group_t::g_compare_album, false);
+			mmh::in_place_sort(podcast_groups,  podcast_group_t::g_compare_album, false);
 			t_uint32 group_id_counter = 0x200, position_counter = 0;
 			for (t_size i = 0, count = podcast_groups.get_count(); i<count; i++)
 			{
@@ -704,13 +704,13 @@ namespace ipod
 
 		void load_database_t::get_next_ids (t_uint32 & next_tid, t_uint64 & next_dbid)
 		{
-			mmh::permutation_t permutation, permutationdbid;
+			mmh::Permutation permutation, permutationdbid;
 			t_size count = m_tracks.get_count();
 			permutation.set_size(count);
 			permutationdbid.set_size(count);
 
-			mmh::g_sort_get_permutation_qsort(m_tracks, permutation, g_compare_track_id, false);
-			mmh::g_sort_get_permutation_qsort(m_tracks, permutationdbid, g_compare_track_dbid, false);
+			mmh::sort_get_permutation(m_tracks, permutation, g_compare_track_id, false);
+			mmh::sort_get_permutation(m_tracks, permutationdbid, g_compare_track_dbid, false);
 
 			next_tid = count ? m_tracks[permutation[count-1]]->id : 1;
 			next_dbid = 0;
@@ -728,15 +728,15 @@ namespace ipod
 		t_uint64 load_database_t::get_new_playlist_pid()
 		{
 			t_uint64 pid = NULL;
-			mmh::permutation_t permutation;
+			mmh::Permutation permutation;
 			t_size count = m_playlists.get_count();
 			permutation.set_size(count);
 
-			mmh::g_sort_get_permutation_qsort(m_playlists, permutation, g_compare_playlist_id, false);
+			mmh::sort_get_permutation(m_playlists, permutation, g_compare_playlist_id, false);
 
 			t_size index, counter = max(100 + 10*m_playlists.get_count(), m_playlists.get_count());
 
-			mmh::genrand_t p_genrand;
+			mmh::GenRand p_genrand;
 			//service_ptr_t<genrand_service> p_rand = genrand_service::g_create();
 			do
 			{
@@ -755,15 +755,15 @@ namespace ipod
 		t_uint64 load_database_t::get_new_track_pid()
 		{
 			t_uint64 pid = NULL;
-			mmh::permutation_t permutation;
+			mmh::Permutation permutation;
 			t_size count = m_tracks.get_count();
 			permutation.set_size(count);
 
-			mmh::g_sort_get_permutation_qsort(m_tracks, permutation, g_compare_track_dbid, false);
+			mmh::sort_get_permutation(m_tracks, permutation, g_compare_track_dbid, false);
 
 			t_size index, counter = max(100 + 10*m_tracks.get_count(), m_tracks.get_count());
 
-			mmh::genrand_t p_genrand;
+			mmh::GenRand p_genrand;
 			//service_ptr_t<genrand_service> p_rand = genrand_service::g_create();
 			do
 			{
@@ -806,14 +806,14 @@ namespace ipod
 		}
 		void load_database_t::glue_items (t_size start)
 		{
-			mmh::permutation_t permutation, permutationdbid;
+			mmh::Permutation permutation, permutationdbid;
 			permutation.set_size(start);
 			permutationdbid.set_size(start);
 
 			t_size i;
 
-			mmh::g_sort_get_permutation_qsort(m_tracks, permutation, g_compare_track_id, false);
-			mmh::g_sort_get_permutation_qsort(m_tracks, permutationdbid, g_compare_track_dbid, false);
+			mmh::sort_get_permutation(m_tracks, permutation, g_compare_track_id, false);
+			mmh::sort_get_permutation(m_tracks, permutationdbid, g_compare_track_dbid, false);
 
 			//pfc::list_const_permutation_t<pfc::rcptr_t <t_track>, pfc::array_t<t_size> > sorted_array(m_library.m_tracks, permutation);
 

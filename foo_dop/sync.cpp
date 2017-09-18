@@ -8,7 +8,7 @@ void g_close_explorer_windows_for_drive(char drive)
 	path.append_single(drive);
 	path.append_fromptr(L":\\", 3);
 
-	mmh::comptr_t<IRunningObjectTable> prot;
+	mmh::ComPtr<IRunningObjectTable> prot;
 
 	HRESULT hr = GetRunningObjectTable(0, prot);
 
@@ -16,7 +16,7 @@ void g_close_explorer_windows_for_drive(char drive)
 
 	{
 
-		mmh::comptr_t<IMoniker> pmkFile;
+		mmh::ComPtr<IMoniker> pmkFile;
 
 		hr = CreateFileMoniker(path.get_ptr(), pmkFile);
 
@@ -24,7 +24,7 @@ void g_close_explorer_windows_for_drive(char drive)
 
 		{
 
-			mmh::comptr_t<IEnumMoniker> penumMk;
+			mmh::ComPtr<IEnumMoniker> penumMk;
 
 			hr = prot->EnumRunning(penumMk);
 
@@ -36,14 +36,14 @@ void g_close_explorer_windows_for_drive(char drive)
 
 				ULONG celt;
 
-				mmh::comptr_t<IMoniker> pmk;
+				mmh::ComPtr<IMoniker> pmk;
 
 				while ((penumMk->Next(1, pmk, &celt) == S_OK))
 
 				{
 
 					LPOLESTR ppszDisplaynamefull;
-					mmh::comptr_t<IBindCtx> pbcfull;  
+					mmh::ComPtr<IBindCtx> pbcfull;  
 					if (SUCCEEDED(CreateBindCtx( 0, pbcfull )))
 					{
 						if(SUCCEEDED(pmk->GetDisplayName(pbcfull,NULL,
@@ -63,7 +63,7 @@ void g_close_explorer_windows_for_drive(char drive)
 
 						// Is this a moniker prefix?
 
-						mmh::comptr_t<IMoniker> pmkPrefix;
+						mmh::ComPtr<IMoniker> pmkPrefix;
 
 						if (SUCCEEDED(pmkFile->CommonPrefixWith(pmk, pmkPrefix)))
 
@@ -75,13 +75,13 @@ void g_close_explorer_windows_for_drive(char drive)
 
 								// Get the IFileIsInUse instance
 
-								mmh::comptr_t<IUnknown> punk;
+								mmh::ComPtr<IUnknown> punk;
 
 								if (prot->GetObject(pmk, punk) == S_OK)
 
 								{
 
-									mmh::comptr_t<IFileIsInUse> pfiu = punk;
+									mmh::ComPtr<IFileIsInUse> pfiu = punk;
 									if (pfiu.is_valid())
 									{
 										hr = pfiu->CloseFile();
@@ -122,7 +122,7 @@ static BOOL CALLBACK g_sync_proc(HWND wnd,UINT msg,WPARAM wp,LPARAM lp)
 			Button_SetCheck(GetDlgItem(wnd, IDC_EJECT_WHEN_DONE), settings::sync_eject_when_done ? BST_CHECKED : NULL);
 
 			HWND wnd_list = GetDlgItem(wnd, IDC_LIST);
-			uih::SetListViewWindowExplorerTheme(wnd_list);
+			uih::list_view_set_explorer_theme(wnd_list);
 			ListView_SetExtendedListViewStyleEx(wnd_list, LVS_EX_FULLROWSELECT|LVS_EX_CHECKBOXES, LVS_EX_FULLROWSELECT|LVS_EX_CHECKBOXES);
 
 			LVCOLUMN lvc;
@@ -236,7 +236,7 @@ static BOOL CALLBACK g_sync_proc(HWND wnd,UINT msg,WPARAM wp,LPARAM lp)
 		SetWindowLongPtr(wnd, DWL_MSGRESULT, TRUE);
 		return TRUE;
 	case WM_PAINT:
-		uih::HandleModernBackgroundPaint(wnd, GetDlgItem(wnd, IDOK));
+		uih::handle_modern_background_paint(wnd, GetDlgItem(wnd, IDOK));
 		return TRUE;
 	case WM_CTLCOLORSTATIC:
 		SetBkColor((HDC)wp, GetSysColor(COLOR_WINDOW));
@@ -299,18 +299,18 @@ void g_run_sync()
 			{
 				t_main_thread_sync_confirm * ptr = (t_main_thread_sync_confirm *)lp;
 				HWND wnd_list = GetDlgItem(wnd, IDC_LIST);
-				uih::SetListViewWindowExplorerTheme(wnd_list);
+				uih::list_view_set_explorer_theme(wnd_list);
 				ListView_SetExtendedListViewStyleEx(wnd_list, LVS_EX_FULLROWSELECT, LVS_EX_FULLROWSELECT);
 
-				uih::ListView_InsertColumnText(wnd_list, 0, L"Artist", 150);
-				uih::ListView_InsertColumnText(wnd_list, 1, L"Title", 250);
-				uih::ListView_InsertColumnText(wnd_list, 2, L"Action", 100);
+				uih::list_view_insert_column_text(wnd_list, 0, L"Artist", 150);
+				uih::list_view_insert_column_text(wnd_list, 1, L"Title", 250);
+				uih::list_view_insert_column_text(wnd_list, 2, L"Action", 100);
 				static_api_ptr_t<playlist_manager> api;
 
 				t_size i, count=ptr->m_item_actions.m_new_tracks.get_count(), count_nodups = count;
 				bit_array_bittable mask(count);
-				mmh::permutation_t permuation(count);
-				mmh::g_sort_get_permutation_qsort_v2(ptr->m_item_actions.m_new_tracks.get_ptr(), permuation, pfc::compare_t<metadb_handle_ptr,metadb_handle_ptr>, true);
+				mmh::Permutation permuation(count);
+				mmh::sort_get_permutation(ptr->m_item_actions.m_new_tracks.get_ptr(), permuation, pfc::compare_t<metadb_handle_ptr,metadb_handle_ptr>, true);
 				for (t_size k=0; k+1 < count; k++)
 				{
 					if (ptr->m_item_actions.m_new_tracks[permuation[k]] == ptr->m_item_actions.m_new_tracks[permuation[k+1]])
@@ -330,13 +330,13 @@ void g_run_sync()
 							{
 								pfc::string8 temp;
 								g_print_meta(p_info->info(), "ARTIST", temp);
-								uih::ListView_InsertItemText(wnd_list, j, 0, temp);
+								uih::list_view_insert_item_text(wnd_list, j, 0, temp);
 								g_print_meta(p_info->info(), "TITLE", temp);
-								uih::ListView_InsertItemText(wnd_list, j, 1, temp, true);
+								uih::list_view_insert_item_text(wnd_list, j, 1, temp, true);
 							}
 							else
-								uih::ListView_InsertItemText(wnd_list, j, 0, pfc::string_filename(ptr->m_item_actions.m_new_tracks[i]->get_path()));
-							uih::ListView_InsertItemText(wnd_list, j, 2, "Add", true);
+								uih::list_view_insert_item_text(wnd_list, j, 0, pfc::string_filename(ptr->m_item_actions.m_new_tracks[i]->get_path()));
+							uih::list_view_insert_item_text(wnd_list, j, 2, "Add", true);
 							++j;
 						}
 					}
@@ -350,9 +350,9 @@ void g_run_sync()
 						if (ptr->m_item_actions.m_tracks_to_remove[i])
 						{
 							t_size index = ListView_GetItemCount(wnd_list);
-							uih::ListView_InsertItemText(wnd_list, index, 0, ptr->m_library.m_tracks[i]->artist);
-							uih::ListView_InsertItemText(wnd_list, index, 1, ptr->m_library.m_tracks[i]->title, true);
-							uih::ListView_InsertItemText(wnd_list, index, 2, "Remove", true);
+							uih::list_view_insert_item_text(wnd_list, index, 0, ptr->m_library.m_tracks[i]->artist);
+							uih::list_view_insert_item_text(wnd_list, index, 1, ptr->m_library.m_tracks[i]->title, true);
+							uih::list_view_insert_item_text(wnd_list, index, 2, "Remove", true);
 							count_remove++;
 						}
 					}
@@ -376,7 +376,7 @@ void g_run_sync()
 			SetWindowLongPtr(wnd, DWL_MSGRESULT, TRUE);
 			return TRUE;
 		case WM_PAINT:
-			uih::HandleModernBackgroundPaint(wnd, GetDlgItem(wnd, IDOK));
+			uih::handle_modern_background_paint(wnd, GetDlgItem(wnd, IDOK));
 			return TRUE;
 		case WM_CTLCOLORSTATIC:
 			SetBkColor((HDC)wp, GetSysColor(COLOR_WINDOW));

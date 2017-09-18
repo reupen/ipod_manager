@@ -54,7 +54,7 @@ t_uint32 g_get_gapless_sync_frame_mp3(service_ptr_t<file> p_file, abort_callback
 			t_filesize start = p_file->get_position(p_abort);
 			mpeg_header header;
 			read_mpeg_header(p_file, header, p_abort);
-			p_file->skip(header.calc_size()-4, p_abort);
+			p_file->skip_object(header.calc_size()-4, p_abort);
 			offsets.add_item(start);
 		}
 	}
@@ -123,7 +123,7 @@ t_filesize g_get_gapless_sync_frame_mp3_v2(service_ptr_t<file> p_file, abort_cal
 			mp3_utils::TMPEGFrameInfo headerinfo;
 			bool valid = mp3_utils::ParseMPEGFrameHeader(headerinfo, header);
 			if (!valid || headerinfo.m_bytes < 4) break;
-			p_file->skip(headerinfo.m_bytes-4, p_abort);
+			p_file->skip_object(headerinfo.m_bytes-4, p_abort);
 			offsets.add_item(start);
 			//scanned_length += audio_math::samples_to_time(headerinfo.m_duration, headerinfo.m_sample_rate);
 		}

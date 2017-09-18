@@ -66,7 +66,7 @@ public:
 	}
 	void skip (service_ptr_t<file> & p_file, abort_callback & p_abort)
 	{
-		p_file->skip(size - sizeof(t_uint32)*2 - (size32==1 ? sizeof(t_uint64) : 0), p_abort);
+		p_file->skip_object(size - sizeof(t_uint32)*2 - (size32==1 ? sizeof(t_uint64) : 0), p_abort);
 	}
 	t_filesize get_data_size()
 	{
@@ -134,7 +134,7 @@ public:
 	}
 	void skip (t_filesize bytes)
 	{
-		m_stream.skip(bytes, m_abort);
+		m_stream.skip_object(bytes, m_abort);
 		m_box_data_read += pfc::downcast_guarded<t_size>(bytes);
 	}
 	t_size get_remaining_data_size() 
@@ -153,7 +153,7 @@ public:
 		{
 			readbox();
 			if (m_box.type != type)
-				m_stream.skip(m_box.get_data_size(), m_abort);
+				m_stream.skip_object(m_box.get_data_size(), m_abort);
 			else
 			{
 				if (b_cache_data)
@@ -177,7 +177,7 @@ public:
 	}
 	void skip_box()
 	{
-		m_stream.skip(m_box.get_data_size(), m_abort);
+		m_stream.skip_object(m_box.get_data_size(), m_abort);
 	}
 	void read_string(pfc::string8 & p_out, t_size len)
 	{
@@ -216,9 +216,9 @@ public:
 	};
 
 private:
-	mmh::stream_reader_memblock_ref_seekable m_data_ref_stream;
+	fbh::StreamReaderMemblock m_data_ref_stream;
 	abort_callback & m_abort;
-	mmh::stream_reader_limited_ref m_stream;
+	fbh::StreamReaderLimiter m_stream;
 };
 
 bool g_check_mp4_type(const char * path)
@@ -302,21 +302,21 @@ bool g_get_gapless_mp4_apple_v2(service_ptr_t<file> p_file, t_uint32 & delay, t_
 
 			ptrstart = ptr;
 			while (*ptr && *ptr != ' ') ptr++;
-			t_uint32 val = strtoul_n(ptrstart, t_size(ptr-ptrstart), 0x10);
+			t_uint32 val = mmh::strtoul_n(ptrstart, t_size(ptr-ptrstart), 0x10);
 
 			while (*ptr == ' ') ptr++;
 
 			ptrstart = ptr;
 			while (*ptr && *ptr != ' ') ptr++;
 			b_delay = ptr>ptrstart;
-			delay = strtoul_n(ptrstart, t_size(ptr-ptrstart), 0x10);
+			delay = mmh::strtoul_n(ptrstart, t_size(ptr-ptrstart), 0x10);
 
 			while (*ptr == ' ') ptr++;
 
 			ptrstart = ptr;
 			while (*ptr && *ptr != ' ') ptr++;
 			b_padding = ptr>ptrstart;
-			padding = strtoul_n(ptrstart, t_size(ptr-ptrstart), 0x10);
+			padding = mmh::strtoul_n(ptrstart, t_size(ptr-ptrstart), 0x10);
 
 			ret = b_padding && b_delay;
 			return ret;
@@ -945,7 +945,7 @@ bool g_get_itunes_chapters_mp4(service_ptr_t<file> p_file, itunesdb::chapter_lis
 
 										if (p_chapter_track.m_tx3g)
 										{
-											mmh::stream_reader_memblock_ref_seekable samplereader(sampledata);
+											fbh::StreamReaderMemblock samplereader(sampledata);
 											t_uint16 stringlen;
 											samplereader.read_bendian_t(stringlen, p_abort);
 											samplereader.read(pfc::string_buffer(text, stringlen), stringlen, p_abort);

@@ -97,7 +97,7 @@ public:
 					buffer << m_adder.m_error_list[i];
 					if (i+1 <count) buffer << "\n";
 				}
-				message_window_t::g_run_threadsafe("Errors occurred updating your iPod", buffer, OIC_WARNING);
+				fbh::show_info_box_threadsafe("Errors occurred updating your iPod", buffer, OIC_WARNING);
 			}*/
 		}
 		catch (exception_aborted) 
@@ -110,7 +110,7 @@ public:
 				}
 				catch (const pfc::exception & e) 
 				{
-					message_window_t::g_run_threadsafe("Error", e.what());
+					fbh::show_info_box_threadsafe("Error", e.what());
 				}
 			}
 #if 0
@@ -138,7 +138,7 @@ public:
 				}
 			}
 			catch (const pfc::exception &) {}
-			message_window_t::g_run_threadsafe("Error", e.what());
+			fbh::show_info_box_threadsafe("Error", e.what());
 			m_failed = true;
 		}
 		if (m_drive_scanner.m_ipods.get_count() && b_started)
@@ -209,15 +209,15 @@ public:
 
 					pfc::string8 temp;
 					items[i]->format_title(NULL, temp, to_rating, NULL);
-					p_track.rating = strtoul_n(temp, pfc_infinite)*20;
+					p_track.rating = mmh::strtoul_n(temp.get_ptr(), pfc_infinite)*20;
 
 					items[i]->format_title(NULL, temp, to_playcount, NULL);
 					if (temp.length())
-						p_track.playcount = strtoul_n(temp, pfc_infinite);
+						p_track.playcount = mmh::strtoul_n(temp.get_ptr(), pfc_infinite);
 
 					items[i]->format_title(NULL, temp, to_lastplayed, NULL);
 					if (temp.length())
-						p_track.lastplayedtime = apple_time_from_filetime( strtoul64_n(temp, pfc_infinite) );
+						p_track.lastplayedtime = apple_time_from_filetime(mmh::strtoul64_n(temp.get_ptr(), pfc_infinite) );
 				}
 			}
 		}
@@ -426,7 +426,7 @@ public:
 					buffer << m_adder.m_error_list[i];
 					if (i+1 <count) buffer << "\n";
 				}
-				message_window_t::g_run_threadsafe("Errors occurred updating your iPod", buffer, popup_message::icon_error);
+				fbh::show_info_box_threadsafe("Errors occurred updating your iPod", buffer, popup_message::icon_error);
 			}*/
 		}
 		catch (exception_aborted) 
@@ -440,7 +440,7 @@ public:
 				}
 				catch (const pfc::exception & e) 
 				{
-					message_window_t::g_run_threadsafe("Error", e.what());
+					fbh::show_info_box_threadsafe("Error", e.what());
 				}
 			}
 #if 0
@@ -468,7 +468,7 @@ public:
 				}
 			}
 			catch (const pfc::exception &) {}
-			message_window_t::g_run_threadsafe("Error", e.what());
+			fbh::show_info_box_threadsafe("Error", e.what());
 			m_failed = true;
 		}
 		if (m_drive_scanner.m_ipods.get_count() && b_started)
@@ -509,7 +509,7 @@ public:
 			{
 				t_main_thread_select_playlists * ptr = (t_main_thread_select_playlists *)lp;
 				HWND wnd_list = GetDlgItem(wnd, IDC_LIST);
-				uih::SetListViewWindowExplorerTheme(wnd_list);
+				uih::list_view_set_explorer_theme(wnd_list);
 				ListView_SetExtendedListViewStyleEx(wnd_list, LVS_EX_FULLROWSELECT|LVS_EX_CHECKBOXES, LVS_EX_FULLROWSELECT|LVS_EX_CHECKBOXES);
 
 				LVCOLUMN lvc;
@@ -625,7 +625,7 @@ public:
 		}
 		catch (const pfc::exception & e) 
 		{
-			message_window_t::g_run_threadsafe("Error", e.what());
+			fbh::show_info_box_threadsafe("Error", e.what());
 			m_failed = true;
 		}
 		if (m_drive_scanner.m_ipods.get_count() && b_started)
@@ -667,7 +667,7 @@ public:
 				buff.fill_null();//CR_REMOVE_VETOED; PNP_VetoOutstandingOpen
 				CONFIGRET ret = CM_Request_Device_Eject(dev, &veto_type, buff.get_ptr(), MAX_PATH, NULL);
 				if (ret == CR_SUCCESS)
-					message_window_t::g_run_threadsafe("Eject iPod", "You may now safely remove your iPod.");
+					fbh::show_info_box_threadsafe("Eject iPod", "You may now safely remove your iPod.");
 				else
 					throw pfc::exception("Failed to eject iPod. Close any applications using the device and try again.");
 			}
@@ -678,7 +678,7 @@ public:
 		}
 		catch (const pfc::exception & e) 
 		{
-			message_window_t::g_run_threadsafe("Error", e.what());
+			fbh::show_info_box_threadsafe("Error", e.what());
 		}
 	}
 
@@ -706,7 +706,7 @@ public:
 				buff.fill_null();//CR_REMOVE_VETOED; PNP_VetoOutstandingOpen
 				CONFIGRET ret = CM_Request_Device_Eject(dev, &veto_type, buff.get_ptr(), MAX_PATH, NULL);
 				if (ret == CR_SUCCESS)
-					message_window_t::g_run_threadsafe("Eject iPod", "You may now safely remove your iPod.");
+					fbh::show_info_box_threadsafe("Eject iPod", "You may now safely remove your iPod.");
 				else
 					throw pfc::exception("Failed to eject iPod. Close any applications using the device and try again.");
 			}
@@ -716,7 +716,7 @@ public:
 		}
 		catch (const pfc::exception & e) 
 		{
-			message_window_t::g_run_threadsafe("Error", e.what());
+			fbh::show_info_box_threadsafe("Error", e.what());
 		}
 	}
 

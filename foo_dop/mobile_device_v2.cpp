@@ -602,7 +602,7 @@ void mobile_device_api::initialise()
 	catch (pfc::exception const & ex) 
 	{
 		deinitialise();
-		message_window_t::g_run_threadsafe("Error - iPod manager", ex.what());
+		fbh::show_info_box_threadsafe("Error - iPod manager", ex.what());
 	}
 }
 
@@ -1200,7 +1200,7 @@ void mobile_device_api::on_mobile_device_connected (am_device * dev)
 		{
 			//g_drive_manager.remove_pending_mobile_device(dev->serial);
 			g_drive_manager.set_pending_mobile_device_connection(false);
-			message_window_t::g_run_threadsafe("Error - iPod manager", ex.what(), OIC_ERROR);
+			fbh::show_info_box_threadsafe("Error - iPod manager", ex.what(), OIC_ERROR);
 		}
 	}
 #if 0

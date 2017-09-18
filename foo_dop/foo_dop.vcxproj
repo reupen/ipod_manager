@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -13,18 +13,18 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{4AC26C54-BE51-4FDB-A115-6E2F2B3650E1}</ProjectGuid>
     <RootNamespace>foo_dop</RootNamespace>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <PlatformToolset>v140_xp</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -80,6 +80,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <EnableEnhancedInstructionSet>NoExtensions</EnableEnhancedInstructionSet>
       <AdditionalOptions>/Zc:threadSafeInit- %(AdditionalOptions)</AdditionalOptions>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -119,6 +120,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <AdditionalOptions>/Zc:threadSafeInit- %(AdditionalOptions)</AdditionalOptions>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -282,6 +284,9 @@
     <ProjectReference Include="..\dop-sdk\dop-sdk.vcxproj">
       <Project>{4e751798-e95b-4837-878f-e4732d2a2807}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\fbh\fbh.vcxproj">
+      <Project>{84d30275-d3d7-4867-82d2-8031a53dce20}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\foobar2000\foobar2000_component_client\foobar2000_component_client.vcxproj">
       <Project>{71ad2674-065b-48f5-b8b0-e1f9d3892081}</Project>
     </ProjectReference>
@@ -303,7 +308,7 @@
     <ProjectReference Include="..\ui_helpers\ui_helpers.vcxproj">
       <Project>{a8c4298d-00f5-46f7-91ba-f503fd581590}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\zlib-1.2.5\contrib\vstudio\vc14\zlibstat.vcxproj">
+    <ProjectReference Include="..\zlib-1.2.5\contrib\vstudio\vc15\zlibstat.vcxproj">
       <Project>{745dec58-ebb3-47a9-a9b8-4c6627c01bf8}</Project>
     </ProjectReference>
   </ItemGroup>

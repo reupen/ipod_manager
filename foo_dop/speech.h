@@ -65,7 +65,7 @@ public:
 	}
 private:
 	void _check_hresult (HRESULT hr) {if (FAILED(hr)) throw pfc::exception(pfc::string8() << "SAPI error: " << format_win32_error(hr));}
-	mmh::comptr_t<ISpVoice> m_SpVoice;
+	mmh::ComPtr<ISpVoice> m_SpVoice;
 	bool m_valid;
 	speech_string_preprocessor m_preprocessor;
 };

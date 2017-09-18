@@ -273,7 +273,7 @@ namespace photodb
 		{};
 	};
 	template <t_uint32 id>
-	void read_header(mmh::stream_reader_memblock_ref_seekable * p_reader, t_header_marker<id> & p_out, abort_callback & p_abort)
+	void read_header(fbh::StreamReaderMemblock * p_reader, t_header_marker<id> & p_out, abort_callback & p_abort)
 	{
 		p_reader->read_bendian_t(p_out.identifier, p_abort);
 		p_out.verify_identifier();
@@ -288,7 +288,7 @@ namespace photodb
 	void read_do(stream_reader * p_reader, t_header_marker< identifiers::dohm > & p_header, t_data_object & p_out, abort_callback & p_abort);
 	class reader
 	{
-		mmh::stream_reader_memblock_ref_seekable * m_file;
+		fbh::StreamReaderMemblock * m_file;
 
 		template <t_uint32 id>
 		void read_header(t_header_marker<id> & p_out, abort_callback & p_abort)
@@ -313,7 +313,7 @@ namespace photodb
 	public:
 		void read_photodb(t_datafile & p_out, abort_callback & p_abort);
 
-		reader(mmh::stream_reader_memblock_ref_seekable * p_file) 
+		reader(fbh::StreamReaderMemblock * p_file) 
 			: m_file(p_file)
 		{};
 	};

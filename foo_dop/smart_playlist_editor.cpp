@@ -61,19 +61,19 @@ t_uint32 g_str_to_appletime(const char * str)
 	const char * start = str, *ptr = str;
 	while (*ptr && *ptr != '.')
 		ptr++;
-	st.wYear = strtoul_n(start, ptr-start);
+	st.wYear = mmh::strtoul_n(start, ptr-start);
 	if (*ptr=='.')
 		ptr++;
 	start=ptr;
 	while (*ptr && *ptr != '.')
 		ptr++;
-	st.wMonth = strtoul_n(start, ptr-start);
+	st.wMonth = mmh::strtoul_n(start, ptr-start);
 	if (*ptr=='.')
 		ptr++;
 	start=ptr;
 	while (*ptr && *ptr != '.')
 		ptr++;
-	st.wDay = strtoul_n(start, ptr-start);
+	st.wDay = mmh::strtoul_n(start, ptr-start);
 
 	t_filetimestamp ft = NULL;
 	SystemTimeToFileTime(&st, (LPFILETIME)&ft);
@@ -487,14 +487,14 @@ BOOL t_smart_playlist_editor::DialogProc(HWND wnd,UINT msg,WPARAM wp,LPARAM lp)
 			//	uxtheme->EnableThemeDialogTexture(wnd, ETDT_ENABLETAB);
 			SetWindowText(wnd, m_new ? L"New smart playlist" : L"Edit smart playlist");
 			HWND wnd_rules = GetDlgItem(wnd, IDC_RULES);
-			uih::SetListViewWindowExplorerTheme(wnd_rules);
+			uih::list_view_set_explorer_theme(wnd_rules);
 			ListView_SetExtendedListViewStyleEx(wnd_rules, LVS_EX_FULLROWSELECT, LVS_EX_FULLROWSELECT);
 
 			LVCOLUMN lvc;
 			memset(&lvc, 0, sizeof(LVCOLUMN));
 			lvc.mask = LVCF_TEXT|LVCF_WIDTH;
 
-			uih::ListView_InsertColumnText(wnd_rules, 0, _T("Rule"), 550);
+			uih::list_view_insert_column_text(wnd_rules, 0, _T("Rule"), 550);
 
 			HWND wnd_match_type = GetDlgItem(wnd, IDC_MATCH_TYPE);
 			ComboBox_AddString(wnd_match_type, L"all");
@@ -554,7 +554,7 @@ BOOL t_smart_playlist_editor::DialogProc(HWND wnd,UINT msg,WPARAM wp,LPARAM lp)
 			{
 				pfc::string8 temp;
 				g_get_smart_rule_desc(m_rules.rules[i],m_playlist_map,temp);
-				uih::ListView_InsertItemText(wnd_rules, i, 0, temp );
+				uih::list_view_insert_item_text(wnd_rules, i, 0, temp );
 			}
 
 			HWND wnd_limit_value = GetDlgItem(wnd, IDC_LIMIT_VALUE);
@@ -608,7 +608,7 @@ BOOL t_smart_playlist_editor::DialogProc(HWND wnd,UINT msg,WPARAM wp,LPARAM lp)
 					t_size index = m_rules.rules.add_item(editor.m_rule);
 					pfc::string8 temp;
 					g_get_smart_rule_desc(m_rules.rules[index],m_playlist_map,temp);
-					uih::ListView_InsertItemText(GetDlgItem(wnd, IDC_RULES), index, 0, temp );
+					uih::list_view_insert_item_text(GetDlgItem(wnd, IDC_RULES), index, 0, temp );
 
 					if (m_rules.rules.get_count()==2)
 						EnableWindow(GetDlgItem(wnd, IDC_DELETE), TRUE);
@@ -638,7 +638,7 @@ BOOL t_smart_playlist_editor::DialogProc(HWND wnd,UINT msg,WPARAM wp,LPARAM lp)
 						m_rules.rules[lbi]=editor.m_rule;
 						pfc::string8 temp;
 						g_get_smart_rule_desc(m_rules.rules[lbi],m_playlist_map,temp);
-						uih::ListView_InsertItemText(GetDlgItem(wnd, IDC_RULES), lbi, 0, temp , true);
+						uih::list_view_insert_item_text(GetDlgItem(wnd, IDC_RULES), lbi, 0, temp , true);
 					}
 				}
 			}
@@ -660,7 +660,7 @@ BOOL t_smart_playlist_editor::DialogProc(HWND wnd,UINT msg,WPARAM wp,LPARAM lp)
 		case IDC_LIMIT_VALUE|(EN_CHANGE<<16):
 			{
 				string_utf8_from_window val((HWND)lp);
-				m_data.limit_value = strtoul_n(val.get_ptr(), val.length(), 10);
+				m_data.limit_value = mmh::strtoul_n(val.get_ptr(), val.length(), 10);
 			}
 			return 0;
 		case IDC_LIMIT_ORDER|(CBN_SELCHANGE<<16):
@@ -725,7 +725,7 @@ BOOL t_smart_playlist_editor::DialogProc(HWND wnd,UINT msg,WPARAM wp,LPARAM lp)
 	return FALSE;
 }
 
-t_size ComboBox_AddStringData(HWND wnd, const TCHAR * str, LPARAM data)
+t_size combo_box_add_string_data(HWND wnd, const TCHAR * str, LPARAM data)
 {
 	t_size index = ComboBox_AddString(wnd, str);
 	ComboBox_SetItemData(wnd, index, data);
@@ -745,7 +745,7 @@ void t_smart_playlist_rule_editor::update_operator_list(HWND wnd)
 		{
 		t_size i , count = (g_smart_operators_by_type(g_smart_fields[index].type).count);
 		for (i=0; i<count; i++)
-			ComboBox_AddStringData(wnd_operator, g_smart_operators_by_type(g_smart_fields[index].type).operators[i].text,
+			combo_box_add_string_data(wnd_operator, g_smart_operators_by_type(g_smart_fields[index].type).operators[i].text,
 			g_smart_operators_by_type(g_smart_fields[index].type).operators[i].value);
 		}
 	}
@@ -1014,7 +1014,7 @@ BOOL t_smart_playlist_rule_editor::DialogProc(HWND wnd,UINT msg,WPARAM wp,LPARAM
 									m_rule.string = pfc::stringcvt::string_wide_from_utf8(string_utf8_from_window(HWND(lp)));
 								else if (g_smart_fields[index_field].type==1)
 								{
-									m_rule.from_value=strtol64_n(string_utf8_from_window(HWND(lp)).get_ptr(), pfc_infinite);
+									m_rule.from_value= mmh::strtol64_n(string_utf8_from_window(HWND(lp)).get_ptr(), pfc_infinite);
 									m_rule.to_value=m_rule.from_value;
 								}
 								else if (g_smart_fields[index_field].type==2)
@@ -1027,7 +1027,7 @@ BOOL t_smart_playlist_rule_editor::DialogProc(HWND wnd,UINT msg,WPARAM wp,LPARAM
 							{
 								if (g_smart_fields[index_field].type==1)
 								{
-									m_rule.from_value=strtol64_n(string_utf8_from_window(HWND(lp)).get_ptr(), pfc_infinite);
+									m_rule.from_value= mmh::strtol64_n(string_utf8_from_window(HWND(lp)).get_ptr(), pfc_infinite);
 								}
 								else if (g_smart_fields[index_field].type==2)
 								{
@@ -1038,7 +1038,7 @@ BOOL t_smart_playlist_rule_editor::DialogProc(HWND wnd,UINT msg,WPARAM wp,LPARAM
 							{
 								if (g_smart_fields[index_field].type==2)
 								{
-									m_rule.from_date=-strtol64_n(string_utf8_from_window(HWND(lp)).get_ptr(), pfc_infinite);								
+									m_rule.from_date=-mmh::strtol64_n(string_utf8_from_window(HWND(lp)).get_ptr(), pfc_infinite);								
 									m_rule.to_date = 0;
 								}
 							}
@@ -1062,7 +1062,7 @@ BOOL t_smart_playlist_rule_editor::DialogProc(HWND wnd,UINT msg,WPARAM wp,LPARAM
 							{
 								if (g_smart_fields[index_field].type==1)
 								{
-									m_rule.to_value=strtol64_n(string_utf8_from_window(HWND(lp)).get_ptr(), pfc_infinite);
+									m_rule.to_value= mmh::strtol64_n(string_utf8_from_window(HWND(lp)).get_ptr(), pfc_infinite);
 								}
 								else if (g_smart_fields[index_field].type==2)
 								{

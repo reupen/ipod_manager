@@ -859,7 +859,7 @@ void database_writer_t::write_itunesdb(ipod_device_ptr_ref_t p_ipod, ipod::tasks
 			if (!p_ipod->m_device_properties.m_SQLiteDB && !p_ipod->m_device_properties.m_ShadowDB)
 			{
 
-				mmh::permutation_t sort_permutations[tabsize(library_indices)];
+				mmh::Permutation sort_permutations[tabsize(library_indices)];
 
 				{
 					t_size j;
@@ -887,7 +887,7 @@ void database_writer_t::write_itunesdb(ipod_device_ptr_ref_t p_ipod, ipod::tasks
 					do_index.write_lendian_t(t_uint32(0), p_abort);
 					do_index.write_lendian_t(t_uint32(0), p_abort);
 				
-					mmh::permutation_t ptemp(count_tracks);
+					mmh::Permutation ptemp(count_tracks);
 
 					//m_library.m_handles.sort_by_format_get_order(permutation.get_ptr(), library_indices[i].sort_pattern, NULL);
 					
@@ -898,16 +898,16 @@ void database_writer_t::write_itunesdb(ipod_device_ptr_ref_t p_ipod, ipod::tasks
 					{
 						//profiler (indicies_0);
 						if (b_numbers_last)
-							mmh::g_sort_get_permutation_qsort(sort_entries, sort_permutations[i], ipod_sort_helpers_t<true>::g_compare_title, false); 
+							mmh::sort_get_permutation(sort_entries, sort_permutations[i], ipod_sort_helpers_t<true>::g_compare_title, false); 
 						else
-							mmh::g_sort_get_permutation_qsort(sort_entries, sort_permutations[i], ipod_sort_helpers_t<false>::g_compare_title, false); 
+							mmh::sort_get_permutation(sort_entries, sort_permutations[i], ipod_sort_helpers_t<false>::g_compare_title, false); 
 					}
 					else if (i==1)
 					{
 						//profiler (indicies_1);
 						if (b_numbers_last)
 						{
-							mmh::g_sort_get_permutation_qsort(sort_entries, sort_permutations[i],
+							mmh::sort_get_permutation(sort_entries, sort_permutations[i],
 								t_sort_entry::g_compare_stack<
 								ipod_sort_helpers_t<true>::g_compare_album_and_track,
 								ipod_sort_helpers_t<true>::g_compare_title
@@ -916,7 +916,7 @@ void database_writer_t::write_itunesdb(ipod_device_ptr_ref_t p_ipod, ipod::tasks
 						}
 						else 
 						{
-							mmh::g_sort_get_permutation_qsort(sort_entries, sort_permutations[i],
+							mmh::sort_get_permutation(sort_entries, sort_permutations[i],
 								t_sort_entry::g_compare_stack<
 								ipod_sort_helpers_t<false>::g_compare_album_and_track,
 								ipod_sort_helpers_t<false>::g_compare_title
@@ -930,7 +930,7 @@ void database_writer_t::write_itunesdb(ipod_device_ptr_ref_t p_ipod, ipod::tasks
 						if (b_numbers_last)
 						{
 							ipod_sort_helpers_t<true> sorter;
-							mmh::g_sort_get_permutation_qsort(sort_entries, sort_permutations[i],
+							mmh::sort_get_permutation(sort_entries, sort_permutations[i],
 								t_sort_entry::g_compare_stack<
 								sorter.g_compare_artist,
 								sorter.g_compare_album_and_track,
@@ -941,7 +941,7 @@ void database_writer_t::write_itunesdb(ipod_device_ptr_ref_t p_ipod, ipod::tasks
 						else
 						{
 							ipod_sort_helpers_t<false> sorter;
-							mmh::g_sort_get_permutation_qsort(sort_entries, sort_permutations[i],
+							mmh::sort_get_permutation(sort_entries, sort_permutations[i],
 								t_sort_entry::g_compare_stack<
 								sorter.g_compare_artist,
 								sorter.g_compare_album_and_track,
@@ -956,7 +956,7 @@ void database_writer_t::write_itunesdb(ipod_device_ptr_ref_t p_ipod, ipod::tasks
 						if (b_numbers_last)
 						{
 							ipod_sort_helpers_t<true> sorter;
-							mmh::g_sort_get_permutation_qsort(sort_entries, sort_permutations[i],
+							mmh::sort_get_permutation(sort_entries, sort_permutations[i],
 								t_sort_entry::g_compare_stack<
 								sorter.g_compare_genre,
 								sorter.g_compare_artist,
@@ -968,7 +968,7 @@ void database_writer_t::write_itunesdb(ipod_device_ptr_ref_t p_ipod, ipod::tasks
 						else
 						{
 							ipod_sort_helpers_t<false> sorter;
-							mmh::g_sort_get_permutation_qsort(sort_entries, sort_permutations[i],
+							mmh::sort_get_permutation(sort_entries, sort_permutations[i],
 								t_sort_entry::g_compare_stack<
 								sorter.g_compare_genre,
 								sorter.g_compare_artist,
@@ -984,7 +984,7 @@ void database_writer_t::write_itunesdb(ipod_device_ptr_ref_t p_ipod, ipod::tasks
 						if (b_numbers_last)
 						{
 							ipod_sort_helpers_t<true> sorter;
-							mmh::g_sort_get_permutation_qsort(sort_entries, sort_permutations[i],
+							mmh::sort_get_permutation(sort_entries, sort_permutations[i],
 								t_sort_entry::g_compare_stack<
 								sorter.g_compare_composer,
 								sorter.g_compare_album_and_track,
@@ -995,7 +995,7 @@ void database_writer_t::write_itunesdb(ipod_device_ptr_ref_t p_ipod, ipod::tasks
 						else
 						{
 							ipod_sort_helpers_t<false> sorter;
-							mmh::g_sort_get_permutation_qsort(sort_entries, sort_permutations[i],
+							mmh::sort_get_permutation(sort_entries, sort_permutations[i],
 								t_sort_entry::g_compare_stack<
 								sorter.g_compare_composer,
 								sorter.g_compare_album_and_track,
@@ -1011,7 +1011,7 @@ void database_writer_t::write_itunesdb(ipod_device_ptr_ref_t p_ipod, ipod::tasks
 						if (b_numbers_last)
 						{
 							ipod_sort_helpers_t<true> sorter;
-							mmh::g_sort_get_permutation_qsort(sort_entries, sort_permutations[i],
+							mmh::sort_get_permutation(sort_entries, sort_permutations[i],
 								t_sort_entry::g_compare_stack<
 								sorter.g_compare_show1,
 								sorter.g_compare_seasonnumber,
@@ -1025,7 +1025,7 @@ void database_writer_t::write_itunesdb(ipod_device_ptr_ref_t p_ipod, ipod::tasks
 						else
 						{
 							ipod_sort_helpers_t<false> sorter;
-							mmh::g_sort_get_permutation_qsort(sort_entries, sort_permutations[i],
+							mmh::sort_get_permutation(sort_entries, sort_permutations[i],
 								t_sort_entry::g_compare_stack<
 								sorter.g_compare_show1,
 								sorter.g_compare_seasonnumber,
@@ -1044,7 +1044,7 @@ void database_writer_t::write_itunesdb(ipod_device_ptr_ref_t p_ipod, ipod::tasks
 						if (b_numbers_last)
 						{
 							ipod_sort_helpers_t<true> sorter;
-							mmh::g_sort_get_permutation_qsort(sort_entries, sort_permutations[i],
+							mmh::sort_get_permutation(sort_entries, sort_permutations[i],
 								t_sort_entry::g_compare_stack<
 								sorter.g_compare_seasonnumber,
 								sorter.g_compare_show1,
@@ -1057,7 +1057,7 @@ void database_writer_t::write_itunesdb(ipod_device_ptr_ref_t p_ipod, ipod::tasks
 						else
 						{
 							ipod_sort_helpers_t<false> sorter;
-							mmh::g_sort_get_permutation_qsort(sort_entries, sort_permutations[i],
+							mmh::sort_get_permutation(sort_entries, sort_permutations[i],
 								t_sort_entry::g_compare_stack<
 								sorter.g_compare_seasonnumber,
 								sorter.g_compare_show1,
@@ -1074,7 +1074,7 @@ void database_writer_t::write_itunesdb(ipod_device_ptr_ref_t p_ipod, ipod::tasks
 						if (b_numbers_last)
 						{
 							ipod_sort_helpers_t<true> sorter;
-							mmh::g_sort_get_permutation_qsort(sort_entries, sort_permutations[i],
+							mmh::sort_get_permutation(sort_entries, sort_permutations[i],
 								t_sort_entry::g_compare_stack<
 								sorter.g_compare_episodenumber,
 								sorter.g_compare_episodeid,
@@ -1085,7 +1085,7 @@ void database_writer_t::write_itunesdb(ipod_device_ptr_ref_t p_ipod, ipod::tasks
 						else
 						{
 							ipod_sort_helpers_t<false> sorter;
-							mmh::g_sort_get_permutation_qsort(sort_entries, sort_permutations[i],
+							mmh::sort_get_permutation(sort_entries, sort_permutations[i],
 								t_sort_entry::g_compare_stack<
 								sorter.g_compare_episodenumber,
 								sorter.g_compare_episodeid,
@@ -1099,7 +1099,7 @@ void database_writer_t::write_itunesdb(ipod_device_ptr_ref_t p_ipod, ipod::tasks
 						if (b_numbers_last)
 						{
 							ipod_sort_helpers_t<true> sorter;
-							mmh::g_sort_get_permutation_qsort(sort_entries, sort_permutations[i],
+							mmh::sort_get_permutation(sort_entries, sort_permutations[i],
 								t_sort_entry::g_compare_stack<
 								sorter.g_compare_artist,
 								sorter.g_compare_album_and_track2,
@@ -1109,7 +1109,7 @@ void database_writer_t::write_itunesdb(ipod_device_ptr_ref_t p_ipod, ipod::tasks
 						else
 						{
 							ipod_sort_helpers_t<false> sorter;
-							mmh::g_sort_get_permutation_qsort(sort_entries, sort_permutations[i],
+							mmh::sort_get_permutation(sort_entries, sort_permutations[i],
 								t_sort_entry::g_compare_stack<
 								sorter.g_compare_artist,
 								sorter.g_compare_album_and_track2,
@@ -1122,7 +1122,7 @@ void database_writer_t::write_itunesdb(ipod_device_ptr_ref_t p_ipod, ipod::tasks
 						if (b_numbers_last)
 						{
 							ipod_sort_helpers_t<true> sorter;
-							mmh::g_sort_get_permutation_qsort(sort_entries, sort_permutations[i],
+							mmh::sort_get_permutation(sort_entries, sort_permutations[i],
 								t_sort_entry::g_compare_stack<
 								sorter.g_compare_album_artist,
 								sorter.g_compare_artist,
@@ -1133,7 +1133,7 @@ void database_writer_t::write_itunesdb(ipod_device_ptr_ref_t p_ipod, ipod::tasks
 						else
 						{
 							ipod_sort_helpers_t<false> sorter;
-							mmh::g_sort_get_permutation_qsort(sort_entries, sort_permutations[i],
+							mmh::sort_get_permutation(sort_entries, sort_permutations[i],
 								t_sort_entry::g_compare_stack<
 								sorter.g_compare_album_artist,
 								sorter.g_compare_artist,
@@ -1754,7 +1754,7 @@ void database_writer_t::write_itunesdb(ipod_device_ptr_ref_t p_ipod, ipod::tasks
 			for (i=0; i<udid_length; i++)
 			{
 				//if (!struid[i*2] || !struid[i*2 + 1]) break;
-				uid[i] = (unsigned char)strtoul64_n(&struid[i*2], 2, 0x10);
+				uid[i] = (unsigned char)mmh::strtoul64_n(&struid[i*2], 2, 0x10);
 			}
 
 			hashAB.set_size(57);
@@ -1782,7 +1782,7 @@ void database_writer_t::write_itunesdb(ipod_device_ptr_ref_t p_ipod, ipod::tasks
 			for (i=0; i<20; i++)
 			{
 				if (!struid[i*2] || !struid[i*2 + 1]) break;
-				uid[i] = (unsigned char)strtoul64_n(&struid[i*2], 2, 0x10);
+				uid[i] = (unsigned char)mmh::strtoul64_n(&struid[i*2], 2, 0x10);
 			}
 
 			hash72.set_size(46);
@@ -1800,7 +1800,7 @@ void database_writer_t::write_itunesdb(ipod_device_ptr_ref_t p_ipod, ipod::tasks
 			//console::formatter() << fwguid;
 			if (fwguid.get_length() == 16)
 			{
-				t_uint64 fwid = strtoul64_n(fwguid, 16, 0x10);
+				t_uint64 fwid = mmh::strtoul64_n(fwguid.get_ptr(), 16, 0x10);
 				byte_order::order_native_to_be_t(fwid);
 				key.set_size(mmh::hash::sha1_digestsize);
 				itunescrypt::hash58_generate_key((t_uint8*)&fwid, key.get_ptr());

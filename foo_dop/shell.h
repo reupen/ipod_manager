@@ -51,7 +51,7 @@ public:
 		bool m_is_virtual;
 	};
 private:
-	class directory_reader_thread : public mmh::thread_v2_t
+	class directory_reader_thread : public mmh::Thread
 	{
 	public:
 		directory_reader_thread() : m_wnd(NULL) {};
@@ -101,7 +101,7 @@ private:
 	void disable ();
 	void enable ();
 
-	//t_list_view m_items_view;
+	//uih::ListView m_items_view;
 	pfc::string8 m_directory;
 	pfc::list_t<item> m_items;
 	HWND m_wnd_items_view;

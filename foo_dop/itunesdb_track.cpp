@@ -174,17 +174,17 @@ namespace itunesdb {
 						static_api_ptr_t<titleformat_compiler>()->compile_force(to, "[%rating%]");
 						p_original_file->format_title_from_external_info(info, NULL, temp, to, NULL);
 						if (!temp.is_empty())
-							rating = strtoul_n(temp, pfc_infinite) * 20;
+							rating = mmh::strtoul_n(temp.get_ptr(), pfc_infinite) * 20;
 
 						static_api_ptr_t<titleformat_compiler>()->compile_force(to, "[%play_count%]");
 						p_original_file->format_title_from_external_info(info, NULL, temp, to, NULL);
 						if (temp.length())
-							playcount = strtoul_n(temp, pfc_infinite);
+							playcount = mmh::strtoul_n(temp.get_ptr(), pfc_infinite);
 
 						static_api_ptr_t<titleformat_compiler>()->compile_force(to, "[%last_played_timestamp%]");
 						p_original_file->format_title_from_external_info(info, NULL, temp, to, NULL);
 						if (temp.length())
-							lastplayedtime = apple_time_from_filetime(strtoul64_n(temp, pfc_infinite));
+							lastplayedtime = apple_time_from_filetime(mmh::strtoul64_n(temp.get_ptr(), pfc_infinite));
 					}
 					else
 						rating = g_print_meta_int(info, "RATING");
