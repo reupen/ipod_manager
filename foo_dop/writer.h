@@ -179,6 +179,7 @@ namespace ipod
 			void write_itunesdb		(ipod_device_ptr_ref_t p_ipod, ipod::tasks::load_database_t & p_library, const t_field_mappings & p_mappings, threaded_process_v2_t & p_status,abort_callback & p_abort);
 			void write_artworkdb	(ipod_device_ptr_ref_t p_ipod, const ipod::tasks::load_database_t & p_library, threaded_process_v2_t & p_status,abort_callback & p_abort);
 			void write_sqlitedb		(ipod_device_ptr_ref_t p_ipod, ipod::tasks::load_database_t & p_library, const t_field_mappings & p_mappings, threaded_process_v2_t & p_status,abort_callback & p_abort);
+			pfc::array_staticsize_t<t_uint8> calculate_cbk(ipod_device_ptr_ref_t p_ipod, const char* locations_itdb_path);
 			//construct from main thread only
 			database_writer_t() 
 			{

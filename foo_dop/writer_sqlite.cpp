@@ -1382,88 +1382,45 @@ void ipod::tasks::database_writer_t::write_sqlitedb(ipod_device_ptr_ref_t p_ipod
 
 		try
 		{
-			abort_callback_dummy noabort;
+			abort_callback_dummy dummy_aborter;
 
-			const t_size cbk_version = p_ipod->m_device_properties.m_db_version >= 5 ? 3 : 2;
-			const t_size cbk_size = cbk_version >= 3 ? 57 : 46;
-
-			file::ptr p_locationsdb;
-			filesystem::g_open_read(p_locationsdb, pfc::string8() << tempbase << "Locations.itdb.dop.temp", noabort);
-
-			t_size fs = pfc::downcast_guarded<t_size>(p_locationsdb->get_size_ex(noabort));
-			if (fs % 1024)
-				throw exception_io("Locations.itdb is malformed");
-			t_size i, pagecount = fs/1024;
-			pfc::array_staticsize_t<t_uint8> cbk_data(cbk_size+20+mmh::hash::sha1_digestsize*pagecount);
-			pfc::array_staticsize_t<t_uint8> itdb_data(fs);
-
-			p_locationsdb->read(itdb_data.get_ptr(), itdb_data.get_size(), noabort);
-
-			for (i=0; i<pagecount; i++)
-				mmh::hash::sha1(&itdb_data[1024*i], 1024, &cbk_data[cbk_size+20+mmh::hash::sha1_digestsize*i]);
-			mmh::hash::sha1(cbk_data.get_ptr()+cbk_size+20, mmh::hash::sha1_digestsize*pagecount, &cbk_data[cbk_size]);
-
-			pfc::string8 struid;
-			p_ipod->get_deviceuniqueid(struid);
-			t_size udid_length = struid.get_length()/2;
-
-			pfc::array_t<t_uint8> uid, hash72;
-			uid.set_size (udid_length);
-			uid.fill_null();
-			for (i=0; i<udid_length; i++)
-			{
-				//if (!struid[i*2] || !struid[i*2 + 1]) break;
-				uid[i] = (unsigned char)mmh::strtoul64_n(&struid[i*2], 2, 0x10);
-			}
-
-			if (cbk_version == 3)
-			{
-				if (m_iPhoneCalc.is_valid_gen())
-					m_iPhoneCalc.xgen_hash_ab_gen(cbk_data.get_ptr()+cbk_size, uid.get_ptr(), udid_length, cbk_data.get_ptr());
-				else if (m_iPhoneCalc.is_valid() && udid_length == 20)
-					m_iPhoneCalc.xgen_hash_ab(cbk_data.get_ptr()+cbk_size, uid.get_ptr(), cbk_data.get_ptr());
-				else
-					memset(cbk_data.get_ptr(),0,cbk_size);
-			}
-			else
-				itunescrypt::cbk_generate_for_sha1(cbk_data.get_ptr()+cbk_size, uid.get_ptr(), cbk_data.get_ptr());
+			auto cbk_data = calculate_cbk(p_ipod, pfc::string8() << tempbase << "Locations.itdb.dop.temp");
 
 			file::ptr cbk_file;
-			filesystem::g_open_write_new(cbk_file, pfc::string8() << tempbase << "Locations.itdb.cbk.dop.temp", noabort);
-			cbk_file->write(cbk_data.get_ptr(), cbk_data.get_size(), noabort);
+			filesystem::g_open_write_new(cbk_file, pfc::string8() << tempbase << "Locations.itdb.cbk.dop.temp", dummy_aborter);
+			cbk_file->write(cbk_data.get_ptr(), cbk_data.get_size(), dummy_aborter);
 
-			p_locationsdb.release();
 			cbk_file.release();
 
-			try {filesystem::g_remove(pfc::string8() << base << "Library.itdb.dop.backup", noabort); } catch (exception_io_not_found const &) {};
-			try {filesystem::g_remove(pfc::string8() << base << "Extras.itdb.dop.backup", noabort); } catch (exception_io_not_found const &) {};
-			try {filesystem::g_remove(pfc::string8() << base << "Locations.itdb.dop.backup", noabort); } catch (exception_io_not_found const &) {};
-			try {filesystem::g_remove(pfc::string8() << base << "Locations.itdb.cbk.dop.backup", noabort); } catch (exception_io_not_found const &) {};
-			try {filesystem::g_remove(pfc::string8() << base << "Dynamic.itdb.dop.backup", noabort); } catch (exception_io_not_found const &) {};
+			try {filesystem::g_remove(pfc::string8() << base << "Library.itdb.dop.backup", dummy_aborter); } catch (exception_io_not_found const &) {};
+			try {filesystem::g_remove(pfc::string8() << base << "Extras.itdb.dop.backup", dummy_aborter); } catch (exception_io_not_found const &) {};
+			try {filesystem::g_remove(pfc::string8() << base << "Locations.itdb.dop.backup", dummy_aborter); } catch (exception_io_not_found const &) {};
+			try {filesystem::g_remove(pfc::string8() << base << "Locations.itdb.cbk.dop.backup", dummy_aborter); } catch (exception_io_not_found const &) {};
+			try {filesystem::g_remove(pfc::string8() << base << "Dynamic.itdb.dop.backup", dummy_aborter); } catch (exception_io_not_found const &) {};
 
-			filesystem::g_copy(pfc::string8() << tempbase << "Library.itdb.dop.temp", pfc::string8() << base << "Library.itdb.dop.temp", noabort);
-			filesystem::g_copy(pfc::string8() << tempbase << "Extras.itdb.dop.temp", pfc::string8() << base << "Extras.itdb.dop.temp", noabort);
-			filesystem::g_copy(pfc::string8() << tempbase << "Locations.itdb.dop.temp", pfc::string8() << base << "Locations.itdb.dop.temp", noabort);
-			filesystem::g_copy(pfc::string8() << tempbase << "Locations.itdb.cbk.dop.temp", pfc::string8() << base << "Locations.itdb.cbk.dop.temp", noabort);
-			filesystem::g_copy(pfc::string8() << tempbase << "Dynamic.itdb.dop.temp", pfc::string8() << base << "Dynamic.itdb.dop.temp", noabort);
+			filesystem::g_copy(pfc::string8() << tempbase << "Library.itdb.dop.temp", pfc::string8() << base << "Library.itdb.dop.temp", dummy_aborter);
+			filesystem::g_copy(pfc::string8() << tempbase << "Extras.itdb.dop.temp", pfc::string8() << base << "Extras.itdb.dop.temp", dummy_aborter);
+			filesystem::g_copy(pfc::string8() << tempbase << "Locations.itdb.dop.temp", pfc::string8() << base << "Locations.itdb.dop.temp", dummy_aborter);
+			filesystem::g_copy(pfc::string8() << tempbase << "Locations.itdb.cbk.dop.temp", pfc::string8() << base << "Locations.itdb.cbk.dop.temp", dummy_aborter);
+			filesystem::g_copy(pfc::string8() << tempbase << "Dynamic.itdb.dop.temp", pfc::string8() << base << "Dynamic.itdb.dop.temp", dummy_aborter);
 
-			filesystem::g_remove(pfc::string8() << tempbase << "Library.itdb.dop.temp", noabort);
-			filesystem::g_remove(pfc::string8() << tempbase << "Extras.itdb.dop.temp", noabort);
-			filesystem::g_remove(pfc::string8() << tempbase << "Locations.itdb.dop.temp", noabort);
-			filesystem::g_remove(pfc::string8() << tempbase << "Locations.itdb.cbk.dop.temp", noabort);
-			filesystem::g_remove(pfc::string8() << tempbase << "Dynamic.itdb.dop.temp", noabort);
+			filesystem::g_remove(pfc::string8() << tempbase << "Library.itdb.dop.temp", dummy_aborter);
+			filesystem::g_remove(pfc::string8() << tempbase << "Extras.itdb.dop.temp", dummy_aborter);
+			filesystem::g_remove(pfc::string8() << tempbase << "Locations.itdb.dop.temp", dummy_aborter);
+			filesystem::g_remove(pfc::string8() << tempbase << "Locations.itdb.cbk.dop.temp", dummy_aborter);
+			filesystem::g_remove(pfc::string8() << tempbase << "Dynamic.itdb.dop.temp", dummy_aborter);
 
-			try {filesystem::g_move(pfc::string8() << base << "Library.itdb", pfc::string8() << base << "Library.itdb.dop.backup", noabort); } catch (exception_io_not_found const &) {};
-			try {filesystem::g_move(pfc::string8() << base << "Extras.itdb", pfc::string8() << base << "Extras.itdb.dop.backup", noabort); } catch (exception_io_not_found const &) {};
-			try {filesystem::g_move(pfc::string8() << base << "Locations.itdb", pfc::string8() << base << "Locations.itdb.dop.backup", noabort); } catch (exception_io_not_found const &) {};
-			try {filesystem::g_move(pfc::string8() << base << "Locations.itdb.cbk", pfc::string8() << base << "Locations.itdb.cbk.dop.backup", noabort); } catch (exception_io_not_found const &) {};
-			try {filesystem::g_move(pfc::string8() << base << "Dynamic.itdb", pfc::string8() << base << "Dynamic.itdb.dop.backup", noabort); } catch (exception_io_not_found const &) {};
+			try {filesystem::g_move(pfc::string8() << base << "Library.itdb", pfc::string8() << base << "Library.itdb.dop.backup", dummy_aborter); } catch (exception_io_not_found const &) {};
+			try {filesystem::g_move(pfc::string8() << base << "Extras.itdb", pfc::string8() << base << "Extras.itdb.dop.backup", dummy_aborter); } catch (exception_io_not_found const &) {};
+			try {filesystem::g_move(pfc::string8() << base << "Locations.itdb", pfc::string8() << base << "Locations.itdb.dop.backup", dummy_aborter); } catch (exception_io_not_found const &) {};
+			try {filesystem::g_move(pfc::string8() << base << "Locations.itdb.cbk", pfc::string8() << base << "Locations.itdb.cbk.dop.backup", dummy_aborter); } catch (exception_io_not_found const &) {};
+			try {filesystem::g_move(pfc::string8() << base << "Dynamic.itdb", pfc::string8() << base << "Dynamic.itdb.dop.backup", dummy_aborter); } catch (exception_io_not_found const &) {};
 
-			filesystem::g_move(pfc::string8() << base << "Library.itdb.dop.temp", pfc::string8() << base << "Library.itdb", noabort);
-			filesystem::g_move(pfc::string8() << base << "Extras.itdb.dop.temp", pfc::string8() << base << "Extras.itdb", noabort);
-			filesystem::g_move(pfc::string8() << base << "Locations.itdb.dop.temp", pfc::string8() << base << "Locations.itdb", noabort);
-			filesystem::g_move(pfc::string8() << base << "Locations.itdb.cbk.dop.temp", pfc::string8() << base << "Locations.itdb.cbk", noabort);
-			filesystem::g_move(pfc::string8() << base << "Dynamic.itdb.dop.temp", pfc::string8() << base << "Dynamic.itdb", noabort);
+			filesystem::g_move(pfc::string8() << base << "Library.itdb.dop.temp", pfc::string8() << base << "Library.itdb", dummy_aborter);
+			filesystem::g_move(pfc::string8() << base << "Extras.itdb.dop.temp", pfc::string8() << base << "Extras.itdb", dummy_aborter);
+			filesystem::g_move(pfc::string8() << base << "Locations.itdb.dop.temp", pfc::string8() << base << "Locations.itdb", dummy_aborter);
+			filesystem::g_move(pfc::string8() << base << "Locations.itdb.cbk.dop.temp", pfc::string8() << base << "Locations.itdb.cbk", dummy_aborter);
+			filesystem::g_move(pfc::string8() << base << "Dynamic.itdb.dop.temp", pfc::string8() << base << "Dynamic.itdb", dummy_aborter);
 		}
 		catch (pfc::exception const & ex)
 		{
@@ -1472,4 +1429,55 @@ void ipod::tasks::database_writer_t::write_sqlitedb(ipod_device_ptr_ref_t p_ipod
 		console::formatter() << "iPod manager: Generate SQLite database completed in " << timer.query() << " s";
 	}
 
+}
+
+pfc::array_staticsize_t<t_uint8> ipod::tasks::database_writer_t::calculate_cbk(ipod_device_ptr_ref_t p_ipod, const char* locations_itdb_path)
+{
+	const t_size cbk_version = p_ipod->m_device_properties.m_db_version >= 5 ? 3 : 2;
+	const t_size cbk_size = cbk_version >= 3 ? 57 : 46;
+
+	abort_callback_dummy dummy_aborter;
+
+	file::ptr p_locationsdb;
+	filesystem::g_open_read(p_locationsdb, locations_itdb_path, dummy_aborter);
+
+	t_size fs = pfc::downcast_guarded<t_size>(p_locationsdb->get_size_ex(dummy_aborter));
+	if (fs % 1024)
+		throw exception_io("Locations.itdb is malformed");
+	t_size i, pagecount = fs / 1024;
+	pfc::array_staticsize_t<t_uint8> cbk_data(cbk_size + 20 + mmh::hash::sha1_digestsize*pagecount);
+	pfc::array_staticsize_t<t_uint8> itdb_data(fs);
+
+	p_locationsdb->read(itdb_data.get_ptr(), itdb_data.get_size(), dummy_aborter);
+
+	for (i = 0; i<pagecount; i++)
+		mmh::hash::sha1(&itdb_data[1024 * i], 1024, &cbk_data[cbk_size + 20 + mmh::hash::sha1_digestsize*i]);
+	mmh::hash::sha1(cbk_data.get_ptr() + cbk_size + 20, mmh::hash::sha1_digestsize*pagecount, &cbk_data[cbk_size]);
+
+	pfc::string8 struid;
+	p_ipod->get_deviceuniqueid(struid);
+	t_size udid_length = struid.get_length() / 2;
+
+	pfc::array_t<t_uint8> uid, hash72;
+	uid.set_size(udid_length);
+	uid.fill_null();
+	for (i = 0; i<udid_length; i++)
+	{
+		//if (!struid[i*2] || !struid[i*2 + 1]) break;
+		uid[i] = (unsigned char)mmh::strtoul64_n(&struid[i * 2], 2, 0x10);
+	}
+
+	if (cbk_version == 3)
+	{
+		if (m_iPhoneCalc.is_valid_gen())
+			m_iPhoneCalc.xgen_hash_ab_gen(cbk_data.get_ptr() + cbk_size, uid.get_ptr(), udid_length, cbk_data.get_ptr());
+		else if (m_iPhoneCalc.is_valid() && udid_length == 20)
+			m_iPhoneCalc.xgen_hash_ab(cbk_data.get_ptr() + cbk_size, uid.get_ptr(), cbk_data.get_ptr());
+		else
+			memset(cbk_data.get_ptr(), 0, cbk_size);
+	}
+	else
+		itunescrypt::cbk_generate_for_sha1(cbk_data.get_ptr() + cbk_size, uid.get_ptr(), cbk_data.get_ptr());
+	
+	return cbk_data;
 }
