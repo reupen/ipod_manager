@@ -106,7 +106,7 @@ void g_get_sql_commands (cfobject::object_t::ptr_t const & cfobj, pfc::string_li
 	}
 	names;
 
-	p_version = 22; //user_version
+	p_version = 26; //user_version
 
 	if (cfobj.is_valid())
 	{
