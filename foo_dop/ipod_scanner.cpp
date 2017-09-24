@@ -1,4 +1,4 @@
-#include "main.h"
+#include "stdafx.h"
 
 #include "ipod_manager.h"
 #include "ipod_scanner.h"

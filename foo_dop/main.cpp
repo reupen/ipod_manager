@@ -6,7 +6,7 @@
 *
 * This component is an iPod plugin
 */
-#include "main.h"
+#include "stdafx.h"
 
 #include "lock.h"
 

@@ -1,4 +1,4 @@
-#include "main.h"
+#include "stdafx.h"
 
 struct mpeg_header
 {

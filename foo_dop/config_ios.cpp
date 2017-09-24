@@ -1,4 +1,4 @@
-#include "main.h"
+#include "stdafx.h"
 
 #include "config_ios.h"
 #include "resource.h"

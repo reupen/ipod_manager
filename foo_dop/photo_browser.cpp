@@ -1,4 +1,4 @@
-#include "main.h"
+#include "stdafx.h"
 
 #include "photo_browser.h"
 #include "resource.h"

@@ -1,4 +1,4 @@
-#include "main.h"
+#include "stdafx.h"
 
 // {3E217C0C-F003-4fde-A5C8-AA473B1CC0EA}
 static const GUID g_guid_cfg_video_tagger_position = 

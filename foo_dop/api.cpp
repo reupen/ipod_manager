@@ -1,4 +1,4 @@
-#include "main.h"
+#include "stdafx.h"
 
 dop::ipod_manager_control_t::version_data_t g_version = {0, 6, 9, 8};
 

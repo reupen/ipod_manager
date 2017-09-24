@@ -1,4 +1,4 @@
-#include "main.h"
+#include "stdafx.h"
 
 #include "config.h"
 #include "config_conversion.h"

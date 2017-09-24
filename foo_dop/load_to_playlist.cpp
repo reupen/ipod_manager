@@ -1,4 +1,4 @@
-#include "main.h"
+#include "stdafx.h"
 
 #include "load_to_playlist.h"
 

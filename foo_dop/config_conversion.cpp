@@ -1,4 +1,4 @@
-#include "main.h"
+#include "stdafx.h"
 
 #include "config_conversion.h"
 #include "file_adder_conversion.h"

@@ -1,4 +1,4 @@
-#include "main.h"
+#include "stdafx.h"
 
 #include "dopdb.h"
 #include "reader.h"

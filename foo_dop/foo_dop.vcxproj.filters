@@ -117,9 +117,6 @@
     <ClInclude Include="ipod_manager.h">
       <Filter>Component</Filter>
     </ClInclude>
-    <ClInclude Include="main.h">
-      <Filter>Component</Filter>
-    </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>Component</Filter>
     </ClInclude>
@@ -214,6 +211,9 @@
       <Filter>Database Handlers</Filter>
     </ClInclude>
     <ClInclude Include="corefoundation.h" />
+    <ClInclude Include="stdafx.h">
+      <Filter>Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="itunesdb.cpp">

@@ -1,4 +1,4 @@
-#include "main.h"
+#include "stdafx.h"
 
 #if 0
 int zlib_handle::_deflateInit(z_streamp strm, int level)

@@ -1,4 +1,4 @@
-#include "main.h"
+#include "stdafx.h"
 
 #include "resource.h"
 #include "results.h"

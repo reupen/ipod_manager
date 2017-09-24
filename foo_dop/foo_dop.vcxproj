@@ -73,7 +73,7 @@
       <FloatingPointModel>Fast</FloatingPointModel>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>main.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
       <AssemblerOutput />
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -114,7 +114,7 @@
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>main.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
       <AssemblerOutput>All</AssemblerOutput>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -165,7 +165,7 @@
     <ClInclude Include="load_to_playlist.h" />
     <ClInclude Include="lock.h" />
     <ClInclude Include="mach_error.h" />
-    <ClInclude Include="main.h" />
+    <ClInclude Include="stdafx.h" />
     <ClInclude Include="maintenance.h" />
     <ClInclude Include="mobile_device.h" />
     <ClInclude Include="mobile_device_definitions.h" />

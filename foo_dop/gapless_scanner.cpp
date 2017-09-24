@@ -1,4 +1,4 @@
-#include "main.h"
+#include "stdafx.h"
 
 #include "gapless_scanner.h"
 #include "mp4.h"

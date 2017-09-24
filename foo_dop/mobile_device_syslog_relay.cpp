@@ -1,4 +1,4 @@
-#include "main.h"
+#include "stdafx.h"
 
 #include "mobile_device_v2.h"
 

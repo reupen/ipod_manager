@@ -1,4 +1,4 @@
-#include "main.h"
+#include "stdafx.h"
 
 #include "ipod_manager.h"
 #include "writer_sort_helpers.h"

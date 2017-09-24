@@ -1,4 +1,4 @@
-#include "main.h"
+#include "stdafx.h"
 
 #include "smart_playlist_processor.h"
 #include "browse.h"
