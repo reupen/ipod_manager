@@ -1,5 +1,12 @@
 #include "main.h"
 
+#include "browse.h"
+#include "load_to_playlist.h"
+#include "maintenance.h"
+#include "shell.h"
+#include "sync.h"
+
+
 namespace mainmenu_groups_dop
 {
 	// {BBA2F214-DCD4-4af2-A060-FA0A01852164}

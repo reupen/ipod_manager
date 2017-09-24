@@ -1,6 +1,8 @@
 #ifndef _DOP_BROWSE_H_
 #define _DOP_BROWSE_H_
 
+#include "actions_base.h"
+
 class t_browser : public ipod_action_v2_t
 {
 	virtual void on_run();

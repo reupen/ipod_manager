@@ -1,6 +1,8 @@
 #ifndef _SEND_DOP_H_
 #define _SEND_DOP_H_
 
+#include "actions_base.h"
+
 class ipod_send_files : public ipod_write_action_v2_t
 {
 public:

@@ -1,5 +1,7 @@
 #include "main.h"
 
+#include "send_files.h"
+
 void ipod_send_files::on_run()
 {
 	TRACK_CALL_TEXT("ipod_send_files");

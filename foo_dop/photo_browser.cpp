@@ -1,5 +1,7 @@
 #include "main.h"
 
+#include "photo_browser.h"
+
 #define artwork_object m_artwork
 
 #ifdef PHOTO_BROWSER

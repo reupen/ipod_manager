@@ -1,6 +1,8 @@
 #ifndef _SYNC_DOP_H_
 #define _SYNC_DOP_H_
 
+#include "actions_base.h"
+
 void g_EjectIPodDelayed();
 
 class ipod_send_playlist : public ipod_write_action_v2_t

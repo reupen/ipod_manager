@@ -1,6 +1,6 @@
 #include "main.h"
 
-
+#include "smart_playlist_processor.h"
 
 
 namespace ipod

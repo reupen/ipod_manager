@@ -1,5 +1,8 @@
 #include "main.h"
 
+#include "smart_playlist_processor.h"
+#include "browse.h"
+
 template<typename t_item1, typename t_item2>
 //pfc::rcptr_t <itunesdb::t_track>
 static int g_compare_rcptr(const pfc::rcptr_t< t_item1 > & p_item1, const pfc::rcptr_t<t_item2> & p_item2) {

@@ -128,19 +128,5 @@ using namespace itunesdb;
 #include "sync_logic.h"
 #include "gapless_scanner.h"
 
-#include "actions_base.h"
-#include "maintenance.h"
-#include "load_to_playlist.h"
-#include "send_files.h"
-#include "remove_files.h"
-#include "searcher.h"
-#include "sync.h"
-#include "browse.h"
-#include "item_properties.h"
-#include "smart_playlist_editor.h"
-#include "smart_playlist_processor.h"
-#include "gapless.h"
-#include "shell.h"
-
 
 #endif //_DOP_MAIN_H_

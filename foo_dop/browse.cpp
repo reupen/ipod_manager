@@ -1,5 +1,10 @@
 #include "main.h"
 
+#include "browse.h"
+#include "item_properties.h"
+#include "smart_playlist_editor.h"
+#include "smart_playlist_processor.h"
+
 //#define uT(x) pfc::stringcvt::string_os_from_utf8(x).get_ptr()
 
 class initquit_autoreg

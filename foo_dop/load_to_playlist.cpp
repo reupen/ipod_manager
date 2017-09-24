@@ -1,5 +1,6 @@
 #include "main.h"
 
+#include "load_to_playlist.h"
 
 void ipod_load_library_v2_t::on_exit() 
 {

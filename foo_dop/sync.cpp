@@ -1,5 +1,7 @@
 #include "main.h"
 
+#include "sync.h"
+
 #if 0
 void g_close_explorer_windows_for_drive(char drive)
 {

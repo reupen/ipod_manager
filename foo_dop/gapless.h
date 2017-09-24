@@ -1,6 +1,8 @@
 #ifndef _DOP_GAPLESS_H_
 #define _DOP_GAPLESS_H_
 
+#include "actions_base.h"
+
 class ipod_scan_gapless : public ipod_write_action_v2_t
 {
 public:

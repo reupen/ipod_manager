@@ -1,5 +1,7 @@
 #include "main.h"
 
+#include "actions_base.h"
+
 volatile bool g_mobile_devices_enabled = false;
 
 ipod_action_manager::track_action::track_action(const ipod_device_ptr_t & p_device, ipod_action_t & p_action) : m_device(p_device), m_action(p_action) {m_device->m_action_manager.register_action(&m_action);}

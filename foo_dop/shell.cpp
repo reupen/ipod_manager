@@ -1,5 +1,7 @@
 #include "main.h"
 
+#include "shell.h"
+
 bool is_char_dir_sep (char c) {return c == '/' || c == '\\';}
 
 class delete_task : public threaded_process_v2_t

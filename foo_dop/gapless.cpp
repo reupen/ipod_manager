@@ -1,6 +1,6 @@
 #include "main.h"
 
-
+#include "gapless.h"
 
 void ipod_scan_gapless::on_exit()
 {

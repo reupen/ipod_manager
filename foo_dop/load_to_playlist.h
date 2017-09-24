@@ -1,6 +1,8 @@
 #ifndef _LOAD_TO_DOP_H_
 #define _LOAD_TO_DOP_H_
 
+#include "actions_base.h"
+
 class ipod_load_library_v2_t : public ipod_action_v2_t
 {
 public:

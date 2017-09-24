@@ -1,5 +1,8 @@
 #include "main.h"
 
+#include "browse.h"
+#include "sync.h"
+
 class portable_devices_panel_t : public ui_extension::container_ui_extension
 {
 	class node_device_t : public pfc::refcounted_object_root

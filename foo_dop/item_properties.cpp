@@ -1,5 +1,7 @@
 #include "main.h"
 
+#include "item_properties.h"
+
 
 BOOL CALLBACK item_info_dialog_v2_t::g_DialogProc(HWND wnd,UINT msg,WPARAM wp,LPARAM lp)
 {

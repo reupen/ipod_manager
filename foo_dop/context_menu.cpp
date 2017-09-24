@@ -1,5 +1,11 @@
 #include "main.h"
 
+#include "sync.h"
+#include "gapless.h"
+#include "maintenance.h"
+#include "remove_files.h"
+#include "send_files.h"
+
 void g_video_tagger_run(metadb_handle_list_cref p_handles);
 
 bool g_test_handles_on_ipod (bool b_on_ipod, const pfc::list_base_const_t<metadb_handle_ptr> & p_data)

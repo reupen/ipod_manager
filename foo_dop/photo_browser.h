@@ -1,5 +1,7 @@
 #pragma once
 
+#include "actions_base.h"
+
 #ifdef _DEBUG
 #define PHOTO_BROWSER _DEBUG
 #endif
