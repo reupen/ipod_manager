@@ -270,9 +270,6 @@
     <ClCompile Include="ipod_manager.cpp">
       <Filter>Component</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Component</Filter>
-    </ClCompile>
     <ClCompile Include="main_menu.cpp">
       <Filter>Component</Filter>
     </ClCompile>

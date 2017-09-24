@@ -223,10 +223,6 @@
     <ClCompile Include="itunesdb_track.cpp" />
     <ClCompile Include="load_to_playlist.cpp" />
     <ClCompile Include="lock.cpp" />
-    <ClCompile Include="main.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="main_menu.cpp" />
     <ClCompile Include="mobile_device.cpp" />
     <ClCompile Include="mobile_device_cfobject.cpp" />
@@ -257,6 +253,7 @@
     <ClCompile Include="sqlite.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="sync.cpp" />
     <ClCompile Include="video_tagger.cpp" />
