@@ -1,6 +1,7 @@
 #pragma once
 
 #include "itunesdb.h"
+#include "resource.h"
 
 void g_format_date(t_filetimestamp time, std::basic_string<TCHAR> & str);
 

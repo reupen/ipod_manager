@@ -1,5 +1,6 @@
 #include "main.h"
 
+#include "resource.h"
 #include "results.h"
 
 namespace results_viewer

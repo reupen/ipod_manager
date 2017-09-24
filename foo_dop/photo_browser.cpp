@@ -1,6 +1,7 @@
 #include "main.h"
 
 #include "photo_browser.h"
+#include "resource.h"
 
 #define artwork_object m_artwork
 

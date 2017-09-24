@@ -2,6 +2,7 @@
 
 #include "browse.h"
 #include "item_properties.h"
+#include "resource.h"
 #include "smart_playlist_editor.h"
 #include "smart_playlist_processor.h"
 

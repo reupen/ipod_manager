@@ -1,6 +1,7 @@
 #include "main.h"
 
 #include "browse.h"
+#include "resource.h"
 #include "sync.h"
 
 class portable_devices_panel_t : public ui_extension::container_ui_extension

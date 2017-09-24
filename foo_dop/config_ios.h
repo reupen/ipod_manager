@@ -1,6 +1,7 @@
 #pragma once
 
 #include "config.h"
+#include "resource.h"
 
 class t_config_tab3 : public preferences_tab {
 private:

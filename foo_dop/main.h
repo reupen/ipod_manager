@@ -59,7 +59,6 @@
 #include "../fbh/stdafx.h"
 #include "../dop-sdk/dop.h"
 #include "../columns_ui-sdk/ui_extension.h"
-#include "resource.h"
 
 class stream_writer_mem : public stream_writer, public pfc::array_t<t_uint8, pfc::alloc_fast_aggressive>
 {
@@ -73,27 +72,8 @@ public:
 
 #include "../MobileDeviceSign/stdafx.h"
 
-
-
-class NOVTABLE mainmenu_command_t
-{
-public:
-	virtual const GUID & get_guid() const=0;
-	virtual void get_name(pfc::string_base & p_out)const = 0;
-	virtual bool get_description(pfc::string_base & p_out) const = 0;
-	virtual bool get_display(pfc::string_base & p_text,t_uint32 & p_flags) const 
-	{
-		p_flags = 0;
-		get_name(p_text);
-		return true;
-	}
-	virtual void execute(service_ptr_t<service_base> p_callback) const = 0;
-};
-
-
 typedef pfc::refcounted_object_ptr_t<class ipod_device_t> ipod_device_ptr_t;
 typedef ipod_device_ptr_t & ipod_device_ptr_ref_t;
 typedef const ipod_device_ptr_t & ipod_device_ptr_cref_t;
-
 
 #endif //_DOP_MAIN_H_

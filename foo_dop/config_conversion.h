@@ -2,6 +2,7 @@
 
 #include "config.h"
 #include "helpers.h"
+#include "resource.h"
 
 class verify_encoder_settings_t : public threaded_process_v2_t {
 public:

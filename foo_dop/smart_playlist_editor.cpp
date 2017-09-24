@@ -1,5 +1,6 @@
 #include "main.h"
 
+#include "resource.h"
 #include "smart_playlist_editor.h"
 
 struct t_operator_pair

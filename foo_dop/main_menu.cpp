@@ -3,6 +3,7 @@
 #include "browse.h"
 #include "load_to_playlist.h"
 #include "maintenance.h"
+#include "resource.h"
 #include "shell.h"
 #include "sync.h"
 
@@ -44,6 +45,21 @@ mainmenu_group_factory g_mainmenu_group_ipod_mount_part(mainmenu_groups_dop::ipo
 mainmenu_group_factory g_mainmenu_group_ipod_properties_part(mainmenu_groups_dop::ipod_properties_part, mainmenu_groups_dop::file_ipod_popup, mainmenu_commands::sort_priority_base+3);
 
 void g_show_ipod_devices_popup();
+
+class NOVTABLE mainmenu_command_t
+{
+public:
+	virtual const GUID & get_guid() const = 0;
+	virtual void get_name(pfc::string_base & p_out)const = 0;
+	virtual bool get_description(pfc::string_base & p_out) const = 0;
+	virtual bool get_display(pfc::string_base & p_text, t_uint32 & p_flags) const
+	{
+		p_flags = 0;
+		get_name(p_text);
+		return true;
+	}
+	virtual void execute(service_ptr_t<service_base> p_callback) const = 0;
+};
 
 class mainmenu_popup_ipod_devices_t : public mainmenu_command_t
 {

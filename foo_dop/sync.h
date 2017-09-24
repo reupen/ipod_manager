@@ -4,6 +4,7 @@
 #include "actions_base.h"
 #include "file_adder.h"
 #include "file_remover.h"
+#include "resource.h"
 #include "sync_logic.h"
 
 void g_EjectIPodDelayed();
