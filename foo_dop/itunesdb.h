@@ -2,6 +2,7 @@
 #define _ITUNESDB_H_DOP_
 
 #include "config.h"
+#include "helpers.h"
 
 //#define LOAD_LIBRARY_INDICES
 

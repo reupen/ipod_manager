@@ -1,5 +1,7 @@
 #pragma once
 
+#include "helpers.h"
+
 namespace dopdb {
 	// {B621A46D-0FA4-4c37-A6C2-6B1958318DBB}
 	const GUID header =

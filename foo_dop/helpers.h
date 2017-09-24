@@ -1,6 +1,16 @@
 #ifndef _DOP_HELPERS_H_
 #define _DOP_HELPERS_H_
 
+class stream_writer_mem : public stream_writer, public pfc::array_t<t_uint8, pfc::alloc_fast_aggressive>
+{
+public:
+	stream_writer_mem() {};
+	void write(const void * p_buffer, t_size p_bytes, abort_callback & p_abort)
+	{
+		append_fromptr((t_uint8*)p_buffer, p_bytes);
+	}
+};
+
 class thread_t
 {
 public:
