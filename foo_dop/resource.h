@@ -2,14 +2,11 @@
 // Microsoft Visual C++ generated include file.
 // Used by foo_dop.rc
 //
-#define IDCANCEL2                       3
 #define IDC_NEXT                        3
 #define IDC_PREVIOUS                    4
 #define IDC_NEXT_FORMAT                 5
 #define IDC_PREVIOUS_FORMAT             6
 #define IDC_LAST                        7
-#define IDD_DIALOG1                     101
-#define IDD_SELECT_PLAYLISTS            101
 #define IDI_PLAYLIST                    107
 #define IDI_IPODFLAT                    108
 #define IDI_FOLDER                      109
@@ -20,7 +17,6 @@
 #define IDD_SYNC                        194
 #define IDD_BROWSE                      195
 #define IDD_INFO                        197
-#define IDD_BROWSE1                     198
 #define IDD_RESULTS                     198
 #define IDD_HOST                        199
 #define IDD_TOOLS                       200
@@ -33,14 +29,8 @@
 #define IDD_SYSLOG                      207
 #define IDD_ENCODER_MANAGER             208
 #define IDC_LIST                        1001
-#define IDC_ARTIST                      1004
-#define IDC_TITLE                       1005
-#define IDC_ALBUM                       1006
-#define IDC_GENRE                       1007
-#define IDC_COMPOSER                    1008
 #define IDC_MEDIA_LIBRARY               1008
 #define IDC_COMMAND                     1009
-#define IDC_COMPILATION                 1009
 #define IDC_SONGS                       1010
 #define IDC_EXTENSION                   1010
 #define IDC_SC                          1011
@@ -50,35 +40,29 @@
 #define IDC_PLAYED                      1012
 #define IDC_SORTLIBRARYSCRIPT           1012
 #define IDC_PLAYCOUNT                   1013
-#define IDC_CHECK1                      1013
 #define IDC_OMIT_THE                    1013
 #define IDC_ADDARTWORK                  1013
 #define IDC_LIVE_UPDATING               1013
 #define IDC_EJECT_WHEN_DONE             1013
 #define IDC_ENCODER_RAL                 1013
 #define IDC_SKIPSHUFFLE                 1014
-#define IDC_DEVINFO                     1014
 #define IDC_LIMIT                       1014
 #define IDC_NUMBERS_LAST                1014
 #define IDC_SCHECK                      1015
 #define IDC_CONVERT                     1015
 #define IDC_NEW                         1015
-#define IDC_NUMBERS_LAST2               1015
 #define IDC_ALLOW_SORTORDER             1015
 #define IDC_SKIPPED                     1016
 #define IDC_SCANGAPLESS                 1016
 #define IDC_EDIT                        1016
-#define IDC_CONVERT2                    1016
 #define IDC_SORT_PLAYLISTS              1016
 #define IDC_SKIPCOUNT                   1017
 #define IDC_DELETE                      1017
 #define IDC_SORTLIBRARY                 1017
 #define IDC_FB2KARTWORK                 1017
-#define IDC_CONVERT3                    1017
 #define IDC_CONVERT_BITRATE             1017
 #define IDC_VALUE2                      1018
 #define IDC_AUTOSEND                    1018
-#define IDC_RGSCAN                      1018
 #define IDC_THUMBAILVIDEOS              1018
 #define IDC_RESET                       1018
 #define IDC_SPIN_SC                     1019
@@ -101,24 +85,14 @@
 #define IDC_TO                          1029
 #define IDC_ENABLED                     1030
 #define IDC_COMBOVALUE                  1030
-#define IDC_PATH                        1031
-#define IDC_DIR                         1032
-#define IDC_OUTPUT                      1033
-#define IDC_STATS                       1034
-#define IDC_TEST                        1035
-#define IDC_TEST2                       1036
 #define IDC_AUTOSENDPLAYLIST            1036
 #define IDC_THREADMODE                  1037
-#define IDC_TEST3                       1038
 #define IDC_THREADCOUNT                 1038
 #define IDC_TAB1                        1039
-#define IDC_TEST4                       1039
-#define IDC_SPIN1                       1039
 #define IDC_THREADCOUNTSPIN             1039
 #define IDC_IPOD_TREE                   1040
 #define IDC_CONVERT_BITRATE_VALUE       1040
 #define IDC_ADDED                       1041
-#define IDC_THREADCOUNTSPIN2            1041
 #define IDC_CONVERT_BITRATE_VALUE_SPIN  1041
 #define IDC_BROWSE                      1042
 #define IDC_RGMODE                      1042
@@ -127,13 +101,14 @@
 #define IDC_TOTALADD                    1045
 #define IDC_ENCODER_MANAGER             1045
 #define IDC_VERIFY_ENCODER              1046
-#define IDC_ENCODER_COMBO2              1048
 #define IDC_MAX_BPS                     1050
+#define IDC_STATIC                      -1
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
+#define _APS_NO_MFC                     1
 #define _APS_NEXT_RESOURCE_VALUE        111
 #define _APS_NEXT_COMMAND_VALUE         40001
 #define _APS_NEXT_CONTROL_VALUE         1051
