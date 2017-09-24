@@ -171,9 +171,6 @@
     <ClInclude Include="mach_error.h">
       <Filter>Mobile Device</Filter>
     </ClInclude>
-    <ClInclude Include="mobile_device.h">
-      <Filter>Mobile Device</Filter>
-    </ClInclude>
     <ClInclude Include="mobile_device_definitions.h">
       <Filter>Mobile Device</Filter>
     </ClInclude>
@@ -338,9 +335,6 @@
     </ClCompile>
     <ClCompile Include="writer_sqlite.cpp">
       <Filter>Backend Operations</Filter>
-    </ClCompile>
-    <ClCompile Include="mobile_device.cpp">
-      <Filter>Mobile Device</Filter>
     </ClCompile>
     <ClCompile Include="mobile_device_cfobject.cpp">
       <Filter>Mobile Device</Filter>

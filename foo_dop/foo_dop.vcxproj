@@ -167,7 +167,6 @@
     <ClInclude Include="mach_error.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="maintenance.h" />
-    <ClInclude Include="mobile_device.h" />
     <ClInclude Include="mobile_device_definitions.h" />
     <ClInclude Include="mobile_device_error.h" />
     <ClInclude Include="mobile_device_v2.h" />
@@ -224,7 +223,6 @@
     <ClCompile Include="load_to_playlist.cpp" />
     <ClCompile Include="lock.cpp" />
     <ClCompile Include="main_menu.cpp" />
-    <ClCompile Include="mobile_device.cpp" />
     <ClCompile Include="mobile_device_cfobject.cpp" />
     <ClCompile Include="mobile_device_filesystem.cpp" />
     <ClCompile Include="mobile_device_syslog_relay.cpp" />

@@ -1,7 +1,12 @@
 #pragma once
 
 #include "cfobject.h"
-#include "mobile_device.h"
+#include "mach_error.h"
+#include "corefoundation.h"
+#include "mobile_device_definitions.h"
+#include "mobile_device_error.h"
+
+#define MDMP(x) p_##x##_t x
 
 struct mobile_device_functionlist
 {
