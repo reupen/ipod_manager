@@ -1,5 +1,7 @@
 #include "main.h"
 
+#include "config_behaviour.h"
+
 BOOL t_config_tab4::DialogProc(HWND wnd, UINT msg, WPARAM wp, LPARAM lp)
 {
 	switch (msg)

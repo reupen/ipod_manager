@@ -1,5 +1,7 @@
 #include "main.h"
 
+#include "config_database.h"
+
 const mapping_t g_mappings[] = {
 	mapping_t("Artist", settings::artist_mapping),
 	mapping_t("Album artist", settings::album_artist_mapping),

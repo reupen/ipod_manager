@@ -8,6 +8,8 @@
 */
 #include "main.h"
 
+#include "lock.h"
+
 //todo: filetype
 
 bool in_ipod_sync::g_busy = false;

@@ -1,6 +1,7 @@
 #include "main.h"
 
-
+#include "config_ios.h"
+#include "resource.h"
 
 #if 0
 class directory_callback_full_impl : public directory_callback {

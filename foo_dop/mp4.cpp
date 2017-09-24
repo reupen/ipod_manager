@@ -1,5 +1,7 @@
 #include "main.h"
 
+#include "mp4.h"
+
 #define box(a,b,c,d) \
 	((#@d)|(#@c)<<8|(#@b)<<16|(#@a)<<24)
 

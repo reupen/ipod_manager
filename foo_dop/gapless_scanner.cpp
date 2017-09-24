@@ -1,6 +1,7 @@
 #include "main.h"
 
 #include "gapless_scanner.h"
+#include "mp4.h"
 
 namespace ipod
 {

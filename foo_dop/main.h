@@ -98,27 +98,5 @@ typedef pfc::refcounted_object_ptr_t<class ipod_device_t> ipod_device_ptr_t;
 typedef ipod_device_ptr_t & ipod_device_ptr_ref_t;
 typedef const ipod_device_ptr_t & ipod_device_ptr_cref_t;
 
-#include "config.h"
-#include "config_database.h"
-#include "config_features.h"
-#include "config_conversion.h"
-#include "config_behaviour.h"
-#include "config_ios.h"
-#include "itunesdb.h"
-#include "dopdb.h"
-#include "shadowdb.h"
-#include "chapter.h"
-#include "photodb.h"
-#include "bplist.h"
-
-using namespace itunesdb;
-
-#include "lock.h"
-
-#include "resource.h"
-
-#include "mp4.h"
-
-
 
 #endif //_DOP_MAIN_H_

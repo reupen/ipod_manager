@@ -1,6 +1,8 @@
 #ifndef _ITUNESDB_H_DOP_
 #define _ITUNESDB_H_DOP_
 
+#include "config.h"
+
 //#define LOAD_LIBRARY_INDICES
 
 #define hm(a,b) \

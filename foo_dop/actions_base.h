@@ -2,6 +2,7 @@
 
 #include "ipod_manager.h"
 #include "ipod_scanner.h"
+#include "lock.h"
 #include "prepare.h"
 #include "writer.h"
 

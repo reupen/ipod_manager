@@ -1,6 +1,7 @@
 #pragma once
 
 #include "file_adder.h"
+#include "photodb.h"
 
 class ipod_rewrite_library_t : public ipod_write_action_v2_t
 {

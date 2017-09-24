@@ -1,5 +1,7 @@
 #pragma once
 
+#include "config.h"
+
 class t_config_tab2 : public preferences_tab {
 private:
 	HWND m_wnd_artwork_string;

@@ -1,6 +1,10 @@
 #ifndef _PHOTODB_H_
 #define _PHOTODB_H_
 
+#include "itunesdb.h"
+
+using namespace itunesdb;
+
 class artwork_format_t;
 
 namespace photodb

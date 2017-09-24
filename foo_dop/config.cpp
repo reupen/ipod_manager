@@ -1,5 +1,14 @@
 #include "main.h"
 
+#include "config.h"
+#include "config_conversion.h"
+#include "config_database.h"
+#include "config_features.h"
+#include "config_behaviour.h"
+#include "config_ios.h"
+#include "resource.h"
+
+
 namespace settings
 {
 	namespace guids

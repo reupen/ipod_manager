@@ -1,5 +1,6 @@
 #include "main.h"
 
+#include "config_conversion.h"
 #include "file_adder_conversion.h"
 
 encoder_manager_t g_encoder_manager;

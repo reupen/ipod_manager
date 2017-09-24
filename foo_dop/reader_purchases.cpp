@@ -1,7 +1,9 @@
 #include "main.h"
 
+#include "chapter.h"
 #include "file_adder.h"
 #include "plist.h"
+#include "mp4.h"
 #include "writer_sort_helpers.h"
 
 namespace ipod

@@ -1,5 +1,7 @@
 #include "main.h"
 
+#include "itunesdb.h"
+
 bool t_field_mappings::get_field(const metadb_handle_ptr & ptr, const file_info & info, const char * format, const char * field, pfc::string_base & p_out) const
 {
 	service_ptr_t<titleformat_object> to;

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "config.h"
+
 struct mapping_t {
 	const char * m_field;
 	cfg_string & m_value;

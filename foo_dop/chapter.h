@@ -1,5 +1,7 @@
 #pragma once
 
+#include "itunesdb.h"
+
 namespace itunesdb {
 
 	class chapter_reader : public itunesdb::reader

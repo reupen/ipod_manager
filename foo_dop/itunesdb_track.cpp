@@ -1,5 +1,6 @@
 #include "main.h"
 
+#include "itunesdb.h"
 #include "writer_sort_helpers.h"
 
 namespace itunesdb {

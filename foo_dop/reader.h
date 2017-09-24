@@ -1,6 +1,8 @@
 #ifndef _DOP_READER_LOAD_LIBRARY_H_
 #define _DOP_READER_LOAD_LIBRARY_H_
 
+#include "photodb.h"
+
 namespace ipod
 {
 	enum

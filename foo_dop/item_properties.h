@@ -1,5 +1,7 @@
 #pragma once
 
+#include "itunesdb.h"
+
 void g_format_date(t_filetimestamp time, std::basic_string<TCHAR> & str);
 
 class item_info_dialog_v2_t

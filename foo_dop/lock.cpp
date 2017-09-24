@@ -1,5 +1,7 @@
 #include "main.h"
 
+#include "lock.h"
+
 class app_close_blocker_impl_t : public app_close_blocker
 {
 	virtual bool query()

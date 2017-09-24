@@ -1,5 +1,7 @@
 #pragma once
 
+#include "config.h"
+
 class verify_encoder_settings_t : public threaded_process_v2_t {
 public:
 	verify_encoder_settings_t(const settings::conversion_preset_t & p_encoder, const char * p_temp_folder)

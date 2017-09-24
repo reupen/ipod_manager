@@ -1,5 +1,8 @@
 #include "main.h"
 
+#include "itunesdb.h"
+
+
 namespace itunesdb
 {
 

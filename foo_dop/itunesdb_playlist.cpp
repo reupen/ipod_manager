@@ -1,5 +1,6 @@
 #include "main.h"
 
+#include "itunesdb.h"
 
 namespace itunesdb {
 	void reader::read_pyhm(t_header_marker<identifiers::pyhm> & p_header, pfc::rcptr_t< itunesdb::t_playlist > & p_out, abort_callback & p_abort)

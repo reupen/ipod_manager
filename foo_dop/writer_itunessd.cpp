@@ -1,6 +1,7 @@
 #include "main.h"
 
 #include "ipod_manager.h"
+#include "shadowdb.h"
 
 t_int32 round_float_signed(double f)
 {

@@ -1,5 +1,9 @@
 #pragma once
 
+#include "itunesdb.h"
+
+using namespace itunesdb;
+
 bool g_get_sort_string_for_ipod(const char * str, pfc::string8 & p_out, bool ipod_sorting);
 void g_get_sort_string_for_sorting(const char * str, pfc::string_simple_t<WCHAR> & p_out, bool ipod_sorting);
 bool g_test_sort_string(const char * str);

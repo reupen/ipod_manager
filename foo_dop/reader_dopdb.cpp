@@ -1,5 +1,6 @@
 #include "main.h"
 
+#include "dopdb.h"
 #include "reader.h"
 
 void ipod_read_dopdb_tracklist(fbh::StreamReaderMemblock * p_file, t_uint32 root_id, t_uint32 root_size,
