@@ -233,6 +233,7 @@ namespace itunesdb {
 			bitrate = (t_uint32)info.info_get_bitrate();
 			samplerate = t_uint32(info.info_get_int("samplerate"));
 			length = round_float(info.get_length()*1000.0);
+			channel_count = t_uint16(info.info_get_int("channels"));
 
 			if (!filetype_valid && info.info_exists("codec"))
 			{

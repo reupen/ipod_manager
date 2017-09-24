@@ -749,7 +749,8 @@ void database_writer_t::write_itunesdb(ipod_device_ptr_ref_t p_ipod, ipod::tasks
 				tihm.write_lendian_t(track->unk102, p_abort); //508
 				tihm.write_lendian_t(track->unk103, p_abort); //512
 				tihm.write_lendian_t(track->key_id2, p_abort); //516
-				tihm.write_lendian_t(track->unk104, p_abort); //524
+				tihm.write_lendian_t(track->channel_count, p_abort); //524
+				tihm.write_lendian_t(track->unk104_2, p_abort); //526
 				tihm.write_lendian_t(track->unk105, p_abort); //528
 				tihm.write_lendian_t(track->unk106_1, p_abort); //532
 				tihm.write_lendian_t(track->chosen_by_auto_fill, p_abort); //533

@@ -264,7 +264,8 @@ namespace itunesdb
 			p_tihm.read_lendian_auto_t(track->unk102, p_abort); //508
 			p_tihm.read_lendian_auto_t(track->unk103, p_abort); //512
 			p_tihm.read_lendian_auto_t(track->key_id2, p_abort); //516
-			p_tihm.read_lendian_auto_t(track->unk104, p_abort); //524
+			p_tihm.read_lendian_auto_t(track->channel_count, p_abort); //524
+			p_tihm.read_lendian_auto_t(track->unk104_2, p_abort); //526
 			p_tihm.read_lendian_auto_t(track->unk105, p_abort); //528
 			p_tihm.read_lendian_auto_t(track->unk106_1, p_abort); //532
 			p_tihm.read_lendian_auto_t(track->chosen_by_auto_fill, p_abort); //532
