@@ -1,5 +1,8 @@
 #include "main.h"
 
+#include "file_remover.h"
+#include "ipod_manager.h"
+
 void ipod_file_remover::run (ipod_device_ptr_ref_t p_ipod, const pfc::list_base_const_t<metadb_handle_ptr> & items, ipod::tasks::load_database_t & p_library, threaded_process_v2_t & p_status, abort_callback & p_abort)
 {
 	////p_status.update_progress_subpart_helper(0);

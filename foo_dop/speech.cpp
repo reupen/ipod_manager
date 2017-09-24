@@ -1,5 +1,7 @@
 #include "main.h"
 
+#include "file_adder_conversion.h"
+
 const speech_map speech_map_list[] = 
 {
 	speech_map("ft.","featuring"),

@@ -1,5 +1,7 @@
 #include "main.h"
 
+#include "ipod_manager.h"
+
 extern volatile bool g_InitQuit_Initialised, g_InitQuit_Deinitialised, g_mobile_devices_enabled;
 
 void _check_afc_ret (unsigned code, const char * function, const char * path)

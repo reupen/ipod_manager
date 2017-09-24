@@ -1,5 +1,7 @@
 #include "main.h"
 
+#include "reader.h"
+
 void ipod_write_dopdb(const char * m_path, const ipod::tasks::load_database_t & p_library, threaded_process_v2_t & p_status,abort_callback & p_abort)
 {
 	pfc::string8 newpath;

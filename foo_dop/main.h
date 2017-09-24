@@ -25,6 +25,10 @@
 #include <Dbt.h>
 #include <gdiplus.h>
 
+#include <Setupapi.h>
+#include <devguid.h>
+#include <cfgmgr32.h>
+
 #define WINVERBACKUP WINVER
 #undef WINVER
 #define WINVER _WIN32_WINNT_WIN7
@@ -115,18 +119,6 @@ using namespace itunesdb;
 
 #include "mp4.h"
 
-#include "reader.h"
-#include "ipod_manager.h"
-#include "plist.h"
-#include "ipod_scanner.h"
-#include "prepare.h"
-#include "writer_sort_helpers.h"
-#include "writer.h"
-#include "file_adder.h"
-#include "file_adder_conversion.h"
-#include "file_remover.h"
-#include "sync_logic.h"
-#include "gapless_scanner.h"
 
 
 #endif //_DOP_MAIN_H_

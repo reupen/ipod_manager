@@ -1,5 +1,7 @@
 #include "main.h"
 
+#include "file_adder_conversion.h"
+
 void conversion_manager_t::initialise(const pfc::array_t<conversion_entry_t>& entries, const t_field_mappings & p_mappings, t_size thread_count)
 {
 	t_uint8 replaygain_processing_mode = p_mappings.replaygain_processing_mode;

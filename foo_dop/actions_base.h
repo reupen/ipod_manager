@@ -1,5 +1,10 @@
 #pragma once
 
+#include "ipod_manager.h"
+#include "ipod_scanner.h"
+#include "prepare.h"
+#include "writer.h"
+
 #define DOP_IPOD_ACTION_ENTRY(classname) \
 	typedef classname self_t; \
 	typedef pfc::refcounted_object_ptr_t<self_t> ptr_t; \

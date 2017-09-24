@@ -1,6 +1,8 @@
 #ifndef _DOP_WRITER_H_
 #define _DOP_WRITER_H_
 
+#include "reader.h"
+
 template<typename t_receiver>
 class process_locations_notify_impl : public process_locations_notify
 {

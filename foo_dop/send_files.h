@@ -2,6 +2,7 @@
 #define _SEND_DOP_H_
 
 #include "actions_base.h"
+#include "file_adder.h"
 
 class ipod_send_files : public ipod_write_action_v2_t
 {

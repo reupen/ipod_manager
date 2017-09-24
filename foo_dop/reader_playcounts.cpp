@@ -1,6 +1,6 @@
 #include "main.h"
 
-
+#include "plist.h"
 
 
 namespace ipod

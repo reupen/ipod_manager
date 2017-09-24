@@ -1,5 +1,7 @@
 #include "main.h"
 
+#include "ipod_manager.h"
+
 extern bool g_Gdiplus_initialised;
 
 	void g_create_IStream_from_datablock(const void * p_data, t_size p_size, mmh::ComPtr<IStream> & p_out)

@@ -1,5 +1,8 @@
 #include "main.h"
 
+#include "ipod_manager.h"
+#include "writer_sort_helpers.h"
+
 bool is_blank(const char * str)
 {
 	if (str == NULL || *str == NULL) return true;

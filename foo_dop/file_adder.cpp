@@ -1,5 +1,10 @@
 #include "main.h"
 
+#include "file_adder.h"
+#include "file_adder_conversion.h"
+#include "ipod_manager.h"
+#include "gapless_scanner.h"
+
 bool g_get_album_art_extractor_interface(service_ptr_t<album_art_extractor> & out,const char * path)
 {
 	service_enum_t<album_art_extractor> e; album_art_extractor::ptr ptr;

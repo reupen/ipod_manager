@@ -1,5 +1,7 @@
 #pragma once
 
+#include "ipod_manager.h"
+
 class string_descape_xml : public pfc::string8_fast_aggressive
 {
 public:

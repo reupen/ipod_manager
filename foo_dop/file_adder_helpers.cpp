@@ -1,5 +1,7 @@
 #include "main.h"
 
+#include "writer.h"
+
 bool g_is_ext_supported(const char * ext)
 {
 	return (!stricmp_utf8(ext, "WAV") || !stricmp_utf8(ext, "MP4") || !stricmp_utf8(ext, "M4A")

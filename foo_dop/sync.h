@@ -2,6 +2,9 @@
 #define _SYNC_DOP_H_
 
 #include "actions_base.h"
+#include "file_adder.h"
+#include "file_remover.h"
+#include "sync_logic.h"
 
 void g_EjectIPodDelayed();
 

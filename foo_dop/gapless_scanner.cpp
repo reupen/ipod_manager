@@ -1,5 +1,7 @@
 #include "main.h"
 
+#include "gapless_scanner.h"
+
 namespace ipod
 {
 	namespace tasks

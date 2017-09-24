@@ -1,5 +1,7 @@
 #include "main.h"
 
+#include "reader.h"
+
 namespace ipod
 {
 	namespace tasks

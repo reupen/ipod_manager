@@ -1,5 +1,7 @@
 #include "main.h"
 
+#include "plist.h"
+
 namespace library_path_helpers
 {
 	namespace folders {

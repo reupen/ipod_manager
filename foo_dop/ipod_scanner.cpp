@@ -1,5 +1,8 @@
 #include "main.h"
 
+#include "ipod_manager.h"
+#include "ipod_scanner.h"
+
 namespace ipod
 {
 	namespace tasks

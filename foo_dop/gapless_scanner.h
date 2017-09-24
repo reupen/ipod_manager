@@ -1,5 +1,7 @@
 #pragma once
 
+#include "reader.h"
+
 namespace ipod
 {
 	namespace tasks

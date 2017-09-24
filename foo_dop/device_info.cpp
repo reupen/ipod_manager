@@ -1,5 +1,7 @@
 #include "main.h"
 
+#include "plist.h"
+
 void g_get_plist_cfobject(const char * ptr, cfobject::object_t::ptr_t & p_out)
 {
 	XMLPlistParser(ptr).run_cfobject(p_out);

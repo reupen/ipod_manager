@@ -1,5 +1,8 @@
 #include "main.h"
 
+#include "file_adder.h"
+#include "file_adder_conversion.h"
+
 #define SQRTHALF          0.70710678118654752440084436210485
 
 void g_downmix_51ch_to_stereo(audio_chunk * chunk)

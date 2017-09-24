@@ -1,5 +1,7 @@
 #pragma once
 
+#include "ipod_manager.h"
+
 class t_main_thread_tagger : public main_thread_callback
 {
 public:

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "reader.h"
+
 void g_convert_file (metadb_handle_ptr src, const char * dst, const char * cmd, abort_callback & p_abort);
 bool g_get_artwork_for_track (metadb_handle_ptr & p_track, album_art_data_ptr & p_out, const t_field_mappings & p_mappings, bool b_absolute_only, abort_callback & p_abort);
 album_art_extractor_instance_ptr g_get_album_art_extractor_instance(const char * path, abort_callback & p_abort);

@@ -1,5 +1,7 @@
 #include "main.h"
 
+#include "plist.h"
+
 namespace cfobject
 {
 	bool object_t::dictionary::get_child (const wchar_t * key, object_t::ptr_t & p_value)

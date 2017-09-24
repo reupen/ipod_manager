@@ -1,5 +1,7 @@
 #include "main.h"
 
+#include "ipod_manager.h"
+
 t_int32 round_float_signed(double f)
 {
 	return t_int32 (f >= -0.5 ? f + 0.5 : f - 0.5f);

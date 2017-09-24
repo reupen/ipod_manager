@@ -1,5 +1,7 @@
 #include "main.h"
 
+#include "file_adder_conversion.h"
+
 encoder_manager_t g_encoder_manager;
 
 void verify_encoder_settings_t::on_run()

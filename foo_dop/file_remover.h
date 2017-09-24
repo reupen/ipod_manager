@@ -1,5 +1,7 @@
 #pragma once
 
+#include "reader.h"
+
 class ipod_file_remover
 {
 public:

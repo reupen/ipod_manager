@@ -1,5 +1,6 @@
 #include "main.h"
 
+#include "plist.h"
 #include "smart_playlist_processor.h"
 
 

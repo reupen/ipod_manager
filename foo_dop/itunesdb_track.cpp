@@ -1,5 +1,7 @@
 #include "main.h"
 
+#include "writer_sort_helpers.h"
+
 namespace itunesdb {
 	int t_artist::g_compare_standard_track(const ptr & i1, const pfc::rcptr_t<class t_track> & i2)
 	{

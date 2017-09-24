@@ -1,9 +1,7 @@
 #ifndef _SCANNER_DOP_H_
 #define _SCANNER_DOP_H_
 
-#include <Setupapi.h>
-#include <devguid.h>
-#include <cfgmgr32.h>
+#include "reader.h"
 
 int wcsicmp_partial(const WCHAR * p1,const WCHAR * p2,t_size num=~0);
 int wcsicmp_ex(const wchar_t * p1,t_size p1_bytes,const wchar_t * p2,t_size p2_bytes);

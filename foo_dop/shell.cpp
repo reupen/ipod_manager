@@ -1,5 +1,6 @@
 #include "main.h"
 
+#include "ipod_manager.h"
 #include "shell.h"
 
 bool is_char_dir_sep (char c) {return c == '/' || c == '\\';}

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "reader.h"
+
 class t_smart_playlist_editor
 {
 	class t_playlist_map_entry

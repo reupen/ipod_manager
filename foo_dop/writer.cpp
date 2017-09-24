@@ -1,5 +1,8 @@
 #include "main.h"
 
+#include "ipod_manager.h"
+#include "writer.h"
+
 #ifdef _DEBUG
 //#define _FORCE_SQLDB _DEBUG
 #endif

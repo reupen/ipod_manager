@@ -1,5 +1,7 @@
 #include "main.h"
 
+#include "plist.h"
+
 t_filetimestamp g_filetime_to_timestamp(const LPFILETIME ft);
 
 t_filetimestamp g_iso_timestamp_to_filetime (const char * str, t_size len = pfc_infinite)
