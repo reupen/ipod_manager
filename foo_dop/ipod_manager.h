@@ -1,6 +1,8 @@
 #ifndef _SCANNER_DOP_H_
 #define _SCANNER_DOP_H_
 
+#include "helpers.h"
+#include "mobile_device_v2.h"
 #include "reader.h"
 
 int wcsicmp_partial(const WCHAR * p1,const WCHAR * p2,t_size num=~0);

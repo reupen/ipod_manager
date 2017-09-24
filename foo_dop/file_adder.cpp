@@ -6,6 +6,7 @@
 #include "ipod_manager.h"
 #include "gapless_scanner.h"
 #include "mp4.h"
+#include "speech.h"
 
 bool g_get_album_art_extractor_interface(service_ptr_t<album_art_extractor> & out,const char * path)
 {

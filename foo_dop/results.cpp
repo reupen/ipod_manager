@@ -1,5 +1,7 @@
 #include "main.h"
 
+#include "results.h"
+
 namespace results_viewer
 {
 	class t_results_data

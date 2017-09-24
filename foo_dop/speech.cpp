@@ -1,6 +1,7 @@
 #include "main.h"
 
 #include "file_adder_conversion.h"
+#include "speech.h"
 
 const speech_map speech_map_list[] = 
 {

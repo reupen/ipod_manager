@@ -1,5 +1,6 @@
 #include "main.h"
 
+#include "mobile_device_v2.h"
 #include "writer.h"
 
 bool g_is_ext_supported(const char * ext)

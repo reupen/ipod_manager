@@ -1,6 +1,7 @@
 #ifndef _DOP_WRITER_H_
 #define _DOP_WRITER_H_
 
+#include "iPhoneCalc.h"
 #include "reader.h"
 
 template<typename t_receiver>

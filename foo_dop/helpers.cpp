@@ -1,5 +1,7 @@
 #include "main.h"
 
+#include "helpers.h"
+
 void threaded_process_v2_t::run(HWND wnd)
 {
 	RECT rc1;

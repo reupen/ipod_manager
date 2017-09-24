@@ -1,5 +1,7 @@
 #pragma once
 
+#include "helpers.h"
+#include "iPhoneCalc.h"
 #include "ipod_manager.h"
 #include "ipod_scanner.h"
 #include "lock.h"

@@ -2,6 +2,7 @@
 
 #include "ipod_manager.h"
 #include "prepare.h"
+#include "zlib.h"
 
 namespace ipod
 {

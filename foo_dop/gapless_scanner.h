@@ -1,6 +1,7 @@
 #pragma once
 
 #include "reader.h"
+#include "results.h"
 
 namespace ipod
 {

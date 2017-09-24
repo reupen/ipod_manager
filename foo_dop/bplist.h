@@ -1,6 +1,8 @@
 #ifndef _DOP_BPLIST_H_
 #define _DOP_BPLIST_H_
 
+#include "cfobject.h"
+
 namespace bplist
 {
 	const t_uint8 header_identifier[] = {'b','p','l','i','s','t','0','0'};

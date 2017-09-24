@@ -1,5 +1,7 @@
 #include "main.h"
 
+#include "helpers.h"
+
 class filter_pin_enum //new interfaces
 {
 public:

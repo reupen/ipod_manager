@@ -19,7 +19,7 @@
 #include "../foobar2000/SDK/foobar2000.h"
 #include "../foobar2000/helpers/helpers.h"
 #include <dshow.h>
-#include "..\qedit\qedit.h"
+#include "../qedit/qedit.h"
 #include <commctrl.h>
 #include <windowsx.h>
 #include <Dbt.h>
@@ -28,6 +28,11 @@
 #include <Setupapi.h>
 #include <devguid.h>
 #include <cfgmgr32.h>
+
+#define _SAPI_VER 0x051
+
+#include <sapi.h>
+#include <sphelper.h>
 
 #define WINVERBACKUP WINVER
 #undef WINVER
@@ -45,6 +50,10 @@
 
 #include <uxtheme.h>
 #include <Wincodec.h>
+
+#include "../sqlite/sqlite3.h"
+#include "../zlib-1.2.5/zlib.h"
+
 #include "../mmh/stdafx.h"
 #include "../ui_helpers/stdafx.h"
 #include "../fbh/stdafx.h"
@@ -62,18 +71,6 @@ public:
 	}
 };
 
-#include "zlib.h"
-#include "speech.h"
-#include "iPhoneCalc.h"
-
-#include "cfobject.h"
-#include "mobile_device.h"
-#include "mobile_device_v2.h"
-
-#include "helpers.h"
-#include "results.h"
-
-#include "sqlite.h"
 #include "../MobileDeviceSign/stdafx.h"
 
 

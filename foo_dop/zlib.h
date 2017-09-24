@@ -1,7 +1,5 @@
 #pragma once
 
-#include "..\zlib-1.2.5\zlib.h"
-
 #if 0
 #define ZLGPA(x, y) _##x = (x##_Proc)GetProcAddress(y, #x)
 #define SafeZLGPA(x, y) if (!(ZLGPA(x,y))) throw pfc::exception(pfc::string8() << "Failed to locate function " << #x)

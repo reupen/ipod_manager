@@ -1,5 +1,7 @@
 #include "main.h"
 
+#include "mobile_device_v2.h"
+
 DWORD syslog_relay::on_thread()
 {
 	pfc::array_t<char> buffer;

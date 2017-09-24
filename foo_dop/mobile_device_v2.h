@@ -1,5 +1,8 @@
 #pragma once
 
+#include "cfobject.h"
+#include "mobile_device.h"
+
 struct mobile_device_functionlist
 {
 	MDMP(__CFStringMakeConstantString);

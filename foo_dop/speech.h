@@ -1,10 +1,5 @@
 #pragma once
 
-#define _SAPI_VER 0x051
-
-#include <sapi.h>
-#include <sphelper.h>
-
 struct speech_map
 {
 	const char * from, * to;

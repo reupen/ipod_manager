@@ -1,5 +1,7 @@
 #include "main.h"
 
+#include "mobile_device_v2.h"
+
 bool g_get_CFType_object (const in_mobile_device_api_handle_sync & api, CFTypeRef ref, cfobject::object_t::ptr_t & p_out)
 {
 	if (ref)

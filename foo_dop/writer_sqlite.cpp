@@ -1,6 +1,7 @@
 #include "main.h"
 
 #include "ipod_manager.h"
+#include "sqlite.h"
 #include "writer.h"
 #include "writer_sort_helpers.h"
 

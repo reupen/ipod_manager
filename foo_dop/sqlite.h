@@ -1,5 +1,3 @@
-#include "..\sqlite\sqlite3.h"
-
 class sqlite_autoinit
 {
 public:

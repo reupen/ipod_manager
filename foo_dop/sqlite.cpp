@@ -1,5 +1,7 @@
 #include "main.h"
 
+#include "sqlite.h"
+
 #if 1
 
 struct sqlite3_file_fb2k : public sqlite3_file

@@ -2,6 +2,8 @@
 
 #include "plist.h"
 #include "smart_playlist_processor.h"
+#include "speech.h"
+#include "zlib.h"
 
 
 namespace ipod
