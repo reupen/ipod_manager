@@ -709,7 +709,26 @@ namespace itunesdb
 		t_uint8 unk106_4;
 		t_uint32 unk107;
 		t_uint32 unk108;
-		t_uint32 unk109[10];
+		t_uint32 unk109{};
+		t_uint32 unk110{};
+		t_uint32 unk111{};
+		t_uint32 unk112{};
+		t_uint32 unk113{};
+		t_uint32 unk114{};
+		t_uint32 unk115{};
+		t_uint32 unk116{};
+		t_uint32 unk117{};
+		t_uint32 unk118{};
+		t_uint32 unk119{};
+		t_uint32 unk120{};
+		t_uint32 unk121{};
+		t_uint32 unk122{};
+		t_uint32 unk123{};
+		t_uint32 unk124{};
+		t_uint32 unk125{};
+		t_uint32 unk126{};
+		t_uint32 unk127{};
+		t_uint32 unk128{};
 
 		bool sort_artist_valid;
 		pfc::string8 sort_artist;
@@ -861,7 +880,6 @@ namespace itunesdb
 			collection_description_valid(false), store_data_valid(false), publication_id_valid(false)
 		{
 			memset(unk44, 0,  sizeof(unk44));
-			memset(unk109, 0,  sizeof(unk109));
 			memset(artwork_source_sha1, 0,  sizeof(artwork_source_sha1));
 		};
 		metadb_handle_ptr create_source_handle() 

@@ -273,7 +273,26 @@ namespace itunesdb
 			p_tihm.read_lendian_auto_t(track->unk106_4, p_abort); //532
 			p_tihm.read_lendian_auto_t(track->unk107, p_abort); //536
 			p_tihm.read_lendian_auto_t(track->unk108, p_abort); //540
-			p_tihm.read(track->unk109, sizeof(track->unk109), p_abort); //544
+			p_tihm.read_lendian_auto_t(track->unk109, p_abort); //544
+			p_tihm.read_lendian_auto_t(track->unk110, p_abort); //548
+			p_tihm.read_lendian_auto_t(track->unk111, p_abort); //552
+			p_tihm.read_lendian_auto_t(track->unk112, p_abort); //556
+			p_tihm.read_lendian_auto_t(track->unk113, p_abort); //560
+			p_tihm.read_lendian_auto_t(track->unk114, p_abort); //564
+			p_tihm.read_lendian_auto_t(track->unk115, p_abort); //568
+			p_tihm.read_lendian_auto_t(track->unk116, p_abort); //572
+			p_tihm.read_lendian_auto_t(track->unk117, p_abort); //576
+			p_tihm.read_lendian_auto_t(track->unk118, p_abort); //580
+			p_tihm.read_lendian_auto_t(track->unk119, p_abort); //584
+			p_tihm.read_lendian_auto_t(track->unk120, p_abort); //588
+			p_tihm.read_lendian_auto_t(track->unk121, p_abort); //592
+			p_tihm.read_lendian_auto_t(track->unk122, p_abort); //596
+			p_tihm.read_lendian_auto_t(track->unk123, p_abort); //600
+			p_tihm.read_lendian_auto_t(track->unk124, p_abort); //604
+			p_tihm.read_lendian_auto_t(track->unk125, p_abort); //608
+			p_tihm.read_lendian_auto_t(track->unk126, p_abort); //612
+			p_tihm.read_lendian_auto_t(track->unk127, p_abort); //616
+			p_tihm.read_lendian_auto_t(track->unk128, p_abort); //620
 
 		}
 		catch (exception_io_data_truncation &)
