@@ -606,6 +606,7 @@ namespace itunesdb
 			type_audiobook = 1<<3,
 			type_music_video = 1<<5,
 			type_tv_show = 1<<6,
+			type_home_video = 1<<10,
 			type_ringtone = 1<<14,
 			type_rental = 1<<15,
 			type_digital_booklet = 1<<16,
