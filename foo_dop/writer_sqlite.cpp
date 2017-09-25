@@ -1151,12 +1151,13 @@ void ipod::tasks::database_writer_t::write_sqlitedb(ipod_device_ptr_ref_t p_ipod
 					locationsdb->exec(query);
 
 					query.reset();
-					query << "INSERT INTO avformat_info (item_pid,sub_id,audio_format,bit_rate,sample_rate,duration,gapless_heuristic_info,"
+					query << "INSERT INTO avformat_info (item_pid,sub_id,audio_format,bit_rate,channels,sample_rate,duration,gapless_heuristic_info,"
 						"gapless_encoding_delay,gapless_encoding_drain,gapless_last_frame_resynch,analysis_inhibit_flags,audio_fingerprint,volume_normalization_energy) VALUES ("
 						<< (t_int64)track->pid << ","
 						<< "0" << ","
 						<< g_translate_audio_format(track->audio_format) << ","
 						<< track->bitrate << ","
+						<< track->channel_count << ","
 						<< (track->samplerate) << ","
 						<< track->samplecount << ","
 						<< track->gapless_heuristic_info << ","
