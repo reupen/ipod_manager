@@ -703,9 +703,9 @@ namespace itunesdb
 		t_uint16 channel_count;
 		t_uint16 unk104_2{};
 		t_uint32 unk105;
-		t_uint8 unk106_1;
+		t_uint8 is_transcoded;
 		t_uint8 chosen_by_auto_fill;
-		t_uint8 unk106_3;
+		t_uint8 is_sample;
 		t_uint8 unk106_4;
 		t_uint32 unk107;
 		t_uint32 unk108;
@@ -880,7 +880,7 @@ namespace itunesdb
 			unk101(0),
 			media_type2(1),
 			unk102(0),
-			unk103(0), channel_count(0),unk105(0),unk106_1(0),chosen_by_auto_fill(0),unk106_3(0),unk106_4(0),unk107(0),unk108(0),copyright_valid(false),
+			unk103(0), channel_count(0),unk105(0),is_transcoded(0),chosen_by_auto_fill(0),is_sample(0),unk106_4(0),unk107(0),unk108(0),copyright_valid(false),
 			collection_description_valid(false), store_data_valid(false), publication_id_valid(false)
 		{
 			memset(unk44, 0,  sizeof(unk44));
