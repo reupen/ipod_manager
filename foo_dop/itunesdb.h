@@ -608,9 +608,11 @@ namespace itunesdb
 			type_music_video = 1<<5,
 			type_tv_show = 1<<6,
 			type_home_video = 1<<10,
+			type_ipod_game = 1<<12,
 			type_ringtone = 1<<14,
 			type_rental = 1<<15,
 			type_digital_booklet = 1<<16,
+			type_ios_app = 1<<17,
 			type_is_voice_memo = 1<<20,
 			type_itunes_u = 1<<21,
 			type_book = (1<<22)|(1<<23), //either, difference? EPUB, PDF, ...?
