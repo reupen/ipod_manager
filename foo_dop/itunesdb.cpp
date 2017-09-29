@@ -192,7 +192,7 @@ namespace itunesdb
 			p_tihm.read_lendian_auto_t(track->legacy_store_playlist_id, p_abort); //240
 
 			p_tihm.read_lendian_auto_t(track->legacy_store_storefront_id, p_abort); //244
-			p_tihm.read_lendian_auto_t(track->resync_frame_offset, p_abort); //248 64-bit !
+			p_tihm.read_lendian_auto_t(track->gapless_last_frame_resync, p_abort); //248
 			p_tihm.read_lendian_auto_t(track->unk43_1, p_abort); //256
 			p_tihm.read_lendian_auto_t(track->gapless_album, p_abort); //258
 			p_tihm.read_lendian_auto_t(track->unk43_2, p_abort); //259
@@ -206,16 +206,16 @@ namespace itunesdb
 			p_tihm.read_lendian_auto_t(track->album_id, p_abort); //288
 			p_tihm.read_lendian_auto_t(track->unk52, p_abort); //292
 			p_tihm.read_lendian_auto_t(track->unk53, p_abort); //296
-			p_tihm.read_lendian_auto_t(track->filesize_64, p_abort); //300
+			p_tihm.read_lendian_auto_t(track->file_size_64, p_abort); //300
 			p_tihm.read_lendian_auto_t(track->unk56, p_abort); //308
 			p_tihm.read_lendian_auto_t(track->unk57, p_abort); //312
 			p_tihm.read_lendian_auto_t(track->unk58, p_abort); //316
 			p_tihm.read_lendian_auto_t(track->unk59, p_abort); //320
-			p_tihm.read_lendian_auto_t(track->unk60, p_abort); //324
+			p_tihm.read_lendian_auto_t(track->legacy_key_id, p_abort); //324
 			p_tihm.read_lendian_auto_t(track->is_self_contained, p_abort); //328
 			p_tihm.read_lendian_auto_t(track->is_compressed, p_abort); //329
 			p_tihm.read_lendian_auto_t(track->unk61_1, p_abort); //330
-			p_tihm.read_lendian_auto_t(track->unk61_2, p_abort); //331
+			p_tihm.read_lendian_auto_t(track->analysis_inhibit_flags, p_abort); //331
 			p_tihm.read_lendian_auto_t(track->unk62, p_abort); //332
 			p_tihm.read_lendian_auto_t(track->unk63, p_abort); //336
 			p_tihm.read_lendian_auto_t(track->unk64, p_abort); //340
@@ -228,9 +228,9 @@ namespace itunesdb
 			p_tihm.read_lendian_auto_t(track->unk69_3, p_abort); //362
 			p_tihm.read_lendian_auto_t(track->is_anamorphic, p_abort); //363
 			p_tihm.read_lendian_auto_t(track->unk70, p_abort); //364
-			p_tihm.read_lendian_auto_t(track->unk71_1, p_abort); //368
+			p_tihm.read_lendian_auto_t(track->is_demo, p_abort); //368
 			p_tihm.read_lendian_auto_t(track->unk71_2, p_abort); //369
-			p_tihm.read_lendian_auto_t(track->has_alternate_audio_and_closed_captions, p_abort); //370
+			p_tihm.read_lendian_auto_t(track->has_alternate_audio, p_abort); //370
 			p_tihm.read_lendian_auto_t(track->has_subtitles, p_abort); //371
 			p_tihm.read_lendian_auto_t(track->audio_language, p_abort); //372
 			p_tihm.read_lendian_auto_t(track->audio_track_index, p_abort); //374
@@ -238,10 +238,10 @@ namespace itunesdb
 			p_tihm.read_lendian_auto_t(track->subtitle_language, p_abort); //380 
 			p_tihm.read_lendian_auto_t(track->subtitle_track_index, p_abort); //382
 			p_tihm.read_lendian_auto_t(track->subtitle_track_id, p_abort); //384
-			p_tihm.read_lendian_auto_t(track->unk76, p_abort); //388
-			p_tihm.read_lendian_auto_t(track->unk77, p_abort); //392
-			p_tihm.read_lendian_auto_t(track->unk78, p_abort); //396
-			p_tihm.read_lendian_auto_t(track->unk79, p_abort); //400
+			p_tihm.read_lendian_auto_t(track->rental_playback_date_started, p_abort); //388
+			p_tihm.read_lendian_auto_t(track->rental_playback_duration, p_abort); //392
+			p_tihm.read_lendian_auto_t(track->rental_date_started, p_abort); //396
+			p_tihm.read_lendian_auto_t(track->rental_duration, p_abort); //400
 			p_tihm.read_lendian_auto_t(track->characteristics_valid, p_abort); //404
 			p_tihm.read_lendian_auto_t(track->unk80_1, p_abort); //405
 			p_tihm.read_lendian_auto_t(track->is_hd, p_abort); //406
@@ -249,11 +249,11 @@ namespace itunesdb
 			p_tihm.read_lendian_auto_t(track->account_id_primary, p_abort); //408
 			p_tihm.read_lendian_auto_t(track->account_id_secondary, p_abort); //416
 			p_tihm.read_lendian_auto_t(track->key_id, p_abort); //424
-			p_tihm.read_lendian_auto_t(track->store_item_id, p_abort); //432 store_item_id 64-bit
-			p_tihm.read_lendian_auto_t(track->store_genre_id, p_abort); //440 store_genre_id 64-bit
-			p_tihm.read_lendian_auto_t(track->store_artist_id, p_abort); //448 store_composer_id 64-bit
-			p_tihm.read_lendian_auto_t(track->store_composer_id, p_abort); //456 store_genre_id 64-bit
-			p_tihm.read_lendian_auto_t(track->store_playlist_id, p_abort); //464 store_playlist_id 64-bit (??)
+			p_tihm.read_lendian_auto_t(track->store_item_id, p_abort); //432
+			p_tihm.read_lendian_auto_t(track->store_genre_id, p_abort); //440
+			p_tihm.read_lendian_auto_t(track->store_artist_id, p_abort); //448
+			p_tihm.read_lendian_auto_t(track->store_composer_id, p_abort); //456
+			p_tihm.read_lendian_auto_t(track->store_playlist_id, p_abort); //464
 			p_tihm.read_lendian_auto_t(track->store_front_id, p_abort); //472 store_front_id 64-bit
 			p_tihm.read_lendian_auto_t(track->artist_id, p_abort); //480
 			p_tihm.read_lendian_auto_t(track->genius_id, p_abort); //484

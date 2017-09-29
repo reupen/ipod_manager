@@ -626,7 +626,7 @@ namespace itunesdb
 		t_uint32 legacy_store_composer_id;
 		t_uint32 legacy_store_playlist_id;
 		t_uint32 legacy_store_storefront_id;
-		t_uint64 resync_frame_offset; //64-bit ?
+		t_uint64 gapless_last_frame_resync; //64-bit ?
 		t_uint16 unk43_1; //default 1
 		t_uint8 gapless_album;
 		t_uint8 unk43_2;
@@ -640,16 +640,16 @@ namespace itunesdb
 		t_uint32 album_id;
 		t_uint32 unk52;
 		t_uint32 unk53;
-		t_uint64 filesize_64;
+		t_uint64 file_size_64;
 		t_uint32 unk56;
 		t_uint32 unk57;
 		t_uint32 unk58;
 		t_uint32 unk59;
-		t_uint32 unk60;
+		t_uint32 legacy_key_id;
 		t_uint8 is_self_contained;
 		t_uint8 is_compressed;
 		t_uint8 unk61_1;
-		t_uint8 unk61_2;
+		t_uint8 analysis_inhibit_flags;
 		t_uint32 unk62;
 		t_uint32 unk63;
 		t_uint32 unk64;
@@ -662,9 +662,9 @@ namespace itunesdb
 		t_uint8 unk69_3;
 		t_uint8 is_anamorphic;
 		t_uint32 unk70;
-		t_uint8 unk71_1;
+		t_uint8 is_demo;
 		t_uint8 unk71_2;
-		t_uint8 has_alternate_audio_and_closed_captions;
+		t_uint8 has_alternate_audio;
 		t_uint8 has_subtitles;
 		t_uint16 audio_language;
 		t_uint16 audio_track_index;
@@ -673,10 +673,10 @@ namespace itunesdb
 		t_uint16 subtitle_track_index;
 		t_uint32 subtitle_track_id;
 
-		t_uint32 unk76;
-		t_uint32 unk77;
-		t_uint32 unk78;
-		t_uint32 unk79;
+		t_uint32 rental_playback_date_started;
+		t_uint32 rental_playback_duration;
+		t_uint32 rental_date_started;
+		t_uint32 rental_duration;
 		t_uint8 characteristics_valid;
 		t_uint8 unk80_1;
 		t_uint8 is_hd;
@@ -845,12 +845,12 @@ namespace itunesdb
 			chapter_data_valid(false), eq_settings_valid(false), starttime(0), stoptime(0),
 			volume(0), unk11(0), checked(0), application_rating(0), bpm(0), filetype_valid(false),
 			subtitle_valid(false), tv_network_valid(false), episode_valid(false), show_valid(false),
-			legacy_store_storefront_id(0), resync_frame_offset(0), unk43_1(1), unk43_2(0), gapless_album(0),
+			legacy_store_storefront_id(0), gapless_last_frame_resync(0), unk43_1(1), unk43_2(0), gapless_album(0),
 			/*unk44(0), unk45(0), unk46(0), unk47(0), unk48(0),*/ unk49(0), album_id(0), 
-			unk50(0), unk52(0), unk53(0), filesize_64(0), unk56(0), unk57(0), unk58(0), 
-			unk59(0), unk60(0), dshm_type_6(false), dshm_type_6_is_new(false), extended_content_rating_valid(false),
+			unk50(0), unk52(0), unk53(0), file_size_64(0), unk56(0), unk57(0), unk58(0), 
+			unk59(0), legacy_key_id(0), dshm_type_6(false), dshm_type_6_is_new(false), extended_content_rating_valid(false),
 			
-			unk76(0),unk77(0),unk78(0),unk79(0),characteristics_valid(0),unk80_1(0),is_hd(0),store_kind(0),
+			rental_playback_date_started(0),rental_playback_duration(0),rental_date_started(0),rental_duration(0),characteristics_valid(0),unk80_1(0),is_hd(0),store_kind(0),
 			account_id_primary(0),account_id_secondary(0),
 			key_id(0),key_id2(0),store_item_id(0),store_genre_id(0),
 			store_composer_id(0),store_artist_id(0),store_playlist_id(0),store_front_id(0),
@@ -860,10 +860,10 @@ namespace itunesdb
 			album_artist_valid(false), keywords_valid(false),
 			original_path_valid(false), last_known_path_valid(false), original_filesize_valid(false),
 			original_timestamp_valid(false), original_filesize(0), original_timestamp(0), transcoded(false),
-			is_self_contained(0), is_compressed(0), unk61_1(0), unk61_2(0),
+			is_self_contained(0), is_compressed(0), unk61_1(0), analysis_inhibit_flags(0),
 			unk62(0), unk63(0), unk64(0), audio_fingerprint(0), unk66(0), mhii_id(0), unk68(0),
-			unk69_1(0x20), unk69_2(0), unk69_3(0), is_anamorphic(0), unk70(0), unk71_1(0), unk71_2(0), 
-			has_alternate_audio_and_closed_captions(0), has_subtitles(0), audio_language(0), audio_track_index(0),
+			unk69_1(0x20), unk69_2(0), unk69_3(0), is_anamorphic(0), unk70(0), is_demo(0), unk71_2(0), 
+			has_alternate_audio(0), has_subtitles(0), audio_language(0), audio_track_index(0),
 			audio_track_id(0), subtitle_language(0), subtitle_track_index(0), subtitle_track_id(0),
 			sort_artist_valid(false), sort_album_artist_valid(false),
 			sort_album_valid(false), sort_show_valid(false),
@@ -900,7 +900,7 @@ namespace itunesdb
 		{
 			gapless_encoding_delay = p_encoder_delay;
 			gapless_encoding_drain = p_encoder_padding;
-			resync_frame_offset = p_sync_frame_offset;
+			gapless_last_frame_resync = p_sync_frame_offset;
 			gapless_heuristic_info = 0x1;
 		}
 		t_filetimestamp get_timestamp()

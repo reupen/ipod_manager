@@ -1145,7 +1145,7 @@ void ipod::tasks::database_writer_t::write_sqlitedb(ipod_device_ptr_ref_t p_ipod
 						<< "'" << string_escape_sql(file) << "',"
 						<< extension << ","
 						<< sqldbtime_from_itunesdbtime(track->dateadded) << ","
-						<< (track->filesize_64 ? track->filesize_64 : track->file_size_32)
+						<< (track->file_size_64 ? track->file_size_64 : track->file_size_32)
 						<< ")";
 
 					locationsdb->exec(query);
@@ -1163,7 +1163,7 @@ void ipod::tasks::database_writer_t::write_sqlitedb(ipod_device_ptr_ref_t p_ipod
 						<< track->gapless_heuristic_info << ","
 						<< track->gapless_encoding_delay << ","
 						<< track->gapless_encoding_drain << ","
-						<< track->resync_frame_offset << ","
+						<< track->gapless_last_frame_resync << ","
 						<< "0" << ","
 						<< track->audio_fingerprint << ","
 						<< track->volume_normalisation_energy
@@ -1179,10 +1179,10 @@ void ipod::tasks::database_writer_t::write_sqlitedb(ipod_device_ptr_ref_t p_ipod
 							"is_self_contained,is_compressed,is_anamorphic,is_hd,episode_sort_id,season_number,audio_language,audio_track_index,"
 							"audio_track_id,subtitle_language,subtitle_track_index,subtitle_track_id) VALUES ("
 							<< (t_int64)track->pid << ","
-							<< track->has_alternate_audio_and_closed_captions << ","
+							<< track->has_alternate_audio << ","
 							<< track->has_subtitles << ","
 							<< track->characteristics_valid << ","
-							<< track->has_alternate_audio_and_closed_captions << ","
+							<< track->has_alternate_audio << ","
 							<< (track->is_self_contained == 0 ?1:0) << ","
 							<< track->is_compressed << ","
 							<< track->is_anamorphic << ","

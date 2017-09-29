@@ -55,7 +55,7 @@ namespace ipod
 							t_filesize sync = g_get_gapless_sync_frame_mp3_v2(ptr->get_path(), p_abort);
 							if (sync)
 							{
-								p_track.resync_frame_offset = sync;
+								p_track.gapless_last_frame_resync = sync;
 								if (b_have_accurate)
 								{
 									p_track.gapless_encoding_delay = (t_uint32)pinfo->info_get_int("enc_delay");

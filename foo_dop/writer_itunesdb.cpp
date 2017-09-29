@@ -675,7 +675,7 @@ void database_writer_t::write_itunesdb(ipod_device_ptr_ref_t p_ipod, ipod::tasks
 			tihm.write_lendian_t(track->legacy_store_playlist_id, p_abort);
 
 			tihm.write_lendian_t(track->legacy_store_storefront_id, p_abort);
-			tihm.write_lendian_t(track->resync_frame_offset, p_abort);
+			tihm.write_lendian_t(track->gapless_last_frame_resync, p_abort);
 			tihm.write_lendian_t(track->unk43_1, p_abort);
 			tihm.write_lendian_t(track->gapless_album, p_abort);
 			tihm.write_lendian_t(track->unk43_2, p_abort);
@@ -689,16 +689,16 @@ void database_writer_t::write_itunesdb(ipod_device_ptr_ref_t p_ipod, ipod::tasks
 			tihm.write_lendian_t(track->album_id, p_abort); //288
 			tihm.write_lendian_t(track->unk52, p_abort);
 			tihm.write_lendian_t(track->unk53, p_abort);
-			tihm.write_lendian_t(track->filesize_64, p_abort);
+			tihm.write_lendian_t(track->file_size_64, p_abort);
 			tihm.write_lendian_t(track->unk56, p_abort);
 			tihm.write_lendian_t(track->unk57, p_abort);
 			tihm.write_lendian_t(track->unk58, p_abort);
 			tihm.write_lendian_t(track->unk59, p_abort);
-			tihm.write_lendian_t(track->unk60, p_abort);
+			tihm.write_lendian_t(track->legacy_key_id, p_abort);
 			tihm.write_lendian_t(track->is_self_contained, p_abort);
 			tihm.write_lendian_t(track->is_compressed, p_abort);
 			tihm.write_lendian_t(track->unk61_1, p_abort);
-			tihm.write_lendian_t(track->unk61_2, p_abort);
+			tihm.write_lendian_t(track->analysis_inhibit_flags, p_abort);
 			tihm.write_lendian_t(track->unk62, p_abort);
 			tihm.write_lendian_t(track->unk63, p_abort);
 			tihm.write_lendian_t(track->unk64, p_abort);
@@ -711,9 +711,9 @@ void database_writer_t::write_itunesdb(ipod_device_ptr_ref_t p_ipod, ipod::tasks
 			tihm.write_lendian_t(track->unk69_3, p_abort); //362
 			tihm.write_lendian_t(track->is_anamorphic, p_abort); //363
 			tihm.write_lendian_t(track->unk70, p_abort); //364
-			tihm.write_lendian_t(track->unk71_1, p_abort); //368
+			tihm.write_lendian_t(track->is_demo, p_abort); //368
 			tihm.write_lendian_t(track->unk71_2, p_abort); //369
-			tihm.write_lendian_t(track->has_alternate_audio_and_closed_captions, p_abort); //370
+			tihm.write_lendian_t(track->has_alternate_audio, p_abort); //370
 			tihm.write_lendian_t(track->has_subtitles, p_abort); //371
 			tihm.write_lendian_t(track->audio_language, p_abort); //372
 			tihm.write_lendian_t(track->audio_track_index, p_abort); //374
@@ -723,10 +723,10 @@ void database_writer_t::write_itunesdb(ipod_device_ptr_ref_t p_ipod, ipod::tasks
 			tihm.write_lendian_t(track->subtitle_track_id, p_abort); //384
 			if (sixg_format)
 			{
-				tihm.write_lendian_t(track->unk76, p_abort); //388
-				tihm.write_lendian_t(track->unk77, p_abort); //392
-				tihm.write_lendian_t(track->unk78, p_abort); //396
-				tihm.write_lendian_t(track->unk79, p_abort); //400
+				tihm.write_lendian_t(track->rental_playback_date_started, p_abort); //388
+				tihm.write_lendian_t(track->rental_playback_duration, p_abort); //392
+				tihm.write_lendian_t(track->rental_date_started, p_abort); //396
+				tihm.write_lendian_t(track->rental_duration, p_abort); //400
 				tihm.write_lendian_t(track->characteristics_valid, p_abort); //404
 				tihm.write_lendian_t(track->unk80_1, p_abort); //405
 				tihm.write_lendian_t(track->is_hd, p_abort); //406
