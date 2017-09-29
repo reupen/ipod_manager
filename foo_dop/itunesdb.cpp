@@ -116,7 +116,7 @@ namespace itunesdb
 			p_tihm.read_lendian_auto_t(file_extension, p_abort); //24
 			p_tihm.read_lendian_auto_t(track->type1, p_abort); //28
 			p_tihm.read_lendian_auto_t(track->type2, p_abort); //29
-			p_tihm.read_lendian_auto_t(track->compilation, p_abort); //30
+			p_tihm.read_lendian_auto_t(track->is_compilation, p_abort); //30
 			p_tihm.read_lendian_auto_t(track->rating, p_abort); //31
 			p_tihm.read_lendian_auto_t(track->lastmodifiedtime, p_abort); //32
 			p_tihm.read_lendian_auto_t(track->file_size_32, p_abort); //36
@@ -142,7 +142,7 @@ namespace itunesdb
 			p_tihm.read_lendian_auto_t(track->bookmarktime, p_abort); //108
 			p_tihm.read_lendian_auto_t(track->pid, p_abort); //112
 			track->dbid2 = track->pid;
-			p_tihm.read_lendian_auto_t(track->checked, p_abort); //120
+			p_tihm.read_lendian_auto_t(track->is_user_disabled, p_abort); //120
 			p_tihm.read_lendian_auto_t(track->application_rating, p_abort); //121
 			p_tihm.read_lendian_auto_t(track->bpm, p_abort); //122
 			p_tihm.read_lendian_auto_t(track->artwork_count, p_abort); //124

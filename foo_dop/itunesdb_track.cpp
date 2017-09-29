@@ -328,7 +328,7 @@ namespace itunesdb {
 
 			pfc::string8 comp_str;
 			p_mappings.get_compilation(p_original_file, info, comp_str);
-			compilation = _atoi64(comp_str.get_ptr()) != 0;
+			is_compilation = _atoi64(comp_str.get_ptr()) != 0;
 
 			bool b_valid = true;
 			float db_adjustment = 0;

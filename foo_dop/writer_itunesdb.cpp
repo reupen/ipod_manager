@@ -596,7 +596,7 @@ void database_writer_t::write_itunesdb(ipod_device_ptr_ref_t p_ipod, ipod::tasks
 			tihm.write_lendian_t(temp, p_abort);
 			tihm.write_lendian_t(t_uint8(track->type1), p_abort);
 			tihm.write_lendian_t(t_uint8(track->type2), p_abort);
-			tihm.write_lendian_t(t_uint8(track->compilation), p_abort);
+			tihm.write_lendian_t(t_uint8(track->is_compilation), p_abort);
 			tihm.write_lendian_t(t_uint8(track->rating), p_abort);
 			tihm.write_lendian_t(t_uint32(track->lastmodifiedtime), p_abort);
 
@@ -626,7 +626,7 @@ void database_writer_t::write_itunesdb(ipod_device_ptr_ref_t p_ipod, ipod::tasks
 			tihm.write_lendian_t(t_uint32(track->bookmarktime), p_abort);
 
 			tihm.write_lendian_t(t_uint64(track->pid), p_abort);
-			tihm.write_lendian_t(t_uint8(track->checked), p_abort);
+			tihm.write_lendian_t(t_uint8(track->is_user_disabled), p_abort);
 			tihm.write_lendian_t(t_uint8(track->application_rating), p_abort);
 			tihm.write_lendian_t(t_uint16(track->bpm), p_abort);
 			tihm.write_lendian_t(t_uint16(track->artwork_count), p_abort);

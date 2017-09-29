@@ -131,7 +131,7 @@ namespace smart_playlist
 		case itunesdb::smart_playlist_fields::comment:
 			return g_test_track_generic_string(track->comment, rule);
 		case itunesdb::smart_playlist_fields::compilation:
-			return g_test_track_generic_integer(track->compilation, rule);
+			return g_test_track_generic_integer(track->is_compilation, rule);
 		case itunesdb::smart_playlist_fields::composer:
 			return g_test_track_generic_string(track->composer, rule);
 		case itunesdb::smart_playlist_fields::date_added:
@@ -220,7 +220,7 @@ namespace smart_playlist
 				mask.set_count(m_tracks.get_count());
 				t_size i, count = m_tracks.get_count();
 				for (i=0; i<count; i++)
-					mask[i] = !m_tracks[i]->checked;
+					mask[i] = !m_tracks[i]->is_user_disabled;
 				m_tracks.remove_mask(mask.get_ptr());
 			}
 			if (p_data.check_limits)

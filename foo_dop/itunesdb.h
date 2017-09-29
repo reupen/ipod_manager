@@ -528,7 +528,7 @@ namespace itunesdb
 		t_uint32 year;
 		t_uint8 type1;
 		t_uint8 type2;
-		t_uint8 compilation;
+		t_uint8 is_compilation;
 		t_uint8 rating;
 
 		t_uint32 file_size_32; //bytes
@@ -555,7 +555,7 @@ namespace itunesdb
 		t_uint32 volume_normalisation_energy;
 
 		t_uint64 pid;
-		t_uint8 checked;
+		t_uint8 is_user_disabled;
 		t_uint8 application_rating;
 		t_uint16 bpm;
 		t_uint16 artwork_count;
@@ -839,7 +839,7 @@ namespace itunesdb
 			album_valid(false), artist_valid(false), genre_valid(false), location_valid(false), pid(0),
 			artwork_count(0), artwork_size(0), userid(0), play_count_user(0), play_count_recent(0), dateadded(0),
 			lastplayedtime(0), bookmarktime(0), datereleased(0), store_key_versions(0), composer_valid(false),
-			volume_normalisation_energy(0), unk9(0), audio_format(0), type1(0), type2(0), compilation(0),
+			volume_normalisation_energy(0), unk9(0), audio_format(0), type1(0), type2(0), is_compilation(0),
 			content_rating(0), unk12(0), skip_count_user(0), skip_count_recent(0), last_skipped(0), artwork_flag(no_artwork), skip_on_shuffle(0),
 			remember_playback_position(0), podcast_flag(0), dbid2(0), lyrics_flag(0), video_flag(0),
 			played_marker(2), unk37(0), bookmark_time_ms_common(0), gapless_encoding_delay(0), samplecount(0), /*unk24(0),*/ lyrics_checksum(0),
@@ -848,7 +848,7 @@ namespace itunesdb
 			legacy_store_playlist_id(0), comment_valid(false), category_valid(false), grouping_valid(false),
 			description_valid(false), podcast_rss_url_valid(false), podcast_enclosure_url_valid(false),
 			chapter_data_valid(false), eq_settings_valid(false), starttime(0), stoptime(0),
-			volume(0), unk11(0), checked(0), application_rating(0), bpm(0), filetype_valid(false),
+			volume(0), unk11(0), is_user_disabled(0), application_rating(0), bpm(0), filetype_valid(false),
 			subtitle_valid(false), tv_network_valid(false), episode_valid(false), show_valid(false),
 			legacy_store_storefront_id(0), gapless_last_frame_resync(0), has_closed_captions(0), gapless_album(0),
 			/*unk44(0), unk45(0), unk46(0), unk47(0), unk48(0),*/ unk49(0), album_id(0), 
