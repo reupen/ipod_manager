@@ -255,7 +255,7 @@ namespace ipod
 
 									m_tracks[i]->lastplayedtime = m_playcounts[i].last_played;
 									//m_tracks[i]->playcount2 += m_playcounts[i].play_count;
-									m_tracks[i]->playcount += m_playcounts[i].play_count;
+									m_tracks[i]->play_count_user += m_playcounts[i].play_count;
 								}
 								if (m_playcounts[i].bookmark_position != -1)
 								{

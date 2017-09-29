@@ -111,15 +111,15 @@ namespace itunesdb
 		{
 			p_tihm.read_lendian_auto_t(dohm_count, p_abort); //12
 			p_tihm.read_lendian_auto_t(track->id, p_abort); //16
-			p_tihm.read_lendian_auto_t(track->visible, p_abort); //20
-			t_uint32 filetype;
-			p_tihm.read_lendian_auto_t(filetype, p_abort); //24
+			p_tihm.read_lendian_auto_t(track->location_type, p_abort); //20
+			t_uint32 file_extension;
+			p_tihm.read_lendian_auto_t(file_extension, p_abort); //24
 			p_tihm.read_lendian_auto_t(track->type1, p_abort); //28
 			p_tihm.read_lendian_auto_t(track->type2, p_abort); //29
 			p_tihm.read_lendian_auto_t(track->compilation, p_abort); //30
 			p_tihm.read_lendian_auto_t(track->rating, p_abort); //31
 			p_tihm.read_lendian_auto_t(track->lastmodifiedtime, p_abort); //32
-			p_tihm.read_lendian_auto_t(track->size, p_abort); //36
+			p_tihm.read_lendian_auto_t(track->file_size_32, p_abort); //36
 			p_tihm.read_lendian_auto_t(track->length, p_abort); //40
 			p_tihm.read_lendian_auto_t(track->tracknumber, p_abort); //44
 			p_tihm.read_lendian_auto_t(track->totaltracks, p_abort); //48
@@ -131,9 +131,9 @@ namespace itunesdb
 			p_tihm.read_lendian_auto_t(track->volume, p_abort); //64
 			p_tihm.read_lendian_auto_t(track->starttime, p_abort); //68
 			p_tihm.read_lendian_auto_t(track->stoptime, p_abort); //72
-			p_tihm.read_lendian_auto_t(track->soundcheck, p_abort); //76 volume_normalisation_energy
-			p_tihm.read_lendian_auto_t(track->playcount, p_abort); //80 //play_count_user
-			p_tihm.read_lendian_auto_t(track->playcount2, p_abort); //84 play_count_recent
+			p_tihm.read_lendian_auto_t(track->volume_normalisation_energy, p_abort); //76
+			p_tihm.read_lendian_auto_t(track->play_count_user, p_abort); //80
+			p_tihm.read_lendian_auto_t(track->play_count_recent, p_abort); //84
 			p_tihm.read_lendian_auto_t(track->lastplayedtime, p_abort); //88
 			p_tihm.read_lendian_auto_t(track->discnumber, p_abort); //92
 			p_tihm.read_lendian_auto_t(track->totaldiscs, p_abort); //96

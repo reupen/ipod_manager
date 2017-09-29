@@ -1145,7 +1145,7 @@ void ipod::tasks::database_writer_t::write_sqlitedb(ipod_device_ptr_ref_t p_ipod
 						<< "'" << string_escape_sql(file) << "',"
 						<< extension << ","
 						<< sqldbtime_from_itunesdbtime(track->dateadded) << ","
-						<< (track->filesize_64 ? track->filesize_64 : track->size)
+						<< (track->filesize_64 ? track->filesize_64 : track->file_size_32)
 						<< ")";
 
 					locationsdb->exec(query);
@@ -1166,7 +1166,7 @@ void ipod::tasks::database_writer_t::write_sqlitedb(ipod_device_ptr_ref_t p_ipod
 						<< track->resync_frame_offset << ","
 						<< "0" << ","
 						<< track->audio_fingerprint << ","
-						<< track->soundcheck
+						<< track->volume_normalisation_energy
 						<< ")";
 
 					librarydb->exec(query);
@@ -1271,8 +1271,8 @@ void ipod::tasks::database_writer_t::write_sqlitedb(ipod_device_ptr_ref_t p_ipod
 					<< (t_int64)track->pid << ","
 					<< (t_uint32)(track->played_marker == 1 ? 1 : 0) << ","
 					<< sqldbtime_from_itunesdbtime(track->lastplayedtime) << ","
-					<< track->playcount << ","
-					<< track->playcount2 << ","
+					<< track->play_count_user << ","
+					<< track->play_count_recent << ","
 					<< sqldbtime_from_itunesdbtime(track->last_skipped) << ","
 					<< track->skip_count_user << ","
 					<< track->skip_count_recent << ","

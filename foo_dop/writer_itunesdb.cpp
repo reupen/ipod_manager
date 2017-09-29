@@ -579,7 +579,7 @@ void database_writer_t::write_itunesdb(ipod_device_ptr_ref_t p_ipod, ipod::tasks
 
 			tihm.write_lendian_t(count_do, p_abort);
 			tihm.write_lendian_t(track->id, p_abort);
-			tihm.write_lendian_t(track->visible, p_abort);
+			tihm.write_lendian_t(track->location_type, p_abort);
 			t_uint temp = 0;
 			pfc::string_extension ext(handle->get_path());
 			string_upper extupper(ext);
@@ -600,7 +600,7 @@ void database_writer_t::write_itunesdb(ipod_device_ptr_ref_t p_ipod, ipod::tasks
 			tihm.write_lendian_t(t_uint8(track->rating), p_abort);
 			tihm.write_lendian_t(t_uint32(track->lastmodifiedtime), p_abort);
 
-			tihm.write_lendian_t(t_uint32(track->size), p_abort);
+			tihm.write_lendian_t(t_uint32(track->file_size_32), p_abort);
 			t_uint32 length = t_uint32(track->length);
 			tihm.write_lendian_t(length, p_abort);
 			tihm.write_lendian_t(t_uint32(track->tracknumber), p_abort);
@@ -615,9 +615,9 @@ void database_writer_t::write_itunesdb(ipod_device_ptr_ref_t p_ipod, ipod::tasks
 			tihm.write_lendian_t(t_uint32(track->volume), p_abort);
 			tihm.write_lendian_t(t_uint32(track->starttime), p_abort);
 			tihm.write_lendian_t(t_uint32(track->stoptime), p_abort);
-			tihm.write_lendian_t(t_uint32(track->soundcheck), p_abort);
-			tihm.write_lendian_t(t_uint32(track->playcount), p_abort);
-			tihm.write_lendian_t(t_uint32(track->playcount2), p_abort);
+			tihm.write_lendian_t(t_uint32(track->volume_normalisation_energy), p_abort);
+			tihm.write_lendian_t(t_uint32(track->play_count_user), p_abort);
+			tihm.write_lendian_t(t_uint32(track->play_count_recent), p_abort);
 			tihm.write_lendian_t(t_uint32(track->lastplayedtime), p_abort);
 			tihm.write_lendian_t(t_uint32(track->discnumber), p_abort);
 			tihm.write_lendian_t(t_uint32(track->totaldiscs), p_abort);

@@ -153,7 +153,7 @@ namespace smart_playlist
 		case itunesdb::smart_playlist_fields::last_skipped:
 			return g_test_track_generic_timestamp(track->last_skipped, rule, m_timestamp);
 		case itunesdb::smart_playlist_fields::play_count:
-			return g_test_track_generic_integer(track->playcount, rule);
+			return g_test_track_generic_integer(track->play_count_user, rule);
 		case itunesdb::smart_playlist_fields::podcast:
 			return g_test_track_generic_integer(track->podcast_flag, rule);
 		case itunesdb::smart_playlist_fields::rating:
@@ -163,7 +163,7 @@ namespace smart_playlist
 		case itunesdb::smart_playlist_fields::season_number:
 			return g_test_track_generic_integer(track->season_number, rule);
 		case itunesdb::smart_playlist_fields::size:
-			return g_test_track_generic_integer(track->size, rule);
+			return g_test_track_generic_integer(track->file_size_32, rule);
 		case itunesdb::smart_playlist_fields::skip_count:
 			return g_test_track_generic_integer(track->skip_count_user, rule);
 		case itunesdb::smart_playlist_fields::sort_album:
@@ -384,7 +384,7 @@ namespace smart_playlist
 					t_size counter=0, cumulative=0;
 					while (counter < m_tracks.get_count())
 					{
-						cumulative += m_tracks[counter]->size;
+						cumulative += m_tracks[counter]->file_size_32;
 						if (cumulative > limit)
 							break;
 						counter++;

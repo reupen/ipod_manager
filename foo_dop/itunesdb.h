@@ -522,7 +522,7 @@ namespace itunesdb
 		typedef pfc::rcptr_t<t_track> ptr;
 
 		t_uint32 id;
-		t_uint32 visible;
+		t_uint32 location_type;
 		t_uint32 tracknumber;
 		t_uint32 totaltracks;
 		t_uint32 year;
@@ -531,7 +531,7 @@ namespace itunesdb
 		t_uint8 compilation;
 		t_uint8 rating;
 
-		t_uint32 size; //bytes
+		t_uint32 file_size_32; //bytes
 		t_uint32 length; //ms - corrected for gapless?
 
 		t_uint32 bitrate;
@@ -546,13 +546,13 @@ namespace itunesdb
 
 		t_uint32 lastmodifiedtime; //number of seconds since 00:00:00 UTC, January 1, 1904.
 		t_uint32 userid;
-		t_uint32 playcount;
-		t_uint32 playcount2;
+		t_uint32 play_count_user;
+		t_uint32 play_count_recent;
 		t_uint32 lastplayedtime;
 		t_uint32 bookmarktime;
 		t_uint32 datereleased;
 		t_uint32 dateadded;
-		t_uint32 soundcheck;
+		t_uint32 volume_normalisation_energy;
 
 		t_uint64 pid;
 		t_uint8 checked;
@@ -828,13 +828,13 @@ namespace itunesdb
 		/** Run-time data */
 		t_filestats m_runtime_filestats;
 
-		t_track() : id(0), visible(1), tracknumber(0), year(0), rating(0), size(0), length(0), totaltracks(0),
+		t_track() : id(0), location_type(1), tracknumber(0), year(0), rating(0), file_size_32(0), length(0), totaltracks(0),
 			bitrate(0), samplerate(0), unk8(0), discnumber(0), totaldiscs(0), lastmodifiedtime(0), title_valid(false), 
 			original_subsong(0), original_subsong_valid(false),
 			album_valid(false), artist_valid(false), genre_valid(false), location_valid(false), pid(0),
-			artwork_count(0), artwork_size(0), userid(0), playcount(0), playcount2(0), dateadded(0),
+			artwork_count(0), artwork_size(0), userid(0), play_count_user(0), play_count_recent(0), dateadded(0),
 			lastplayedtime(0), bookmarktime(0), datereleased(0), store_drm_key_versions(0), composer_valid(false),
-			soundcheck(0), unk9(0), audio_format(0), type1(0), type2(0), compilation(0),
+			volume_normalisation_energy(0), unk9(0), audio_format(0), type1(0), type2(0), compilation(0),
 			content_rating(0), unk12(0), skip_count_user(0), skip_count_recent(0), last_skipped(0), artwork_flag(no_artwork), skip_on_shuffle(0),
 			remember_playback_position(0), podcast_flag(0), dbid2(0), lyrics_flag(0), video_flag(0),
 			played_marker(2), unk37(0), bookmark_time_ms_common(0), encoder_delay(0), samplecount(0), /*unk24(0),*/ lyrics_crc(0),
@@ -989,7 +989,7 @@ namespace itunesdb
 		}
 		static int g_compare_play_count_descending (const pfc::rcptr_t<t_track> & item1, const pfc::rcptr_t<t_track> &item2)
 		{
-			return -pfc::compare_t(item1->playcount, item2->playcount);
+			return -pfc::compare_t(item1->play_count_user, item2->play_count_user);
 		}
 		static int g_compare_rating_descending (const pfc::rcptr_t<t_track> & item1, const pfc::rcptr_t<t_track> &item2)
 		{

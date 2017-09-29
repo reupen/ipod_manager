@@ -183,7 +183,7 @@ namespace itunesdb {
 						static_api_ptr_t<titleformat_compiler>()->compile_force(to, "[%play_count%]");
 						p_original_file->format_title_from_external_info(info, NULL, temp, to, NULL);
 						if (temp.length())
-							playcount = mmh::strtoul_n(temp.get_ptr(), pfc_infinite);
+							play_count_user = mmh::strtoul_n(temp.get_ptr(), pfc_infinite);
 
 						static_api_ptr_t<titleformat_compiler>()->compile_force(to, "[%last_played_timestamp%]");
 						p_original_file->format_title_from_external_info(info, NULL, temp, to, NULL);
@@ -297,7 +297,7 @@ namespace itunesdb {
 
 			if (stats.m_timestamp != filetimestamp_invalid)
 				lastmodifiedtime = apple_time_from_filetime(stats.m_timestamp);
-			size = (t_uint32)stats.m_size;
+			file_size_32 = (t_uint32)stats.m_size;
 
 			bool vbr =
 				((info.info_exists("extrainfo") && !stricmp_utf8(info.info_get("extrainfo"), "VBR"))
@@ -352,7 +352,7 @@ namespace itunesdb {
 				db_adjustment += p_mappings.soundcheck_adjustment;
 				float scheck_float = 1000.0f * pow(10.0f, (-0.1f * db_adjustment));
 				//scheck_float = scheck_float >= -0.5f ? scheck_float + 0.5f : scheck_float - 0.5f;
-				soundcheck = pfc::rint32(scheck_float);
+				volume_normalisation_energy = pfc::rint32(scheck_float);
 			}
 
 			samplecount = (t_uint64)info.info_get_length_samples();

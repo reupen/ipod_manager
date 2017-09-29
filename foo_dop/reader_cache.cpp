@@ -45,7 +45,7 @@ namespace ipod
 						m_tracks[n - 1]->m_runtime_filestats.m_timestamp = m_tracks[n - 1]->original_timestamp;
 					else if (m_tracks[n - 1]->lastmodifiedtime)
 						m_tracks[n - 1]->m_runtime_filestats.m_timestamp = filetime_time_from_appletime(m_tracks[n - 1]->lastmodifiedtime);
-					m_tracks[n - 1]->m_runtime_filestats.m_size = m_tracks[n - 1]->size;
+					m_tracks[n - 1]->m_runtime_filestats.m_size = m_tracks[n - 1]->file_size_32;
 				}
 				else
 				{

@@ -219,7 +219,7 @@ public:
 
 					items[i]->format_title(NULL, temp, to_playcount, NULL);
 					if (temp.length())
-						p_track.playcount = mmh::strtoul_n(temp.get_ptr(), pfc_infinite);
+						p_track.play_count_user = mmh::strtoul_n(temp.get_ptr(), pfc_infinite);
 
 					items[i]->format_title(NULL, temp, to_lastplayed, NULL);
 					if (temp.length())

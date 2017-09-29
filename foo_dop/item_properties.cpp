@@ -83,7 +83,7 @@ BOOL item_info_dialog_v2_t::DialogProc(HWND wnd,UINT msg,WPARAM wp,LPARAM lp)
 			}
 			else
 				SetWindowText(GetDlgItem(wnd, IDC_SKIPPED), _T("n/a"));
-			t_uint32 sc = m_track->soundcheck;
+			t_uint32 sc = m_track->volume_normalisation_energy;
 			if (sc)
 			{
 				float rggain = log10f((float)sc / 1000.0f)/-0.1f;
@@ -92,7 +92,7 @@ BOOL item_info_dialog_v2_t::DialogProc(HWND wnd,UINT msg,WPARAM wp,LPARAM lp)
 			else
 				SetWindowText(GetDlgItem(wnd, IDC_SCHECK), _T("n/a"));
 
-			uSetDlgItemInt(wnd, IDC_PLAYCOUNT, m_track->playcount, FALSE);
+			uSetDlgItemInt(wnd, IDC_PLAYCOUNT, m_track->play_count_user, FALSE);
 			uSetDlgItemInt(wnd, IDC_SKIPCOUNT, m_track->skip_count_user, FALSE);
 		}
 		break;

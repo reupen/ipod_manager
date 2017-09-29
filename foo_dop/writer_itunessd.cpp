@@ -48,7 +48,7 @@ void ipod_write_shuffledb(ipod_device_ptr_ref_t p_ipod, const char * m_path, con
 			int volume = 0;
 			if (p_ipod->m_device_properties.m_SupportsSoundCheck)
 			{
-				unsigned sc = p_library.m_tracks[i]->soundcheck;
+				unsigned sc = p_library.m_tracks[i]->volume_normalisation_energy;
 				int voli = p_library.m_tracks[i]->volume;
 				double volf = (double)voli / 255.0 + 1.0;
 				if (volf == 0.0)
@@ -234,7 +234,7 @@ void ipod_write_shadowdb_v2(ipod_device_ptr_ref_t p_ipod, const char * m_path, c
 			int volume = 0;
 			if (p_ipod->m_device_properties.m_SupportsSoundCheck)
 			{
-				unsigned sc = p_library.m_tracks[i]->soundcheck;
+				unsigned sc = p_library.m_tracks[i]->volume_normalisation_energy;
 				int voli = p_library.m_tracks[i]->volume;
 				double volf = (double)voli / 255.0 + 1.0;
 				if (volf == 0.0)
