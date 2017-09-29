@@ -101,13 +101,13 @@ namespace ipod
 														}
 													}
 
-													TrackProperties->m_dictionary.get_child(L"collection-id", track->unk36);
+													TrackProperties->m_dictionary.get_child(L"collection-id", track->legacy_store_playlist_id);
 													TrackProperties->m_dictionary.get_child(L"collection-id", track->store_playlist_id);
 													track->album_valid = TrackProperties->m_dictionary.get_child(L"collection-name", track->album);
 													track->artist_valid = TrackProperties->m_dictionary.get_child(L"artist-name", track->artist);
 													track->podcast_enclosure_url_valid = TrackProperties->m_dictionary.get_child(L"episode-guid", track->podcast_enclosure_url);
 													track->category_valid = TrackProperties->m_dictionary.get_child(L"genre-name", track->category);
-													TrackProperties->m_dictionary.get_child(L"item-id", track->unk32);
+													TrackProperties->m_dictionary.get_child(L"item-id", track->legacy_store_item_id);
 													TrackProperties->m_dictionary.get_child(L"item-id", track->store_item_id);
 													track->description_valid = TrackProperties->m_dictionary.get_child(L"long-description", track->description);
 													track->podcast_rss_url_valid = TrackProperties->m_dictionary.get_child(L"podcast-feed-url", track->podcast_rss_url);
@@ -147,7 +147,7 @@ namespace ipod
 												track->sort_album_valid = g_get_sort_string_for_ipod(track->album, track->sort_album, true);
 												track->sort_artist_valid = g_get_sort_string_for_ipod(track->artist, track->sort_artist, true);
 												//release-date
-												TrackProperties->m_dictionary.get_child(L"storefront", track->unk40);
+												TrackProperties->m_dictionary.get_child(L"storefront", track->legacy_store_storefront_id);
 												TrackProperties->m_dictionary.get_child(L"storefront", track->store_front_id);
 
 												{

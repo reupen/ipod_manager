@@ -288,8 +288,8 @@ void ipod_write_shadowdb_v2(ipod_device_ptr_ref_t p_ipod, const char * m_path, c
 			shtr.write_lendian_t(t_uint8(p_track->remember_playback_position), p_abort);
 			shtr.write_lendian_t(t_uint8(p_track->gapless_album), p_abort);
 			shtr.write_lendian_t(t_uint8(0), p_abort);
-			shtr.write_lendian_t(p_track->encoder_delay, p_abort);
-			shtr.write_lendian_t(p_track->encoder_padding, p_abort);
+			shtr.write_lendian_t(p_track->gapless_encoding_delay, p_abort);
+			shtr.write_lendian_t(p_track->gapless_encoding_drain, p_abort);
 			shtr.write_lendian_t(p_track->samplecount, p_abort);
 			shtr.write_lendian_t(t_uint64(p_track->resync_frame_offset), p_abort);
 			shtr.write_lendian_t(p_track->album_id, p_abort);

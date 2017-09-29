@@ -565,7 +565,7 @@ namespace itunesdb
 		t_uint32 unk11;
 		t_uint16 audio_format;
 		t_uint8 content_rating, unk12;
-		t_uint32 store_drm_key_versions;
+		t_uint32 store_key_versions;
 
 		t_uint32 skip_count_user;
 		t_uint32 skip_count_recent;
@@ -589,11 +589,12 @@ namespace itunesdb
 		t_uint8 unk37;
 
 		t_uint32 bookmark_time_ms_common;
-		t_uint32 encoder_delay;
+		t_uint32 gapless_encoding_delay;
 		t_uint64 samplecount;
 		//t_uint32 unk24;
-		t_uint32 lyrics_crc;
-		t_uint32 encoder_padding;
+		t_uint32 lyrics_checksum;
+		/** Same as encoder padding. */
+		t_uint32 gapless_encoding_drain;
 		t_uint32 gapless_heuristic_info; // 1 if gapless accurate, 0x02000003 if not, 0 if no gapless info present
 
 		enum t_media_type
@@ -616,16 +617,15 @@ namespace itunesdb
 		};
 		t_uint32 media_type;
 		t_uint32 season_number;
-		t_uint32 episode_number;
+		/** Essentially episode number */
+		t_uint32 episode_sort_id;
 		t_uint32 date_purchased;
-		t_uint32 unk32;
-		t_uint32 unk33;
-		t_uint32 unk34;
-		t_uint32 unk35;
-		t_uint32 unk36;
-
-
-		t_uint32 unk40;
+		t_uint32 legacy_store_item_id;
+		t_uint32 legacy_store_genre_id;
+		t_uint32 legacy_store_artist_id;
+		t_uint32 legacy_store_composer_id;
+		t_uint32 legacy_store_playlist_id;
+		t_uint32 legacy_store_storefront_id;
 		t_uint64 resync_frame_offset; //64-bit ?
 		t_uint16 unk43_1; //default 1
 		t_uint8 gapless_album;
@@ -833,19 +833,19 @@ namespace itunesdb
 			original_subsong(0), original_subsong_valid(false),
 			album_valid(false), artist_valid(false), genre_valid(false), location_valid(false), pid(0),
 			artwork_count(0), artwork_size(0), userid(0), play_count_user(0), play_count_recent(0), dateadded(0),
-			lastplayedtime(0), bookmarktime(0), datereleased(0), store_drm_key_versions(0), composer_valid(false),
+			lastplayedtime(0), bookmarktime(0), datereleased(0), store_key_versions(0), composer_valid(false),
 			volume_normalisation_energy(0), unk9(0), audio_format(0), type1(0), type2(0), compilation(0),
 			content_rating(0), unk12(0), skip_count_user(0), skip_count_recent(0), last_skipped(0), artwork_flag(no_artwork), skip_on_shuffle(0),
 			remember_playback_position(0), podcast_flag(0), dbid2(0), lyrics_flag(0), video_flag(0),
-			played_marker(2), unk37(0), bookmark_time_ms_common(0), encoder_delay(0), samplecount(0), /*unk24(0),*/ lyrics_crc(0),
-			encoder_padding(0), gapless_heuristic_info(0), media_type(1), 
-			season_number(0), episode_number(0), date_purchased(0), unk32(0), unk33(0), unk34(0), unk35(0),
-			unk36(0), comment_valid(false), category_valid(false), grouping_valid(false),
+			played_marker(2), unk37(0), bookmark_time_ms_common(0), gapless_encoding_delay(0), samplecount(0), /*unk24(0),*/ lyrics_checksum(0),
+			gapless_encoding_drain(0), gapless_heuristic_info(0), media_type(1), 
+			season_number(0), episode_sort_id(0), date_purchased(0), legacy_store_item_id(0), legacy_store_genre_id(0), legacy_store_artist_id(0), legacy_store_composer_id(0),
+			legacy_store_playlist_id(0), comment_valid(false), category_valid(false), grouping_valid(false),
 			description_valid(false), podcast_rss_url_valid(false), podcast_enclosure_url_valid(false),
 			chapter_data_valid(false), eq_settings_valid(false), starttime(0), stoptime(0),
 			volume(0), unk11(0), checked(0), application_rating(0), bpm(0), filetype_valid(false),
 			subtitle_valid(false), tv_network_valid(false), episode_valid(false), show_valid(false),
-			unk40(0), resync_frame_offset(0), unk43_1(1), unk43_2(0), gapless_album(0),
+			legacy_store_storefront_id(0), resync_frame_offset(0), unk43_1(1), unk43_2(0), gapless_album(0),
 			/*unk44(0), unk45(0), unk46(0), unk47(0), unk48(0),*/ unk49(0), album_id(0), 
 			unk50(0), unk52(0), unk53(0), filesize_64(0), unk56(0), unk57(0), unk58(0), 
 			unk59(0), unk60(0), dshm_type_6(false), dshm_type_6_is_new(false), extended_content_rating_valid(false),
@@ -898,8 +898,8 @@ namespace itunesdb
 		//void set_from_metadb_handle_locked_v2(const metadb_handle_ptr & ptr, const chapter_list & p_chapters);
 		void set_gapless_info(t_uint32 p_encoder_delay, t_uint32 p_encoder_padding, t_uint32 p_sync_frame_offset)
 		{
-			encoder_delay = p_encoder_delay;
-			encoder_padding = p_encoder_padding;
+			gapless_encoding_delay = p_encoder_delay;
+			gapless_encoding_drain = p_encoder_padding;
 			resync_frame_offset = p_sync_frame_offset;
 			gapless_heuristic_info = 0x1;
 		}

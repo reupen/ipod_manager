@@ -379,7 +379,7 @@ bool g_track_has_store_info(t_track::ptr const & p_track)
 	return
 		p_track->account_id_primary
 		|| p_track->account_id_secondary
-		|| p_track->store_drm_key_versions
+		|| p_track->store_key_versions
 		|| p_track->key_platform_id
 		|| p_track->store_item_id
 		|| p_track->store_genre_id
@@ -1161,8 +1161,8 @@ void ipod::tasks::database_writer_t::write_sqlitedb(ipod_device_ptr_ref_t p_ipod
 						<< (track->samplerate) << ","
 						<< track->samplecount << ","
 						<< track->gapless_heuristic_info << ","
-						<< track->encoder_delay << ","
-						<< track->encoder_padding << ","
+						<< track->gapless_encoding_delay << ","
+						<< track->gapless_encoding_drain << ","
 						<< track->resync_frame_offset << ","
 						<< "0" << ","
 						<< track->audio_fingerprint << ","
@@ -1187,7 +1187,7 @@ void ipod::tasks::database_writer_t::write_sqlitedb(ipod_device_ptr_ref_t p_ipod
 							<< track->is_compressed << ","
 							<< track->is_anamorphic << ","
 							<< track->is_hd << ","
-							<< track->episode_number << ","
+							<< track->episode_sort_id << ","
 							<< track->season_number << ","
 							<< (t_int16)track->audio_language << ","
 							<< track->audio_track_index << ","
@@ -1233,7 +1233,7 @@ void ipod::tasks::database_writer_t::write_sqlitedb(ipod_device_ptr_ref_t p_ipod
 							<< sqldbtime_from_itunesdbtime(track->datereleased) << "," //FIXME
 							<< (t_int64)track->store_item_id << ","
 							<< (t_int64)(track->account_id_primary ? track->account_id_primary : track->account_id_secondary) << ","
-							<< track->store_drm_key_versions << ","
+							<< track->store_key_versions << ","
 							<< track->key_platform_id << ","
 							<< (t_int64)track->key_id << ","
 							<< (t_int64)track->key_id2 << ","
@@ -1251,7 +1251,7 @@ void ipod::tasks::database_writer_t::write_sqlitedb(ipod_device_ptr_ref_t p_ipod
 
 					if (track->lyrics_flag)
 					{
-						query << "INSERT INTO lyrics (item_pid,checksum) VALUES (" << (t_int64)track->pid << "," << (t_int32)track->lyrics_crc << ")";
+						query << "INSERT INTO lyrics (item_pid,checksum) VALUES (" << (t_int64)track->pid << "," << (t_int32)track->lyrics_checksum << ")";
 						extrasdb->exec(query);
 						query.reset();
 					}

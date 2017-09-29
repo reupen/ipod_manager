@@ -417,11 +417,11 @@ void ipod_browse_dialog::refresh_song_list(const ipod_tree_entry_t * p_selection
 				else if (gapless)
 					temp << "unknown";
 				uih::list_view_insert_item_text(wnd_lv, i, ci++, temp, true, i);
-				if (track.encoder_delay)
-					uih::list_view_insert_item_text(wnd_lv, i, ci, pfc::string8() << track.encoder_delay, true, i);
+				if (track.gapless_encoding_delay)
+					uih::list_view_insert_item_text(wnd_lv, i, ci, pfc::string8() << track.gapless_encoding_delay, true, i);
 				ci++;
-				if (track.encoder_padding)
-					uih::list_view_insert_item_text(wnd_lv, i, ci, pfc::string8() << track.encoder_padding, true, i);
+				if (track.gapless_encoding_drain)
+					uih::list_view_insert_item_text(wnd_lv, i, ci, pfc::string8() << track.gapless_encoding_drain, true, i);
 				ci++;
 				uih::list_view_insert_item_text(wnd_lv, i, ci++, track.artwork_flag == 0x1 && track.artwork_count ? "yes" : "", true, i);
 				uih::list_view_insert_item_text(wnd_lv, i, ci++, track.original_path_valid ? "yes" : "", true, i);

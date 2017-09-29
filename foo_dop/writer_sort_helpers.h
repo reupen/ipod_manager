@@ -141,7 +141,7 @@ public:
 		seasonnumber = track.season_number;
 		tracknumber = track.tracknumber;
 		discnumber = track.discnumber;
-		episodenumber = track.episode_number;
+		episodenumber = track.episode_sort_id;
 	}
 
 	typedef int (__cdecl * t_comparefunc)(const t_sort_entry &, const t_sort_entry &);

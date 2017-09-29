@@ -30,14 +30,14 @@ namespace ipod
 						t_uint32 delay=NULL, padding=NULL;
 						if (g_get_gapless_mp4(ptr->get_path(), delay, padding, p_abort))
 						{
-							p_track.encoder_delay = delay;
-							p_track.encoder_padding = padding;
+							p_track.gapless_encoding_delay = delay;
+							p_track.gapless_encoding_drain = padding;
 							p_track.gapless_heuristic_info = 0x1;
 						}
 						else if (b_use_dummy)
 						{
-							p_track.encoder_delay = 1;
-							p_track.encoder_padding = 0;
+							p_track.gapless_encoding_delay = 1;
+							p_track.gapless_encoding_drain = 0;
 							p_track.gapless_heuristic_info = 0x2000003;
 						}
 						else throw exception_dop_gapless_no_gapless_data_found();
@@ -58,14 +58,14 @@ namespace ipod
 								p_track.resync_frame_offset = sync;
 								if (b_have_accurate)
 								{
-									p_track.encoder_delay = (t_uint32)pinfo->info_get_int("enc_delay");
-									p_track.encoder_padding = (t_uint32)pinfo->info_get_int("enc_padding");
+									p_track.gapless_encoding_delay = (t_uint32)pinfo->info_get_int("enc_delay");
+									p_track.gapless_encoding_drain = (t_uint32)pinfo->info_get_int("enc_padding");
 									p_track.gapless_heuristic_info = 0x1;
 								}
 								else
 								{
-									p_track.encoder_delay = 1;
-									p_track.encoder_padding = 0;
+									p_track.gapless_encoding_delay = 1;
+									p_track.gapless_encoding_drain = 0;
 									p_track.gapless_heuristic_info = 0x2000003;
 								}
 							}

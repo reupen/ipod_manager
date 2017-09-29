@@ -204,7 +204,7 @@ namespace itunesdb {
 				sort_show_valid = p_mappings.allow_sort_fields && g_print_meta(info, "SHOWSORTORDER", sort_show) && strcmp(sort_show, show);
 				episode_valid = g_print_meta(info, "EPISODEID", episode);
 				season_number = g_print_meta_int(info, "SEASONNUMBER");
-				episode_number = g_print_meta_int(info, "EPISODENUMBER");
+				episode_sort_id = g_print_meta_int(info, "EPISODENUMBER");
 
 				bool id3v2 = false;
 				if (mp3 && info.info_exists("tagtype"))
@@ -226,8 +226,8 @@ namespace itunesdb {
 				}
 
 				lyrics_flag = ((id3v2 && info.meta_exists("UNSYNCED LYRICS")) || (mp4 && info.meta_exists("LYRICS"))) ? 1 : 0;
-				if (lyrics_flag && !lyrics_crc)
-					lyrics_crc = ~0;
+				if (lyrics_flag && !lyrics_checksum)
+					lyrics_checksum = ~0;
 			}
 
 			bitrate = (t_uint32)info.info_get_bitrate();

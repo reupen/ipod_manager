@@ -638,7 +638,7 @@ void database_writer_t::write_itunesdb(ipod_device_ptr_ref_t p_ipod, ipod::tasks
 			tihm.write_lendian_t(t_uint16(track->audio_format), p_abort);
 			tihm.write_lendian_t(t_uint8(track->content_rating), p_abort);
 			tihm.write_lendian_t(t_uint8(track->unk12), p_abort);
-			tihm.write_lendian_t(t_uint32(track->store_drm_key_versions), p_abort);
+			tihm.write_lendian_t(t_uint32(track->store_key_versions), p_abort);
 
 			tihm.write_lendian_t(track->skip_count_user, p_abort);
 			tihm.write_lendian_t(track->skip_count_recent, p_abort);
@@ -656,25 +656,25 @@ void database_writer_t::write_itunesdb(ipod_device_ptr_ref_t p_ipod, ipod::tasks
 
 			tihm.write_lendian_t(track->unk37, p_abort);
 			tihm.write_lendian_t(track->bookmark_time_ms_common, p_abort);
-			tihm.write_lendian_t(track->encoder_delay, p_abort);
+			tihm.write_lendian_t(track->gapless_encoding_delay, p_abort);
 			tihm.write_lendian_t(track->samplecount, p_abort);
 
 			//tihm.write_lendian_t(track->unk24, p_abort);
-			tihm.write_lendian_t(track->lyrics_crc, p_abort);
-			tihm.write_lendian_t(track->encoder_padding, p_abort);
+			tihm.write_lendian_t(track->lyrics_checksum, p_abort);
+			tihm.write_lendian_t(track->gapless_encoding_drain, p_abort);
 			tihm.write_lendian_t(track->gapless_heuristic_info, p_abort);
 
 			tihm.write_lendian_t(track->media_type, p_abort);
 			tihm.write_lendian_t(track->season_number, p_abort);
-			tihm.write_lendian_t(track->episode_number, p_abort);
+			tihm.write_lendian_t(track->episode_sort_id, p_abort);
 			tihm.write_lendian_t(track->date_purchased, p_abort);
-			tihm.write_lendian_t(track->unk32, p_abort);
-			tihm.write_lendian_t(track->unk33, p_abort);
-			tihm.write_lendian_t(track->unk34, p_abort);
-			tihm.write_lendian_t(track->unk35, p_abort);
-			tihm.write_lendian_t(track->unk36, p_abort);
+			tihm.write_lendian_t(track->legacy_store_item_id, p_abort);
+			tihm.write_lendian_t(track->legacy_store_genre_id, p_abort);
+			tihm.write_lendian_t(track->legacy_store_artist_id, p_abort);
+			tihm.write_lendian_t(track->legacy_store_composer_id, p_abort);
+			tihm.write_lendian_t(track->legacy_store_playlist_id, p_abort);
 
-			tihm.write_lendian_t(track->unk40, p_abort);
+			tihm.write_lendian_t(track->legacy_store_storefront_id, p_abort);
 			tihm.write_lendian_t(track->resync_frame_offset, p_abort);
 			tihm.write_lendian_t(track->unk43_1, p_abort);
 			tihm.write_lendian_t(track->gapless_album, p_abort);

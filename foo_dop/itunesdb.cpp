@@ -155,7 +155,7 @@ namespace itunesdb
 			p_tihm.read_lendian_auto_t(track->audio_format, p_abort); //144 
 			p_tihm.read_lendian_auto_t(track->content_rating, p_abort); //146 
 			p_tihm.read_lendian_auto_t(track->unk12, p_abort); //147 
-			p_tihm.read_lendian_auto_t(track->store_drm_key_versions, p_abort); //148 
+			p_tihm.read_lendian_auto_t(track->store_key_versions, p_abort); //148
 
 			p_tihm.read_lendian_auto_t(track->skip_count_user, p_abort); //152
 			p_tihm.read_lendian_auto_t(track->skip_count_recent, p_abort); //156
@@ -173,25 +173,25 @@ namespace itunesdb
 
 			p_tihm.read_lendian_auto_t(track->unk37, p_abort); //179
 			p_tihm.read_lendian_auto_t(track->bookmark_time_ms_common, p_abort); //180
-			p_tihm.read_lendian_auto_t(track->encoder_delay, p_abort); //184
+			p_tihm.read_lendian_auto_t(track->gapless_encoding_delay, p_abort); //184
 			p_tihm.read_lendian_auto_t(track->samplecount, p_abort); //188
 
 			//p_tihm.read_lendian_auto_t(track->unk24, p_abort);
-			p_tihm.read_lendian_auto_t(track->lyrics_crc, p_abort); //196
-			p_tihm.read_lendian_auto_t(track->encoder_padding, p_abort); //200
+			p_tihm.read_lendian_auto_t(track->lyrics_checksum, p_abort); //196
+			p_tihm.read_lendian_auto_t(track->gapless_encoding_drain, p_abort); //200
 			p_tihm.read_lendian_auto_t(track->gapless_heuristic_info, p_abort); //204
 
 			p_tihm.read_lendian_auto_t(track->media_type, p_abort); //208
 			p_tihm.read_lendian_auto_t(track->season_number, p_abort); //212
-			p_tihm.read_lendian_auto_t(track->episode_number, p_abort); //216 episode_sort_id ?
+			p_tihm.read_lendian_auto_t(track->episode_sort_id, p_abort); //216
 			p_tihm.read_lendian_auto_t(track->date_purchased, p_abort); //220 
-			p_tihm.read_lendian_auto_t(track->unk32, p_abort); //224
-			p_tihm.read_lendian_auto_t(track->unk33, p_abort); //228
-			p_tihm.read_lendian_auto_t(track->unk34, p_abort); //232
-			p_tihm.read_lendian_auto_t(track->unk35, p_abort); //236
-			p_tihm.read_lendian_auto_t(track->unk36, p_abort); //240
+			p_tihm.read_lendian_auto_t(track->legacy_store_item_id, p_abort); //224
+			p_tihm.read_lendian_auto_t(track->legacy_store_genre_id, p_abort); //228
+			p_tihm.read_lendian_auto_t(track->legacy_store_artist_id, p_abort); //232
+			p_tihm.read_lendian_auto_t(track->legacy_store_composer_id, p_abort); //236
+			p_tihm.read_lendian_auto_t(track->legacy_store_playlist_id, p_abort); //240
 
-			p_tihm.read_lendian_auto_t(track->unk40, p_abort); //244
+			p_tihm.read_lendian_auto_t(track->legacy_store_storefront_id, p_abort); //244
 			p_tihm.read_lendian_auto_t(track->resync_frame_offset, p_abort); //248 64-bit !
 			p_tihm.read_lendian_auto_t(track->unk43_1, p_abort); //256
 			p_tihm.read_lendian_auto_t(track->gapless_album, p_abort); //258
