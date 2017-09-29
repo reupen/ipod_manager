@@ -1183,7 +1183,7 @@ void ipod::tasks::database_writer_t::write_sqlitedb(ipod_device_ptr_ref_t p_ipod
 							<< track->has_subtitles << ","
 							<< track->characteristics_valid << ","
 							<< track->has_alternate_audio << ","
-							<< (track->is_self_contained == 0 ?1:0) << ","
+							<< (track->is_not_self_contained == 0 ?1:0) << ","
 							<< track->is_compressed << ","
 							<< track->is_anamorphic << ","
 							<< track->is_hd << ","

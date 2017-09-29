@@ -194,8 +194,9 @@ namespace itunesdb
 			p_tihm.read_lendian_auto_t(track->legacy_store_storefront_id, p_abort); //244
 			p_tihm.read_lendian_auto_t(track->gapless_last_frame_resync, p_abort); //248
 			p_tihm.read_lendian_auto_t(track->unk43_1, p_abort); //256
+			p_tihm.read_lendian_auto_t(track->unk43_2, p_abort); //257
 			p_tihm.read_lendian_auto_t(track->gapless_album, p_abort); //258
-			p_tihm.read_lendian_auto_t(track->unk43_2, p_abort); //259
+			p_tihm.read_lendian_auto_t(track->has_closed_captions, p_abort); //259
 			p_tihm.read(track->unk44, sizeof(track->unk44), p_abort); //260
 			//p_tihm.read_lendian_auto_t(track->unk45, p_abort); //264
 			//p_tihm.read_lendian_auto_t(track->unk46, p_abort); //268
@@ -212,7 +213,7 @@ namespace itunesdb
 			p_tihm.read_lendian_auto_t(track->unk58, p_abort); //316
 			p_tihm.read_lendian_auto_t(track->unk59, p_abort); //320
 			p_tihm.read_lendian_auto_t(track->legacy_key_id, p_abort); //324
-			p_tihm.read_lendian_auto_t(track->is_self_contained, p_abort); //328
+			p_tihm.read_lendian_auto_t(track->is_not_self_contained, p_abort); //328
 			p_tihm.read_lendian_auto_t(track->is_compressed, p_abort); //329
 			p_tihm.read_lendian_auto_t(track->unk61_1, p_abort); //330
 			p_tihm.read_lendian_auto_t(track->analysis_inhibit_flags, p_abort); //331

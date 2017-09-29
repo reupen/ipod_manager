@@ -677,8 +677,9 @@ void database_writer_t::write_itunesdb(ipod_device_ptr_ref_t p_ipod, ipod::tasks
 			tihm.write_lendian_t(track->legacy_store_storefront_id, p_abort);
 			tihm.write_lendian_t(track->gapless_last_frame_resync, p_abort);
 			tihm.write_lendian_t(track->unk43_1, p_abort);
-			tihm.write_lendian_t(track->gapless_album, p_abort);
 			tihm.write_lendian_t(track->unk43_2, p_abort);
+			tihm.write_lendian_t(track->gapless_album, p_abort);
+			tihm.write_lendian_t(track->has_closed_captions, p_abort);
 			tihm.write(track->unk44, sizeof(track->unk44), p_abort);
 			//tihm.write_lendian_t(track->unk45, p_abort);
 			//tihm.write_lendian_t(track->unk46, p_abort);
@@ -695,7 +696,7 @@ void database_writer_t::write_itunesdb(ipod_device_ptr_ref_t p_ipod, ipod::tasks
 			tihm.write_lendian_t(track->unk58, p_abort);
 			tihm.write_lendian_t(track->unk59, p_abort);
 			tihm.write_lendian_t(track->legacy_key_id, p_abort);
-			tihm.write_lendian_t(track->is_self_contained, p_abort);
+			tihm.write_lendian_t(track->is_not_self_contained, p_abort);
 			tihm.write_lendian_t(track->is_compressed, p_abort);
 			tihm.write_lendian_t(track->unk61_1, p_abort);
 			tihm.write_lendian_t(track->analysis_inhibit_flags, p_abort);

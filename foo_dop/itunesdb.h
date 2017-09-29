@@ -627,9 +627,10 @@ namespace itunesdb
 		t_uint32 legacy_store_playlist_id;
 		t_uint32 legacy_store_storefront_id;
 		t_uint64 gapless_last_frame_resync; //64-bit ?
-		t_uint16 unk43_1; //default 1
+		t_uint8 unk43_1{1};
+		t_uint8 unk43_2{0};
 		t_uint8 gapless_album;
-		t_uint8 unk43_2;
+		t_uint8 has_closed_captions;
 		t_uint8 unk44[20];
 		//t_uint32 unk45;
 		//t_uint32 unk46;
@@ -646,7 +647,7 @@ namespace itunesdb
 		t_uint32 unk58;
 		t_uint32 unk59;
 		t_uint32 legacy_key_id;
-		t_uint8 is_self_contained;
+		t_uint8 is_not_self_contained;
 		t_uint8 is_compressed;
 		t_uint8 unk61_1;
 		t_uint8 analysis_inhibit_flags;
@@ -849,7 +850,7 @@ namespace itunesdb
 			chapter_data_valid(false), eq_settings_valid(false), starttime(0), stoptime(0),
 			volume(0), unk11(0), checked(0), application_rating(0), bpm(0), filetype_valid(false),
 			subtitle_valid(false), tv_network_valid(false), episode_valid(false), show_valid(false),
-			legacy_store_storefront_id(0), gapless_last_frame_resync(0), unk43_1(1), unk43_2(0), gapless_album(0),
+			legacy_store_storefront_id(0), gapless_last_frame_resync(0), has_closed_captions(0), gapless_album(0),
 			/*unk44(0), unk45(0), unk46(0), unk47(0), unk48(0),*/ unk49(0), album_id(0), 
 			unk50(0), unk52(0), unk53(0), file_size_64(0), unk56(0), unk57(0), unk58(0), 
 			unk59(0), legacy_key_id(0), dshm_type_6(false), dshm_type_6_is_new(false), extended_content_rating_valid(false),
@@ -864,7 +865,7 @@ namespace itunesdb
 			album_artist_valid(false), keywords_valid(false),
 			original_path_valid(false), last_known_path_valid(false), original_filesize_valid(false),
 			original_timestamp_valid(false), original_filesize(0), original_timestamp(0), transcoded(false),
-			is_self_contained(0), is_compressed(0), unk61_1(0), analysis_inhibit_flags(0),
+			is_not_self_contained(0), is_compressed(0), unk61_1(0), analysis_inhibit_flags(0),
 			unk62(0), unk63(0), unk64(0), audio_fingerprint(0), artwork_cache_id(0), unk68(0),
 			unk69_1(0x20), unk69_2(0), unk69_3(0), is_anamorphic(0), unk70(0), is_demo(0), unk71_2(0), 
 			has_alternate_audio(0), has_subtitles(0), audio_language(0), audio_track_index(0),
