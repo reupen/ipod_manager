@@ -703,8 +703,7 @@ void database_writer_t::write_itunesdb(ipod_device_ptr_ref_t p_ipod, ipod::tasks
 			tihm.write_lendian_t(track->unk63, p_abort);
 			tihm.write_lendian_t(track->unk64, p_abort);
 			tihm.write_lendian_t(track->audio_fingerprint, p_abort);
-			tihm.write_lendian_t(track->unk66, p_abort);
-			tihm.write_lendian_t(track->mhii_id, p_abort); //352
+			tihm.write_lendian_t(track->artwork_cache_id, p_abort); //352
 			tihm.write_lendian_t(track->unk68, p_abort); //356
 			tihm.write_lendian_t(track->unk69_1, p_abort); //360
 			tihm.write_lendian_t(track->unk69_2, p_abort); //361
@@ -743,7 +742,7 @@ void database_writer_t::write_itunesdb(ipod_device_ptr_ref_t p_ipod, ipod::tasks
 				tihm.write_lendian_t(track->artist_id, p_abort); //480
 				tihm.write_lendian_t(track->genius_id, p_abort); //484
 				tihm.write_lendian_t(track->key_platform_id, p_abort); //492
-				tihm.write_lendian_t(track->unk100, p_abort); //496
+				tihm.write_lendian_t(track->genius_checksum, p_abort); //496
 				tihm.write_lendian_t(track->unk101, p_abort); //500
 				tihm.write_lendian_t(track->media_type2, p_abort); //504
 				tihm.write_lendian_t(track->unk102, p_abort); //508

@@ -984,7 +984,7 @@ void ipod::tasks::database_writer_t::write_sqlitedb(ipod_device_ptr_ref_t p_ipod
 						<< (track->gapless_album !=0) << ","
 						<< (track->chosen_by_auto_fill !=0) << ","
 						<< track->artwork_flag << ","
-						<< (track->mhii_id) << ","
+						<< (track->artwork_cache_id) << ","
 						<< track->starttime << ","
 						<< track->stoptime << ","
 						<< track->length << ","

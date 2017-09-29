@@ -220,8 +220,7 @@ namespace itunesdb
 			p_tihm.read_lendian_auto_t(track->unk63, p_abort); //336
 			p_tihm.read_lendian_auto_t(track->unk64, p_abort); //340
 			p_tihm.read_lendian_auto_t(track->audio_fingerprint, p_abort); //344
-			p_tihm.read_lendian_auto_t(track->unk66, p_abort); //348
-			p_tihm.read_lendian_auto_t(track->mhii_id, p_abort); //352 artwork_cache_id
+			p_tihm.read_lendian_auto_t(track->artwork_cache_id, p_abort); //352
 			p_tihm.read_lendian_auto_t(track->unk68, p_abort); //356
 			p_tihm.read_lendian_auto_t(track->unk69_1, p_abort); //360
 			p_tihm.read_lendian_auto_t(track->unk69_2, p_abort); //361
@@ -254,11 +253,11 @@ namespace itunesdb
 			p_tihm.read_lendian_auto_t(track->store_artist_id, p_abort); //448
 			p_tihm.read_lendian_auto_t(track->store_composer_id, p_abort); //456
 			p_tihm.read_lendian_auto_t(track->store_playlist_id, p_abort); //464
-			p_tihm.read_lendian_auto_t(track->store_front_id, p_abort); //472 store_front_id 64-bit
+			p_tihm.read_lendian_auto_t(track->store_front_id, p_abort); //472
 			p_tihm.read_lendian_auto_t(track->artist_id, p_abort); //480
 			p_tihm.read_lendian_auto_t(track->genius_id, p_abort); //484
 			p_tihm.read_lendian_auto_t(track->key_platform_id, p_abort); //492
-			p_tihm.read_lendian_auto_t(track->unk100, p_abort); //496
+			p_tihm.read_lendian_auto_t(track->genius_checksum, p_abort); //496
 			p_tihm.read_lendian_auto_t(track->unk101, p_abort); //500 //another id
 			p_tihm.read_lendian_auto_t(track->media_type2, p_abort); //504
 			p_tihm.read_lendian_auto_t(track->unk102, p_abort); //508

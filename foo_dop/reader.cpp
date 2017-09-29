@@ -109,10 +109,10 @@ namespace ipod
 			bool sixg = (p_ipod->is_6g_format());
 			bool b_index_valid = false;
 			t_size ii_index;
-			if (p_track->mhii_id == NULL)
+			if (p_track->artwork_cache_id == NULL)
 				b_index_valid = !sixg && m_artwork.find_by_dbid(ii_index ,p_track->pid);//remove_by_dbid(m_tracks[index]->dbid);
 			else
-				b_index_valid = m_artwork.find_by_image_id(ii_index, p_track->mhii_id);//remove_by_image_id(m_tracks[index]->mhii_id);
+				b_index_valid = m_artwork.find_by_image_id(ii_index, p_track->artwork_cache_id);//remove_by_image_id(m_tracks[index]->mhii_id);
 			if (b_index_valid)
 			{
 				if (sixg)

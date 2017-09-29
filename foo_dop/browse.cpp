@@ -398,7 +398,7 @@ void ipod_browse_dialog::refresh_song_list(const ipod_tree_entry_t * p_selection
 				uih::list_view_insert_item_text(wnd_lv, i, ci++, track.genre, true, i);
 				uih::list_view_insert_item_text(wnd_lv, i, ci++, track.composer, true, i);
 				uih::list_view_insert_item_text(wnd_lv, i, ci++, pfc::string8() << track.year, true, i);
-				if (m_debug) uih::list_view_insert_item_text(wnd_lv, i, ci++, pfc::format_int(track.mhii_id), true, i);
+				if (m_debug) uih::list_view_insert_item_text(wnd_lv, i, ci++, pfc::format_int(track.artwork_cache_id), true, i);
 				if (m_debug) uih::list_view_insert_item_text(wnd_lv, i, ci++, pfc::format_hexdump_lowercase(track.artwork_source_sha1, track.artwork_source_sha1_valid ? 20 : 0, ""), true, i);
 				if (m_debug) uih::list_view_insert_item_text(wnd_lv, i, ci++, pfc::format_int(track.album_id), true, i);
 				uih::list_view_insert_item_text(wnd_lv, i, ci++, track.sort_artist, true, i);

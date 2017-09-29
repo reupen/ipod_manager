@@ -231,7 +231,7 @@ namespace ipod
 								m_artwork.initialise_artworkdb(p_ipod);
 							m_artwork_valid = true;
 							//pfc::dynamic_assert(p_library.m_artwork_valid, "No ArtworkDB found");
-							bool b_incRef = m_artwork.add_artwork_v3(p_ipod, m_tracks[i]->media_type, m_tracks[i]->pid, m_tracks[i]->mhii_id, artwork_data, 100, p_abort, &m_tracks[i]->m_chapter_list);
+							bool b_incRef = m_artwork.add_artwork_v3(p_ipod, m_tracks[i]->media_type, m_tracks[i]->pid, m_tracks[i]->artwork_cache_id, artwork_data, 100, p_abort, &m_tracks[i]->m_chapter_list);
 							m_tracks[i]->artwork_count = 1;
 							m_tracks[i]->artwork_flag = 1;
 							m_tracks[i]->artwork_size = artwork_data->get_size();
@@ -239,7 +239,7 @@ namespace ipod
 							if (sixg && b_incRef)
 							{
 								t_size ii_index;
-								if (m_artwork.find_by_image_id(ii_index, m_tracks[i]->mhii_id))
+								if (m_artwork.find_by_image_id(ii_index, m_tracks[i]->artwork_cache_id))
 								{
 									m_artwork.image_list[ii_index].refcount++;
 									m_artwork.image_list[ii_index].unk8 = 1;

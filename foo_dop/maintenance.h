@@ -228,11 +228,11 @@ public:
 													while (--l && !b_processed && m_library.m_tracks[i]->album_id == m_library.m_tracks[permutation_album_grouping[l]]->album_id)
 													{
 														pfc::rcptr_t<itunesdb::t_track> p_album_track = m_library.m_tracks[permutation_album_grouping[l]];
-														if (p_album_track->mhii_id && (!p_album_track->artwork_source_sha1_valid || !memcmp(m_library.m_tracks[i]->artwork_source_sha1, p_album_track->artwork_source_sha1, mmh::hash::sha1_digestsize)))
+														if (p_album_track->artwork_cache_id && (!p_album_track->artwork_source_sha1_valid || !memcmp(m_library.m_tracks[i]->artwork_source_sha1, p_album_track->artwork_source_sha1, mmh::hash::sha1_digestsize)))
 														{
-															if (m_library.m_tracks[i]->mhii_id != p_album_track->mhii_id)
+															if (m_library.m_tracks[i]->artwork_cache_id != p_album_track->artwork_cache_id)
 																m_library.remove_artwork(m_drive_scanner.m_ipods[0], m_library.m_tracks[i]);
-															m_library.m_tracks[i]->mhii_id = p_album_track->mhii_id;
+															m_library.m_tracks[i]->artwork_cache_id = p_album_track->artwork_cache_id;
 															m_library.m_tracks[i]->artwork_count = 1;
 															m_library.m_tracks[i]->artwork_flag = 1;
 															m_library.m_tracks[i]->artwork_size = p_album_track->artwork_size;
@@ -245,11 +245,11 @@ public:
 														while (++l < count_tracks && !b_processed && m_library.m_tracks[i]->album_id == m_library.m_tracks[permutation_album_grouping[l]]->album_id)
 														{
 															pfc::rcptr_t<itunesdb::t_track> p_album_track = m_library.m_tracks[permutation_album_grouping[l]];
-															if (p_album_track->mhii_id && (!p_album_track->artwork_source_sha1_valid || !memcmp(m_library.m_tracks[i]->artwork_source_sha1, p_album_track->artwork_source_sha1, mmh::hash::sha1_digestsize)))
+															if (p_album_track->artwork_cache_id && (!p_album_track->artwork_source_sha1_valid || !memcmp(m_library.m_tracks[i]->artwork_source_sha1, p_album_track->artwork_source_sha1, mmh::hash::sha1_digestsize)))
 															{
-																if (m_library.m_tracks[i]->mhii_id != p_album_track->mhii_id)
+																if (m_library.m_tracks[i]->artwork_cache_id != p_album_track->artwork_cache_id)
 																	m_library.remove_artwork(m_drive_scanner.m_ipods[0], m_library.m_tracks[i]);
-																m_library.m_tracks[i]->mhii_id = p_album_track->mhii_id;
+																m_library.m_tracks[i]->artwork_cache_id = p_album_track->artwork_cache_id;
 																m_library.m_tracks[i]->artwork_count = 1;
 																m_library.m_tracks[i]->artwork_flag = 1;
 																m_library.m_tracks[i]->artwork_size = p_album_track->artwork_size;
@@ -268,14 +268,14 @@ public:
 												if (sixg)
 												{
 													t_size previous_ii_index = 0;
-													if (m_library.m_tracks[i]->mhii_id && m_library.m_artwork.find_by_image_id(previous_ii_index, m_library.m_tracks[i]->mhii_id) && m_library.m_artwork.image_list[previous_ii_index].refcount > 1)
+													if (m_library.m_tracks[i]->artwork_cache_id && m_library.m_artwork.find_by_image_id(previous_ii_index, m_library.m_tracks[i]->artwork_cache_id) && m_library.m_artwork.image_list[previous_ii_index].refcount > 1)
 													{
 														m_library.m_artwork.image_list[previous_ii_index].refcount--;
-														m_library.m_tracks[i]->mhii_id = NULL;
+														m_library.m_tracks[i]->artwork_cache_id = NULL;
 													}
 												}
 
-												b_inc_ref = m_library.m_artwork.add_artwork_v3(m_drive_scanner.m_ipods[0], m_library.m_tracks[i]->media_type, m_library.m_tracks[i]->pid, m_library.m_tracks[i]->mhii_id, artwork_data, 100,m_process.get_abort());
+												b_inc_ref = m_library.m_artwork.add_artwork_v3(m_drive_scanner.m_ipods[0], m_library.m_tracks[i]->media_type, m_library.m_tracks[i]->pid, m_library.m_tracks[i]->artwork_cache_id, artwork_data, 100,m_process.get_abort());
 												m_library.m_tracks[i]->artwork_count = 1;
 												m_library.m_tracks[i]->artwork_flag = 1;
 												m_library.m_tracks[i]->artwork_size = artwork_data->get_size();
@@ -324,7 +324,7 @@ public:
 											if (sixg && b_processed && b_inc_ref)
 											{
 												t_size ii_index;
-												if (m_library.m_artwork.find_by_image_id(ii_index, m_library.m_tracks[i]->mhii_id))
+												if (m_library.m_artwork.find_by_image_id(ii_index, m_library.m_tracks[i]->artwork_cache_id))
 												{
 													m_library.m_artwork.image_list[ii_index].refcount++;
 													m_library.m_artwork.image_list[ii_index].unk8 = 1;

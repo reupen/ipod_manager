@@ -653,9 +653,9 @@ namespace itunesdb
 		t_uint32 unk62;
 		t_uint32 unk63;
 		t_uint32 unk64;
-		t_uint32 audio_fingerprint;
-		t_uint32 unk66;
-		t_uint32 mhii_id;
+		t_uint64 audio_fingerprint;
+		/** Same as mhii ID */
+		t_uint32 artwork_cache_id;
 		t_uint32 unk68;
 		t_uint8 unk69_1;
 		t_uint8 unk69_2;
@@ -695,7 +695,7 @@ namespace itunesdb
 
 		t_uint64 genius_id;
 		t_uint32 key_platform_id;
-		t_uint32 unk100;
+		t_uint32 genius_checksum;
 		t_uint32 unk101;
 		t_uint32 media_type2;
 		t_uint32 unk102;
@@ -861,7 +861,7 @@ namespace itunesdb
 			original_path_valid(false), last_known_path_valid(false), original_filesize_valid(false),
 			original_timestamp_valid(false), original_filesize(0), original_timestamp(0), transcoded(false),
 			is_self_contained(0), is_compressed(0), unk61_1(0), analysis_inhibit_flags(0),
-			unk62(0), unk63(0), unk64(0), audio_fingerprint(0), unk66(0), mhii_id(0), unk68(0),
+			unk62(0), unk63(0), unk64(0), audio_fingerprint(0), artwork_cache_id(0), unk68(0),
 			unk69_1(0x20), unk69_2(0), unk69_3(0), is_anamorphic(0), unk70(0), is_demo(0), unk71_2(0), 
 			has_alternate_audio(0), has_subtitles(0), audio_language(0), audio_track_index(0),
 			audio_track_id(0), subtitle_language(0), subtitle_track_index(0), subtitle_track_id(0),
@@ -872,7 +872,7 @@ namespace itunesdb
 			artwork_source_size(filesize_invalid),
 			genius_id(0),
 			key_platform_id(0),
-			unk100(0),
+			genius_checksum(0),
 			unk101(0),
 			media_type2(1),
 			unk102(0),

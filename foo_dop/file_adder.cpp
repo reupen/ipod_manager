@@ -869,9 +869,9 @@ void ipod_add_files::run (ipod_device_ptr_ref_t p_ipod, const pfc::list_base_con
 									while (--l && !b_processed && p_library.m_tracks[m_results[i].index]->album_id == p_library.m_tracks[permutation_album_grouping[l]]->album_id)
 									{
 										pfc::rcptr_t<itunesdb::t_track> p_album_track = p_library.m_tracks[permutation_album_grouping[l]];
-										if (p_album_track->mhii_id && (!p_album_track->artwork_source_sha1_valid || !memcmp(p_track->artwork_source_sha1, p_album_track->artwork_source_sha1, mmh::hash::sha1_digestsize)))
+										if (p_album_track->artwork_cache_id && (!p_album_track->artwork_source_sha1_valid || !memcmp(p_track->artwork_source_sha1, p_album_track->artwork_source_sha1, mmh::hash::sha1_digestsize)))
 										{
-											p_library.m_tracks[m_results[i].index]->mhii_id = p_album_track->mhii_id;
+											p_library.m_tracks[m_results[i].index]->artwork_cache_id = p_album_track->artwork_cache_id;
 											p_library.m_tracks[m_results[i].index]->artwork_count = 1;
 											p_library.m_tracks[m_results[i].index]->artwork_flag = 1;
 											p_library.m_tracks[m_results[i].index]->artwork_size = p_album_track->artwork_size;
@@ -884,9 +884,9 @@ void ipod_add_files::run (ipod_device_ptr_ref_t p_ipod, const pfc::list_base_con
 										while (++l < count_tracks && !b_processed && p_library.m_tracks[m_results[i].index]->album_id == p_library.m_tracks[permutation_album_grouping[l]]->album_id)
 										{
 											pfc::rcptr_t<itunesdb::t_track> p_album_track = p_library.m_tracks[permutation_album_grouping[l]];
-											if (p_album_track->mhii_id && (!p_album_track->artwork_source_sha1_valid || !memcmp(p_track->artwork_source_sha1, p_album_track->artwork_source_sha1, mmh::hash::sha1_digestsize)))
+											if (p_album_track->artwork_cache_id && (!p_album_track->artwork_source_sha1_valid || !memcmp(p_track->artwork_source_sha1, p_album_track->artwork_source_sha1, mmh::hash::sha1_digestsize)))
 											{
-												p_library.m_tracks[m_results[i].index]->mhii_id = p_album_track->mhii_id;
+												p_library.m_tracks[m_results[i].index]->artwork_cache_id = p_album_track->artwork_cache_id;
 												p_library.m_tracks[m_results[i].index]->artwork_count = 1;
 												p_library.m_tracks[m_results[i].index]->artwork_flag = 1;
 												p_library.m_tracks[m_results[i].index]->artwork_size = p_album_track->artwork_size;
@@ -901,7 +901,7 @@ void ipod_add_files::run (ipod_device_ptr_ref_t p_ipod, const pfc::list_base_con
 									p_library.m_artwork.initialise_artworkdb(p_ipod);
 								p_library.m_artwork_valid=true;
 								//pfc::dynamic_assert(p_library.m_artwork_valid, "No ArtworkDB found");
-								b_incRef = p_library.m_artwork.add_artwork_v3(p_ipod, p_library.m_tracks[m_results[i].index]->media_type, p_library.m_tracks[m_results[i].index]->pid, p_library.m_tracks[m_results[i].index]->mhii_id, artwork_data, count_added, p_abort, &p_library.m_tracks[m_results[i].index]->m_chapter_list);
+								b_incRef = p_library.m_artwork.add_artwork_v3(p_ipod, p_library.m_tracks[m_results[i].index]->media_type, p_library.m_tracks[m_results[i].index]->pid, p_library.m_tracks[m_results[i].index]->artwork_cache_id, artwork_data, count_added, p_abort, &p_library.m_tracks[m_results[i].index]->m_chapter_list);
 								p_library.m_tracks[m_results[i].index]->artwork_count = 1;
 								p_library.m_tracks[m_results[i].index]->artwork_flag = 1;
 								p_library.m_tracks[m_results[i].index]->artwork_size = artwork_data->get_size();
@@ -910,7 +910,7 @@ void ipod_add_files::run (ipod_device_ptr_ref_t p_ipod, const pfc::list_base_con
 							if (sixg && b_processed && b_incRef)
 							{
 								t_size ii_index;
-								if (p_library.m_artwork.find_by_image_id(ii_index, p_library.m_tracks[m_results[i].index]->mhii_id))
+								if (p_library.m_artwork.find_by_image_id(ii_index, p_library.m_tracks[m_results[i].index]->artwork_cache_id))
 								{
 									p_library.m_artwork.image_list[ii_index].refcount++;
 									p_library.m_artwork.image_list[ii_index].unk8 = 1;
