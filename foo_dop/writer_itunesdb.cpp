@@ -762,13 +762,17 @@ void database_writer_t::write_itunesdb(ipod_device_ptr_ref_t p_ipod, ipod::tasks
 				tihm.write_lendian_t(track->unk111, p_abort); //552
 				tihm.write_lendian_t(track->unk112, p_abort); //556
 				tihm.write_lendian_t(track->unk113, p_abort); //560
-				tihm.write_lendian_t(track->unk114, p_abort); //564
-				tihm.write_lendian_t(track->unk115, p_abort); //568
-				tihm.write_lendian_t(track->unk116, p_abort); //572
-				tihm.write_lendian_t(track->unk117, p_abort); //576
-				tihm.write_lendian_t(track->unk118, p_abort); //580
+				tihm.write_lendian_t(track->download_account_id, p_abort); //564
+				tihm.write_lendian_t(track->family_id, p_abort); //572
+				tihm.write_lendian_t(track->is_subscription, p_abort); //580
+				tihm.write_lendian_t(track->is_playlist_only, p_abort); //581
+				tihm.write_lendian_t(track->liked_state, p_abort); //582
+				tihm.write_lendian_t(track->unk118_4, p_abort); //583
 				tihm.write_lendian_t(track->unk119, p_abort); //584
-				tihm.write_lendian_t(track->unk120, p_abort); //588
+				tihm.write_lendian_t(track->show_composer, p_abort); //588
+				tihm.write_lendian_t(track->unk120_2, p_abort); //589
+				tihm.write_lendian_t(track->unk120_3, p_abort); //590
+				tihm.write_lendian_t(track->unk120_4, p_abort); //591
 				tihm.write_lendian_t(track->unk121, p_abort); //592
 				tihm.write_lendian_t(track->unk122, p_abort); //596
 				tihm.write_lendian_t(track->unk123, p_abort); //600

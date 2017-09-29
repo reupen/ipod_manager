@@ -276,14 +276,18 @@ namespace itunesdb
 			p_tihm.read_lendian_auto_t(track->unk110, p_abort); //548
 			p_tihm.read_lendian_auto_t(track->unk111, p_abort); //552
 			p_tihm.read_lendian_auto_t(track->unk112, p_abort); //556
-			p_tihm.read_lendian_auto_t(track->unk113, p_abort); //560
-			p_tihm.read_lendian_auto_t(track->unk114, p_abort); //564
-			p_tihm.read_lendian_auto_t(track->unk115, p_abort); //568
-			p_tihm.read_lendian_auto_t(track->unk116, p_abort); //572
-			p_tihm.read_lendian_auto_t(track->unk117, p_abort); //576
-			p_tihm.read_lendian_auto_t(track->unk118, p_abort); //580
+			p_tihm.read_lendian_auto_t(track->unk113, p_abort); //560 store-related
+			p_tihm.read_lendian_auto_t(track->download_account_id, p_abort); //564
+			p_tihm.read_lendian_auto_t(track->family_id, p_abort); //572
+			p_tihm.read_lendian_auto_t(track->is_subscription, p_abort); //580
+			p_tihm.read_lendian_auto_t(track->is_playlist_only, p_abort); //581
+			p_tihm.read_lendian_auto_t(track->liked_state, p_abort); //582
+			p_tihm.read_lendian_auto_t(track->unk118_4, p_abort); //583
 			p_tihm.read_lendian_auto_t(track->unk119, p_abort); //584
-			p_tihm.read_lendian_auto_t(track->unk120, p_abort); //588
+			p_tihm.read_lendian_auto_t(track->show_composer, p_abort); //588
+			p_tihm.read_lendian_auto_t(track->unk120_2, p_abort); //589
+			p_tihm.read_lendian_auto_t(track->unk120_3, p_abort); //590
+			p_tihm.read_lendian_auto_t(track->unk120_4, p_abort); //591
 			p_tihm.read_lendian_auto_t(track->unk121, p_abort); //592
 			p_tihm.read_lendian_auto_t(track->unk122, p_abort); //596
 			p_tihm.read_lendian_auto_t(track->unk123, p_abort); //600
