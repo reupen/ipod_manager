@@ -358,7 +358,10 @@ const char * g_nano_6g_model_strings[] =
 { "Silver","Graphite","Blue","Green","Orange","Pink","Red" };
 
 const char * g_nano_7g_model_strings[] =
-{ "Pink","Yellow","Blue","Green","Purple","Silver","Slate","Red" };
+{ 
+	"Pink (2012)","Yellow (2012)","Blue (2012)","Green (2012)","Purple (2012)","Silver (2012)","Slate (2012)","Red (2012)","Space Grey (2013)",
+	"Pink (2015)","Gold (2015)","Blue (2015)","Silver (2015)","Space Grey (2015)","Red (2015)"
+};
 
 const char * g_shuffle_2g_model_strings[] =
 {
@@ -371,7 +374,11 @@ const char * g_shuffle_3g_model_strings[] =
 { "Black","Silver","Green","Blue","Pink","Aluminium" };
 
 const char * g_shuffle_4g_model_strings[] =
-{ "Silver","Pink","Orange","Green","Blue" };
+{
+	"Silver (2010)","Pink (2010)","Orange (2010)","Green (2010)","Blue (2010)",
+	"Pink (2012)","Green (2012)","Blue (2012)","Yellow (2012)","Silver (2012)","Purple (2012)","Slate (2012)","Red (2012)","Space Grey (2013)",
+	"Pink (2015)","Gold (2015)","Blue (2015)","Silver (2015)","Space Grey (2015)","Red (2015)"
+};
 
 void g_get_model_string(const ipod_models::ipod_model & model, pfc::string8 & p_out)
 {
@@ -474,6 +481,23 @@ bool ipod_info::get_model(ipod_models::ipod_model & p_out)
 	const char * ipod_shuffle_4g_green_codes[] = { "DFDN" }; //green
 	const char * ipod_shuffle_4g_blue_codes[] = { "DFDP" }; //blue
 
+	const char * ipod_shuffle_4_1g_pink_codes[] = {"F4RT"};
+	const char * ipod_shuffle_4_1g_yellow_codes[] = {"F4RV"};
+	const char * ipod_shuffle_4_1g_blue_codes[] = {"F4RW"};
+	const char * ipod_shuffle_4_1g_green_codes[] = {"F4RY"};
+	const char * ipod_shuffle_4_1g_purple_codes[] = {"F4T0"};
+	const char * ipod_shuffle_4_1g_silver_codes[] = {"F4T1"};
+	const char * ipod_shuffle_4_1g_slate_codes[] = {"F4VF"};
+	const char * ipod_shuffle_4_1g_red_codes[] = {"F4VG"};
+	const char * ipod_shuffle_4_1g_space_grey_codes[] = {"FJDH"};
+
+	const char * ipod_shuffle_4_2g_pink_codes[] = {"GK67"};
+	const char * ipod_shuffle_4_2g_gold_codes[] = {"GK68"};
+	const char * ipod_shuffle_4_2g_blue_codes[] = {"GK69"};
+	const char * ipod_shuffle_4_2g_silver_codes[] = {"GK6C"};
+	const char * ipod_shuffle_4_2g_space_grey_codes[] = {"GK6D"};
+	const char * ipod_shuffle_4_2g_red_codes[] = {"GK6F"};
+
 	const char * ipod_shuffle_3g_black_codes[] = { "890", "891", "6FC", "6FQ" };
 	const char * ipod_shuffle_3g_silver_codes[] = { "0NJ", "4NZ", "6FB", "6FP" };
 	const char * ipod_shuffle_3g_green_codes[] = { "ALB","A1U" };
@@ -542,8 +566,15 @@ bool ipod_info::get_model(ipod_models::ipod_model & p_out)
 	const char * ipod_nano_7g_purple_codes[] = { "F0GJ","F0GR" }; //Purple
 	const char * ipod_nano_7g_silver_codes[] = { "F0GK","F0GT" }; //Silver
 	const char * ipod_nano_7g_slate_codes[] = { "F0GL","F0GV" }; //Slate
-	const char * ipod_nano_7g_red_codes[] = { "F4LN","F4LP" }; //RED
+	const char * ipod_nano_7g_red_codes[] = {"F4LN","F4LP"}; //RED
+	const char * ipod_nano_7g_space_grey_codes[] = {"FJQ1"};
 
+	const char * ipod_nano_7_1g_pink_codes[] = {"GK60"};
+	const char * ipod_nano_7_1g_gold_codes[] = {"GK61"};
+	const char * ipod_nano_7_1g_blue_codes[] = {"GK62"};
+	const char * ipod_nano_7_1g_silver_codes[] = {"GK63"};
+	const char * ipod_nano_7_1g_space_grey_codes[] = {"GK64"};
+	const char * ipod_nano_7_1g_red_codes[] = {"GK65"};
 
 	const char * ipod_5g_black_codes[] = { "TXK","TXM","TXL","TXN","UK8","V9M","V9N","V9R","V9S","WEE","WEF","WEJ","WEK","WUA","WUC" };
 	const char * ipod_5g_u2_codes[] = { "V9V","W9G","WEM" };
@@ -786,6 +817,20 @@ bool ipod_info::get_model(ipod_models::ipod_model & p_out)
 					p_out.submodel = ipod_models::ipod_nano_7g_red;
 				else if (g_string_list_has_item(ipod_nano_7g_purple_codes, tabsize(ipod_nano_7g_purple_codes), p_code))
 					p_out.submodel = ipod_models::ipod_nano_7g_purple;
+				else if (g_string_list_has_item(ipod_nano_7g_space_grey_codes, tabsize(ipod_nano_7g_space_grey_codes), p_code))
+					p_out.submodel = ipod_models::ipod_nano_7g_space_grey;
+				else if (g_string_list_has_item(ipod_nano_7_1g_blue_codes, tabsize(ipod_nano_7_1g_blue_codes), p_code))
+					p_out.submodel = ipod_models::ipod_nano_7_1g_blue;
+				else if (g_string_list_has_item(ipod_nano_7_1g_gold_codes, tabsize(ipod_nano_7_1g_gold_codes), p_code))
+					p_out.submodel = ipod_models::ipod_nano_7_1g_gold;
+				else if (g_string_list_has_item(ipod_nano_7_1g_pink_codes, tabsize(ipod_nano_7_1g_pink_codes), p_code))
+					p_out.submodel = ipod_models::ipod_nano_7_1g_pink;
+				else if (g_string_list_has_item(ipod_nano_7_1g_red_codes, tabsize(ipod_nano_7_1g_red_codes), p_code))
+					p_out.submodel = ipod_models::ipod_nano_7_1g_red;
+				else if (g_string_list_has_item(ipod_nano_7_1g_silver_codes, tabsize(ipod_nano_7_1g_silver_codes), p_code))
+					p_out.submodel = ipod_models::ipod_nano_7_1g_silver;
+				else if (g_string_list_has_item(ipod_nano_7_1g_space_grey_codes, tabsize(ipod_nano_7_1g_space_grey_codes), p_code))
+					p_out.submodel = ipod_models::ipod_nano_7_1g_space_grey;
 				else
 					p_out.submodel = -1;
 				return true;
@@ -854,6 +899,36 @@ bool ipod_info::get_model(ipod_models::ipod_model & p_out)
 					p_out.submodel = ipod_models::ipod_shuffle_4g_green;
 				else if (g_string_list_has_item(ipod_shuffle_4g_blue_codes, tabsize(ipod_shuffle_4g_blue_codes), p_code))
 					p_out.submodel = ipod_models::ipod_shuffle_4g_blue;
+				else if (g_string_list_has_item(ipod_shuffle_4_1g_blue_codes, tabsize(ipod_shuffle_4_1g_blue_codes), p_code))
+					p_out.submodel = ipod_models::ipod_shuffle_4_1g_blue;
+				else if (g_string_list_has_item(ipod_shuffle_4_1g_green_codes, tabsize(ipod_shuffle_4_1g_green_codes), p_code))
+					p_out.submodel = ipod_models::ipod_shuffle_4_1g_green;
+				else if (g_string_list_has_item(ipod_shuffle_4_1g_space_grey_codes, tabsize(ipod_shuffle_4_1g_space_grey_codes), p_code))
+					p_out.submodel = ipod_models::ipod_shuffle_4_1g_space_grey;
+				else if (g_string_list_has_item(ipod_shuffle_4_1g_pink_codes, tabsize(ipod_shuffle_4_1g_pink_codes), p_code))
+					p_out.submodel = ipod_models::ipod_shuffle_4_1g_pink;
+				else if (g_string_list_has_item(ipod_shuffle_4_1g_purple_codes, tabsize(ipod_shuffle_4_1g_purple_codes), p_code))
+					p_out.submodel = ipod_models::ipod_shuffle_4_1g_purple;
+				else if (g_string_list_has_item(ipod_shuffle_4_1g_red_codes, tabsize(ipod_shuffle_4_1g_red_codes), p_code))
+					p_out.submodel = ipod_models::ipod_shuffle_4_1g_red;
+				else if (g_string_list_has_item(ipod_shuffle_4_1g_slate_codes, tabsize(ipod_shuffle_4_1g_slate_codes), p_code))
+					p_out.submodel = ipod_models::ipod_shuffle_4_1g_slate;
+				else if (g_string_list_has_item(ipod_shuffle_4_1g_yellow_codes, tabsize(ipod_shuffle_4_1g_yellow_codes), p_code))
+					p_out.submodel = ipod_models::ipod_shuffle_4_1g_yellow;
+				else if (g_string_list_has_item(ipod_shuffle_4_1g_silver_codes, tabsize(ipod_shuffle_4_1g_silver_codes), p_code))
+					p_out.submodel = ipod_models::ipod_shuffle_4_1g_silver;
+				else if (g_string_list_has_item(ipod_shuffle_4_2g_blue_codes, tabsize(ipod_shuffle_4_2g_blue_codes), p_code))
+					p_out.submodel = ipod_models::ipod_shuffle_4_2g_blue;
+				else if (g_string_list_has_item(ipod_shuffle_4_2g_gold_codes, tabsize(ipod_shuffle_4_2g_gold_codes), p_code))
+					p_out.submodel = ipod_models::ipod_shuffle_4_2g_gold;
+				else if (g_string_list_has_item(ipod_shuffle_4_2g_pink_codes, tabsize(ipod_shuffle_4_2g_pink_codes), p_code))
+					p_out.submodel = ipod_models::ipod_shuffle_4_2g_pink;
+				else if (g_string_list_has_item(ipod_shuffle_4_2g_silver_codes, tabsize(ipod_shuffle_4_2g_silver_codes), p_code))
+					p_out.submodel = ipod_models::ipod_shuffle_4_2g_silver;
+				else if (g_string_list_has_item(ipod_shuffle_4_2g_space_grey_codes, tabsize(ipod_shuffle_4_2g_space_grey_codes), p_code))
+					p_out.submodel = ipod_models::ipod_shuffle_4_2g_space_grey;
+				else if (g_string_list_has_item(ipod_shuffle_4_2g_red_codes, tabsize(ipod_shuffle_4_2g_red_codes), p_code))
+					p_out.submodel = ipod_models::ipod_shuffle_4_2g_red;
 				else
 					p_out.submodel = -1;
 				return true;

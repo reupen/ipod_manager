@@ -124,6 +124,13 @@ namespace ipod_models
 		ipod_nano_7g_silver,
 		ipod_nano_7g_slate,
 		ipod_nano_7g_red,
+		ipod_nano_7g_space_grey,
+		ipod_nano_7_1g_pink,
+		ipod_nano_7_1g_gold,
+		ipod_nano_7_1g_blue,
+		ipod_nano_7_1g_silver,
+		ipod_nano_7_1g_space_grey,
+		ipod_nano_7_1g_red,
 	};
 	enum t_shuffle_2g_model
 	{
@@ -160,6 +167,21 @@ namespace ipod_models
 		ipod_shuffle_4g_orange,
 		ipod_shuffle_4g_green,
 		ipod_shuffle_4g_blue,
+		ipod_shuffle_4_1g_pink,
+		ipod_shuffle_4_1g_green,
+		ipod_shuffle_4_1g_blue,
+		ipod_shuffle_4_1g_yellow,
+		ipod_shuffle_4_1g_silver,
+		ipod_shuffle_4_1g_purple,
+		ipod_shuffle_4_1g_slate,
+		ipod_shuffle_4_1g_red,
+		ipod_shuffle_4_1g_space_grey,
+		ipod_shuffle_4_2g_pink,
+		ipod_shuffle_4_2g_gold,
+		ipod_shuffle_4_2g_blue,
+		ipod_shuffle_4_2g_silver,
+		ipod_shuffle_4_2g_space_grey,
+		ipod_shuffle_4_2g_red,
 	};
 
 	enum t_mini_1g_model
