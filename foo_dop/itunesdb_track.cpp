@@ -231,7 +231,9 @@ namespace itunesdb {
 			}
 
 			bitrate = (t_uint32)info.info_get_bitrate();
-			samplerate = t_uint32(info.info_get_int("samplerate"));
+			const auto sample_rate_raw = info.info_get_int("samplerate");
+			samplerate = t_uint32(sample_rate_raw)*0x10000;
+			samplerate_float = static_cast<float>(sample_rate_raw);
 			length = round_float(info.get_length()*1000.0);
 			channel_count = t_uint16(info.info_get_int("channels"));
 

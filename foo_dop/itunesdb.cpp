@@ -125,9 +125,8 @@ namespace itunesdb
 			p_tihm.read_lendian_auto_t(track->totaltracks, p_abort); //48
 			p_tihm.read_lendian_auto_t(track->year, p_abort); //52
 			p_tihm.read_lendian_auto_t(track->bitrate, p_abort); //56
-			p_tihm.read_lendian_auto_t(track->unk8, p_abort); //60
-			p_tihm.read_lendian_auto_t(track->samplerate, p_abort); //62
-			track->samplecount = audio_math::time_to_samples(track->length/1000.0,track->samplerate);
+			p_tihm.read_lendian_auto_t(track->samplerate, p_abort); //60
+			track->samplecount = audio_math::time_to_samples(track->length/1000.0,track->samplerate/0x10000);
 			p_tihm.read_lendian_auto_t(track->volume, p_abort); //64
 			p_tihm.read_lendian_auto_t(track->starttime, p_abort); //68
 			p_tihm.read_lendian_auto_t(track->stoptime, p_abort); //72
@@ -149,8 +148,7 @@ namespace itunesdb
 			p_tihm.read_lendian_auto_t(track->unk9, p_abort); //126
 			p_tihm.read_lendian_auto_t(track->artwork_size, p_abort); //128
 			p_tihm.read_lendian_auto_t(track->unk11, p_abort); //132
-			float samplerate2;
-			p_tihm.read_lendian_auto_t(samplerate2, p_abort); //136
+			p_tihm.read_lendian_auto_t(track->samplerate_float, p_abort); //136
 			p_tihm.read_lendian_auto_t(track->datereleased, p_abort); //140
 			p_tihm.read_lendian_auto_t(track->audio_format, p_abort); //144 
 			p_tihm.read_lendian_auto_t(track->content_rating, p_abort); //146 
@@ -227,7 +225,7 @@ namespace itunesdb
 			p_tihm.read_lendian_auto_t(track->unk69_2, p_abort); //361
 			p_tihm.read_lendian_auto_t(track->unk69_3, p_abort); //362
 			p_tihm.read_lendian_auto_t(track->is_anamorphic, p_abort); //363
-			p_tihm.read_lendian_auto_t(track->unk70, p_abort); //364
+			p_tihm.read_lendian_auto_t(track->unk70, p_abort); //364 rental-duration-related
 			p_tihm.read_lendian_auto_t(track->is_demo, p_abort); //368
 			p_tihm.read_lendian_auto_t(track->unk71_2, p_abort); //369
 			p_tihm.read_lendian_auto_t(track->has_alternate_audio, p_abort); //370
@@ -260,7 +258,7 @@ namespace itunesdb
 			p_tihm.read_lendian_auto_t(track->key_platform_id, p_abort); //492
 			p_tihm.read_lendian_auto_t(track->genius_checksum, p_abort); //496
 			p_tihm.read_lendian_auto_t(track->unk101, p_abort); //500 //another id
-			p_tihm.read_lendian_auto_t(track->media_type2, p_abort); //504
+			p_tihm.read_lendian_auto_t(track->media_type2, p_abort); //504 store_media_type?
 			p_tihm.read_lendian_auto_t(track->unk102, p_abort); //508
 			p_tihm.read_lendian_auto_t(track->unk103, p_abort); //512
 			p_tihm.read_lendian_auto_t(track->key_id2, p_abort); //516

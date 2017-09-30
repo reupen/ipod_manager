@@ -1158,7 +1158,7 @@ void ipod::tasks::database_writer_t::write_sqlitedb(ipod_device_ptr_ref_t p_ipod
 						<< g_translate_audio_format(track->audio_format) << ","
 						<< track->bitrate << ","
 						<< track->channel_count << ","
-						<< (track->samplerate) << ","
+						<< (track->samplerate_float) << ","
 						<< track->samplecount << ","
 						<< track->gapless_heuristic_info << ","
 						<< track->gapless_encoding_delay << ","

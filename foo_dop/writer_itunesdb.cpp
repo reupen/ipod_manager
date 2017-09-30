@@ -607,11 +607,8 @@ void database_writer_t::write_itunesdb(ipod_device_ptr_ref_t p_ipod, ipod::tasks
 			tihm.write_lendian_t(t_uint32(track->totaltracks), p_abort);
 			tihm.write_lendian_t(t_uint32(track->year), p_abort);
 
-			t_uint32 samplerate = track->samplerate;
-
 			tihm.write_lendian_t(t_uint32(track->bitrate), p_abort);
-			tihm.write_lendian_t(t_uint16(track->unk8), p_abort);
-			tihm.write_lendian_t(t_uint16(track->samplerate), p_abort);
+			tihm.write_lendian_t(t_uint32(track->samplerate), p_abort);
 			tihm.write_lendian_t(t_uint32(track->volume), p_abort);
 			tihm.write_lendian_t(t_uint32(track->starttime), p_abort);
 			tihm.write_lendian_t(t_uint32(track->stoptime), p_abort);
@@ -633,7 +630,7 @@ void database_writer_t::write_itunesdb(ipod_device_ptr_ref_t p_ipod, ipod::tasks
 			tihm.write_lendian_t(t_uint16(track->unk9), p_abort);
 			tihm.write_lendian_t(t_uint32(track->artwork_size), p_abort);
 			tihm.write_lendian_t(t_uint32(track->unk11), p_abort);
-			tihm.write_lendian_t(float(samplerate), p_abort);
+			tihm.write_lendian_t(float(track->samplerate_float), p_abort);
 			tihm.write_lendian_t(t_uint32(track->datereleased), p_abort);
 			tihm.write_lendian_t(t_uint16(track->audio_format), p_abort);
 			tihm.write_lendian_t(t_uint8(track->content_rating), p_abort);

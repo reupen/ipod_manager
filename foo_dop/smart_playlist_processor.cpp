@@ -159,7 +159,7 @@ namespace smart_playlist
 		case itunesdb::smart_playlist_fields::rating:
 			return g_test_track_generic_integer(track->rating, rule);
 		case itunesdb::smart_playlist_fields::sample_rate:
-			return g_test_track_generic_integer(track->samplerate, rule);
+			return g_test_track_generic_integer(track->samplerate / 0x10000, rule);
 		case itunesdb::smart_playlist_fields::season_number:
 			return g_test_track_generic_integer(track->season_number, rule);
 		case itunesdb::smart_playlist_fields::size:

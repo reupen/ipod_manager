@@ -68,6 +68,7 @@ namespace ipod
 												TrackProperties->m_dictionary.get_child(L"description", track->subtitle);
 												//TrackProperties->m_dictionary.get_child(L"duration", track->length);
 												TrackProperties->m_dictionary.get_child(L"sampleRate", track->samplerate);
+												track->samplerate *= 0x10000;
 												TrackProperties->m_dictionary.get_child(L"duration", track->length);
 												track->keywords_valid = TrackProperties->m_dictionary.get_child(L"keywords", track->keywords);
 												pfc::string8 kind, podcast_type, type;

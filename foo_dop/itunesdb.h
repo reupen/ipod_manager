@@ -535,8 +535,8 @@ namespace itunesdb
 		t_uint32 length; //ms - corrected for gapless?
 
 		t_uint32 bitrate;
-		t_uint16 unk8; //*0x10000
-		t_uint16 samplerate; //*0x10000
+		// Sample rate * 0x10000
+		t_uint32 samplerate;
 		t_uint32 volume;
 		t_uint32 starttime;
 		t_uint32 stoptime;
@@ -563,6 +563,7 @@ namespace itunesdb
 
 		t_uint16 unk9;
 		t_uint32 unk11;
+		float samplerate_float{0};
 		t_uint16 audio_format;
 		t_uint8 content_rating, unk12;
 		t_uint32 store_key_versions;
@@ -836,7 +837,7 @@ namespace itunesdb
 		t_filestats m_runtime_filestats;
 
 		t_track() : id(0), location_type(1), tracknumber(0), year(0), rating(0), file_size_32(0), length(0), totaltracks(0),
-			bitrate(0), samplerate(0), unk8(0), discnumber(0), totaldiscs(0), lastmodifiedtime(0), title_valid(false), 
+			bitrate(0), samplerate(0), discnumber(0), totaldiscs(0), lastmodifiedtime(0), title_valid(false), 
 			original_subsong(0), original_subsong_valid(false),
 			album_valid(false), artist_valid(false), genre_valid(false), location_valid(false), pid(0),
 			artwork_count(0), artwork_size(0), userid(0), play_count_user(0), play_count_recent(0), dateadded(0),
