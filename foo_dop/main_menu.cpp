@@ -424,7 +424,7 @@ public:
 								if (!mod_valid)
 								{
 									t_size sc = info.serial.get_length();
-									mod << "Unknown. Key (" << info.family_id << "," << info.updater_family_id << "," << info.serial.get_ptr() + (sc > 3 ? sc-3 : sc) << ")\r\n";
+									mod << "Unknown. Key: (" << info.family_id << "," << info.updater_family_id << "," << info.serial.get_ptr() + (sc > 4 ? sc-4 : 0) << ")\r\n";
 								}else
 									g_get_model_string(model, mod);
 								msg << "Model: " << mod << "\r\n"
