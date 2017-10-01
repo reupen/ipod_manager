@@ -38,6 +38,29 @@ namespace itunesdb {
 			pyhm.read_lendian_auto_t(p_out->sort_direction, p_abort); //83
 			pyhm.read_lendian_auto_t(p_out->unk14, p_abort); //84
 			pyhm.read_lendian_auto_t(p_out->date_modified, p_abort); //88
+			pyhm.read_lendian_auto_t(p_out->unk15, p_abort); //92
+			pyhm.read_lendian_auto_t(p_out->unk16, p_abort); //96
+			pyhm.read_lendian_auto_t(p_out->unk17, p_abort); //100
+			pyhm.read_lendian_auto_t(p_out->unk18, p_abort); //104
+			pyhm.read_lendian_auto_t(p_out->unk19, p_abort); //108
+			pyhm.read_lendian_auto_t(p_out->unk20, p_abort); //112
+			pyhm.read_lendian_auto_t(p_out->unk21, p_abort); //116
+			pyhm.read_lendian_auto_t(p_out->unk22, p_abort); //120
+			pyhm.read_lendian_auto_t(p_out->unk23, p_abort); //124
+			pyhm.read_lendian_auto_t(p_out->unk24, p_abort); //128
+			pyhm.read_lendian_auto_t(p_out->unk25, p_abort); //132
+			pyhm.read_lendian_auto_t(p_out->unk26, p_abort); //136
+			pyhm.read_lendian_auto_t(p_out->unk27, p_abort); //140
+			pyhm.read_lendian_auto_t(p_out->unk28, p_abort); //144
+			pyhm.read_lendian_auto_t(p_out->unk29, p_abort); //148
+			pyhm.read_lendian_auto_t(p_out->unk30, p_abort); //152
+			pyhm.read_lendian_auto_t(p_out->unk31, p_abort); //156
+			pyhm.read_lendian_auto_t(p_out->unk32, p_abort); //160
+			pyhm.read_lendian_auto_t(p_out->unk33, p_abort); //164
+			pyhm.read_lendian_auto_t(p_out->unk34, p_abort); //168
+			pyhm.read_lendian_auto_t(p_out->unk35, p_abort); //172
+			pyhm.read_lendian_auto_t(p_out->unk36, p_abort); //176
+			pyhm.read_lendian_auto_t(p_out->unk37, p_abort); //180
 		}
 		catch (exception_io_data_truncation const &) {};
 

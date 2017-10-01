@@ -1281,9 +1281,13 @@ void database_writer_t::write_itunesdb(ipod_device_ptr_ref_t p_ipod, ipod::tasks
 			pyhm.write_lendian_t(t_uint32(1), p_abort);
 
 			{
-				t_size k = 15;
-				for (;k;k--) 
+				for (t_size k = 15; k; k--)
 					pyhm.write_lendian_t(t_uint32(0), p_abort);
+
+				if (sixg_format) {
+					for (t_size k = 11; k; k--)
+						pyhm.write_lendian_t(t_uint32(0), p_abort);
+				}
 			}
 			for (i=0; i<count_tracks; i++)
 			{
@@ -1495,12 +1499,36 @@ void database_writer_t::write_itunesdb(ipod_device_ptr_ref_t p_ipod, ipod::tasks
 				pyhm.write_lendian_t(m_library.m_playlists[j]->sort_direction, p_abort);
 				pyhm.write_lendian_t(m_library.m_playlists[j]->unk14, p_abort);
 				pyhm.write_lendian_t(m_library.m_playlists[j]->date_modified, p_abort);
+				pyhm.write_lendian_t(m_library.m_playlists[j]->unk15, p_abort);
+				pyhm.write_lendian_t(m_library.m_playlists[j]->unk16, p_abort);
+				pyhm.write_lendian_t(m_library.m_playlists[j]->unk17, p_abort);
+				pyhm.write_lendian_t(m_library.m_playlists[j]->unk18, p_abort);
+				pyhm.write_lendian_t(m_library.m_playlists[j]->unk19, p_abort);
+				pyhm.write_lendian_t(m_library.m_playlists[j]->unk20, p_abort);
+				pyhm.write_lendian_t(m_library.m_playlists[j]->unk21, p_abort);
+				pyhm.write_lendian_t(m_library.m_playlists[j]->unk22, p_abort);
+				pyhm.write_lendian_t(m_library.m_playlists[j]->unk23, p_abort);
+				pyhm.write_lendian_t(m_library.m_playlists[j]->unk24, p_abort);
+				pyhm.write_lendian_t(m_library.m_playlists[j]->unk25, p_abort);
+				pyhm.write_lendian_t(m_library.m_playlists[j]->unk26, p_abort);
 
-				{
-					t_size k = 6+6;
-					for (;k;k--) 
-						pyhm.write_lendian_t(t_uint32(0), p_abort);
+				if (sixg_format) {
+					// Unable to check whether iTunes writes these on models older than the iPod classic,
+					// but since they date much later than the iPod classic, older models won't have a 
+					// use for them
+					pyhm.write_lendian_t(m_library.m_playlists[j]->unk27, p_abort);
+					pyhm.write_lendian_t(m_library.m_playlists[j]->unk28, p_abort);
+					pyhm.write_lendian_t(m_library.m_playlists[j]->unk29, p_abort);
+					pyhm.write_lendian_t(m_library.m_playlists[j]->unk30, p_abort);
+					pyhm.write_lendian_t(m_library.m_playlists[j]->unk31, p_abort);
+					pyhm.write_lendian_t(m_library.m_playlists[j]->unk32, p_abort);
+					pyhm.write_lendian_t(m_library.m_playlists[j]->unk33, p_abort);
+					pyhm.write_lendian_t(m_library.m_playlists[j]->unk34, p_abort);
+					pyhm.write_lendian_t(m_library.m_playlists[j]->unk35, p_abort);
+					pyhm.write_lendian_t(m_library.m_playlists[j]->unk36, p_abort);
+					pyhm.write_lendian_t(m_library.m_playlists[j]->unk37, p_abort);
 				}
+
 				if (py2_valid)
 				{
 					pyhm2.write_lendian_t(t_uint32(count_do), p_abort);
@@ -1616,11 +1644,33 @@ void database_writer_t::write_itunesdb(ipod_device_ptr_ref_t p_ipod, ipod::tasks
 				pyhm.write_lendian_t(m_library.m_special_playlists[j]->sort_direction, p_abort);
 				pyhm.write_lendian_t(m_library.m_special_playlists[j]->unk14, p_abort);
 				pyhm.write_lendian_t(m_library.m_special_playlists[j]->date_modified, p_abort);
-
-				{
-					t_size k = 6+6;
-					for (;k;k--) 
-						pyhm.write_lendian_t(t_uint32(0), p_abort);
+				pyhm.write_lendian_t(m_library.m_special_playlists[j]->unk15, p_abort);
+				pyhm.write_lendian_t(m_library.m_special_playlists[j]->unk16, p_abort);
+				pyhm.write_lendian_t(m_library.m_special_playlists[j]->unk17, p_abort);
+				pyhm.write_lendian_t(m_library.m_special_playlists[j]->unk18, p_abort);
+				pyhm.write_lendian_t(m_library.m_special_playlists[j]->unk19, p_abort);
+				pyhm.write_lendian_t(m_library.m_special_playlists[j]->unk20, p_abort);
+				pyhm.write_lendian_t(m_library.m_special_playlists[j]->unk21, p_abort);
+				pyhm.write_lendian_t(m_library.m_special_playlists[j]->unk22, p_abort);
+				pyhm.write_lendian_t(m_library.m_special_playlists[j]->unk23, p_abort);
+				pyhm.write_lendian_t(m_library.m_special_playlists[j]->unk24, p_abort);
+				pyhm.write_lendian_t(m_library.m_special_playlists[j]->unk25, p_abort);
+				pyhm.write_lendian_t(m_library.m_special_playlists[j]->unk26, p_abort);
+				if (sixg_format) {
+					// Unable to check whether iTunes writes these on models older than the iPod classic,
+					// but since they date much later than the iPod classic, older models won't have a 
+					// use for them
+					pyhm.write_lendian_t(m_library.m_special_playlists[j]->unk27, p_abort);
+					pyhm.write_lendian_t(m_library.m_special_playlists[j]->unk28, p_abort);
+					pyhm.write_lendian_t(m_library.m_special_playlists[j]->unk29, p_abort);
+					pyhm.write_lendian_t(m_library.m_special_playlists[j]->unk30, p_abort);
+					pyhm.write_lendian_t(m_library.m_special_playlists[j]->unk31, p_abort);
+					pyhm.write_lendian_t(m_library.m_special_playlists[j]->unk32, p_abort);
+					pyhm.write_lendian_t(m_library.m_special_playlists[j]->unk33, p_abort);
+					pyhm.write_lendian_t(m_library.m_special_playlists[j]->unk34, p_abort);
+					pyhm.write_lendian_t(m_library.m_special_playlists[j]->unk35, p_abort);
+					pyhm.write_lendian_t(m_library.m_special_playlists[j]->unk36, p_abort);
+					pyhm.write_lendian_t(m_library.m_special_playlists[j]->unk37, p_abort);
 				}
 			}
 

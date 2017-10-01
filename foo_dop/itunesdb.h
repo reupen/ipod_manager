@@ -1206,6 +1206,30 @@ namespace itunesdb
 		t_uint8 sort_direction;
 		t_uint32 unk14, date_modified;
 
+		t_uint32 unk15{};
+		t_uint32 unk16{};
+		t_uint32 unk17{};
+		t_uint32 unk18{};
+		t_uint32 unk19{};
+		t_uint32 unk20{};
+		t_uint32 unk21{};
+		t_uint32 unk22{};
+		t_uint32 unk23{};
+		t_uint32 unk24{};
+		t_uint32 unk25{};
+		t_uint32 unk26{};
+		t_uint32 unk27{};
+		t_uint32 unk28{};
+		t_uint32 unk29{};
+		t_uint32 unk30{};
+		t_uint32 unk31{};
+		t_uint32 unk32{};
+		t_uint32 unk33{};
+		t_uint32 unk34{};
+		t_uint32 unk35{};
+		t_uint32 unk36{};
+		t_uint32 unk37{};
+
 		pfc::string8 name;
 		pfc::list_t<t_playlist_entry> items;
 
