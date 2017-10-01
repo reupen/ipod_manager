@@ -1,19 +1,18 @@
 #include "stdafx.h"
 
-dop::ipod_manager_control_t::version_data_t g_version = {0, 6, 9, 8};
+// Fourth component of version no longer used
+dop::ipod_manager_control_t::version_data_t g_version = {0, 7, 0, 0};
 
 /** Declare some information about our component */
 DECLARE_COMPONENT_VERSION_COPY("iPod manager",
 pfc::string8()
 	<< g_version.m_major << "."
 	<< g_version.m_minor1 << "."
-	<< g_version.m_minor2 << "."
-	<< g_version.m_minor3
-	<< ""
+	<< g_version.m_minor2 << ""
 	,
 "compiled: " __DATE__ "\n"
 "written by musicmusic\n"
-"Copyright (C) 2006-2011\n\n"
+"Copyright (C) 2006-2017\n\n"
 "zlib: Copyright (C) 1995-2010 Jean-loup Gailly and Mark Adler"
 );
 
