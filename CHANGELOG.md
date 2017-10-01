@@ -1,5 +1,18 @@
 # iPod manager for foobar2000 changelog
 
+## 0.7.0
+
+* Added support for iPod nano 7G software versions later than 1.0.2
+* Added identification of iPod nano 7G and later iPod shuffle 4G models
+* Updated iTunesDB file format
+* Fixed corruption of smart playlists with nested rules
+* Fixed various clipped labels in preferences and other dialog boxes
+* Reorganised conversion preferences and clarified some setting labels
+* Disabled support for iOS device sync pause/cancel requests due to instability caused
+* Compiled with Visual Studio 2017 15.3
+* Compiled with latest foobar2000 SDK (foobar2000 1.3+ now required)
+* Dropped official support for Windows XP and Vista
+
 ## 0.6.9.x
 
 ### 0.6.9.7
