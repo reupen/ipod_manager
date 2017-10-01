@@ -429,7 +429,7 @@ public:
 									g_get_model_string(model, mod);
 								msg << "Model: " << mod << "\r\n"
 									<< "Serial Number: " << info.serial << "\r\n"
-									<< "Firmware Version: " << info.firmware;
+									<< "Software Version: " << info.firmware;
 
 								try
 								{
