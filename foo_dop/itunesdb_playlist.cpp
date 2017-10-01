@@ -252,12 +252,20 @@ namespace itunesdb {
 			p_do.read_bendian_auto_t(rule.field, p_abort);
 			p_do.read_bendian_auto_t(rule.action, p_abort);
 			p_do.read_bendian_auto_t(rule.child_ruleset_flag, p_abort);
-			for (t_size i = 0, count = tabsize(rule.unk0); i<count; i++) //40 bytes
-				p_do.read_bendian_auto_t(rule.unk0[i], p_abort);
+			p_do.read_bendian_auto_t(rule.unk0_1, p_abort);
+			p_do.read_bendian_auto_t(rule.unused0_0, p_abort);
+			p_do.read_bendian_auto_t(rule.unused0_1, p_abort);
+			for (t_size i = 0, count = tabsize(rule.unused1); i<count; i++) //40 bytes
+				p_do.read_bendian_auto_t(rule.unused1[i], p_abort);
 			//			p_do.skip(40, p_abort);
 			t_uint32 length;
 			p_do.read_bendian_auto_t(length, p_abort);
-			if (rule.action & (1 << 24))
+			if (rule.child_ruleset_flag)
+			{
+				rule.subrule.set_size(length);
+				p_do.read(rule.subrule.get_ptr(), length, p_abort);
+			}
+			else if (rule.action & (1 << 24))
 			{
 				pfc::array_t<WCHAR> str;
 				str.set_size(length / 2);
@@ -269,7 +277,7 @@ namespace itunesdb {
 				}
 				rule.string.set_string(str.get_ptr(), str.get_size());
 			}
-			else if (rule.child_ruleset_flag == 0)
+			else
 			{
 				data2.set_size(length);
 				p_do.read(data2.get_ptr(), length, p_abort);
@@ -285,11 +293,6 @@ namespace itunesdb {
 				p_rule_data.read_bendian_auto_t(rule.unk3, p_abort);
 				p_rule_data.read_bendian_auto_t(rule.unk4, p_abort);
 				p_rule_data.read_bendian_auto_t(rule.unk5, p_abort);
-			}
-			else if (rule.child_ruleset_flag == 0x01000000)
-			{
-				rule.subrule.set_size(length);
-				p_do.read(rule.subrule.get_ptr(), length, p_abort);
 			}
 			p_out.rules.add_item(rule);
 		}
@@ -336,8 +339,11 @@ namespace itunesdb {
 			ds.write_bendian_t(rules.rules[i].field, p_abort);
 			ds.write_bendian_t(rules.rules[i].action, p_abort);
 			ds.write_bendian_t(rules.rules[i].child_ruleset_flag, p_abort);
-			for (t_size j = 0, count = tabsize(rules.rules[i].unk0); j<count; j++) //40 bytes
-				ds.write_bendian_t(rules.rules[i].unk0[j], p_abort);
+			ds.write_bendian_t(rules.rules[i].unk0_1, p_abort);
+			ds.write_bendian_t(rules.rules[i].unused0_0, p_abort);
+			ds.write_bendian_t(rules.rules[i].unused0_1, p_abort);
+			for (t_size j = 0, count = tabsize(rules.rules[i].unused1); j<count; j++) //40 bytes
+				ds.write_bendian_t(rules.rules[i].unused1[j], p_abort);
 			if (rules.rules[i].action & (1 << 24))
 			{
 				t_uint32 len = min(254, rules.rules[i].string.length() * 2);

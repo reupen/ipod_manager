@@ -1113,8 +1113,11 @@ namespace itunesdb
 	public:
 		t_uint32 field;
 		t_uint32 action;
-		t_uint32 child_ruleset_flag;
-		t_uint32 unk0[10];
+		t_uint8 child_ruleset_flag;
+		t_uint8 unk0_1{};
+		t_uint8 unused0_0{};
+		t_uint8 unused0_1{};
+		t_uint32 unused1[10]{};
 		pfc::string_simple_t<WCHAR> string;
 		t_uint64 from_value;
 		t_int64 from_date;
@@ -1128,7 +1131,7 @@ namespace itunesdb
 		t_uint32 unk1,unk2,unk3,unk4,unk5;
 		t_smart_playlist_rule() : field(0), action(0), from_value(0), from_date(0), from_units(1)
 			, to_value(0), to_date(0), to_units(1), unk1(0), unk2(0), unk3(0), unk4(0), unk5(0),
-			child_ruleset_flag(0) {memset(&unk0, 0, sizeof(unk0));};
+			child_ruleset_flag(0) {}
 	};
 
 	class t_smart_playlist_rules
