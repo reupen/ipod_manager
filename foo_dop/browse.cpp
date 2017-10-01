@@ -766,8 +766,8 @@ BOOL ipod_browse_dialog::DialogProc(HWND wnd,UINT msg,WPARAM wp,LPARAM lp)
 
 
 					HMENU menu = CreatePopupMenu();
-					AppendMenu(menu, MF_STRING, 1, _T("Item Details"));
-					AppendMenu(menu, MF_STRING, 2, _T("Open File Location"));
+					AppendMenu(menu, MF_STRING, 1, _T("Item details"));
+					AppendMenu(menu, MF_STRING, 2, _T("Open file location"));
 					{
 						MENUITEMINFO mi;
 						memset(&mi, 0, sizeof(mi));
