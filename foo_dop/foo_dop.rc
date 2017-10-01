@@ -176,8 +176,8 @@ BEGIN
     CONTROL         "",IDC_STATIC,"Static",SS_GRAYFRAME | SS_SUNKEN | WS_GROUP,71,147,231,1,WS_EX_STATICEDGE
     CONTROL         "Determine gapless data for files sent to iPod",IDC_SCANGAPLESS,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,11,161,161,10
-    CONTROL         "Set dummy gapless data for files without gapless data",IDC_USEDUMMYGAPLESS,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,21,177,193,10
+    CONTROL         "Set dummy gapless data for files without gapless data to prevent iTunes rescanning them",IDC_USEDUMMYGAPLESS,
+                    "Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | WS_TABSTOP,21,177,281,19
 END
 
 IDD_SMART DIALOGEX 0, 0, 428, 273
@@ -259,7 +259,8 @@ BEGIN
     EDITTEXT        IDC_SORTLIBRARYSCRIPT,11,43,291,13,ES_AUTOHSCROLL
     LTEXT           "Synchronisation",IDC_STATIC,11,80,52,8
     CONTROL         "",IDC_STATIC,"Static",SS_GRAYFRAME | SS_SUNKEN | WS_GROUP,66,84,236,1,WS_EX_STATICEDGE
-    CONTROL         "Quiet mode",IDC_QUIETSYNC,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,11,96,53,10
+    CONTROL         "Sync without displaying a confirmation window",IDC_QUIETSYNC,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,11,96,169,10
     LTEXT           "Devices view",IDC_STATIC,11,128,42,8
     CONTROL         "",IDC_STATIC,"Static",SS_GRAYFRAME | SS_SUNKEN | WS_GROUP,57,132,245,1,WS_EX_STATICEDGE
     CONTROL         "Autosend selection to playlist:",IDC_AUTOSEND,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,11,145,112,10
