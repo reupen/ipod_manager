@@ -295,6 +295,7 @@ void ipod_add_files::run (ipod_device_ptr_ref_t p_ipod, const pfc::list_base_con
 	pfc::list_t<file_info_impl> p_hint_info;
 	pfc::list_t<t_filestats> p_hint_stats;
 	pfc::ptr_list_t<const file_info> p_hint_info_ptrs;
+	mmh::GenRand gen_rand;
 
 	t_size j, counter=0, count_added=0, progress_index=0;
 	try
@@ -459,13 +460,22 @@ void ipod_add_files::run (ipod_device_ptr_ref_t p_ipod, const pfc::list_base_con
 						if (filesystem::g_exists(dsttemp, p_abort))
 						{
 							t_uint32 index = 0;
-							filename.truncate(/*31 - 1 - ext.length()*/ p_mappings.extra_filename_characters + 4 + 4 - 1 - ext.length() - 3 - mobile_extra);
+							const auto file_name_len = p_mappings.extra_filename_characters + 4 + 4 - 1 - ext.length() - mobile_extra;
+							filename.truncate(file_name_len - 3);
 							do {
-								if (index == 10)
-									filename.truncate(/*31 - 1 - ext.length()*/ p_mappings.extra_filename_characters + 4 + 4 - 1 - ext.length() - 4 - mobile_extra);
-								if (index==100) throw pfc::exception("Gave up looking for suitable filename");
 								dsttemp.reset();
-								dsttemp << dst.get_ptr() << p_ipod->get_path_separator_ptr() << filename.get_ptr() << "(" << index << ")" <<"." << ext;
+								dsttemp << dst.get_ptr() << p_ipod->get_path_separator_ptr();
+								if (index < 5) {
+									dsttemp << filename.get_ptr() << "(" << index << ")";
+								} else if (index < 10) {
+									const auto num_rand_bytes = file_name_len / 2;
+									pfc::array_staticsize_t<uint8_t> rand_bytes(num_rand_bytes);
+									gen_rand.run(rand_bytes.get_ptr(), num_rand_bytes);
+									dsttemp << pfc::format_hexdump_ex(rand_bytes.get_ptr(), num_rand_bytes, "");
+								} else {
+									throw pfc::exception("Gave up looking for suitable filename");
+								}
+								dsttemp << "." << ext;
 								index++;
 							}
 							while (filesystem::g_exists(dsttemp, p_abort));

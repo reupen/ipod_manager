@@ -8,6 +8,7 @@
 * Fixed corruption of smart playlists with nested rules
 * Fixed various clipped labels in preferences and other dialog boxes
 * Reorganised conversion preferences and clarified some setting labels
+* Improved handling of file name conflicts when adding files to a device
 * Disabled support for iOS device sync pause/cancel requests due to instability caused
 * Compiled with Visual Studio 2017 15.3
 * Compiled with latest foobar2000 SDK (foobar2000 1.3+ now required)
