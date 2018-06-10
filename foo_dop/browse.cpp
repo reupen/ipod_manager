@@ -405,9 +405,17 @@ void ipod_browse_dialog::refresh_song_list(const ipod_tree_entry_t * p_selection
 				uih::list_view_insert_item_text(wnd_lv, i, ci++, track.sort_title, true, i);
 				uih::list_view_insert_item_text(wnd_lv, i, ci++, track.sort_album, true, i);
 				uih::list_view_insert_item_text(wnd_lv, i, ci++, track.sort_album_artist, true, i);
-				std::wstring formatted_date_released;
-				if (track.datereleased) g_format_date(filetime_time_from_appletime(track.datereleased, false), formatted_date_released);
-				uih::list_view_insert_item_text(wnd_lv, i, ci++, formatted_date_released.data(), true, i);
+				std::wstring formatted_date;
+				if (track.datereleased) g_format_date(filetime_time_from_appletime(track.datereleased, false), formatted_date);
+				uih::list_view_insert_item_text(wnd_lv, i, ci++, formatted_date.data(), true, i);
+				uih::list_view_insert_item_text(wnd_lv, i, ci++, pfc::string_formatter() << track.play_count_user, true, i);
+				formatted_date.clear();
+				if (track.lastplayedtime) g_format_date(filetime_time_from_appletime(track.lastplayedtime, false), formatted_date);
+				uih::list_view_insert_item_text(wnd_lv, i, ci++, formatted_date.data(), true, i);
+				uih::list_view_insert_item_text(wnd_lv, i, ci++, pfc::string_formatter() << track.skip_count_user, true, i);
+				formatted_date.clear();
+				if (track.last_skipped) g_format_date(filetime_time_from_appletime(track.last_skipped, false), formatted_date);
+				uih::list_view_insert_item_text(wnd_lv, i, ci++, formatted_date.data(), true, i);
 				t_uint32 gapless = track.gapless_heuristic_info;
 				pfc::string8 temp;
 				if (gapless == 0x1)
@@ -490,6 +498,10 @@ BOOL ipod_browse_dialog::DialogProc(HWND wnd,UINT msg,WPARAM wp,LPARAM lp)
 			uih::list_view_insert_column_text(wnd_lv, ci++, _T("Sort album"), 100);
 			uih::list_view_insert_column_text(wnd_lv, ci++, _T("Sort album artist"), 100);
 			uih::list_view_insert_column_text(wnd_lv, ci++, _T("Release date"), 100);
+			uih::list_view_insert_column_text(wnd_lv, ci++, _T("Play count"), 100);
+			uih::list_view_insert_column_text(wnd_lv, ci++, _T("Last played"), 100);
+			uih::list_view_insert_column_text(wnd_lv, ci++, _T("Skip count"), 100);
+			uih::list_view_insert_column_text(wnd_lv, ci++, _T("Last skipped"), 100);
 			uih::list_view_insert_column_text(wnd_lv, ci++, _T("Gapless data"), 75);
 			uih::list_view_insert_column_text(wnd_lv, ci++, _T("Encoder delay"), 80);
 			uih::list_view_insert_column_text(wnd_lv, ci++, _T("Encoder padding"), 95);
