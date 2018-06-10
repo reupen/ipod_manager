@@ -74,7 +74,7 @@ public:
 		infos.set_count(count);
 		for (i=0; i<count; i++)
 			infos[i]=&m_infos[i];
-		api->hint_multi_async(m_handles,infos,m_stats,bit_array_table(m_freshes.get_ptr(),m_freshes.get_count()));
+		api->hint_multi_async(m_handles, infos, m_stats, pfc::bit_array_table(m_freshes.get_ptr(), m_freshes.get_count()));
 	}
 
 	void handle_create(metadb_handle_ptr & p_out,const playable_location & p_location) {m_api->handle_create(p_out,p_location);}
