@@ -109,7 +109,7 @@ bool get_ipod_igsc_checkpoint(ipod_device_ptr_ref_t p_ipod, pfc::array_t<t_uint8
 
 		win32::handle_ptr_t p_volume;
 
-		p_volume.set(CreateFile(p_ipod->driver_symbolic_path.get_ptr(), GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, NULL, NULL));
+		p_volume.set(CreateFile(p_ipod->driver_symbolic_path.get_ptr(), GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_FLAG_NO_BUFFERING, NULL));
 
 		if (!p_volume.is_valid()) throw pfc::exception(pfc::string8() << "CreateFile failed: " << format_win32_error(GetLastError()));
 
