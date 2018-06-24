@@ -1,7 +1,7 @@
 #include "stdafx.h"
 
 // Fourth component of version no longer used
-dop::ipod_manager_control_t::version_data_t g_version = {0, 7, 0, 0};
+dop::ipod_manager_control_t::version_data_t g_version = {0, 7, 1, 0};
 
 /** Declare some information about our component */
 DECLARE_COMPONENT_VERSION_COPY("iPod manager",

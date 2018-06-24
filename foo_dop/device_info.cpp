@@ -48,6 +48,56 @@ struct io_ctrl_igsc {
 	t_uint8 m_buffer[buffer];
 };
 
+bool is_checkpoint_page_corrupted(gsl::span<uint8_t> data)
+{
+	return std::find(data.begin(), data.end(), 0) != data.end();
+}
+
+std::tuple<std::vector<t_uint8>, bool> get_igsc_checkpoint_page(const win32::handle_ptr_t& volume, uint16_t page)
+{
+	constexpr auto chunk_size = 0x1000u;
+	constexpr auto header_size = 0x8u;
+
+	io_ctrl_igsc<chunk_size> data{};
+	data.v0 = -64;
+	data.v1 = 64;
+	data.v2 = 2;
+	data.v3 = page;
+	data.v4 = chunk_size;
+
+	constexpr auto max_attempts = 5;
+	constexpr auto initial_retry_delay_ms = 2u;
+	DWORD num_bytes_returned{};
+	bool is_corrupt{};
+
+	for (auto attempt{0u}; attempt < max_attempts; ++attempt) {
+		const auto res = DeviceIoControl(volume, 0x2200A0, &data, sizeof(data), &data, sizeof(data), &num_bytes_returned, NULL);
+
+		if (!res)
+			throw exception_win32(GetLastError());
+
+		if (num_bytes_returned < header_size)
+			throw exception_io_data_truncation();
+
+		const auto data_size = num_bytes_returned - header_size;
+
+		is_corrupt = is_checkpoint_page_corrupted(gsl::span<uint8_t>(data.m_buffer, data_size));
+
+		if (!is_corrupt) {
+			std::vector<t_uint8> page_data(std::begin(data.m_buffer), std::begin(data.m_buffer) + data_size);
+			return {page_data, data_size == chunk_size};
+		}
+
+		console::formatter formatter;
+		formatter << "Detected a corrupt checkpoint data page; requerying page " << page << "...";
+
+		Sleep(initial_retry_delay_ms << attempt);
+	}
+
+	pfc::string_formatter formatter;
+	throw exception_io_data(formatter << "Checkpoint data page " << page << " was corrupt");
+}
+
 bool get_ipod_igsc_checkpoint(ipod_device_ptr_ref_t p_ipod, pfc::array_t<t_uint8> & p_out)
 {
 	try
@@ -59,33 +109,27 @@ bool get_ipod_igsc_checkpoint(ipod_device_ptr_ref_t p_ipod, pfc::array_t<t_uint8
 
 		win32::handle_ptr_t p_volume;
 
-		unsigned long returned;
-
-		p_volume.set(CreateFile(p_ipod->driver_symbolic_path.get_ptr(), GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, NULL, NULL));
+		p_volume.set(CreateFile(p_ipod->driver_symbolic_path.get_ptr(), GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_FLAG_NO_BUFFERING, NULL));
 
 		if (!p_volume.is_valid()) throw pfc::exception(pfc::string8() << "CreateFile failed: " << format_win32_error(GetLastError()));
 
-		io_ctrl_igsc<0x1000> data;
-		memset(&data, 0, sizeof(data));
-		data.v0 = -64;
-		data.v1 = 64;
-		data.v2 = 2;
-		data.v3 = 0;
-		data.v4 = 0x1000;
+		uint8_t page{};
+		bool more_data_exists{true};
 
-		while (true)
-		{
-			if (!DeviceIoControl(p_volume, 0x2200A0, &data, sizeof(data), &data, sizeof(data), &returned, NULL))
-				break;
-			if (returned <= 8) break;
-			p_out.append_fromptr(data.m_buffer, returned - 8);
-			if (returned < 0x1008) break;
-			data.v3++;
+		while (more_data_exists) {
+			auto&& [page_data, more_data_exists_] = get_igsc_checkpoint_page(p_volume, page);
+			more_data_exists = more_data_exists_;
+			p_out.append_fromptr(page_data.data(), page_data.size());
+			page++;
 		}
 
 		p_volume.release();
 	}
-	catch (pfc::exception const &) { return false; }
+	catch (pfc::exception const & ex) {
+		console::formatter formatter;
+		formatter << "Failed getting checkpoint data via iGSC: " << ex.what() << ". This is normal for very old iPod models.";
+		return false;
+	}
 	return p_out.get_size() > 150;
 }
 
