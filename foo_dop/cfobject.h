@@ -59,11 +59,11 @@ namespace cfobject
 		bool m_boolean;
 		t_int64 m_integer;
 		double m_float;
-		pfc::string_simple_t<WCHAR> m_string;
-		pfc::string_simple_t<WCHAR> m_key;
-		pfc::list_t<object_t::ptr_t> m_array;
+		pfc::string_simple_t<wchar_t> m_string;
+		pfc::string_simple_t<wchar_t> m_key;
+		std::vector<object_t::ptr_t> m_array;
 		dictionary m_dictionary;
-		pfc::array_t<t_uint8> m_data;
+		pfc::array_t<std::uint8_t> m_data;
 		t_filetimestamp m_date;
 
 		bool get_bool() {return m_boolean || m_integer;}

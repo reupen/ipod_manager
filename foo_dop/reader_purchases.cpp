@@ -42,7 +42,7 @@ namespace ipod
 							cfobject::object_t::ptr_t assetOrdering;
 							if (p_reader_data.m_root_object->m_dictionary.get_child(L"assetOrdering", assetOrdering))
 							{
-								for (t_size i = 0, count = assetOrdering->m_array.get_count(); i<count; i++)
+								for (t_size i = 0, count = assetOrdering->m_array.size(); i<count; i++)
 								{
 									pfc::string8 fname;
 

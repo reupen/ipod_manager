@@ -234,7 +234,7 @@ void mobile_device_handle::initialise_international()
 				m_icu_context.m_trans = lockedAPI->utrans_openU_4_0(International_NameTransform->m_string, -1, 0, 0, 0, 0, &status);
 
 			lockedAPI->ucol_setAttribute_4_0(m_icu_context.m_coll, 7, 17, &status);
-			t_size section_count = International_SectionHeaders->m_array.get_count();
+			t_size section_count = International_SectionHeaders->m_array.size();
 			m_icu_context.m_SortSections.set_count(section_count);
 			t_size rollingCount = 0;
 			for (t_size i = 0; i<section_count; i++)
@@ -245,7 +245,7 @@ void mobile_device_handle::initialise_international()
 					&& International_SectionHeaders->m_array[i]->m_dictionary.get_child(L"FirstCharacterAfterLanguage", FirstCharacterAfterLanguage))
 				{
 					lockedAPI.icu_get_sort_key_bound(m_icu_context.m_coll, FirstCharacterAfterLanguage->m_string.get_ptr(), -1, true, m_icu_context.m_SortSections[i].m_FirstCharacterAfterLanguageSortKey);
-					t_size HeaderCount = Headers->m_array.get_count();
+					t_size HeaderCount = Headers->m_array.size();
 					m_icu_context.m_SortSections[i].m_HeaderSortKeys.set_size(HeaderCount);
 					for (t_size j=0; j<HeaderCount; j++)
 					{

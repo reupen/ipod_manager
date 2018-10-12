@@ -233,7 +233,7 @@ namespace bplist
 							size = pfc::downcast_guarded<t_size>(reader.read_sized_int_bendian(1<< (temp&0x0f), m_abort));
 						}
 						t_size i;
-						object->m_array.set_count(size);
+						object->m_array.resize(size);
 						for (i=0; i<size; i++)
 						{
 							t_uint64 indexchild = reader.read_sized_int_bendian(m_footer.objectRefSize, m_abort);

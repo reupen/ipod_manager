@@ -95,7 +95,7 @@ namespace cfobject
 			case kTagArray:
 				{
 					p_out << "{\r\n";
-					for (t_size i = 0, count = ptr->m_array.get_count(); i<count; i++)
+					for (t_size i = 0, count = ptr->m_array.size(); i<count; i++)
 					{
 						g_print_object(ptr->m_array[i], p_out);
 						p_out << "\r\n";
@@ -153,7 +153,7 @@ namespace cfobject
 			case kTagArray:
 				{
 					p_out << "<array>\n";
-					for (t_size i = 0, count = ptr->m_array.get_count(); i<count; i++)
+					for (t_size i = 0, count = ptr->m_array.size(); i<count; i++)
 					{
 						g_export_object_to_inner_xml(ptr->m_array[i], p_out);
 					}
