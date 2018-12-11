@@ -20,6 +20,7 @@
 
 t_uint32 apple_time_from_filetime(t_filetimestamp filetime, bool b_local = true);
 t_filetimestamp filetime_time_from_appletime(t_uint32 appletime, bool b_convert_to_utc = true);
+t_uint32 current_hfs_plus_timestamp();
 
 bool g_print_meta(const file_info & info, const char * field, pfc::string_base & p_out);
 bool g_print_meta_noblanks(const file_info & info, const char * field, pfc::string_base & p_out);

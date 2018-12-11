@@ -161,6 +161,7 @@ namespace itunesdb {
 				p_pihm.read_lendian_auto_t(p_out->items[i].unk1, p_abort); //36
 				p_pihm.read_lendian_auto_t(p_out->items[i].unk2, p_abort); //40
 				p_pihm.read_lendian_auto_t(p_out->items[i].item_pid, p_abort); //44
+				// some 64-bit other ID at +60?
 			}
 			catch (exception_io_data_truncation const &) {};
 

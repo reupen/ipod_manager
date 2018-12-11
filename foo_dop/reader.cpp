@@ -590,6 +590,7 @@ namespace ipod
 
 			if (!m_writing || !p_ipod->mobile)
 				read_playcounts(p_ipod, p_abort);
+			load_device_playlists(p_ipod, p_abort);
 
 			p_status.checkpoint();
 

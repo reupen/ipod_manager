@@ -64,6 +64,28 @@ namespace cfobject
 			p_value = (child->m_integer);
 		return b_ret;
 	}
+
+	const pfc::string_simple_t<wchar_t>& object_t::dictionary::get_child_string_strict(const wchar_t * key)
+	{
+		return get_child_strict<objectType::kTagUnicodeString>(key);
+	}
+
+	bool object_t::dictionary::get_child_bool_strict(const wchar_t * key, std::optional<bool> default_value)
+	{
+		return get_child_strict_with_default<objectType::kTagBoolean>(key, default_value);
+	}
+
+	int64_t object_t::dictionary::get_child_int64_strict(const wchar_t * key, std::optional<int64_t> default_value)
+	{
+		return get_child_strict_with_default<objectType::kTagInt>(key, default_value);
+	}
+
+	const std::vector<object_t::ptr_t>& object_t::dictionary::get_child_array_strict(const wchar_t * key)
+	{
+		return get_child_strict<objectType::kTagArray>(key);
+	}
+
+
 	void object_t::dictionary::ensure_sorted()
 	{
 		if (!m_sorted)
@@ -198,6 +220,7 @@ namespace cfobject
 			};
 		}
 	}
+
 	void g_export_object_to_xml (const object_t::ptr_t & ptr, pfc::string8 & p_out)
 	{
 		p_out.reset();

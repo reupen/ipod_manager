@@ -20,6 +20,37 @@ namespace cfobject
 	public:
 		typedef pfc::refcounted_object_ptr_t<object_t> ptr_t;
 
+		template <objectType TypeTag>
+		auto& get_value_strict()
+		{
+			if (m_type != TypeTag) {
+				throw exception_io_unsupported_format();
+			}
+
+			if constexpr (TypeTag == kTagInt)
+				return m_integer;
+
+			if constexpr (TypeTag == kTagArray)
+				return m_array;
+
+			if constexpr (TypeTag == kTagBoolean)
+				return m_boolean;
+
+			if constexpr (TypeTag == kTagDictionary)
+				return m_dictionary;
+
+			if constexpr (TypeTag == kTagUnicodeString)
+				return m_string;
+
+			if constexpr (TypeTag == kTagData)
+				return m_data;
+
+			if constexpr (TypeTag == kTagReal)
+				return m_float;
+
+			throw pfc::exception_bug_check();
+		}
+
 		class dictionary_entry_t
 		{
 		public:
@@ -47,6 +78,48 @@ namespace cfobject
 			bool get_child (const wchar_t * key, t_int32 & p_value);
 			bool get_child (const wchar_t * key, t_uint64 & p_value);
 			bool get_child (const wchar_t * key, t_int64 & p_value);
+
+			template<objectType TypeTag>
+			auto* get_child(const wchar_t* key)
+			{
+				object_t::ptr_t child;
+				if (get_child(key, child))
+					return &child->get_value_strict<TypeTag>();
+
+				using ValuePtr = decltype(&child->get_value_strict<TypeTag>());
+				return static_cast<ValuePtr>(nullptr);
+			}
+
+			/** Note: This will copy the value (unlike get_child above) */
+			template<objectType TypeTag, class Default>
+			auto get_child_strict_with_default(const wchar_t* key, Default&& default_value = {})
+			{
+				using Type = std::remove_reference_t<decltype(std::declval<object_t&>().get_value_strict<TypeTag>())>;
+				std::optional<Type> default_value_as_optional{ std::forward<Default>(default_value) };
+				auto child = get_child<TypeTag>(key);
+
+				if (!child && !default_value_as_optional)
+					throw exception_io_unsupported_format();
+
+				if (!child)
+					return default_value_as_optional.value();
+				
+				return *child;
+			}
+
+			template<objectType TypeTag>
+			auto& get_child_strict(const wchar_t* key)
+			{
+				auto child = get_child<TypeTag>(key);
+				if (!child)
+					throw exception_io_unsupported_format();
+				return *child;
+			}
+
+			const pfc::string_simple_t<wchar_t>& get_child_string_strict(const wchar_t * key);
+			bool get_child_bool_strict(const wchar_t * key, std::optional<bool> default_value = {});
+			int64_t get_child_int64_strict(const wchar_t * key, std::optional<int64_t> default_value = {});
+			const std::vector<object_t::ptr_t>& get_child_array_strict(const wchar_t * key);
 
 			dictionary() : m_sorted(false) {};
 		private:

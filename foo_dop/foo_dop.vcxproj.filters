@@ -407,6 +407,9 @@
     <ClCompile Include="device_info.cpp">
       <Filter>Component</Filter>
     </ClCompile>
+    <ClCompile Include="reader_playlists.cpp">
+      <Filter>Backend Operations</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="folder.ico">

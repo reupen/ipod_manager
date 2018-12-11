@@ -225,6 +225,7 @@
     <ClCompile Include="reader_cache.cpp" />
     <ClCompile Include="reader_dopdb.cpp" />
     <ClCompile Include="reader_playcounts.cpp" />
+    <ClCompile Include="reader_playlists.cpp" />
     <ClCompile Include="reader_purchases.cpp" />
     <ClCompile Include="remove_files.cpp" />
     <ClCompile Include="results.cpp" />
