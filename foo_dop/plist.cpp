@@ -297,7 +297,7 @@ void XMLPlistParser::get_cfobject_for_key(const key_t & key, cfobject::object_t:
 						key_t key_child;
 						if (!g_get_tag_v2(ptr, key_child)) break;
 						get_cfobject_for_key(key_child, temp);
-						p_out->m_array.add_item(temp);
+						p_out->m_array.emplace_back(std::move(temp));
 					}
 				}
 				break;
@@ -346,7 +346,7 @@ void XMLPlistParser::get_cfobject_for_key(const key_t & key, cfobject::object_t:
 
 void g_get_checkpoint_artwork_format_single(cfobject::object_t::ptr_t const & AlbumArt, pfc::list_t<artwork_format_t> & p_out)
 {
-	t_size i, count = AlbumArt->m_array.get_count();
+	t_size i, count = AlbumArt->m_array.size();
 	for (i=0; i<count; i++)
 	{
 		if (!AlbumArt->m_array[i].is_valid()) break;

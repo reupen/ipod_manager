@@ -15,6 +15,9 @@
 //#define LOAD_LIBRARY_INDICES
 //#define PHOTO_BROWSER
 
+#include <optional>
+#include <regex>
+
 #include <winsock2.h>
 #include <ws2tcpip.h>
 #include <commctrl.h>

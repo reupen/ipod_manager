@@ -16,6 +16,17 @@ namespace ipod
 
 	namespace tasks
 	{
+		struct DevicePlaylist {
+			int64_t playlist_persistent_id{};
+			int64_t version{};
+			bool playlist_deleted{};
+			int64_t saved_index{};
+			pfc::string8 name;
+			/** Appears to be the timestamp of iTunesDB (and not iTunesCDB or an .itdb file) */
+			int64_t db_timestamp_mac_os_date{};
+			std::vector<int64_t> track_persistent_ids;
+		};
+
 		class load_database_t
 		{
 			class portable_device_playbackdata_notifier_impl : public dop::portable_device_playbackdata_notifier_t
@@ -101,7 +112,19 @@ namespace ipod
 			void read_storepurchases(ipod_device_ptr_ref_t p_ipod, abort_callback & p_abort);
 			void read_storepurchases(ipod_device_ptr_ref_t p_ipod, store_purchases_type_t, abort_callback & p_abort);
 			void read_playcounts(ipod_device_ptr_ref_t p_ipod, abort_callback & p_abort);
-			static int g_compare_playlist_id (const pfc::rcptr_t<t_playlist> & item1, const pfc::rcptr_t<t_playlist> & item2)
+
+			/**
+			 * For, at least, the nano 7G.
+			 */
+			void load_device_playlists(ipod_device_ptr_ref_t p_ipod, abort_callback & p_abort);
+
+			/**
+			 * For, at least, the nano 7G.
+			 */
+			void load_device_playlist(const DevicePlaylist& playlist);
+			void clean_up_device_playlists();
+
+            static int g_compare_playlist_id (const pfc::rcptr_t<t_playlist> & item1, const pfc::rcptr_t<t_playlist> & item2)
 			{
 				return pfc::compare_t(item1->id,item2->id);
 			}
@@ -122,13 +145,19 @@ namespace ipod
 				return pfc::compare_t(item1->pid,dbid);
 			}
 
-			bool have_track (t_uint64 pid)
+			pfc::rcptr_t <t_track> get_track_by_pid(t_uint64 pid)
 			{
 				for (t_size i = 0, count = m_tracks.get_count(); i<count; i++)
 				{
-					if (m_tracks[i]->pid == pid) return true;
+					if (m_tracks[i]->pid == pid)
+						return m_tracks[i];
 				}
-				return false;
+				return {};
+			}
+
+			bool have_track(t_uint64 pid)
+			{
+				return get_track_by_pid(pid).is_valid();
 			};
 
 			void glue_items (t_size start);
@@ -399,6 +428,7 @@ namespace ipod
 		private:
 			bool m_failed;
 			bool m_writing;
+			pfc::list_t< pfc::string8 > m_read_device_playlists;
 		};
 	}
 }

@@ -2,6 +2,7 @@
 
 #include "ipod_manager.h"
 #include "writer_sort_helpers.h"
+#include "file_adder.h"
 
 bool is_blank(const char * str)
 {
@@ -111,6 +112,13 @@ LocalFileTimeToFileTime2(
 	FileTimeToSystemTime(lpLocalFileTime, &stLocal);
 	TzSpecificLocalTimeToSystemTime(NULL, &stLocal, &stUTC);
 	return SystemTimeToFileTime(&stUTC, lpFileTime);
+}
+
+t_uint32 current_hfs_plus_timestamp()
+{
+	FILETIME ft{};
+	GetSystemTimeAsFileTime(&ft);
+	return apple_time_from_filetime(g_filetime_to_timestamp(&ft));
 }
 
 t_uint32 apple_time_from_filetime(t_filetimestamp filetime_src, bool b_local)

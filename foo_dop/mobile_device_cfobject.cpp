@@ -66,7 +66,7 @@ bool g_get_CFType_object (const in_mobile_device_api_handle_sync & api, CFTypeRe
 			p_out->m_type = cfobject::kTagArray;
 			CFArrayRef arr = (CFArrayRef)ref;
 			t_size i, count = api->CFArrayGetCount(arr);
-			p_out->m_array.set_size(count);
+			p_out->m_array.resize(count);
 			for (i=0; i<count; i++)
 			{
 				CFTypeRef child = api->CFArrayGetValueAtIndex(arr, i);
@@ -121,7 +121,7 @@ void g_get_sql_commands (cfobject::object_t::ptr_t const & cfobj, pfc::string_li
 
 				if (CommandSet.is_valid() && CommandSet->m_dictionary.get_child(L"Commands", Commands))
 				{
-					t_size j, count = Commands->m_array.get_count();
+					t_size j, count = Commands->m_array.size();
 					for (j=0; j<count; j++)
 						if (Commands->m_array[j].is_valid())
 							names.add_item(pfc::stringcvt::string_utf8_from_wide(Commands->m_array[j]->m_string.get_ptr()));

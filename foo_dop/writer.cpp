@@ -52,6 +52,11 @@ void database_writer_t::write_artworkdb(ipod_device_ptr_ref_t p_ipod, const ipod
 	}
 }
 
+void database_writer_t::clean_up_after_write(ipod::tasks::load_database_t& p_library)
+{
+	p_library.clean_up_device_playlists();
+}
+
 void database_writer_t::run(ipod_device_ptr_ref_t p_ipod, ipod::tasks::load_database_t & m_library, const t_field_mappings & p_mappings, threaded_process_v2_t & p_status,abort_callback & p_abort)
 {
 	//profiler (writer_run);
@@ -139,6 +144,7 @@ void database_writer_t::run(ipod_device_ptr_ref_t p_ipod, ipod::tasks::load_data
 
 	p_status.update_progress_subpart_helper(14 + (p_ipod->m_device_properties.m_SQLiteDB?15:0),15 + (p_ipod->m_device_properties.m_SQLiteDB?15:0));
 	m_library.save_cache(p_status.get_wnd(), p_ipod, p_status, p_abort);
+	clean_up_after_write(m_library);
 
 	p_status.update_progress_subpart_helper(15,15);
 

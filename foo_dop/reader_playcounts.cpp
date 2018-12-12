@@ -124,7 +124,7 @@ namespace ipod
 								{
 									if (root->m_dictionary.get_child(L"tracks", tracks))
 									{
-										t_size j, jcount = tracks->m_array.get_count();
+										t_size j, jcount = tracks->m_array.size();
 										mobilecounts.set_size(jcount);
 										for (j = 0; j<jcount; j++)
 										{
