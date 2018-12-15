@@ -119,7 +119,7 @@ void load_database_t::clean_up_device_playlists()
 		try {
 			filesystem::g_remove(path, aborter);
 		}
-		catch (const exception_io& ex) {
+		catch (const exception_io&) {
 			console::formatter formatter;
 			formatter << "iPod manager: Failed to delete file: " << path;
 		}
