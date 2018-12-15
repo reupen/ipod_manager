@@ -1,5 +1,13 @@
 # iPod manager for foobar2000 changelog
 
+## 0.7.1 beta
+
+* Added play count, skip count, last played and last skipped columns to Manage contents
+* Attempted to improve reliability when used with some shuffle 4G models
+* Added support for playlist changes made on the device on the nano 7G
+* Compiled with Visual Studio 2017 15.9
+* Updated to foobar2000 SDK 2018-03-06
+
 ## 0.7.0
 
 * Added support for iPod nano 7G software versions later than 1.0.2
