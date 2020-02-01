@@ -2,7 +2,7 @@
 
 #include "plist.h"
 
-static const std::wregex file_name_regex(L"Playlist_[A-Z0-9]{1,16}.plist");
+static const std::wregex file_name_regex(L"Playlist_[A-Z0-9]{1,32}.plist");
 
 namespace ipod::tasks
 {
@@ -14,7 +14,7 @@ DevicePlaylist read_plist_otg_playlist(const char* path, abort_callback & p_abor
 	auto parser = PlistParserFromFile(path, p_abort);
 
 	if (parser.m_root_object.is_empty())
-		throw exception_io_unsupported_format();
+		throw exception_io_unsupported_format("No root object");
 
 	auto& dict = parser.m_root_object->get_value_strict<cfobject::objectType::kTagDictionary>();
 	DevicePlaylist otg_playlist;
@@ -22,7 +22,7 @@ DevicePlaylist read_plist_otg_playlist(const char* path, abort_callback & p_abor
 	otg_playlist.playlist_persistent_id = dict.get_child_int64_strict(L"playlistPersistentID");
 	otg_playlist.saved_index = dict.get_child_int64_strict(L"savedIndex", 0);
 	otg_playlist.name = pfc::stringcvt::string_utf8_from_wide(dict.get_child_string_strict(L"name"));
-	otg_playlist.db_timestamp_mac_os_date = dict.get_child_int64_strict(L"dbTimestampMacOsDate");
+	otg_playlist.db_timestamp_mac_os_date = dict.get_child_int64_strict(L"dbTimestampMacOsDate", 0);
 	otg_playlist.playlist_deleted = dict.get_child_bool_strict(L"playlistDeleted", false);
 	auto& pid_objects = dict.get_child_array_strict(L"trackPersistentIds");
 
@@ -55,8 +55,19 @@ void load_database_t::load_device_playlists(ipod_device_ptr_ref_t p_ipod, abort_
 		pfc::stringcvt::string_wide_from_utf8 wname(name);
 
 		if (std::regex_search(wname.get_ptr(), file_name_regex)) {
-			read_playlists.emplace_back(read_plist_otg_playlist(file_path, p_abort));
-			m_read_device_playlists.add_item(file_path);
+			std::optional<DevicePlaylist> device_playlist;
+			
+			try {
+				device_playlist = read_plist_otg_playlist(file_path, p_abort);
+			} catch (pfc::exception& ex) {
+				console::formatter formatter;
+				formatter << "iPod manager: Failed to read on-the-go playlist " << path;
+			}
+
+			if (device_playlist) {
+				read_playlists.emplace_back(std::move(*device_playlist));
+				m_read_device_playlists.add_item(file_path);
+			}
 		}
 	}
 

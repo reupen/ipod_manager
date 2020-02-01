@@ -1,6 +1,11 @@
 # iPod manager for foobar2000 changelog
 
-## 0.7.1 beta
+## 0.7.2
+
+* Fixed a possible 'Unsupported file format' error on iOS 4 devices when playlists have been modified on the device
+* Added support for playlist changes made on the device on iOS 4 devices
+
+## 0.7.1
 
 * Added play count, skip count, last played and last skipped columns to Manage contents
 * Attempted to improve reliability when used with some shuffle 4G models
