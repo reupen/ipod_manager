@@ -15,7 +15,7 @@ namespace results_viewer
 		{
 			m_results.add_items(p_results);
 			HWND wnd;
-			if (!(wnd = uCreateDialog(IDD_RESULTS, core_api::get_main_window(), &g_DialogProc, (LPARAM)this)))
+			if (!(wnd = CreateDialogParam(mmh::get_current_instance(), MAKEINTRESOURCE(IDD_RESULTS), core_api::get_main_window(), &g_DialogProc, (LPARAM)this)))
 			throw exception_win32(GetLastError());
 			ShowWindow(wnd, SW_SHOWNORMAL);
 		};

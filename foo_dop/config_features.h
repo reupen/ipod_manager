@@ -35,7 +35,7 @@ private:
 public:
 	HWND create(HWND parent)
 	{
-		return uCreateDialog(IDD_TOOLS, parent, g_DialogProc, (LPARAM)this);
+		return CreateDialogParam(mmh::get_current_instance(), MAKEINTRESOURCE(IDD_TOOLS), parent, g_DialogProc, (LPARAM)this);
 	}
 	const char * get_name() { return "iPod Features"; }
 	virtual bool get_help_url(pfc::string_base & p_out)

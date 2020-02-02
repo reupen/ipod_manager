@@ -17,6 +17,7 @@
 
 #include <optional>
 #include <regex>
+#include <thread>
 
 #include <winsock2.h>
 #include <ws2tcpip.h>
@@ -46,7 +47,6 @@
 
 
 #include "../foobar2000/SDK/foobar2000.h"
-#include "../foobar2000/helpers/helpers.h"
 
 #include "../mmh/stdafx.h"
 #include "../ui_helpers/stdafx.h"

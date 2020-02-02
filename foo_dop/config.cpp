@@ -389,7 +389,7 @@ private:
 public:
 	HWND create(HWND parent)
 	{
-		return uCreateDialog(IDD_HOST,parent,g_DialogProc, (LPARAM)this);
+		return CreateDialogParam(mmh::get_current_instance(), MAKEINTRESOURCE(IDD_HOST), parent, g_DialogProc, (LPARAM)this);
 	}
 	const char * get_name() {return "iPod Manager";}
 	static const GUID guid;

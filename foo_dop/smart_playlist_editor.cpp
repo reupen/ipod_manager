@@ -606,7 +606,7 @@ BOOL t_smart_playlist_editor::DialogProc(HWND wnd,UINT msg,WPARAM wp,LPARAM lp)
 		case IDC_NEW:
 			{
 				t_smart_playlist_rule_editor editor;
-				if (uDialogBox(IDD_SMART_RULE, wnd, &t_smart_playlist_rule_editor::g_DialogProc, (LPARAM)&editor))
+				if (DialogBoxParam(mmh::get_current_instance(), MAKEINTRESOURCE(IDD_SMART_RULE), wnd, &t_smart_playlist_rule_editor::g_DialogProc, (LPARAM)&editor))
 				{
 					t_size index = m_rules.rules.add_item(editor.m_rule);
 					pfc::string8 temp;
@@ -620,7 +620,7 @@ BOOL t_smart_playlist_editor::DialogProc(HWND wnd,UINT msg,WPARAM wp,LPARAM lp)
 			return 0;
 		case IDC_DELETE:
 			{
-				int lbi = ListView_GetFirstSelection(GetDlgItem(wnd, IDC_RULES));
+			int lbi = ListView_GetNextItem(GetDlgItem(wnd, IDC_RULES), -1, LVNI_SELECTED);
 				if (lbi != -1 && m_rules.rules.get_count() > 1)
 				{
 					m_rules.rules.remove_by_idx(lbi);
@@ -632,11 +632,11 @@ BOOL t_smart_playlist_editor::DialogProc(HWND wnd,UINT msg,WPARAM wp,LPARAM lp)
 			return 0;
 		case IDC_EDIT:
 			{
-				int lbi = ListView_GetFirstSelection(GetDlgItem(wnd, IDC_RULES));
+				int lbi = ListView_GetNextItem(GetDlgItem(wnd, IDC_RULES), -1, LVNI_SELECTED);
 				if (lbi != -1)
 				{
 					t_smart_playlist_rule_editor editor(m_rules.rules[lbi], m_playlist_map);
-					if (uDialogBox(IDD_SMART_RULE, wnd, &t_smart_playlist_rule_editor::g_DialogProc, (LPARAM)&editor))
+					if (DialogBoxParam(mmh::get_current_instance(), MAKEINTRESOURCE(IDD_SMART_RULE), wnd, &t_smart_playlist_rule_editor::g_DialogProc, (LPARAM)&editor))
 					{
 						m_rules.rules[lbi]=editor.m_rule;
 						pfc::string8 temp;

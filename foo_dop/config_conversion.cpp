@@ -55,9 +55,6 @@ void encoder_manager_t::sort_encoder_list()
 			//for (t_size i=0; i<count; i++)
 			//	console::formatter() << index << " " << index << " " << permuation_inverse[index] << " " << permuation[index];
 		}
-		else
-			m_encoder_list_view.update_window();
-
 	}
 }
 
@@ -130,7 +127,7 @@ BOOL encoder_manager_t::DialogProc(HWND wnd, UINT msg, WPARAM wp, LPARAM lp)
 					const char * p_name = "<enter name>";
 					t_size index = settings::encoder_list.add_item(settings::conversion_preset_t(p_name, "", "", "", settings::conversion_preset_t::bps_32));
 					uih::ListView::InsertItem item;
-					item.m_subitems.append_single(p_name);
+					item.m_subitems.emplace_back(p_name);
 
 					m_encoder_list_view.insert_items(index, 1, &item);
 					m_encoder_list_view.set_item_selected_single(index);
@@ -455,7 +452,7 @@ void encoder_manager_t::encoder_list_view_t::notify_save_inline_edit(const char 
 			pfc::list_t<uih::ListView::InsertItem> items;
 			items.set_count(1);
 			{
-				items[0].m_subitems.append_single(settings::encoder_list[m_edit_index].m_name);
+				items[0].m_subitems.emplace_back(settings::encoder_list[m_edit_index].m_name);
 			}
 			replace_items(m_edit_index, items);
 			g_sort_converstion_encoders();

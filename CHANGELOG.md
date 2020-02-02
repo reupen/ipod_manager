@@ -4,6 +4,8 @@
 
 * Fixed a possible 'Unsupported file format' error on iOS 4 devices when playlists have been modified on the device
 * Added support for playlist changes made on the device on iOS 4 devices
+* Compiled with Visual Studio 2019 16.4
+* Updated to foobar2000 SDK 2019-12-27
 
 ## 0.7.1
 

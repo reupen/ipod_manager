@@ -13,18 +13,18 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{4AC26C54-BE51-4FDB-A115-6E2F2B3650E1}</ProjectGuid>
     <RootNamespace>foo_dop</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -45,12 +45,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)$(Configuration)\$(ProjectName)\</IntDir>
-    <IncludePath>$(IncludePath);$(SolutionDir)</IncludePath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)..\foobar2000;$(ProjectDir)..;</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)$(Configuration)\$(ProjectName)\</IntDir>
-    <IncludePath>$(IncludePath);$(SolutionDir)</IncludePath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)..\foobar2000;$(ProjectDir)..;</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Midl>
@@ -173,6 +173,9 @@
     <ClInclude Include="sqlite.h" />
     <ClInclude Include="sync.h" />
     <ClInclude Include="sync_logic.h" />
+    <ClInclude Include="vendored\bitreader_helper.h" />
+    <ClInclude Include="vendored\file_move_helper.h" />
+    <ClInclude Include="vendored\mp3_utils.h" />
     <ClInclude Include="writer.h" />
     <ClInclude Include="writer_sort_helpers.h" />
     <ClInclude Include="zlib.h" />
@@ -240,6 +243,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="sync.cpp" />
+    <ClCompile Include="vendored\file_move_helper.cpp" />
+    <ClCompile Include="vendored\mp3_utils.cpp" />
     <ClCompile Include="video_tagger.cpp" />
     <ClCompile Include="video_thumbnailer.cpp" />
     <ClCompile Include="writer.cpp" />
@@ -270,9 +275,6 @@
     </ProjectReference>
     <ProjectReference Include="..\foobar2000\foobar2000_component_client\foobar2000_component_client.vcxproj">
       <Project>{71ad2674-065b-48f5-b8b0-e1f9d3892081}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\foobar2000\helpers\foobar2000_sdk_helpers.vcxproj">
-      <Project>{ee47764e-a202-4f85-a767-abdab4aff35f}</Project>
     </ProjectReference>
     <ProjectReference Include="..\foobar2000\SDK\foobar2000_SDK.vcxproj">
       <Project>{e8091321-d79d-4575-86ef-064ea1a4a20d}</Project>

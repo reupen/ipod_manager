@@ -256,7 +256,7 @@ bool g_rename(pfc::string8 * text,HWND parent)
 {
 	rename_param param;
 	param.m_text = text;
-	return !!uDialogBox(IDD_RENAME_PLAYLIST,parent,g_RenameProc,(LPARAM)(&param));
+	return !!DialogBoxParam(mmh::get_current_instance(), MAKEINTRESOURCE(IDD_RENAME_PLAYLIST), parent, g_RenameProc, (LPARAM)(&param));
 }
 
 
@@ -266,7 +266,7 @@ void t_browser::on_exit()
 	{
 		sync.release();
 		pfc::refcounted_object_ptr_t<ipod_browse_dialog> p_test = new ipod_browse_dialog(this);
-		HWND wnd = uCreateDialog(IDD_BROWSE, core_api::get_main_window(), ipod_browse_dialog::g_DialogProc, (LPARAM)p_test.get_ptr());
+		HWND wnd = CreateDialogParam(mmh::get_current_instance(), MAKEINTRESOURCE(IDD_BROWSE), core_api::get_main_window(), ipod_browse_dialog::g_DialogProc, (LPARAM)p_test.get_ptr());
 		ShowWindow(wnd, SW_SHOWNORMAL);
 		////m_this = this;
 	}
@@ -639,7 +639,7 @@ BOOL ipod_browse_dialog::DialogProc(HWND wnd,UINT msg,WPARAM wp,LPARAM lp)
 						rule.action = (1<<24)|(1<<0);
 						editor.m_rules.rules.add_item(rule);
 						editor.init(m_library);
-						if (uDialogBox(IDD_SMART, wnd, &t_smart_playlist_editor::g_DialogProc, (LPARAM)&editor))
+						if (DialogBoxParam(mmh::get_current_instance(), MAKEINTRESOURCE(IDD_SMART), wnd, &t_smart_playlist_editor::g_DialogProc, (LPARAM)&editor))
 						{
 							t_uint64 parentid = NULL;
 							if (p_node->m_type == ipod_tree_entry_t::type_folder)
@@ -705,7 +705,7 @@ BOOL ipod_browse_dialog::DialogProc(HWND wnd,UINT msg,WPARAM wp,LPARAM lp)
 				else if (cmd == ID_EDIT_SMART)
 				{
 					t_smart_playlist_editor editor(m_library, p_node->m_playlist->smart_playlist_data, p_node->m_playlist->smart_playlist_rules, p_node->m_playlist->sort_order, p_node->m_playlist->sort_direction!=0, p_node->m_playlist->id);
-					if (uDialogBox(IDD_SMART, wnd, &t_smart_playlist_editor::g_DialogProc, (LPARAM)&editor))
+					if (DialogBoxParam(mmh::get_current_instance(), MAKEINTRESOURCE(IDD_SMART), wnd, &t_smart_playlist_editor::g_DialogProc, (LPARAM)&editor))
 					{
 						p_node->m_playlist->smart_playlist_data = editor.m_data;
 						p_node->m_playlist->smart_playlist_rules = editor.m_rules;
