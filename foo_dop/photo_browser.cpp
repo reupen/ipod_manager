@@ -344,7 +344,7 @@ void t_photo_browser::on_exit()
 	if (!m_process.get_abort().is_aborting() && !m_failed)
 	{
 		pfc::refcounted_object_ptr_t<ipod_browse_photo_dialog> p_test = new ipod_browse_photo_dialog(this);
-		HWND wnd = uCreateDialog(IDD_BROWSE_PHOTOS, core_api::get_main_window(), ipod_browse_photo_dialog::g_DialogProc, (LPARAM)p_test.get_ptr());
+		HWND wnd = CreateDialogParam(mmh::get_current_instance(), MAKEINTRESOURCE(IDD_BROWSE_PHOTOS), core_api::get_main_window(), ipod_browse_photo_dialog::g_DialogProc, (LPARAM)p_test.get_ptr());
 		ShowWindow(wnd, SW_SHOWNORMAL);
 		//m_this = this;
 	}

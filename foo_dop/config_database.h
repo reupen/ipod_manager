@@ -63,7 +63,7 @@ private:
 public:
 	HWND create(HWND parent)
 	{
-		return uCreateDialog(IDD_CONFIG, parent, g_DialogProc, (LPARAM)this);
+		return CreateDialogParam(mmh::get_current_instance(), MAKEINTRESOURCE(IDD_CONFIG), parent, g_DialogProc, (LPARAM)this);
 	}
 	const char * get_name() { return "Database"; }
 	virtual bool get_help_url(pfc::string_base & p_out)

@@ -663,7 +663,7 @@ void ipod_add_files::run (ipod_device_ptr_ref_t p_ipod, const pfc::list_base_con
 					}
 				}
 				conversion_manager_t p_converter;
-				t_size threadCount = p_mappings.conversion_use_custom_thread_count ? settings::conversion_custom_thread_count : GetOptimalWorkerThreadCount();
+				t_size threadCount = p_mappings.conversion_use_custom_thread_count ? settings::conversion_custom_thread_count : std::thread::hardware_concurrency();
 				if (threadCount<1) threadCount =1;
 				p_converter.initialise(entries, p_mappings,threadCount);
 				p_converter.run(p_ipod, p_mappings, p_status, progress_index, count_nodups*3, p_abort);

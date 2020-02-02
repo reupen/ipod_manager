@@ -1,6 +1,7 @@
 #ifndef _DOP_REMOVE_H_
 #define _DOP_REMOVE_H_
 
+#include "vendored/file_move_helper.h"
 #include "file_remover.h"
 
 class ipod_remove_files : public ipod_write_action_v2_t

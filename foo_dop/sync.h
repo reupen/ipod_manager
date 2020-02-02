@@ -185,7 +185,7 @@ public:
 	static BOOL CALLBACK g_dlg_proc(HWND wnd,UINT msg,WPARAM wp,LPARAM lp);
 	virtual void callback_run()
 	{
-		m_exitcode = uDialogBox(IDD_SYNC_CONFIRM, m_parent_window, g_dlg_proc, (LPARAM)this);
+		m_exitcode = DialogBoxParam(mmh::get_current_instance(), MAKEINTRESOURCE(IDD_SYNC_CONFIRM), m_parent_window, g_dlg_proc, (LPARAM)this);
 		m_signal.set_state(true);
 	}
 	win32_event m_signal;
@@ -568,7 +568,7 @@ public:
 	{
 		m_checked.set_size(m_library.m_playlists.get_size());
 		m_checked.fill_null();
-		m_exitcode = uDialogBox(IDD_REMOVE_PLAYLISTS1, m_parent_window, g_select_proc, (LPARAM)this);
+		m_exitcode = DialogBoxParam(mmh::get_current_instance(), MAKEINTRESOURCE(IDD_REMOVE_PLAYLISTS1), m_parent_window, g_select_proc, (LPARAM)this);
 		m_signal.set_state(true);
 	}
 	win32_event m_signal;

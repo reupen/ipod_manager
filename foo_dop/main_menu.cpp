@@ -1112,7 +1112,7 @@ public:
 	virtual void execute(service_ptr_t<service_base> p_callback) const
 	{
 		{
-			uDialogBox(IDD_SELECT_PLAYLIST, core_api::get_main_window(), g_select_proc);
+			DialogBoxParam(mmh::get_current_instance(), MAKEINTRESOURCE(IDD_SELECT_PLAYLIST), core_api::get_main_window(), g_select_proc, NULL);
 		}
 	}
 }; 

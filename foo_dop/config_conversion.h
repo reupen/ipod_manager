@@ -37,7 +37,7 @@ public:
 			SetActiveWindow(m_wnd);
 		else
 		{
-			m_wnd = uCreateDialog(IDD_ENCODER_MANAGER, wnd_owner, g_DialogProc, (LPARAM)this);
+			m_wnd = CreateDialogParam(mmh::get_current_instance(), MAKEINTRESOURCE(IDD_ENCODER_MANAGER), wnd_owner, g_DialogProc, (LPARAM)this);
 			ShowWindow(m_wnd, SW_SHOWNORMAL);
 		}
 		return m_wnd;
@@ -52,7 +52,7 @@ private:
 		{
 			for (t_size n = 0, count = p_items.get_count(); n<count; n++)
 			{
-				p_items[n].m_subitems.append_single(settings::encoder_list[n].m_name);
+				p_items[n].m_subitems.emplace_back(settings::encoder_list[n].m_name);
 			}
 		}
 		void populate()
@@ -69,7 +69,7 @@ private:
 			pfc::list_t<uih::ListView::InsertItem> items;
 			items.set_count(count);
 			get_insert_items(items);
-			replace_items(0, items, false);
+			replace_items(0, items);
 		}
 	private:
 		void notify_on_initialisation()
@@ -177,7 +177,7 @@ private:
 		EnableWindow(m_wnd_conversion_thread_count_spin, b_enable && settings::conversion_use_custom_thread_count);
 		EnableWindow(m_wnd_conversion_thread_count, b_enable && settings::conversion_use_custom_thread_count);
 		SendMessage(m_wnd_conversion_thread_count_spin, UDM_SETPOS32, 0,
-			settings::conversion_use_custom_thread_count ? settings::conversion_custom_thread_count : GetOptimalWorkerThreadCount());
+			settings::conversion_use_custom_thread_count ? settings::conversion_custom_thread_count : std::thread::hardware_concurrency());
 	}
 
 	void on_convert_files_change()
@@ -213,7 +213,7 @@ private:
 public:
 	HWND create(HWND parent)
 	{
-		return uCreateDialog(IDD_CONVERSION, parent, g_DialogProc, (LPARAM)this);
+		return CreateDialogParam(mmh::get_current_instance(), MAKEINTRESOURCE(IDD_CONVERSION), parent, g_DialogProc, (LPARAM)this);
 	}
 	const char * get_name() { return "Conversion"; }
 	virtual bool get_help_url(pfc::string_base & p_out)

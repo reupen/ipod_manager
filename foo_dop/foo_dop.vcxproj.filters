@@ -58,6 +58,9 @@
     <Filter Include="Mobile Device">
       <UniqueIdentifier>{8a92fd48-f296-4120-9540-581a1729e486}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Vendored">
+      <UniqueIdentifier>{b1a9bd2a-73dc-4968-9f2f-90ff9487fbce}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="chapter.h">
@@ -210,6 +213,15 @@
     <ClInclude Include="corefoundation.h" />
     <ClInclude Include="stdafx.h">
       <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="vendored\file_move_helper.h">
+      <Filter>Vendored</Filter>
+    </ClInclude>
+    <ClInclude Include="vendored\mp3_utils.h">
+      <Filter>Vendored</Filter>
+    </ClInclude>
+    <ClInclude Include="vendored\bitreader_helper.h">
+      <Filter>Vendored</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -409,6 +421,12 @@
     </ClCompile>
     <ClCompile Include="reader_playlists.cpp">
       <Filter>Backend Operations</Filter>
+    </ClCompile>
+    <ClCompile Include="vendored\file_move_helper.cpp">
+      <Filter>Vendored</Filter>
+    </ClCompile>
+    <ClCompile Include="vendored\mp3_utils.cpp">
+      <Filter>Vendored</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

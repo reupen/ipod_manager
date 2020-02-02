@@ -25,8 +25,8 @@ void t_config_tab1::get_insert_items(t_size base, t_size count, pfc::list_t<uih:
 	items.set_count(count);
 	for (i = 0; i<count; i++)
 	{
-		items[i].m_subitems.append_single(g_mappings[base + i].m_field);
-		items[i].m_subitems.append_single(g_mappings[base + i].m_value.get_ptr());
+		items[i].m_subitems.emplace_back(g_mappings[base + i].m_field);
+		items[i].m_subitems.emplace_back(g_mappings[base + i].m_value.get_ptr());
 	}
 }
 
@@ -109,7 +109,7 @@ BOOL t_config_tab1::DialogProc(HWND wnd, UINT msg, WPARAM wp, LPARAM lp)
 			}
 			break;
 		case WM_DESTROY:
-			m_field_list.remove_items(bit_array_true(), false);
+			m_field_list.remove_items(bit_array_true());
 			m_field_list.destroy();
 			break;
 	}
@@ -159,8 +159,8 @@ void t_config_tab1::t_list_view_filter::notify_save_inline_edit(const char * val
 			pfc::list_t<uih::ListView::InsertItem> items;
 			items.set_count(1);
 			{
-				items[0].m_subitems.append_single(g_mappings[m_edit_index].m_field);
-				items[0].m_subitems.append_single(value);
+				items[0].m_subitems.emplace_back(g_mappings[m_edit_index].m_field);
+				items[0].m_subitems.emplace_back(value);
 			}
 			replace_items(m_edit_index, items);
 		}

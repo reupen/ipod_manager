@@ -1,5 +1,7 @@
 #include "stdafx.h"
 
+#include "vendored/mp3_utils.h"
+
 struct mpeg_header
 {
 	t_uint8 mpeg_version; // 0=2, 1=1

@@ -1,5 +1,7 @@
 #include "stdafx.h"
 
+#include "vendored/file_move_helper.h"
+
 #include "sync.h"
 
 #if 0
@@ -288,7 +290,7 @@ void ipod_sync::on_exit()
 
 void g_run_sync()
 {
-	uDialogBox(IDD_SYNC, core_api::get_main_window(), g_sync_proc);
+	DialogBoxParam(mmh::get_current_instance(), MAKEINTRESOURCE(IDD_SYNC), core_api::get_main_window(), g_sync_proc, NULL);
 }
 
 

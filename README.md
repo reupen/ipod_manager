@@ -2,7 +2,7 @@
 
 http://yuo.be/ipod_manager
 
-[![Build status](https://ci.appveyor.com/api/projects/status/dfrgvwsfrlet8d2r/branch/master?svg=true)](https://ci.appveyor.com/project/reupen/ipod-manager/branch/master)
+[![Build status](https://reupen.visualstudio.com/Columns%20UI/_apis/build/status/reupen.ipod_manager?branchName=master)](https://reupen.visualstudio.com/Columns%20UI/_build/latest?definitionId=7&branchName=master)
 
 The iPod manager source code (contained in the `foo_dop` folder) is released under the Lesser GNU Public Licence (see COPYING and COPYING.LESSER).
 

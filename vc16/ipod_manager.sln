@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Components", "Components", "{5CE500DE-1CE0-4222-9433-DCE0A3364124}"
 EndProject
@@ -10,8 +10,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Component SDKs", "Component SDKs", "{3A85ACE2-E7C5-4F1F-A253-9C60B8076BE8}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "foobar2000_component_client", "..\foobar2000\foobar2000_component_client\foobar2000_component_client.vcxproj", "{71AD2674-065B-48F5-B8B0-E1F9D3892081}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "foobar2000_sdk_helpers", "..\foobar2000\helpers\foobar2000_sdk_helpers.vcxproj", "{EE47764E-A202-4F85-A767-ABDAB4AFF35F}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "foobar2000_SDK", "..\foobar2000\SDK\foobar2000_SDK.vcxproj", "{E8091321-D79D-4575-86EF-064EA1A4A20D}"
 EndProject
@@ -26,7 +24,6 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "foo_dop", "..\foo_dop\foo_dop.vcxproj", "{4AC26C54-BE51-4FDB-A115-6E2F2B3650E1}"
 	ProjectSection(ProjectDependencies) = postProject
 		{E8091321-D79D-4575-86EF-064EA1A4A20D} = {E8091321-D79D-4575-86EF-064EA1A4A20D}
-		{EE47764E-A202-4F85-A767-ABDAB4AFF35F} = {EE47764E-A202-4F85-A767-ABDAB4AFF35F}
 		{EBFFFB4E-261D-44D3-B89C-957B31A0BF9C} = {EBFFFB4E-261D-44D3-B89C-957B31A0BF9C}
 		{71AD2674-065B-48F5-B8B0-E1F9D3892081} = {71AD2674-065B-48F5-B8B0-E1F9D3892081}
 		{A8C4298D-00F5-46F7-91BA-F503FD581590} = {A8C4298D-00F5-46F7-91BA-F503FD581590}
@@ -45,7 +42,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		..\.clang-format = ..\.clang-format
 		..\.gitignore = ..\.gitignore
-		..\appveyor.yml = ..\appveyor.yml
+		..\azure-pipelines.yml = ..\azure-pipelines.yml
 		..\CHANGELOG.md = ..\CHANGELOG.md
 		..\COPYING = ..\COPYING
 		..\COPYING.LESSER = ..\COPYING.LESSER
@@ -75,16 +72,6 @@ Global
 		{71AD2674-065B-48F5-B8B0-E1F9D3892081}.Release|Win32.Build.0 = Release|Win32
 		{71AD2674-065B-48F5-B8B0-E1F9D3892081}.Release|x64.ActiveCfg = Release|x64
 		{71AD2674-065B-48F5-B8B0-E1F9D3892081}.Release|x64.Build.0 = Release|x64
-		{EE47764E-A202-4F85-A767-ABDAB4AFF35F}.Debug|Itanium.ActiveCfg = Debug|x64
-		{EE47764E-A202-4F85-A767-ABDAB4AFF35F}.Debug|Win32.ActiveCfg = Debug|Win32
-		{EE47764E-A202-4F85-A767-ABDAB4AFF35F}.Debug|Win32.Build.0 = Debug|Win32
-		{EE47764E-A202-4F85-A767-ABDAB4AFF35F}.Debug|x64.ActiveCfg = Debug|x64
-		{EE47764E-A202-4F85-A767-ABDAB4AFF35F}.Debug|x64.Build.0 = Debug|x64
-		{EE47764E-A202-4F85-A767-ABDAB4AFF35F}.Release|Itanium.ActiveCfg = Release|x64
-		{EE47764E-A202-4F85-A767-ABDAB4AFF35F}.Release|Win32.ActiveCfg = Release|Win32
-		{EE47764E-A202-4F85-A767-ABDAB4AFF35F}.Release|Win32.Build.0 = Release|Win32
-		{EE47764E-A202-4F85-A767-ABDAB4AFF35F}.Release|x64.ActiveCfg = Release|x64
-		{EE47764E-A202-4F85-A767-ABDAB4AFF35F}.Release|x64.Build.0 = Release|x64
 		{E8091321-D79D-4575-86EF-064EA1A4A20D}.Debug|Itanium.ActiveCfg = Debug|x64
 		{E8091321-D79D-4575-86EF-064EA1A4A20D}.Debug|Win32.ActiveCfg = Debug|Win32
 		{E8091321-D79D-4575-86EF-064EA1A4A20D}.Debug|Win32.Build.0 = Debug|Win32
@@ -181,7 +168,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{71AD2674-065B-48F5-B8B0-E1F9D3892081} = {B9D1251F-E5BC-412F-950B-BE588408EA59}
-		{EE47764E-A202-4F85-A767-ABDAB4AFF35F} = {B9D1251F-E5BC-412F-950B-BE588408EA59}
 		{E8091321-D79D-4575-86EF-064EA1A4A20D} = {B9D1251F-E5BC-412F-950B-BE588408EA59}
 		{EBFFFB4E-261D-44D3-B89C-957B31A0BF9C} = {B9D1251F-E5BC-412F-950B-BE588408EA59}
 		{93EC0EDE-01CD-4FB0-B8E8-4F2A027E026E} = {3A85ACE2-E7C5-4F1F-A253-9C60B8076BE8}

@@ -1,0 +1,27 @@
+jobs:
+- job: build
+  displayName: Build
+  strategy:
+    matrix:
+      Debug:
+        configuration: Debug
+      Release:
+        configuration: Release
+  pool:
+    vmImage: windows-2019
+  steps:
+  - checkout: self
+    submodules: recursive
+  - powershell: |
+      Set-PSDebug -Trace 1
+      vcpkg version
+      vcpkg integrate install
+      vcpkg install ms-gsl
+    displayName: Install dependencies
+  - task: VSBuild@1
+    displayName: Build
+    inputs:
+      solution: vc16/ipod_manager.sln
+      platform: Win32
+      configuration: $(configuration)
+      msbuildArgs: /m
