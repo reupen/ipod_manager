@@ -22,13 +22,8 @@ private:
 		virtual void notify_on_create()
 		{
 			set_single_selection(true);
-			pfc::list_t<Column> columns;
-			columns.set_count(2);
-			columns[0].m_title = "Field";
-			columns[0].m_size = 95;
-			columns[1].m_title = "Mapping";
-			columns[1].m_size = 310;
-			uih::ListView::set_columns(columns);
+			const std::vector<Column> columns = {{"Field", 95}, {"Mapping", 310}};
+			set_columns(columns);
 		};
 		virtual void execute_default_action(t_size index, t_size column, bool b_keyboard, bool b_ctrl)
 		{

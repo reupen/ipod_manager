@@ -188,9 +188,8 @@ void ipod_add_files::run (ipod_device_ptr_ref_t p_ipod, const pfc::list_base_con
 	const t_size max_directory_number = 49;
 
 	pfc::array_t<t_uint32> dir_counts;
-	mmh::Permutation permutation_dir_counts;
+	mmh::Permutation permutation_dir_counts(max_directory_number + 1);
 	dir_counts.set_size(max_directory_number+1);
-	permutation_dir_counts.set_size(max_directory_number+1);
 	for (i=0; i<max_directory_number+1; i++)
 	{
 		permutation_dir_counts[i] = i;
@@ -825,8 +824,7 @@ void ipod_add_files::run (ipod_device_ptr_ref_t p_ipod, const pfc::list_base_con
 			p_mappings.get_album(metadb_handle_ptr(), empty_info, empty_album);
 		}
 		t_size count_tracks = p_library.m_tracks.get_count();
-		mmh::Permutation permutation_album_grouping;
-		permutation_album_grouping.set_count(count_tracks);
+		mmh::Permutation permutation_album_grouping(count_tracks);
 		mmh::sort_get_permutation(p_library.m_tracks, permutation_album_grouping, ipod::tasks::load_database_t::g_compare_track_album_id, false);
 		counter=0;
 		pfc::rcptr_t<video_thumbailer_t> p_video_thumbailer;
@@ -843,7 +841,8 @@ void ipod_add_files::run (ipod_device_ptr_ref_t p_ipod, const pfc::list_base_con
 					p_status.update_text_and_details(pfc::string8() << "Copying artwork for " << text_count << " file" << (text_count.is_plural() ? "s" : ""), progress_details);
 				}
 				bool b_album_track = p_library.m_tracks[m_results[i].index]->media_type == t_track::type_audio && strcmp(p_library.m_tracks[m_results[i].index]->album, empty_album) != 0 && p_library.m_tracks[m_results[i].index]->album.length();
-				t_size k = permutation_album_grouping.find_item(m_results[i].index); //should never be pfc_infinite
+				const auto iter = std::find(permutation_album_grouping.begin(), permutation_album_grouping.end(), m_results[i].index);
+				t_size k = std::distance(permutation_album_grouping.begin(), iter);
 				/*if (k && p_library.m_tracks[i]->album_id == p_library.m_tracks[permutation_album_grouping[k-1]]->album_id))
 				{
 				if (((!p_library.m_tracks[i]->album_artist_valid && strcmp(p_library.m_tracks[i]->artist, empty_artist)) || strcmp(p_library.m_tracks[i]->album_artist, empty_album_artist)) && )

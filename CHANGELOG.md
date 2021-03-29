@@ -1,5 +1,10 @@
 # iPod manager for foobar2000 changelog
 
+## Development version
+
+* Compiled with Visual Studio 2019 16.9
+* Updated to foobar2000 SDK 2021-02-23
+
 ## 0.7.2
 
 * Fixed a possible 'Unsupported file format' error on iOS 4 devices when playlists have been modified on the device

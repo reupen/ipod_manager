@@ -215,8 +215,7 @@ void check_files_in_library_t::run (ipod_device_ptr_ref_t p_ipod, const pfc::lis
 	//m_result.fill(t_result(false, );
 	m_stats.set_count(count_tracks);
 
-	mmh::Permutation permutation;
-	permutation.set_size(count_tracks);
+	mmh::Permutation permutation(count_tracks);
 
 	for (i=0; i<count_tracks; i++)
 	{

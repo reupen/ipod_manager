@@ -357,11 +357,11 @@ void g_playlist_get_tracks (const pfc::rcptr_t<itunesdb::t_playlist> & p_playlis
 		mmh::sort_get_permutation(p_library.m_tracks.get_ptr(), permutation, ipod::tasks::load_database_t::g_compare_track_id, false);
 		pfc::list_const_permutation_t<pfc::rcptr_t <t_track>, const mmh::Permutation & > sorted_array(p_library.m_tracks, permutation);
 
-		mmh::InversePermutation permutation_inverse(permutation);
+		auto permutation_inverse = permutation.invert();
 
 		mmh::Permutation permutation_position(count);
 
-		if (p_playlist->sort_direction) permutation_position.reset_reverse();
+		if (p_playlist->sort_direction) permutation_position = permutation_position.reverse();
 
 		//mmh::sort_get_permutation(p_playlist->items.get_ptr(), permutation_position, t_playlist_entry::g_compare_position, false);
 

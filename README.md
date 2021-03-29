@@ -12,9 +12,11 @@ The iPod manager SDK source code (contained in the `dop-sdk` directory) is relea
 
 ## Building
 
-First, clone the repo (use `git clone --recursive` to clone all submodules at the same time).
+1. Clone the repo (use `git clone --recursive` to clone all submodules at the same time).
 
-Then, fire up Visual Studio 2019, and open the solution in the `vc16` folder, and build the solution from the Build menu. 
+2. Install `ms-gsl` and `wil` using [Vcpkg](https://github.com/Microsoft/vcpkg).
+
+3. Open the solution in the `vc16` folder using Visual Studio 2019, and build the solution from the Build menu. 
 
 Produced builds require `iTunesCrypt.dll` found in the `MobileDeviceSign` folder.
 

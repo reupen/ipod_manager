@@ -708,10 +708,9 @@ namespace ipod
 
 		void load_database_t::get_next_ids (t_uint32 & next_tid, t_uint64 & next_dbid)
 		{
-			mmh::Permutation permutation, permutationdbid;
 			t_size count = m_tracks.get_count();
-			permutation.set_size(count);
-			permutationdbid.set_size(count);
+			mmh::Permutation permutation(count);
+			mmh::Permutation permutationdbid(count);
 
 			mmh::sort_get_permutation(m_tracks, permutation, g_compare_track_id, false);
 			mmh::sort_get_permutation(m_tracks, permutationdbid, g_compare_track_dbid, false);
@@ -732,9 +731,8 @@ namespace ipod
 		t_uint64 load_database_t::get_new_playlist_pid()
 		{
 			t_uint64 pid = NULL;
-			mmh::Permutation permutation;
 			t_size count = m_playlists.get_count();
-			permutation.set_size(count);
+			mmh::Permutation permutation(count);
 
 			mmh::sort_get_permutation(m_playlists, permutation, g_compare_playlist_id, false);
 
@@ -759,9 +757,8 @@ namespace ipod
 		t_uint64 load_database_t::get_new_track_pid()
 		{
 			t_uint64 pid = NULL;
-			mmh::Permutation permutation;
 			t_size count = m_tracks.get_count();
-			permutation.set_size(count);
+			mmh::Permutation permutation(count);
 
 			mmh::sort_get_permutation(m_tracks, permutation, g_compare_track_dbid, false);
 
@@ -810,9 +807,8 @@ namespace ipod
 		}
 		void load_database_t::glue_items (t_size start)
 		{
-			mmh::Permutation permutation, permutationdbid;
-			permutation.set_size(start);
-			permutationdbid.set_size(start);
+			mmh::Permutation permutation(start);
+			mmh::Permutation permutationdbid(start);
 
 			t_size i;
 

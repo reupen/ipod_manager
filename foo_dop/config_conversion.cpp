@@ -41,17 +41,17 @@ void encoder_manager_t::sort_encoder_list()
 	t_size count = settings::encoder_list.get_count();
 	mmh::Permutation permuation(count);
 	mmh::sort_get_permutation(settings::encoder_list.get_ptr(), permuation, settings::conversion_preset_t::g_compare, true);
-	mmh::InversePermutation permuation_inverse(permuation);
+	auto permutation_inverse = permuation.invert();
 	if (settings::active_encoder < count)
-		settings::active_encoder = permuation_inverse[settings::active_encoder];
-	settings::encoder_list.reorder(permuation.get_ptr());
+		settings::active_encoder = permutation_inverse[settings::active_encoder];
+	settings::encoder_list.reorder(permuation.data());
 	if (m_encoder_list_view.get_wnd())
 	{
 		t_size index = m_encoder_list_view.get_selected_item_single();
 		m_encoder_list_view.on_sort();
 		if (index < count)
 		{
-			m_encoder_list_view.set_item_selected_single(permuation_inverse[index]);
+			m_encoder_list_view.set_item_selected_single(permutation_inverse[index]);
 			//for (t_size i=0; i<count; i++)
 			//	console::formatter() << index << " " << index << " " << permuation_inverse[index] << " " << permuation[index];
 		}
