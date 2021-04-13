@@ -37,7 +37,7 @@ namespace ipod
 			{
 				mmh::Permutation pNormal(current_artist_count);
 				mmh::sort_get_permutation(m_artist_list.get_ptr(), pNormal, t_artist::g_compare_standard, false);
-				m_artist_list.reorder(pNormal.get_ptr());
+				m_artist_list.reorder(pNormal.data());
 			}
 
 			t_uint32 next_id = 0x81;

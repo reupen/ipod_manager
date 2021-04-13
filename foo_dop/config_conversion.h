@@ -76,11 +76,7 @@ private:
 		{
 			set_single_selection(true);
 			set_autosize(true);
-
-			pfc::list_t<uih::ListView::Column> columns;
-			columns.add_item(uih::ListView::Column("Name", 100));
-
-			set_columns(columns);
+			set_columns({ {"Name", 100} });
 		}
 		void notify_on_selection_change(const bit_array & p_affected, const bit_array & p_status, notification_source_t p_notification_source)
 		{

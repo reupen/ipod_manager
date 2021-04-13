@@ -890,7 +890,7 @@ void database_writer_t::write_itunesdb(ipod_device_ptr_ref_t p_ipod, ipod::tasks
 				{
 					t_size j;
 					for (j=0; j<tabsize(library_indices); j++)
-						sort_permutations[j].set_size(count_tracks);
+						sort_permutations[j].resize(count_tracks);
 				}
 
 				for (i=0; i<tabsize(library_indices); i++)
@@ -1170,7 +1170,7 @@ void database_writer_t::write_itunesdb(ipod_device_ptr_ref_t p_ipod, ipod::tasks
 					}
 	//#pragma warning( default : 4101 )
 
-					do_index.write(sort_permutations[i].get_ptr(), count_tracks*sizeof(t_uint32), p_abort);
+					do_index.write(sort_permutations[i].data(), count_tracks*sizeof(t_uint32), p_abort);
 
 					p_py.write_do(do_types::library_index, 0, 0, do_index.get_ptr(), do_index.get_size(), p_abort);
 					count_do_library++;

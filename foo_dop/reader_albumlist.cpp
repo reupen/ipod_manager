@@ -30,7 +30,7 @@ namespace ipod
 			//pfc::list_t<t_album::ptr> newSongs, newPodcasts, newTvShows;
 
 			mmh::sort_get_permutation(m_album_list.m_master_list.get_ptr(), pMaster, t_album::g_compare_album_mixed, false);
-			m_album_list.m_master_list.reorder(pMaster.get_ptr());
+			m_album_list.m_master_list.reorder(pMaster.data());
 			//pfc::list_permutation_t<t_album> masterListOrdered(
 
 			//m_album_list.m_normal.reorder(pNormal.get_ptr());

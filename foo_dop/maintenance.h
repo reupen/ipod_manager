@@ -133,8 +133,7 @@ public:
 						m_field_mappings.get_album(metadb_handle_ptr(), empty_info, empty_album);
 					}
 					pfc::rcptr_t<video_thumbailer_t> p_video_thumbailer;
-					mmh::Permutation permutation_album_grouping;
-					permutation_album_grouping.set_count(count_tracks);
+					mmh::Permutation permutation_album_grouping(count_tracks);
 					mmh::sort_get_permutation(m_library.m_tracks, permutation_album_grouping, ipod::tasks::load_database_t::g_compare_track_album_id, false);
 
 					pfc::array_staticsize_t<bool> mask(count_tracks);
@@ -161,7 +160,8 @@ public:
 						if (!b_excluded && ( !(p_track->podcast_flag || p_track->video_flag) || !b_artwork_exists ) )
 						{
 							bool b_album_track = m_library.m_tracks[i]->media_type == t_track::type_audio && m_library.m_tracks[i]->album.length() && strcmp(m_library.m_tracks[i]->album, empty_album) != 0;
-							t_size k = permutation_album_grouping.find_item(i); //should never be pfc_infinite
+							const auto iter = std::find(permutation_album_grouping.begin(), permutation_album_grouping.end(), i);
+							t_size k = std::distance(permutation_album_grouping.begin(), iter);
 							try
 							{
 								//ptr->format_title_legacy(NULL, artworkfiles, m_artwork_script, NULL/*&titleformat_text_filter_impl_reserved_chars("\/:*?\"<>|")*/);
@@ -531,8 +531,7 @@ public:
 			if (p_info_loader->m_callback->m_aborted) 
 				throw exception_aborted("File read was aborted");
 
-			mmh::Permutation permutation;
-			permutation.set_count(m_library.m_handles.get_count());
+			mmh::Permutation permutation(m_library.m_handles.get_count());
 			mmh::sort_get_permutation(m_library.m_handles.get_ptr(), permutation, g_compare_metadbhandle_noncasesensitive, false);
 
 			t_size i, count = p_info_loader->m_callback->m_handles.get_count(), dummy;

@@ -84,9 +84,8 @@ namespace photodb
 	}
 	t_uint32 t_datafile::get_next_ii_id()
 	{
-		mmh::Permutation permutation;
 		t_size count = image_list.get_count();
-		permutation.set_size(count);
+		mmh::Permutation permutation(count);
 
 		mmh::sort_get_permutation(image_list, permutation, t_image_item::g_compare_id, false);
 

@@ -11,8 +11,8 @@ void conversion_manager_t::initialise(const pfc::array_t<conversion_entry_t>& en
 	m_threads.set_count(thread_count);
 	m_entries.set_count(count);
 
-	m_permutation.set_count(count);
-	m_inverse_permutation.set_count(count);
+	m_permutation.resize(count);
+	m_inverse_permutation.resize(count);
 	m_mask_flush_items.resize(count);
 	//m_mask_move_processed.resize(count);
 
@@ -31,9 +31,8 @@ void conversion_manager_t::initialise(const pfc::array_t<conversion_entry_t>& en
 			mask_album_valid.set(i, b_artist_valid && b_album_valid);
 		}
 		mmh::sort_get_permutation(sort_entries.get_ptr(), m_permutation, stricmp_utf8, false);
-		mmh::InversePermutation invperm(m_permutation);
-		m_inverse_permutation = invperm;
-		pfc::list_permutation_t<pfc::string8> permentries(sort_entries, m_permutation.get_ptr(), m_permutation.get_count());
+		m_inverse_permutation = m_permutation.invert();
+		pfc::list_permutation_t<pfc::string8> permentries(sort_entries, m_permutation.data(), m_permutation.size());
 		for (i = 0; i<count; i++)
 		{
 			//console::formatter() << "sorted index: " << invperm[i] << " permidx: " << i;

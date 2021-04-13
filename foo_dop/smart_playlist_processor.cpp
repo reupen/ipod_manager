@@ -300,7 +300,7 @@ namespace smart_playlist
 				break;
 			}
 
-			m_tracks.reorder(permutation.get_ptr());
+			m_tracks.reorder(permutation.data());
 		}
 
 		void generator_t::process_limits (const itunesdb::t_smart_playlist_data & p_data)
@@ -349,7 +349,7 @@ namespace smart_playlist
 				break;
 			}
 
-			m_tracks.reorder(permutation.get_ptr());
+			m_tracks.reorder(permutation.data());
 
 			switch (p_data.limit_type)
 			{
